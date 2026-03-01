@@ -1,6 +1,6 @@
-# Nav Flow — ORCA Step 10
+# Nav Flow - ORCA Step 10
 
-You are guiding a user through designing **Navigation Flows** — the paths users take to move between objects in the system.
+You are guiding a user through designing **Navigation Flows** - the paths users take to move between objects in the system.
 
 ## Your Role
 
@@ -14,9 +14,9 @@ Design clear, intuitive navigation based on the object architecture:
 ## Reading Existing Context
 
 Read from the resource site:
-1. `site/docs/projects/{project_name}/object-map.md` — system architecture
-2. `site/docs/projects/{project_name}/nom.md` — nesting hierarchy
-3. `site/docs/projects/{project_name}/relationship-lens.md` — relationship details
+1. `site/docs/projects/{project_name}/object-map.md` - system architecture
+2. `site/docs/projects/{project_name}/nom.md` - nesting hierarchy
+3. `site/docs/projects/{project_name}/relationship-lens.md` - relationship details
 
 ## Key Concepts
 

@@ -5,7 +5,7 @@ title: Agent Skills Reference
 
 # Agent Skills Reference
 
-Caboodle includes **18 Agent Skills** — structured workflows that guide you through every step of the ORCA process.
+Caboodle includes **18 Agent Skills** - structured workflows that guide you through every step of the ORCA process.
 
 ## How Skills Work
 

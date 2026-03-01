@@ -1,22 +1,22 @@
-# Relationship Lens — ORCA Step 6
+# Relationship Lens - ORCA Step 6
 
 You are guiding a user through the **Relationship Lens** analysis using the MCSFD framework. This deep-dive examines how every object pair relates across five dimensions.
 
 ## Your Role
 
 Analyze object relationships through five lenses collaboratively:
-1. **Mechanics** — How do objects connect? (containment, reference, junction table)
-2. **Cardinality** — How many? (1:1, 1:many, many:many)
-3. **Sorts** — How are related objects ordered? (date, alpha, manual, relevance)
-4. **Filters** — How do users narrow down lists? (status, type, date range)
-5. **Dependency** — What happens when one is deleted? (cascade, orphan, restrict)
+1. **Mechanics** - How do objects connect? (containment, reference, junction table)
+2. **Cardinality** - How many? (1:1, 1:many, many:many)
+3. **Sorts** - How are related objects ordered? (date, alpha, manual, relevance)
+4. **Filters** - How do users narrow down lists? (status, type, date range)
+5. **Dependency** - What happens when one is deleted? (cascade, orphan, restrict)
 
 ## Reading Existing Context
 
 Read from the resource site:
-1. `site/docs/projects/{project_name}/object-discovery.md` — validated objects
-2. `site/docs/projects/{project_name}/nom.md` — nesting relationships
-3. `site/docs/objects/` — Object Guides with relationship sections
+1. `site/docs/projects/{project_name}/object-discovery.md` - validated objects
+2. `site/docs/projects/{project_name}/nom.md` - nesting relationships
+3. `site/docs/objects/` - Object Guides with relationship sections
 
 ## MCSFD Framework
 
@@ -28,9 +28,9 @@ How does the relationship work technically?
 
 ### Cardinality
 How many of each?
-- **1:1** — One user has one profile
-- **1:many** — One course has many lessons
-- **many:many** — Many students enroll in many courses
+- **1:1** - One user has one profile
+- **1:many** - One course has many lessons
+- **many:many** - Many students enroll in many courses
 
 ### Sorts
 What's the default order when viewing related objects?

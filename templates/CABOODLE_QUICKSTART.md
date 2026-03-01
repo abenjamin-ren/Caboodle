@@ -21,15 +21,15 @@ caboodle install
 
 ### Step 1: Start with the Planner
 
-Every Caboodle project starts the same way — **tell the agent about your project**. Open your AI assistant (Cursor, Claude Code, etc.) and describe what you're working on:
+Every Caboodle project starts the same way: **tell the agent about your project**. Open your AI assistant (Cursor, Claude Code, etc.) and describe what you're working on:
 
 > "I'm building a learning management system where instructors create courses and students enroll in them. Help me plan the OOUX process."
 
 The planner will:
-1. **Ask about your project** — what you're building, who the users are, your timeline
-2. **Check for existing work** — scan your resource site for Object Guides or prior artifacts
-3. **Recommend a workflow** — suggest the right skill sequence for your situation
-4. **Save a plan** — create a project directory with a step-by-step plan you can track
+1. **Ask about your project**: what you're building, who the users are, and your timeline
+2. **Check for existing work**: scan your resource site for Object Guides or prior artifacts
+3. **Recommend a workflow**: suggest the right skill sequence for your situation
+4. **Save a plan**: create a project directory with a step-by-step plan you can track
 
 ### Step 2: Follow the Plan
 
@@ -49,7 +49,7 @@ To run any skill, just ask:
 
 ### Step 3: Collaborate at Checkpoints
 
-Every skill has **collaboration checkpoints** — moments where the agent pauses and waits for your input. It won't guess or assume. You review, correct, and confirm. The agent moves to the next step.
+Every skill has **collaboration checkpoints**. At these moments, the agent pauses and waits for your input. It does not guess or assume. You review, correct, and confirm before it moves to the next step.
 
 ### Step 4: Artifacts Save to Your Resource Site
 
@@ -59,7 +59,7 @@ Every finished artifact is saved as a markdown file in `site/docs/`. You'll buil
 
 ## The 18 Skills at a Glance
 
-### 🔍 Discovery — "What's in our system?"
+### 🔍 Discovery: "What's in our system?"
 | # | Skill | You Provide | You Get |
 |---|-------|-------------|---------|
 | 01 | Object Discovery | Research materials | Validated object list |
@@ -67,7 +67,7 @@ Every finished artifact is saved as a markdown file in `site/docs/`. You'll buil
 | 03 | CTA Inventory | Objects + context | Action list per object |
 | 04 | Attribute Definition | Objects + CTAs | Data field map |
 
-### 📐 Definition — "Tell me everything"
+### 📐 Definition: "Tell me everything"
 | # | Skill | You Provide | You Get |
 |---|-------|-------------|---------|
 | 05 | Object Guide | Object name + context | Comprehensive reference |
@@ -75,7 +75,7 @@ Every finished artifact is saved as a markdown file in `site/docs/`. You'll buil
 | 07 | CTA Matrix | Objects + CTAs | Prioritized matrix |
 | 08 | Shapeshifter Matrix | Attributes + views | Context visibility map |
 
-### 🎨 Design — "How does it look?"
+### 🎨 Design: "How does it look?"
 | # | Skill | You Provide | You Get |
 |---|-------|-------------|---------|
 | 09 | Object Map | All artifacts | Architecture diagram |
@@ -83,7 +83,7 @@ Every finished artifact is saved as a markdown file in `site/docs/`. You'll buil
 | 11 | CTA Prioritization | CTA Matrix | Ranked backlog |
 | 12 | Object Card | Shapeshifter data | Card/list specs |
 
-### 🏗️ Build — "Make it real"
+### 🏗️ Build: "Make it real"
 | # | Skill | You Provide | You Get |
 |---|-------|-------------|---------|
 | 13 | OO User Stories | All artifacts | Dev-ready stories |
@@ -144,12 +144,12 @@ caboodle uninstall   # Remove all Caboodle files
 
 ## Key OOUX Concepts
 
-**SIP Test** — Every object must have **S**tructure (attributes), **I**nstances (examples), **P**urpose (user value).
+**SIP Test**: Every object must have **S**tructure (attributes), **I**nstances (examples), and **P**urpose (user value).
 
-**MCSFD** — Five relationship lenses: **M**echanics, **C**ardinality, **S**orts, **F**ilters, **D**ependency.
+**MCSFD**: Five relationship lenses: **M**echanics, **C**ardinality, **S**orts, **F**ilters, and **D**ependency.
 
-**Noun Foraging** — Extract every noun from research materials. Quantity first, filter later.
+**Noun Foraging**: Extract every noun from research materials. Quantity first, then filter.
 
-**Shapeshifting** — Objects look different in different contexts (card, list, detail, search result).
+**Shapeshifting**: Objects look different in different contexts (card, list, detail, and search result).
 
-**Object Guide** — A "glossary entry on steroids" documenting everything about one object.
+**Object Guide**: A complete reference that documents one object.

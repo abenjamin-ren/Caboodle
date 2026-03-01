@@ -5,7 +5,7 @@ orca_pillar: objects
 orca_step: 5
 version: "3.0.0"
 description: >
-  Create a comprehensive Object Guide — a "glossary on steroids" — for a
+  Create a comprehensive Object Guide - a "glossary on steroids" - for a
   single system object. Combines discovery artifacts with deep analysis
   including purpose, instances, attributes, CTAs, relationships, edge cases,
   and governance rules.

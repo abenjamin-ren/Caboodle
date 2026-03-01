@@ -1,5 +1,5 @@
 # ============================================================
-# Caboodle Agent Skill — Canonical Schema (v3)
+# Caboodle Agent Skill - Canonical Schema (v3)
 # ============================================================
 # Every skill folder follows this structure:
 #
@@ -113,7 +113,7 @@ sources:
           required: { type: boolean }
       description: >
         Source materials the user can provide. Skills should accept any
-        combination of these — links, uploaded files, images, pasted text.
+        combination of these - links, uploaded files, images, pasted text.
 
 # Publishing ──────────────────────────────────────────────────
 

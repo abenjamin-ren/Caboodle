@@ -1,5 +1,5 @@
 ---
-description: OOUX object-thinking concepts — SIP test, noun foraging, object identification
+description: OOUX object-thinking concepts - SIP test, noun foraging, object identification
 applyWhen: agent
 ---
 
@@ -17,17 +17,17 @@ that those screens and components represent.
 
 Every candidate noun must pass three tests to qualify as a system object:
 
-**S — Structure**: Does this thing have its own attributes?
+**S - Structure**: Does this thing have its own attributes?
 - Could you design a detail page for it?
 - Example pass: "A COURSE has title, description, instructor, duration"
 - Example fail: "A title is just a text field on something else"
 
-**I — Instances**: Does this thing have multiple examples?
+**I - Instances**: Does this thing have multiple examples?
 - Can you name 2-3 specific instances?
 - Example pass: "Math 101, Biology 201, English 301"
 - Example fail: "The Homepage is one thing, not many"
 
-**P — Purpose**: Do users care about this thing for its own sake?
+**P - Purpose**: Do users care about this thing for its own sake?
 - Do users seek it out, browse for it, or take actions on it?
 - Example pass: "Users browse, enroll in, and complete COURSES"
 - Example fail: "A section divider exists for layout but users don't seek it out"
@@ -37,8 +37,8 @@ Every candidate noun must pass three tests to qualify as a system object:
 The foundational OOUX technique for discovering objects:
 
 1. **Read** research materials (PRDs, interviews, UI screenshots, requirements)
-2. **Extract** every noun — people, places, things, concepts, documents, events
-3. **Don't filter** — quantity over quality at this stage
+2. **Extract** every noun - people, places, things, concepts, documents, events
+3. **Don't filter** - quantity over quality at this stage
 4. **Group** similar nouns into clusters
 5. **Name** each cluster with the clearest, most user-friendly title
 6. **Validate** each cluster with the SIP test
@@ -47,6 +47,6 @@ The foundational OOUX technique for discovering objects:
 
 - **Verbs as nouns**: "Registration" might be a CTA (Register), not an object
 - **Attributes as objects**: "Name" and "Date" are usually attributes of something else
-- **Too abstract**: "Content" is too vague — what kind?
+- **Too abstract**: "Content" is too vague - what kind?
 - **Too granular**: "First Name" is an attribute of PERSON, not its own object
-- **System internals**: "Database" or "API endpoint" — not user-facing objects
+- **System internals**: "Database" or "API endpoint" - not user-facing objects

@@ -5,9 +5,9 @@ title: The ORCA Process
 
 # The ORCA Process
 
-ORCA stands for **Objects, Relationships, CTAs, Attributes** — the four pillars of Object-Oriented UX. The process has 4 rounds with 16 core steps.
+ORCA stands for **Objects, Relationships, CTAs, Attributes** - the four pillars of Object-Oriented UX. The process has 4 rounds with 16 core steps.
 
-## Round 1: Discovery — "What exists in our system?"
+## Round 1: Discovery - "What exists in our system?"
 
 | Step | Skill | What You Produce |
 |------|-------|-----------------|
@@ -16,7 +16,7 @@ ORCA stands for **Objects, Relationships, CTAs, Attributes** — the four pillar
 | 3 | CTA Inventory | Action inventory per object with role mappings |
 | 4 | Attribute Definition | Data fields per object with types |
 
-## Round 2: Definition — "Deep-dive into each object"
+## Round 2: Definition - "Deep-dive into each object"
 
 | Step | Skill | What You Produce |
 |------|-------|-----------------|
@@ -25,7 +25,7 @@ ORCA stands for **Objects, Relationships, CTAs, Attributes** — the four pillar
 | 7 | CTA Matrix | Cross-reference of objects x actions |
 | 8 | Shapeshifter Matrix | How objects appear in different views |
 
-## Round 3: Design — "Shape the solution"
+## Round 3: Design - "Shape the solution"
 
 | Step | Skill | What You Produce |
 |------|-------|-----------------|
@@ -34,7 +34,7 @@ ORCA stands for **Objects, Relationships, CTAs, Attributes** — the four pillar
 | 11 | CTA Prioritization | Ranked, phased action backlog |
 | 12 | Object Card | Card/list UI component specifications |
 
-## Round 4: Build — "Implementation specs"
+## Round 4: Build - "Implementation specs"
 
 | Step | Skill | What You Produce |
 |------|-------|-----------------|

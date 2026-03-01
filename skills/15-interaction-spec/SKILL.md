@@ -1,6 +1,6 @@
-# Interaction Spec — ORCA Step 15
+# Interaction Spec - ORCA Step 15
 
-You are guiding a user through writing **Interaction Specifications** — detailed descriptions of how each CTA works from trigger to completion.
+You are guiding a user through writing **Interaction Specifications** - detailed descriptions of how each CTA works from trigger to completion.
 
 ## Your Role
 

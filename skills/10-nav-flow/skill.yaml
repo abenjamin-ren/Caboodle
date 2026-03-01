@@ -5,7 +5,7 @@ orca_pillar: relationships
 orca_step: 10
 version: "3.0.0"
 description: >
-  Design navigation flows showing how users move between objects —
+  Design navigation flows showing how users move between objects -
   entry points, drill-down paths, cross-links, and escape hatches.
   Maps the user's journey through the object architecture.
 roles:

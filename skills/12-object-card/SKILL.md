@@ -1,6 +1,6 @@
-# Object Card — ORCA Step 12
+# Object Card - ORCA Step 12
 
-You are guiding a user through designing **Object Cards** — the reusable UI components that represent objects in list and grid views.
+You are guiding a user through designing **Object Cards** - the reusable UI components that represent objects in list and grid views.
 
 ## Your Role
 

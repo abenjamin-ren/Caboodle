@@ -6,11 +6,11 @@ title: Welcome to Caboodle
 
 # Welcome to Caboodle
 
-**Caboodle** is your team's OOUX resource site — a living, organized home for all the objects, relationships, and design artifacts you discover using Object-Oriented UX.
+**Caboodle** is your team's OOUX resource site: a living, organized home for all the objects, relationships, and design artifacts you discover using Object-Oriented UX.
 
 ## What Is OOUX?
 
-Object-Oriented UX (OOUX) is a design philosophy that grounds product decisions in the concrete "things" users interact with — **objects** like Student, Assignment, or Report — rather than in screens or flows.
+Object-Oriented UX (OOUX) is a design philosophy that grounds product decisions in the concrete "things" users interact with, including **objects** like Student, Assignment, or Report, rather than screens or flows.
 
 The **ORCA process** (Objects, Relationships, CTAs, Attributes) is the 4-round framework for discovering and defining those objects and turning them into design artifacts.
 
@@ -34,7 +34,7 @@ Caboodle pairs **AI-powered Agent Skills** with a **structured resource site** t
 
 Skills are step-by-step workflows that run inside Cursor (or any AI coding assistant). They:
 
-- Accept **any source material** you provide — links, files, images, pasted text
+- Accept **any source material** you provide: links, files, images, or pasted text
 - **Collaborate** with you at structured checkpoints (they never guess or assume)
 - **Publish** finished artifacts as markdown pages in this resource site
 

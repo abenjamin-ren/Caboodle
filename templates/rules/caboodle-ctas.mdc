@@ -1,5 +1,5 @@
 ---
-description: OOUX CTA concepts — calls-to-action, CTA matrix, action design
+description: OOUX CTA concepts - calls-to-action, CTA matrix, action design
 applyWhen: agent
 ---
 
@@ -8,7 +8,7 @@ applyWhen: agent
 ## What Is a CTA?
 
 A CTA is any **action a user can take on an object**. CTAs are the verbs of your system.
-Every object should have at least one CTA — otherwise, why does it exist in the UI?
+Every object should have at least one CTA - otherwise, why does it exist in the UI?
 
 ## CTA Categories
 

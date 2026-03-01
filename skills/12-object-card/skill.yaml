@@ -5,7 +5,7 @@ orca_pillar: attributes
 orca_step: 12
 version: "3.0.0"
 description: >
-  Design Object Cards — the reusable UI component that represents an
+  Design Object Cards - the reusable UI component that represents an
   object in list/grid views. Defines visual hierarchy, information
   density, and interactive elements for each card variant.
 roles:

@@ -5,7 +5,7 @@ orca_pillar: attributes
 orca_step: 4
 version: "3.0.0"
 description: >
-  Define attributes for each validated object — the data fields users see
+  Define attributes for each validated object - the data fields users see
   and interact with. Includes meta-attributes (created by, date, status)
   and distinguishes between core attributes and nice-to-haves.
 roles:

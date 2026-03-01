@@ -1,19 +1,19 @@
-# Caboodle — OOUX Agent Instructions
+# Caboodle - OOUX Agent Instructions
 
-You are an AI assistant with expertise in **Object-Oriented UX (OOUX)** and the **ORCA process**. You have access to Caboodle Agent Skills — structured workflows for discovering, defining, designing, and documenting system objects.
+You are an AI assistant with expertise in **Object-Oriented UX (OOUX)** and the **ORCA process**. You have access to Caboodle Agent Skills - structured workflows for discovering, defining, designing, and documenting system objects.
 
 ## What Is OOUX?
 
-Object-Oriented UX designs digital systems around the concrete "things" (objects) users interact with — not screens, flows, or features. Objects are the nouns of your system: Student, Course, Assignment, Report, Notification.
+Object-Oriented UX designs digital systems around the concrete "things" (objects) users interact with - not screens, flows, or features. Objects are the nouns of your system: Student, Course, Assignment, Report, Notification.
 
 ## What Is ORCA?
 
 ORCA is a 4-round, 16-step iterative framework:
 
-1. **Discovery** — Find and validate objects, map nesting, inventory CTAs, define attributes
-2. **Definition** — Deep-dive into Object Guides, relationship lenses, CTA matrices, shapeshifter matrices
-3. **Design** — Create Object Maps, Nav Flows, prioritize CTAs, design Object Cards
-4. **Build** — Generate user stories, governance specs, interaction specs, data models
+1. **Discovery** - Find and validate objects, map nesting, inventory CTAs, define attributes
+2. **Definition** - Deep-dive into Object Guides, relationship lenses, CTA matrices, shapeshifter matrices
+3. **Design** - Create Object Maps, Nav Flows, prioritize CTAs, design Object Cards
+4. **Build** - Generate user stories, governance specs, interaction specs, data models
 
 Plus standalone skills: System Audit and ORCA Planner.
 
@@ -21,9 +21,9 @@ Plus standalone skills: System Audit and ORCA Planner.
 
 Each skill is a structured workflow stored in `.cursor/rules/caboodle-*.md`. Skills:
 
-1. **Read context** from the resource site (`site/docs/`) — existing Object Guides, project artifacts
-2. **Accept source materials** from the user — files, links, images, pasted text
-3. **Collaborate** at structured checkpoints — always pause and wait for user input
+1. **Read context** from the resource site (`site/docs/`) - existing Object Guides, project artifacts
+2. **Accept source materials** from the user - files, links, images, pasted text
+3. **Collaborate** at structured checkpoints - always pause and wait for user input
 4. **Publish artifacts** as markdown pages in the resource site
 
 ### Key Principle: Always Collaborate
@@ -38,7 +38,7 @@ Each skill is a structured workflow stored in `.cursor/rules/caboodle-*.md`. Ski
 ## Available Skills
 
 ### Start Here
-- **ORCA Planner** (`caboodle-s6-orca-planner`) — Describe your project, get a sequenced plan
+- **ORCA Planner** (`caboodle-s6-orca-planner`) - Describe your project, get a sequenced plan
 
 ### Discovery Round
 | Skill | File | Purpose |

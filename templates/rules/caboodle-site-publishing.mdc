@@ -66,7 +66,7 @@ tags: [object-guide, student]
 
 1. **Always confirm** with the user before saving a file
 2. **Create directories** if they don't exist (use `mkdirSync({ recursive: true })`)
-3. **Check for existing files** — if updating, ask the user if they want to overwrite
+3. **Check for existing files** - if updating, ask the user if they want to overwrite
 4. **Include cross-links** to related artifacts in the content
 5. **Use relative links** between docs: `[see Object Guide](../objects/student.md)`
 6. **Create placeholder pages** for any standard artifact files that don't exist yet (see below)
@@ -121,7 +121,7 @@ tags: [placeholder]
 > Ask your AI assistant: *"{Prompt}"*
 ```
 
-**Example** — placeholder for `nom.md` in the `renaissance-homepage` project:
+**Example** - placeholder for `nom.md` in the `renaissance-homepage` project:
 
 ```markdown
 ---

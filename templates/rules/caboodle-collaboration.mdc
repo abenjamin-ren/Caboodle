@@ -1,5 +1,5 @@
 ---
-description: Collaboration rules — when to ask for human input, checkpoint behavior
+description: Collaboration rules - when to ask for human input, checkpoint behavior
 alwaysApply: true
 ---
 
@@ -9,10 +9,10 @@ alwaysApply: true
 
 When working through any Caboodle skill or OOUX workflow:
 
-1. **If data is missing** — Ask the user to provide it. Do not guess or fabricate information.
-2. **If a decision is ambiguous** — Present the options clearly and let the user choose.
-3. **If you're unsure about domain knowledge** — Ask. The user knows their product better than you.
-4. **If existing artifacts conflict** — Surface the conflict and ask the user to resolve it.
+1. **If data is missing** - Ask the user to provide it. Do not guess or fabricate information.
+2. **If a decision is ambiguous** - Present the options clearly and let the user choose.
+3. **If you're unsure about domain knowledge** - Ask. The user knows their product better than you.
+4. **If existing artifacts conflict** - Surface the conflict and ask the user to resolve it.
 
 ## Checkpoint Behavior
 
@@ -41,4 +41,4 @@ When showing drafts or analysis:
 1. Present in a clear, structured format (tables, lists, diagrams)
 2. Explain your reasoning briefly
 3. Ask specific questions ("Did I miss any? Are any wrong?")
-4. Be receptive to corrections — update and re-present if needed
+4. Be receptive to corrections - update and re-present if needed

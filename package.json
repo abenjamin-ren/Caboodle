@@ -1,7 +1,7 @@
 {
   "name": "caboodle",
   "version": "1.0.1",
-  "description": "Caboodle — OOUX Agent Skills that turn any AI coding assistant into an Object-Oriented UX facilitator. Source-driven, file-based, no external dependencies.",
+  "description": "Caboodle - OOUX Agent Skills that turn any AI coding assistant into an Object-Oriented UX facilitator. Source-driven, file-based, no external dependencies.",
   "license": "MIT",
   "type": "module",
   "bin": {

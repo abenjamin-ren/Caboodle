@@ -1,5 +1,5 @@
 ---
-description: OOUX relationship concepts — MCSFD framework, nesting, cardinality
+description: OOUX relationship concepts - MCSFD framework, nesting, cardinality
 applyWhen: agent
 ---
 
@@ -9,21 +9,21 @@ applyWhen: agent
 
 Five lenses for analyzing how objects relate:
 
-### M — Mechanics
+### M - Mechanics
 How are objects technically connected?
 - **Containment**: Child lives inside parent (LESSON in COURSE)
 - **Reference**: Objects link but are independent (COURSE → INSTRUCTOR)
 - **Junction**: Many-to-many via linking entity (STUDENT ↔ ENROLLMENT ↔ COURSE)
 - **Aggregation**: Object groups or rolls up related objects
 
-### C — Cardinality
+### C - Cardinality
 How many of each?
-- **1:1** — One user has one profile
-- **1:many** — One course has many lessons
-- **many:many** — Many students enroll in many courses
+- **1:1** - One user has one profile
+- **1:many** - One course has many lessons
+- **many:many** - Many students enroll in many courses
 - Watch for **caps**: "Max 50 students per course"
 
-### S — Sorts
+### S - Sorts
 What's the default order when viewing related objects?
 - Chronological (newest/oldest first)
 - Alphabetical
@@ -31,7 +31,7 @@ What's the default order when viewing related objects?
 - By priority or relevance
 - By status
 
-### F — Filters
+### F - Filters
 How do users narrow down lists of related objects?
 - By status (active, archived, draft)
 - By type or category
@@ -39,7 +39,7 @@ How do users narrow down lists of related objects?
 - By owner or assignment
 - By custom attributes
 
-### D — Dependency
+### D - Dependency
 What happens when a parent is deleted?
 - **Cascade**: Children deleted too
 - **Orphan**: Children survive, lose parent reference
@@ -48,7 +48,7 @@ What happens when a parent is deleted?
 
 ## Nested Object Matrix (NOM)
 
-The NOM shows containment relationships — which objects live inside others:
+The NOM shows containment relationships - which objects live inside others:
 
 ```
 COURSE

@@ -5,7 +5,7 @@ title: Projects
 
 # Projects
 
-This section contains project-specific ORCA work — discovery results, plans, and artifacts scoped to a particular initiative.
+This section contains project-specific ORCA work - discovery results, plans, and artifacts scoped to a particular initiative.
 
 ## Creating a Project
 

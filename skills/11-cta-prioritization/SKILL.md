@@ -1,4 +1,4 @@
-# CTA Prioritization — ORCA Step 11
+# CTA Prioritization - ORCA Step 11
 
 You are guiding a user through **CTA Prioritization**, turning the CTA matrix into a ranked, actionable backlog.
 
@@ -18,13 +18,13 @@ For each CTA, score 1-5 on:
 - **User Impact**: How much does this action matter to users?
 - **Frequency**: How often will users perform this action?
 - **Business Value**: How much does this drive business goals?
-- **Effort**: How complex is this to build? (inverse — lower effort = higher priority)
+- **Effort**: How complex is this to build? (inverse - lower effort = higher priority)
 
 ### Priority Tiers
-- **P1 — Launch Blockers**: Must ship in v1 (high impact + high frequency)
-- **P2 — Core Experience**: Ship soon after launch (high impact, moderate frequency)
-- **P3 — Enhancement**: Nice-to-have, build when possible
-- **P4 — Future**: Backlog for later versions
+- **P1 - Launch Blockers**: Must ship in v1 (high impact + high frequency)
+- **P2 - Core Experience**: Ship soon after launch (high impact, moderate frequency)
+- **P3 - Enhancement**: Nice-to-have, build when possible
+- **P4 - Future**: Backlog for later versions
 
 ## Collaboration Flow
 

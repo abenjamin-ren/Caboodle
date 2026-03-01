@@ -1,6 +1,6 @@
 # Caboodle
 
-**Caboodle** turns your AI coding assistant into an Object-Oriented UX (OOUX) facilitator. It installs 18 structured Agent Skills that guide you through the ORCA process — from discovering system objects to generating implementation specs — and publishes everything to a local, organized resource site.
+**Caboodle** turns your AI coding assistant into an Object-Oriented UX (OOUX) facilitator. It installs 18 structured Agent Skills that guide you through the ORCA process, from discovering system objects to generating implementation specs. It also publishes everything to a local, organized resource site.
 
 No external dependencies. No API keys. Install in one command and start designing.
 
@@ -44,7 +44,7 @@ Then open Cursor and type:
 
 | Phase | # | Skill | What You Get |
 |-------|---|-------|--------------|
-| **Start** | — | ORCA Planner | Sequenced plan with progress tracking |
+| **Start** | - | ORCA Planner | Sequenced plan with progress tracking |
 | **Discovery** | 01 | Object Discovery | Validated object list (noun foraging + SIP test) |
 | | 02 | NOM Builder | Nested-Object Matrix showing containment |
 | | 03 | CTA Inventory | Actions per object with role mappings |
@@ -61,7 +61,7 @@ Then open Cursor and type:
 | | 14 | Relationship Governance | Technical rules for object interactions |
 | | 15 | Interaction Spec | Detailed CTA behavior specs |
 | | 16 | Data Model Spec | Database/API schema |
-| **Standalone** | — | System Audit | Evaluate an existing product against OOUX principles |
+| **Standalone** | - | System Audit | Evaluate an existing product against OOUX principles |
 
 ---
 
@@ -91,13 +91,13 @@ caboodle --version      # Show version
 
 ## Requirements
 
-- **Node.js 18+** — [Download](https://nodejs.org)
-- **npm** — Comes with Node.js; used to install the package
+- **Node.js 18+** - [Download](https://nodejs.org)
+- **npm** - Comes with Node.js; used to install the package
 - **Cursor** (recommended) or any AI coding assistant that supports custom rules
 
 ## What Is OOUX?
 
-Object-Oriented UX (OOUX) is a design philosophy that grounds product decisions in the concrete "things" users interact with — **objects** like Student, Course, or Report — rather than screens or user flows.
+Object-Oriented UX (OOUX) is a design philosophy that grounds product decisions in the concrete "things" users interact with, such as **objects** like Student, Course, or Report, rather than screens or user flows.
 
 The **ORCA process** (Objects, Relationships, CTAs, Attributes) is the framework for systematically discovering and designing those objects across four rounds: Discovery, Definition, Design, and Build.
 

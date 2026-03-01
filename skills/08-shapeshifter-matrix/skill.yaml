@@ -5,7 +5,7 @@ orca_pillar: attributes
 orca_step: 8
 version: "3.0.0"
 description: >
-  Map how each object "shapeshifts" — appearing differently depending
+  Map how each object "shapeshifts" - appearing differently depending
   on context: list view, card view, detail view, inline mention, notification,
   search result, embedded preview. Defines which attributes surface where.
 roles:

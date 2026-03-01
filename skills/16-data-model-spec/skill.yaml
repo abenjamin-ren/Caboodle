@@ -6,7 +6,7 @@ orca_step: 16
 version: "3.0.0"
 description: >
   Translate OOUX attribute definitions into a technical data model
-  specification — database tables, field types, constraints, indexes,
+  specification - database tables, field types, constraints, indexes,
   and API shapes. Bridges design artifacts and engineering implementation.
 roles:
   - engineer

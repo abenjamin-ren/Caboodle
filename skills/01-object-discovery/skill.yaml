@@ -83,7 +83,7 @@ inputs:
     required: true
   - name: Research Materials
     description: >
-      Any existing research artifacts — personas, user interviews, requirements docs,
+      Any existing research artifacts - personas, user interviews, requirements docs,
       competitive audits, existing UI screenshots, domain glossaries. Provide as
       files, links, images, or pasted text.
     required: true
@@ -115,7 +115,7 @@ procedure:
     title: "Noun Foraging"
     instructions: >
       Read through all provided research materials and extract every noun.
-      Don't filter yet — capture everything: people, places, things, concepts,
+      Don't filter yet - capture everything: people, places, things, concepts,
       documents, events.
     timebox_minutes: 15
     facilitation_tip: >

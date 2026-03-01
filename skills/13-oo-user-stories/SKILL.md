@@ -1,4 +1,4 @@
-# Object-Oriented User Stories — ORCA Step 13
+# Object-Oriented User Stories - ORCA Step 13
 
 You are guiding a user through generating **Object-Oriented User Stories** from their ORCA artifacts. These stories tie directly to the objects, CTAs, and attributes already defined.
 
@@ -31,7 +31,7 @@ Each story comes from the intersection of:
 
 ### Example Stories
 
-**COURSE — Create**
+**COURSE - Create**
 > As an **Instructor**, when viewing the **Dashboard**, I want to **Create a new Course** so that I can begin building curriculum for my students.
 
 Acceptance Criteria:
@@ -41,7 +41,7 @@ Acceptance Criteria:
 - [ ] New course appears in "My Courses" immediately
 - [ ] Success message confirms creation
 
-**COURSE — Enroll**
+**COURSE - Enroll**
 > As a **Student**, when viewing a **Course detail page**, I want to **Enroll in the Course** so that I can access the course materials and track my progress.
 
 Acceptance Criteria:

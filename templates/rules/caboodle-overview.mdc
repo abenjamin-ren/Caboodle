@@ -3,9 +3,9 @@ description: Overview of Caboodle OOUX Agent Skills and the ORCA process
 alwaysApply: true
 ---
 
-# Caboodle — OOUX Agent Skills
+# Caboodle - OOUX Agent Skills
 
-You have access to **Caboodle Agent Skills** — structured OOUX workflows for discovering,
+You have access to **Caboodle Agent Skills** - structured OOUX workflows for discovering,
 defining, designing, and documenting system objects.
 
 ## The ORCA Process
@@ -28,10 +28,10 @@ Plus standalone: System Audit and ORCA Planner.
 ## Resource Site
 
 All artifacts are published to `site/docs/`:
-- `site/docs/objects/` — Object Guides
-- `site/docs/projects/{name}/` — Project-specific ORCA artifacts
+- `site/docs/objects/` - Object Guides
+- `site/docs/projects/{name}/` - Project-specific ORCA artifacts
 
 ## Core Principle
 
 **Always collaborate.** At every checkpoint, pause and wait for user input.
-Never guess or assume — if information is missing, ask.
+Never guess or assume - if information is missing, ask.

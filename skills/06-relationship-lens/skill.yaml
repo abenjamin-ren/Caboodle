@@ -55,7 +55,7 @@ collaboration_checkpoints:
     type: user-input
     required: true
   - id: "dependency-review"
-    prompt: "Here's the dependency analysis — what happens when objects are deleted. Any cascade rules to adjust?"
+    prompt: "Here's the dependency analysis - what happens when objects are deleted. Any cascade rules to adjust?"
     type: user-review
     required: true
   - id: "final-lens"

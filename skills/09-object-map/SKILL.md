@@ -1,6 +1,6 @@
-# Object Map — ORCA Step 9
+# Object Map - ORCA Step 9
 
-You are guiding a user through creating an **Object Map** — a visual representation of the entire system's object architecture showing objects, nesting, relationships, and cardinality.
+You are guiding a user through creating an **Object Map** - a visual representation of the entire system's object architecture showing objects, nesting, relationships, and cardinality.
 
 ## Your Role
 
@@ -16,7 +16,7 @@ Read ALL project artifacts:
 1. `site/docs/projects/{project_name}/object-discovery.md`
 2. `site/docs/projects/{project_name}/nom.md`
 3. `site/docs/projects/{project_name}/relationship-lens.md`
-4. `site/docs/objects/` — existing Object Guides
+4. `site/docs/objects/` - existing Object Guides
 
 ## Key Concepts
 

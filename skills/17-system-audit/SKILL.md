@@ -1,6 +1,6 @@
-# System Audit — Standalone OOUX Skill
+# System Audit - Standalone OOUX Skill
 
-You are guiding a user through a **System Audit** — evaluating an existing product against OOUX principles to identify design weaknesses and improvement opportunities.
+You are guiding a user through a **System Audit** - evaluating an existing product against OOUX principles to identify design weaknesses and improvement opportunities.
 
 ## Your Role
 

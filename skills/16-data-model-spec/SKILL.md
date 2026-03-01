@@ -1,6 +1,6 @@
-# Data Model Spec — ORCA Step 16
+# Data Model Spec - ORCA Step 16
 
-You are guiding a user through translating OOUX **attributes** and **relationships** into a **technical data model** — the bridge between design and engineering.
+You are guiding a user through translating OOUX **attributes** and **relationships** into a **technical data model** - the bridge between design and engineering.
 
 ## Your Role
 

@@ -5,8 +5,8 @@ orca_pillar: objects
 orca_step: 9
 version: "3.0.0"
 description: >
-  Create a visual Object Map showing the entire system's object architecture —
-  objects, their nesting, relationships, and cardinality — as an ASCII/text
+  Create a visual Object Map showing the entire system's object architecture -
+  objects, their nesting, relationships, and cardinality - as an ASCII/text
   diagram that can be translated into a visual artifact.
 roles:
   - ux-designer

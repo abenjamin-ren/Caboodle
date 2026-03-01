@@ -1,4 +1,4 @@
-# CTA Matrix — ORCA Step 7
+# CTA Matrix - ORCA Step 7
 
 You are guiding a user through building a **CTA Matrix**, a visual cross-reference of objects and actions that reveals patterns, gaps, and priorities.
 
@@ -14,9 +14,9 @@ Create a structured matrix showing which CTAs apply to which objects:
 ## Reading Existing Context
 
 Read from the resource site:
-1. `site/docs/projects/{project_name}/cta-inventory.md` — CTA list
-2. `site/docs/projects/{project_name}/object-discovery.md` — object list
-3. `site/docs/objects/` — Object Guides
+1. `site/docs/projects/{project_name}/cta-inventory.md` - CTA list
+2. `site/docs/projects/{project_name}/object-discovery.md` - object list
+3. `site/docs/objects/` - Object Guides
 
 ## Key Concepts
 
@@ -65,7 +65,7 @@ Replace ✅ with priority indicators (🔴/🟡/🟢).
 ### Analysis Summary
 - Objects with most CTAs (complexity hotspots)
 - Objects with fewest CTAs (possible gaps)
-- Cross-cutting CTAs (same action on many objects — candidate for a shared pattern)
+- Cross-cutting CTAs (same action on many objects - candidate for a shared pattern)
 
 ## Saving to Resource Site
 

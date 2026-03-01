@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Caboodle — CLI
+ * Caboodle - CLI
  *
  * Usage:
  *   caboodle install     Install skills, rules, AGENTS.md, and resource site
@@ -80,7 +80,7 @@ function printBanner(title) {
   const ver = getVersion();
   const vLabel = ver ? dim(` v${ver}`) : "";
   console.log();
-  console.log(`  ${bold("Caboodle")}${vLabel} ${dim("—")} ${title}`);
+  console.log(`  ${bold("Caboodle")}${vLabel} ${dim("-")} ${title}`);
   console.log(dim("  ─────────────────────────────────────────────────"));
   console.log();
 }
@@ -115,7 +115,7 @@ async function install(targetDir) {
     if (shouldOverwrite) {
       copyTemplateFile("AGENTS.md", agentsPath, "AGENTS.md (overwritten)");
     } else {
-      console.log(`  ${dim("—")} AGENTS.md kept as-is`);
+      console.log(`  ${dim("-")} AGENTS.md kept as-is`);
     }
   } else {
     copyTemplateFile("AGENTS.md", agentsPath, "AGENTS.md");
@@ -135,7 +135,7 @@ async function install(targetDir) {
     console.log(`  ${green("✓")} ${site.created.length} site file(s) created`);
   }
   if (site.skipped.length > 0) {
-    console.log(`  ${dim("—")} ${site.skipped.length} site file(s) already exist (kept as-is)`);
+    console.log(`  ${dim("-")} ${site.skipped.length} site file(s) already exist (kept as-is)`);
   }
 
   // 6. Verify
@@ -169,7 +169,7 @@ async function uninstall(targetDir) {
       unlinkSync(agentsPath);
       console.log(`  ${green("✓")} AGENTS.md removed`);
     } else {
-      console.log(`  ${dim("—")} AGENTS.md kept (doesn't appear to be Caboodle-generated)`);
+      console.log(`  ${dim("-")} AGENTS.md kept (doesn't appear to be Caboodle-generated)`);
     }
   }
 
@@ -193,7 +193,7 @@ async function uninstall(targetDir) {
 function patchSiteConfig(targetDir) {
   const configPath = join(targetDir, "site", "docusaurus.config.js");
   if (!existsSync(configPath)) {
-    console.log(`  ${dim("—")} site/docusaurus.config.js not found, skipping`);
+    console.log(`  ${dim("-")} site/docusaurus.config.js not found, skipping`);
     return;
   }
 
@@ -219,7 +219,7 @@ function patchSiteConfig(targetDir) {
     writeFileSync(configPath, src, "utf-8");
     console.log(`  ${green("✓")} site/docusaurus.config.js patched`);
   } else {
-    console.log(`  ${dim("—")} site/docusaurus.config.js already up to date`);
+    console.log(`  ${dim("-")} site/docusaurus.config.js already up to date`);
   }
 }
 
@@ -230,7 +230,7 @@ function patchSiteConfig(targetDir) {
 function patchSitePackageJson(targetDir) {
   const pkgPath = join(targetDir, "site", "package.json");
   if (!existsSync(pkgPath)) {
-    console.log(`  ${dim("—")} site/package.json not found, skipping`);
+    console.log(`  ${dim("-")} site/package.json not found, skipping`);
     return;
   }
 
@@ -250,9 +250,9 @@ function patchSitePackageJson(targetDir) {
   if (changed) {
     pkg.overrides = overrides;
     writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + "\n", "utf-8");
-    console.log(`  ${green("✓")} site/package.json overrides added — run ${cyan("npm install")} in site/`);
+    console.log(`  ${green("✓")} site/package.json overrides added - run ${cyan("npm install")} in site/`);
   } else {
-    console.log(`  ${dim("—")} site/package.json already up to date`);
+    console.log(`  ${dim("-")} site/package.json already up to date`);
   }
 }
 
@@ -302,7 +302,7 @@ async function initSiteCmd(targetDir) {
   const site = initSite(targetDir);
   console.log(`  ${green("✓")} ${site.created.length} file(s) created`);
   if (site.skipped.length > 0) {
-    console.log(`  ${dim("—")} ${site.skipped.length} file(s) already existed (kept as-is)`);
+    console.log(`  ${dim("-")} ${site.skipped.length} file(s) already existed (kept as-is)`);
   }
 
   console.log();
@@ -336,7 +336,7 @@ async function initProjectCmd(targetDir, projectSlug) {
     result.created.forEach((f) => console.log(`    ${dim("+")} ${f}`));
   }
   if (result.skipped.length > 0) {
-    console.log(`  ${dim("—")} ${result.skipped.length} file(s) already existed (kept as-is)`);
+    console.log(`  ${dim("-")} ${result.skipped.length} file(s) already existed (kept as-is)`);
   }
 
   console.log();
@@ -414,7 +414,7 @@ switch (command) {
     const ver = getVersion();
     const vLabel = ver ? dim(` v${ver}`) : "";
     console.log();
-    console.log(`  ${bold("Caboodle")}${vLabel} ${dim("— OOUX Agent Skills CLI")}`);
+    console.log(`  ${bold("Caboodle")}${vLabel} ${dim("- OOUX Agent Skills CLI")}`);
     console.log();
     console.log(`  ${bold("Commands")}`);
     console.log(`    caboodle install               Install skills, rules, and site scaffold`);

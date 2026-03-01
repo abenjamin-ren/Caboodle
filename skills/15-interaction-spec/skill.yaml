@@ -5,7 +5,7 @@ orca_pillar: ctas
 orca_step: 15
 version: "3.0.0"
 description: >
-  Define detailed interaction specifications for each CTA — trigger,
+  Define detailed interaction specifications for each CTA - trigger,
   flow, validation, feedback, error states, and edge cases. Bridges
   design and engineering with implementation-ready specs.
 roles:
