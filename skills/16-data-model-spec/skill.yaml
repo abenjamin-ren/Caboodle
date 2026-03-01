@@ -1,0 +1,74 @@
+id: "16-data-model-spec"
+title: "Data Model Spec"
+orca_round: build
+orca_pillar: attributes
+orca_step: 16
+version: "3.0.0"
+description: >
+  Translate OOUX attribute definitions into a technical data model
+  specification — database tables, field types, constraints, indexes,
+  and API shapes. Bridges design artifacts and engineering implementation.
+roles:
+  - engineer
+  - product-manager
+difficulty: advanced
+estimated_duration_minutes: 45
+tags:
+  - build
+  - attributes
+  - data-model
+  - technical-spec
+
+sources:
+  reads_from_site:
+    - description: "Read attribute definitions and relationship governance"
+      path: "projects/"
+      glob: "projects/{project_name}/*.md"
+    - description: "Read Object Guides"
+      path: "objects/"
+      glob: "objects/*.md"
+  accepts_from_user:
+    - type: text
+      description: "Tech stack details, existing schema, constraints"
+      required: false
+
+publishing:
+  output_dir: "projects/{project_name}/"
+  filename_template: "data-model.md"
+  frontmatter:
+    title_template: "Data Model: {project_name}"
+    tags: [data-model, technical, build]
+  update_existing: true
+
+collaboration_checkpoints:
+  - id: "tech-context"
+    prompt: "What tech stack are you using? (SQL/NoSQL? Specific database? ORM?)"
+    type: user-input
+    required: true
+  - id: "model-draft"
+    prompt: "Here's the data model for {object}. Does this translate the OOUX attributes correctly?"
+    type: user-review
+    required: true
+  - id: "relationships-review"
+    prompt: "Here are the relationship table designs (foreign keys, junction tables). Correct?"
+    type: user-review
+    required: true
+  - id: "final-model"
+    prompt: "Here's the complete data model. Ready to save?"
+    type: user-confirm
+    required: true
+
+inputs:
+  - name: Attribute Definitions
+    description: "Attributes from step 4"
+    required: true
+  - name: Relationship Governance
+    description: "Rules from step 14"
+    required: false
+
+outputs:
+  - name: Data Model Spec
+    description: "Technical data model with schemas and API shapes"
+    artifact_type: page
+
+system_prompt_file: SKILL.md

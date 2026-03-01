@@ -1,0 +1,78 @@
+id: "17-system-audit"
+title: "System Audit"
+orca_round: null
+orca_pillar: null
+orca_step: null
+version: "3.0.0"
+description: >
+  Audit an existing system, product, or feature against OOUX principles.
+  Identifies unnamed objects, broken mental models, navigation issues,
+  inconsistent naming, and missing object pages. Produces actionable
+  recommendations.
+roles:
+  - ux-designer
+  - product-manager
+  - engineer
+difficulty: intermediate
+estimated_duration_minutes: 60
+tags:
+  - audit
+  - analysis
+  - ux-review
+
+sources:
+  reads_from_site:
+    - description: "Read existing Object Guides and project artifacts"
+      path: "objects/"
+      glob: "objects/*.md"
+    - description: "Read existing projects"
+      path: "projects/"
+      glob: "projects/**/*.md"
+  accepts_from_user:
+    - type: url
+      description: "URLs of the product to audit"
+      required: false
+    - type: image
+      description: "Screenshots of the product UI"
+      required: true
+    - type: text
+      description: "Product description, known issues, areas of concern"
+      required: true
+
+publishing:
+  output_dir: "projects/{project_name}/"
+  filename_template: "system-audit.md"
+  frontmatter:
+    title_template: "System Audit: {project_name}"
+    tags: [audit, analysis]
+  update_existing: true
+
+collaboration_checkpoints:
+  - id: "audit-scope"
+    prompt: "What product or feature are we auditing? Share screenshots, URLs, or descriptions."
+    type: user-input
+    required: true
+  - id: "findings-review"
+    prompt: "Here are my findings. Do you agree with these assessments? Any I got wrong?"
+    type: user-review
+    required: true
+  - id: "recommendations"
+    prompt: "Here are my recommendations ranked by impact. Which do you want to prioritize?"
+    type: user-review
+    required: true
+  - id: "final-audit"
+    prompt: "Here's the complete audit report. Ready to save?"
+    type: user-confirm
+    required: true
+
+inputs:
+  - name: Product to Audit
+    description: "Screenshots, URLs, or descriptions of the system"
+    required: true
+
+outputs:
+  - name: Audit Report
+    description: "OOUX audit with findings and recommendations"
+    artifact_type: page
+
+system_prompt_file: SKILL.md

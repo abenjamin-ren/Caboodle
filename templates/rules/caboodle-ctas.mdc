@@ -1,0 +1,49 @@
+---
+description: OOUX CTA concepts — calls-to-action, CTA matrix, action design
+applyWhen: agent
+---
+
+# Calls-to-Action (CTAs) in OOUX
+
+## What Is a CTA?
+
+A CTA is any **action a user can take on an object**. CTAs are the verbs of your system.
+Every object should have at least one CTA — otherwise, why does it exist in the UI?
+
+## CTA Categories
+
+### Standard CRUD
+- **Create**: Add, Upload, Submit, Register, Post, Compose, Import
+- **Read/View**: View, Browse, Search, Filter, Preview, Download, Export
+- **Update**: Edit, Rename, Move, Archive, Tag, Assign, Reorder, Configure
+- **Delete**: Remove, Cancel, Unsubscribe, Revoke, Purge
+
+### Beyond CRUD (Domain-Specific)
+The most interesting CTAs are custom actions:
+- For COURSE: Enroll, Complete, Drop, Grade, Certificate
+- For DOCUMENT: Share, Version, Comment, Approve, Sign
+- For ORDER: Ship, Return, Refund, Track, Reorder
+- For USER: Follow, Block, Invite, Mention
+
+## CTA Context
+
+Every CTA happens in a specific context:
+- **Where**: List view, detail page, inline, context menu, toolbar
+- **State**: What state must the object be in? (Draft → Publish)
+- **Who**: Which user roles can perform this action?
+- **Guard**: Is confirmation required? (Destructive actions need guards)
+
+## CTA Matrix
+
+Cross-reference objects × actions to reveal:
+- **Gaps**: Objects with no CTAs (users can't do anything!)
+- **Overload**: Objects with too many CTAs (complexity risk)
+- **Inconsistency**: Why can you "duplicate" a Course but not a Lesson?
+- **Patterns**: Same CTA on many objects = candidate for a shared component
+
+## Object-Oriented User Stories
+
+Traditional: "As a user, I want to search..."
+**OO Format**: "As a [ROLE], when viewing [OBJECT] in [CONTEXT], I want to [CTA] so that [PURPOSE]."
+
+This grounds every story in a specific object and context.

@@ -1,0 +1,74 @@
+id: "10-nav-flow"
+title: "Nav Flow"
+orca_round: design
+orca_pillar: relationships
+orca_step: 10
+version: "3.0.0"
+description: >
+  Design navigation flows showing how users move between objects —
+  entry points, drill-down paths, cross-links, and escape hatches.
+  Maps the user's journey through the object architecture.
+roles:
+  - ux-designer
+  - product-manager
+difficulty: intermediate
+estimated_duration_minutes: 45
+tags:
+  - design
+  - relationships
+  - navigation
+  - user-flow
+
+sources:
+  reads_from_site:
+    - description: "Read Object Map and other project artifacts"
+      path: "projects/"
+      glob: "projects/{project_name}/*.md"
+    - description: "Read Object Guides"
+      path: "objects/"
+      glob: "objects/*.md"
+  accepts_from_user:
+    - type: text
+      description: "Navigation requirements, user journey context"
+      required: false
+    - type: image
+      description: "Screenshots of existing navigation"
+      required: false
+
+publishing:
+  output_dir: "projects/{project_name}/"
+  filename_template: "nav-flow.md"
+  frontmatter:
+    title_template: "Nav Flow: {project_name}"
+    tags: [navigation, design]
+  update_existing: true
+
+collaboration_checkpoints:
+  - id: "entry-points"
+    prompt: "What are the main entry points to your app? (dashboard, search, notifications, direct URL?)"
+    type: user-input
+    required: true
+  - id: "flow-draft"
+    prompt: "Here are the main navigation paths I've mapped. Do these match how users actually move through the product?"
+    type: user-review
+    required: true
+  - id: "escape-hatches"
+    prompt: "What about escape hatches? How do users get back, or jump to unrelated objects?"
+    type: user-input
+    required: true
+  - id: "final-flow"
+    prompt: "Here's the complete Nav Flow. Ready to save?"
+    type: user-confirm
+    required: true
+
+inputs:
+  - name: Object Map
+    description: "System architecture from Object Map skill"
+    required: true
+
+outputs:
+  - name: Nav Flow
+    description: "Navigation flow diagrams and path descriptions"
+    artifact_type: page
+
+system_prompt_file: SKILL.md

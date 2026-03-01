@@ -1,0 +1,104 @@
+id: "04-attribute-definition"
+title: "Attribute Definition"
+orca_round: discovery
+orca_pillar: attributes
+orca_step: 4
+version: "3.0.0"
+description: >
+  Define attributes for each validated object — the data fields users see
+  and interact with. Includes meta-attributes (created by, date, status)
+  and distinguishes between core attributes and nice-to-haves.
+roles:
+  - ux-designer
+  - product-manager
+  - engineer
+difficulty: beginner
+estimated_duration_minutes: 45
+tags:
+  - discovery
+  - attributes
+  - data-modeling
+
+sources:
+  reads_from_site:
+    - description: "Read validated objects and CTAs from project"
+      path: "projects/"
+      glob: "projects/{project_name}/*.md"
+    - description: "Read existing Object Guides for attribute patterns"
+      path: "objects/"
+      glob: "objects/*.md"
+  accepts_from_user:
+    - type: text
+      description: "Data requirements, field specifications"
+      required: false
+    - type: image
+      description: "UI mockups showing object detail pages"
+      required: false
+
+publishing:
+  output_dir: "projects/{project_name}/"
+  filename_template: "attributes.md"
+  frontmatter:
+    title_template: "Attribute Definition: {project_name}"
+    tags: [attributes, discovery]
+  update_existing: true
+
+collaboration_checkpoints:
+  - id: "object-focus"
+    prompt: "Let's define attributes one object at a time. Which object should we start with?"
+    type: user-input
+    required: true
+  - id: "attribute-draft"
+    prompt: "Here are the attributes I've identified for {object}. What am I missing? Any that don't belong?"
+    type: user-review
+    required: true
+  - id: "meta-attributes"
+    prompt: "Should {object} have these meta-attributes: created date, modified date, status, owner?"
+    type: user-confirm
+    required: true
+  - id: "final-attributes"
+    prompt: "Here's the complete attribute map. Ready to save?"
+    type: user-confirm
+    required: true
+
+inputs:
+  - name: Validated Object List
+    description: "Objects from Object Discovery"
+    required: true
+
+outputs:
+  - name: Attribute Map
+    description: "Complete attribute definitions for all objects"
+    artifact_type: page
+
+procedure:
+  - step: 1
+    title: "Load Project Context"
+    instructions: "Read project artifacts. Identify objects and their CTAs."
+    timebox_minutes: 5
+  - step: 2
+    title: "Draft Attributes per Object"
+    instructions: >
+      For each object, identify: What data do users see on the detail page?
+      What information is needed for the CTAs to work? What would appear
+      in a list view vs. detail view?
+    checkpoint: "attribute-draft"
+    timebox_minutes: 20
+  - step: 3
+    title: "Add Meta-Attributes"
+    instructions: "Add system/meta attributes: timestamps, status, ownership."
+    checkpoint: "meta-attributes"
+    timebox_minutes: 10
+  - step: 4
+    title: "Save Attribute Map"
+    instructions: "Present complete attribute definitions and save."
+    checkpoint: "final-attributes"
+    timebox_minutes: 5
+
+definition_of_done:
+  - "Every object has at least 3 attributes defined"
+  - "Each attribute has a type and required/optional flag"
+  - "Meta-attributes have been considered"
+  - "Attribute map is saved to the resource site"
+
+system_prompt_file: SKILL.md

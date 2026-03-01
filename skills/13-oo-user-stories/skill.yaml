@@ -1,0 +1,71 @@
+id: "13-oo-user-stories"
+title: "Object-Oriented User Stories"
+orca_round: build
+orca_pillar: objects
+orca_step: 13
+version: "3.0.0"
+description: >
+  Generate object-oriented user stories from ORCA artifacts. Stories
+  follow the pattern: As a [role], when viewing [object] in [context],
+  I want to [CTA] so that [purpose]. Includes acceptance criteria.
+roles:
+  - ux-designer
+  - product-manager
+  - engineer
+difficulty: beginner
+estimated_duration_minutes: 45
+tags:
+  - build
+  - user-stories
+  - requirements
+
+sources:
+  reads_from_site:
+    - description: "Read all project artifacts"
+      path: "projects/"
+      glob: "projects/{project_name}/*.md"
+    - description: "Read Object Guides"
+      path: "objects/"
+      glob: "objects/*.md"
+  accepts_from_user:
+    - type: text
+      description: "Story priority context, sprint scope"
+      required: false
+
+publishing:
+  output_dir: "projects/{project_name}/"
+  filename_template: "user-stories.md"
+  frontmatter:
+    title_template: "User Stories: {project_name}"
+    tags: [user-stories, build]
+  update_existing: true
+
+collaboration_checkpoints:
+  - id: "scope"
+    prompt: "Are we generating stories for all objects, or a specific subset for this sprint?"
+    type: user-input
+    required: true
+  - id: "story-review"
+    prompt: "Here are the user stories for {object}. Do these capture the right user intent?"
+    type: user-review
+    required: true
+  - id: "acceptance-criteria"
+    prompt: "Let's review the acceptance criteria. Are these testable and complete?"
+    type: user-review
+    required: true
+  - id: "final-stories"
+    prompt: "Here's the complete story set. Ready to save?"
+    type: user-confirm
+    required: true
+
+inputs:
+  - name: ORCA Artifacts
+    description: "All project artifacts from previous steps"
+    required: true
+
+outputs:
+  - name: User Stories
+    description: "Object-oriented user stories with acceptance criteria"
+    artifact_type: page
+
+system_prompt_file: SKILL.md

@@ -1,0 +1,68 @@
+id: "14-relationship-governance"
+title: "Relationship Governance"
+orca_round: build
+orca_pillar: relationships
+orca_step: 14
+version: "3.0.0"
+description: >
+  Define governance rules for object relationships: permissions, lifecycle
+  transitions, validation rules, and cascade behaviors. Produces a
+  technical spec that bridges design and engineering.
+roles:
+  - ux-designer
+  - product-manager
+  - engineer
+difficulty: advanced
+estimated_duration_minutes: 45
+tags:
+  - build
+  - relationships
+  - governance
+  - technical-spec
+
+sources:
+  reads_from_site:
+    - description: "Read relationship lens and all project artifacts"
+      path: "projects/"
+      glob: "projects/{project_name}/*.md"
+    - description: "Read Object Guides"
+      path: "objects/"
+      glob: "objects/*.md"
+  accepts_from_user:
+    - type: text
+      description: "Business rules, compliance requirements, edge cases"
+      required: false
+
+publishing:
+  output_dir: "projects/{project_name}/"
+  filename_template: "relationship-governance.md"
+  frontmatter:
+    title_template: "Relationship Governance: {project_name}"
+    tags: [governance, relationships, technical]
+  update_existing: true
+
+collaboration_checkpoints:
+  - id: "rules-draft"
+    prompt: "Here are the governance rules I've drafted. Do these match your business requirements?"
+    type: user-review
+    required: true
+  - id: "edge-cases"
+    prompt: "What edge cases should these rules handle? (concurrent edits, orphaned records, etc.)"
+    type: user-input
+    required: true
+  - id: "final-governance"
+    prompt: "Here's the complete governance spec. Ready to save?"
+    type: user-confirm
+    required: true
+
+inputs:
+  - name: Relationship Lens
+    description: "MCSFD analysis from step 6"
+    required: true
+
+outputs:
+  - name: Governance Spec
+    description: "Technical specification for relationship rules"
+    artifact_type: page
+
+system_prompt_file: SKILL.md

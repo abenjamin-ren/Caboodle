@@ -1,0 +1,211 @@
+# ============================================================
+# Caboodle Agent Skill — Canonical Schema (v3)
+# ============================================================
+# Every skill folder follows this structure:
+#
+#   skills/<skill-id>/
+#     skill.yaml          <- metadata (this schema)
+#     SKILL.md            <- full prompt / guided procedure
+#     templates/          <- artifact templates (optional)
+#     examples/           <- worked examples (optional)
+#
+# This file documents the YAML schema; individual skill.yaml
+# files must conform to it.
+# ============================================================
+
+# Required fields ─────────────────────────────────────────────
+
+id:
+  type: string
+  description: >
+    Unique kebab-case identifier. Example: "01-object-discovery"
+
+title:
+  type: string
+  description: >
+    Human-readable skill title. Example: "Object Discovery"
+
+orca_round:
+  type: string
+  enum: [discovery, definition, design, build, null]
+  description: >
+    Which ORCA round this skill belongs to. Use null for standalone skills.
+
+orca_pillar:
+  type: string
+  enum: [objects, relationships, ctas, attributes, null]
+  description: >
+    Which ORCA pillar this skill addresses. Use null for standalone skills.
+
+orca_step:
+  type: integer
+  description: >
+    Step number (1-16 for core skills, null for standalone skills).
+
+version:
+  type: string
+  description: >
+    Semantic version. Example: "3.0.0"
+
+description:
+  type: string
+  description: >
+    One-paragraph summary of what this skill does.
+
+roles:
+  type: array
+  items: string
+  description: >
+    Target roles. Example: ["ux-designer", "product-manager", "engineer"]
+
+# Inputs / Outputs ────────────────────────────────────────────
+
+inputs:
+  type: array
+  items:
+    type: object
+    properties:
+      name: { type: string }
+      description: { type: string }
+      required: { type: boolean }
+      source_skill: { type: string }   # id of skill that produces this input
+  description: >
+    What the user must provide (or what a prior skill produced).
+
+outputs:
+  type: array
+  items:
+    type: object
+    properties:
+      name: { type: string }
+      description: { type: string }
+      artifact_type: { type: string }  # e.g. "matrix", "list", "guide", "diagram", "page"
+      template_file: { type: string }  # relative path in templates/
+  description: >
+    The deliverables this skill produces.
+
+# Source Materials ─────────────────────────────────────────────
+
+sources:
+  type: object
+  description: >
+    Configuration for reading context from existing artifacts and
+    user-provided materials. Replaces the Confluence-specific contract.
+  properties:
+    reads_from_site:
+      type: array
+      items:
+        type: object
+        properties:
+          description: { type: string }   # What to read and why
+          path: { type: string }          # Relative path in site/docs/ (e.g. "objects/", "projects/my-project/")
+          glob: { type: string }          # Optional glob pattern (e.g. "objects/*.md")
+      description: >
+        Existing site pages to read for context before starting the skill.
+        The agent reads these markdown files from the local site/docs/ directory.
+    accepts_from_user:
+      type: array
+      items:
+        type: object
+        properties:
+          type: { type: string }          # "file", "url", "image", "text", "paste"
+          description: { type: string }   # What kind of material and why
+          required: { type: boolean }
+      description: >
+        Source materials the user can provide. Skills should accept any
+        combination of these — links, uploaded files, images, pasted text.
+
+# Publishing ──────────────────────────────────────────────────
+
+publishing:
+  type: object
+  description: >
+    Where and how to save the finished artifact in the resource site.
+  properties:
+    output_dir:
+      type: string
+      description: >
+        Relative path under site/docs/ where the artifact should be saved.
+        Example: "objects/" for Object Guides, "projects/{project_name}/" for project artifacts.
+    filename_template:
+      type: string
+      description: >
+        Template for the output filename. Example: "{object_name}.md"
+    frontmatter:
+      type: object
+      description: >
+        Default frontmatter fields to include in the generated markdown.
+      properties:
+        title_template: { type: string }      # e.g. "Object Guide: {object_name}"
+        sidebar_position: { type: string }    # e.g. "auto" or a number
+        tags: { type: array, items: string }  # Default tags to apply
+    update_existing:
+      type: boolean
+      description: >
+        If true, update the file if it already exists rather than creating a duplicate.
+
+# Collaboration Checkpoints ───────────────────────────────────
+
+collaboration_checkpoints:
+  type: array
+  items:
+    type: object
+    properties:
+      id: { type: string }           # Unique checkpoint ID
+      prompt: { type: string }       # The question or prompt to show the user
+      type:
+        type: string
+        enum: [user-choice, user-confirm, user-input, user-review]
+        # user-choice:  present options, user picks one
+        # user-confirm: present draft, user approves or corrects
+        # user-input:   open-ended question, user provides free-form answer
+        # user-review:  present completed section, user approves before continuing
+      required: { type: boolean }
+  description: >
+    Key decision points where the agent must pause and wait for
+    user input before proceeding. These gates ensure the skill
+    is collaborative, not fully automated.
+
+# Procedure ───────────────────────────────────────────────────
+
+procedure:
+  type: array
+  items:
+    type: object
+    properties:
+      step: { type: integer }
+      title: { type: string }
+      instructions: { type: string }
+      checkpoint: { type: string }        # ID of collaboration checkpoint at this step
+      timebox_minutes: { type: integer }
+      facilitation_tip: { type: string }
+  description: >
+    Step-by-step guided procedure for executing this skill.
+
+# Definition of Done ──────────────────────────────────────────
+
+definition_of_done:
+  type: array
+  items: string
+  description: >
+    Checklist items. All must be true for the skill to be considered complete.
+
+# Prompt ──────────────────────────────────────────────────────
+
+system_prompt_file:
+  type: string
+  description: >
+    Relative path to the full SKILL.md prompt file.
+
+# Tags / metadata ─────────────────────────────────────────────
+
+tags:
+  type: array
+  items: string
+
+difficulty:
+  type: string
+  enum: [beginner, intermediate, advanced]
+
+estimated_duration_minutes:
+  type: integer

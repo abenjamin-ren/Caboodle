@@ -1,0 +1,56 @@
+# Build Output
+dist/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.npm
+.yarn-integrity
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+dist-info/
+.eggs/
+
+# Secrets & Credentials
+.env
+.env.local
+.env.*.local
+.cursor/mcp.json
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Editor & IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+
+# Temp / Test Artifacts
+/tmp/
+*.tmp
+*.bak
+
+# Docusaurus Site (build output and deps only)
+site/build/
+site/node_modules/
+site/.docusaurus/

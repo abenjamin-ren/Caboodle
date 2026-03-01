@@ -1,0 +1,69 @@
+id: "12-object-card"
+title: "Object Card"
+orca_round: design
+orca_pillar: attributes
+orca_step: 12
+version: "3.0.0"
+description: >
+  Design Object Cards — the reusable UI component that represents an
+  object in list/grid views. Defines visual hierarchy, information
+  density, and interactive elements for each card variant.
+roles:
+  - ux-designer
+difficulty: intermediate
+estimated_duration_minutes: 30
+tags:
+  - design
+  - attributes
+  - object-card
+  - ui-components
+
+sources:
+  reads_from_site:
+    - description: "Read shapeshifter matrix and attributes"
+      path: "projects/"
+      glob: "projects/{project_name}/*.md"
+    - description: "Read Object Guides"
+      path: "objects/"
+      glob: "objects/*.md"
+  accepts_from_user:
+    - type: image
+      description: "Design system references, existing card patterns"
+      required: false
+    - type: text
+      description: "Card requirements, brand guidelines"
+      required: false
+
+publishing:
+  output_dir: "projects/{project_name}/"
+  filename_template: "object-cards.md"
+  frontmatter:
+    title_template: "Object Cards: {project_name}"
+    tags: [object-card, ui]
+  update_existing: true
+
+collaboration_checkpoints:
+  - id: "card-style"
+    prompt: "What card style fits your product? Compact list rows, visual cards with images, or data-dense tables?"
+    type: user-input
+    required: true
+  - id: "card-draft"
+    prompt: "Here's my Object Card design for {object}. Does the information hierarchy work?"
+    type: user-review
+    required: true
+  - id: "final-cards"
+    prompt: "Here are all the Object Card specs. Ready to save?"
+    type: user-confirm
+    required: true
+
+inputs:
+  - name: Shapeshifter Matrix
+    description: "Attribute-per-view mapping from step 8"
+    required: true
+
+outputs:
+  - name: Object Card Specs
+    description: "UI specifications for object cards"
+    artifact_type: page
+
+system_prompt_file: SKILL.md

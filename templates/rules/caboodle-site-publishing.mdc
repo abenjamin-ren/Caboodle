@@ -1,0 +1,78 @@
+---
+description: How to publish artifacts to the Caboodle resource site (site/docs/)
+applyWhen: agent
+---
+
+# Caboodle Site Publishing
+
+## Resource Site Location
+
+All OOUX artifacts are published as markdown files in `site/docs/`.
+
+## Directory Structure
+
+```
+site/docs/
+├── intro.md                      ← Homepage / getting started
+├── process/                      ← ORCA methodology documentation
+├── skills/                       ← Skills reference
+├── objects/                      ← Object Guides (one .md per object)
+│   ├── index.md
+│   ├── student.md
+│   ├── course.md
+│   └── assignment.md
+├── projects/                     ← Project-specific ORCA artifacts
+│   ├── index.md
+│   └── {project-name}/
+│       ├── orca-plan.md
+│       ├── object-discovery.md
+│       ├── nom.md
+│       ├── cta-inventory.md
+│       ├── attributes.md
+│       ├── relationship-lens.md
+│       ├── cta-matrix.md
+│       ├── shapeshifter-matrix.md
+│       ├── object-map.md
+│       ├── nav-flow.md
+│       ├── cta-prioritization.md
+│       ├── object-cards.md
+│       ├── user-stories.md
+│       ├── relationship-governance.md
+│       ├── interaction-specs.md
+│       └── data-model.md
+├── workshops/                    ← Facilitation materials
+└── case-studies/                 ← Completed ORCA examples
+```
+
+## Frontmatter Convention
+
+Every published markdown file should include Docusaurus frontmatter:
+
+```yaml
+---
+title: "Object Guide: Student"
+sidebar_position: 2
+tags: [object-guide, student]
+---
+```
+
+## File Naming
+
+- Use **kebab-case** for filenames: `object-discovery.md`, `cta-matrix.md`
+- Object Guides use the object name: `student.md`, `course.md`
+- Project directories use the project name: `projects/my-app/`
+
+## Publishing Rules
+
+1. **Always confirm** with the user before saving a file
+2. **Create directories** if they don't exist (use `mkdirSync({ recursive: true })`)
+3. **Check for existing files** — if updating, ask the user if they want to overwrite
+4. **Include cross-links** to related artifacts in the content
+5. **Use relative links** between docs: `[see Object Guide](../objects/student.md)`
+
+## After Publishing
+
+After saving an artifact, always:
+1. Confirm the file path to the user
+2. Suggest the next skill in the workflow
+3. Mention they can preview with `cd site && npm install && npm start`

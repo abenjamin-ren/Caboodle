@@ -1,0 +1,105 @@
+id: "s6-orca-planner"
+title: "ORCA Planner"
+orca_round: null
+orca_pillar: null
+orca_step: null
+version: "3.0.0"
+description: >
+  The orchestrating skill that helps users plan their OOUX journey.
+  Takes a project description and recommends the right sequence of
+  skills to use. Tracks progress and suggests next steps.
+roles:
+  - ux-designer
+  - product-manager
+  - engineer
+difficulty: beginner
+estimated_duration_minutes: 15
+tags:
+  - planning
+  - orchestration
+  - getting-started
+
+sources:
+  reads_from_site:
+    - description: "Read all existing project work"
+      path: "projects/"
+      glob: "projects/**/*.md"
+    - description: "Read existing Object Guides"
+      path: "objects/"
+      glob: "objects/*.md"
+  accepts_from_user:
+    - type: text
+      description: "Project description, goals, constraints"
+      required: true
+
+publishing:
+  output_dir: "projects/{project_name}/"
+  filename_template: "orca-plan.md"
+  frontmatter:
+    title_template: "ORCA Plan: {project_name}"
+    tags: [plan, orca]
+  update_existing: true
+
+collaboration_checkpoints:
+  - id: "project-description"
+    prompt: "Describe your project. What are you building or improving? Who are the users?"
+    type: user-input
+    required: true
+  - id: "goal-selection"
+    prompt: "What's your primary goal? (New product design, existing system audit, specific feature, documentation)"
+    type: user-input
+    required: true
+  - id: "plan-review"
+    prompt: "Here's your recommended ORCA workflow. Does this sequence make sense for your project?"
+    type: user-review
+    required: true
+  - id: "save-plan"
+    prompt: "Ready to save this plan and start working?"
+    type: user-confirm
+    required: true
+
+inputs:
+  - name: Project Description
+    description: "What the user is building or improving"
+    required: true
+
+outputs:
+  - name: ORCA Plan
+    description: "Customized workflow plan with skill sequence and progress tracking"
+    artifact_type: page
+
+procedure:
+  - step: 1
+    title: "Understand the Project"
+    instructions: >
+      Ask the user about their project: what they're building, who it's for,
+      and what state it's in (greenfield, existing product, redesign).
+    checkpoint: "project-description"
+    timebox_minutes: 5
+  - step: 2
+    title: "Check Existing Work"
+    instructions: >
+      Read the resource site for any existing project work or Object Guides.
+      Summarize what already exists.
+    timebox_minutes: 3
+  - step: 3
+    title: "Determine Goal"
+    instructions: >
+      Based on the project context, determine the user's primary goal
+      and recommend the appropriate workflow.
+    checkpoint: "goal-selection"
+    timebox_minutes: 3
+  - step: 4
+    title: "Create Plan"
+    instructions: >
+      Generate a customized ORCA plan with the right skills in the right order.
+    checkpoint: "plan-review"
+    timebox_minutes: 4
+
+definition_of_done:
+  - "Project scope is clearly defined"
+  - "Existing work is identified and accounted for"
+  - "Skill sequence is appropriate for the project goal"
+  - "Plan is saved to the resource site"
+
+system_prompt_file: SKILL.md
