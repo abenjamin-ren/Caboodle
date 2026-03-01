@@ -4,11 +4,14 @@
  * Caboodle — CLI Installer
  *
  * Usage:
- *   node ~/Caboodle/bin/install.mjs install     Install skills, rules, AGENTS.md, and resource site
- *   node ~/Caboodle/bin/install.mjs init-site   Initialize the Docusaurus resource site structure
- *   node ~/Caboodle/bin/install.mjs uninstall   Remove all Caboodle files
- *   node ~/Caboodle/bin/install.mjs update      Re-install skills and rules
- *   node ~/Caboodle/bin/install.mjs             Same as "install"
+ *   caboodle install     Install skills, rules, AGENTS.md, and resource site
+ *   caboodle init-site   Initialize the Docusaurus resource site structure
+ *   caboodle uninstall   Remove all Caboodle files
+ *   caboodle update      Re-install skills and rules
+ *   caboodle             Same as "install"
+ *
+ * Install via GitHub Packages:
+ *   npm install -g @abenjamin-ren/caboodle
  */
 
 import { existsSync, readFileSync, writeFileSync, unlinkSync, mkdirSync } from "node:fs";
@@ -257,21 +260,24 @@ switch (command) {
     console.log();
     console.log("  Caboodle — OOUX Agent Skills CLI");
     console.log();
+    console.log("  Install:");
+    console.log("    npm install -g @abenjamin-ren/caboodle");
+    console.log();
     console.log("  Usage:");
-    console.log("    node ~/Caboodle/bin/install.mjs install     Install skills, rules, and site scaffold");
-    console.log("    node ~/Caboodle/bin/install.mjs update      Re-install latest skills and rules");
-    console.log("    node ~/Caboodle/bin/install.mjs uninstall   Remove all Caboodle files");
-    console.log("    node ~/Caboodle/bin/install.mjs init-site   Initialize the resource site only");
-    console.log("    node ~/Caboodle/bin/install.mjs verify      Check your installation");
-    console.log("    node ~/Caboodle/bin/install.mjs --version   Show version");
-    console.log("    node ~/Caboodle/bin/install.mjs --help      Show this help");
+    console.log("    caboodle install        Install skills, rules, and site scaffold");
+    console.log("    caboodle update         Re-install latest skills and rules");
+    console.log("    caboodle uninstall      Remove all Caboodle files");
+    console.log("    caboodle init-site      Initialize the resource site only");
+    console.log("    caboodle verify         Check your installation");
+    console.log("    caboodle --version      Show version");
+    console.log("    caboodle --help         Show this help");
     console.log();
     console.log("  Run from your project directory:");
-    console.log("    cd /path/to/your/project && node ~/Caboodle/bin/install.mjs install");
+    console.log("    cd /path/to/your/project && caboodle install");
     console.log();
     break;
   default:
     console.error(`  Unknown command: ${command}`);
-    console.error(`  Run "node ~/Caboodle/bin/install.mjs --help" for usage.`);
+    console.error(`  Run "caboodle --help" for usage.`);
     process.exit(1);
 }

@@ -2,11 +2,31 @@
 
 **Caboodle** turns your AI coding assistant into an Object-Oriented UX (OOUX) facilitator. It installs 18 structured Agent Skills that guide you through the ORCA process — from discovering system objects to generating implementation specs — and publishes everything to a local, organized resource site.
 
-No external dependencies. No API keys. Just clone, install, and start designing.
+No external dependencies. No API keys. Install in one command and start designing.
 
 ---
 
 ## Quick Start
+
+### Option A: GitHub Package (recommended)
+
+```bash
+# 1. Authenticate with GitHub Packages (one-time setup)
+npm login --registry=https://npm.pkg.github.com
+
+# 2. Install Caboodle globally
+npm install -g @abenjamin-ren/caboodle
+
+# 3. Navigate to your project
+cd /path/to/your/project
+
+# 4. Install skills and resource site into your project
+caboodle install
+```
+
+> **Auth note:** GitHub Packages requires authentication. When prompted, use your GitHub username and a [Personal Access Token](https://github.com/settings/tokens) with `read:packages` scope as the password. Alternatively, add `//npm.pkg.github.com/:_authToken=YOUR_TOKEN` to your `~/.npmrc`.
+
+### Option B: Git Clone (any OS)
 
 ```bash
 # 1. Clone Caboodle
@@ -224,19 +244,22 @@ _...and so on through the plan._
 
 ## Commands
 
+After installing the package globally (`npm install -g @abenjamin-ren/caboodle`), the `caboodle` CLI is available everywhere. If you cloned the repo instead, substitute `node ~/Caboodle/bin/install.mjs` for `caboodle`.
+
 ```bash
-node ~/Caboodle/bin/install.mjs install      # Full install
-node ~/Caboodle/bin/install.mjs update       # Re-install latest skills/rules
-node ~/Caboodle/bin/install.mjs uninstall    # Remove all Caboodle files
-node ~/Caboodle/bin/install.mjs init-site    # Initialize resource site only
-node ~/Caboodle/bin/install.mjs verify       # Check your installation
-node ~/Caboodle/bin/install.mjs --help       # Show all commands
+caboodle install        # Full install (skills, rules, site scaffold)
+caboodle update         # Re-install latest skills and rules
+caboodle uninstall      # Remove all Caboodle files from your project
+caboodle init-site      # Initialize the resource site only
+caboodle verify         # Check your installation
+caboodle --help         # Show all commands
+caboodle --version      # Show version
 ```
 
 ## Requirements
 
 - **Node.js 18+** — [Download](https://nodejs.org)
-- **Git** — For cloning the repository
+- **npm** — Comes with Node.js; used to install the package from GitHub Packages
 - **Cursor** (recommended) or any AI coding assistant that supports custom rules
 
 ## What Is OOUX?
