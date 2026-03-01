@@ -3,7 +3,7 @@
 > **Note:** The primary installation method for Caboodle is now via **GitHub Packages**:
 >
 > ```bash
-> npm install -g @abenjamin-ren/caboodle
+> npm install -g github:abenjamin-ren/Caboodle
 > ```
 >
 > The Homebrew tap is kept for backwards compatibility but is no longer the recommended install path. Automatic formula updates via the release workflow have been removed.

@@ -44,7 +44,7 @@ git clone --depth=1 "$REPO" "$CLONE_DIR" 2>/dev/null || {
 
 echo "  Running installer..."
 echo ""
-node "$CLONE_DIR/bin/install.mjs" install
+node "$CLONE_DIR/bin/cli.js" install
 
 # Cleanup
 rm -rf "$TMP_DIR"

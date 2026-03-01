@@ -11,8 +11,8 @@ No external dependencies. No API keys. Install in one command and start designin
 ### Option A: npm (recommended)
 
 ```bash
-# 1. Install Caboodle globally
-npm install -g @abenjamin-ren/caboodle
+# 1. Install Caboodle globally from GitHub
+npm install -g github:abenjamin-ren/Caboodle
 
 # 2. Navigate to your project
 cd /path/to/your/project
@@ -21,7 +21,7 @@ cd /path/to/your/project
 caboodle install
 ```
 
-### Option B: Git Clone (any OS)
+### Option B: Git Clone
 
 ```bash
 # 1. Clone Caboodle
@@ -31,7 +31,7 @@ git clone https://github.com/abenjamin-ren/Caboodle.git ~/Caboodle
 cd /path/to/your/project
 
 # 3. Install
-node ~/Caboodle/bin/install.mjs install
+node ~/Caboodle/bin/cli.js install
 ```
 
 Then open Cursor and type:
@@ -239,7 +239,7 @@ _...and so on through the plan._
 
 ## Commands
 
-After installing the package globally (`npm install -g @abenjamin-ren/caboodle`), the `caboodle` CLI is available everywhere. If you cloned the repo instead, substitute `node ~/Caboodle/bin/install.mjs` for `caboodle`.
+After installing globally (`npm install -g github:abenjamin-ren/Caboodle`), the `caboodle` CLI is available everywhere. If you cloned the repo instead, substitute `node ~/Caboodle/bin/cli.js` for `caboodle`.
 
 ```bash
 caboodle install        # Full install (skills, rules, site scaffold)

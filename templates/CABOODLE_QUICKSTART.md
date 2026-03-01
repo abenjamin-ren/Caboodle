@@ -7,14 +7,14 @@
 ## Installation
 
 ```bash
-# 1. Clone Caboodle
-git clone https://github.com/abenjamin-ren/Caboodle.git ~/Caboodle
+# 1. Install Caboodle globally from GitHub
+npm install -g github:abenjamin-ren/Caboodle
 
 # 2. Navigate to your project
 cd /path/to/your/project
 
 # 3. Install skills, rules, and site scaffold
-node ~/Caboodle/bin/install.mjs install
+caboodle install
 ```
 
 ## Getting Started
@@ -110,8 +110,8 @@ site/docs/
 ## Updating
 
 ```bash
-node ~/Caboodle/bin/install.mjs update      # Re-install latest skills/rules
-node ~/Caboodle/bin/install.mjs uninstall    # Remove all Caboodle files
+caboodle update      # Re-install latest skills/rules
+caboodle uninstall   # Remove all Caboodle files
 ```
 
 ---

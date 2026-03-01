@@ -10,8 +10,8 @@
  *   caboodle update      Re-install skills and rules
  *   caboodle             Same as "install"
  *
- * Install via GitHub Packages:
- *   npm install -g @abenjamin-ren/caboodle
+ * Install via npm:
+ *   npm install -g github:abenjamin-ren/Caboodle
  */
 
 import { existsSync, readFileSync, writeFileSync, unlinkSync, mkdirSync } from "node:fs";
@@ -261,7 +261,7 @@ switch (command) {
     console.log("  Caboodle — OOUX Agent Skills CLI");
     console.log();
     console.log("  Install:");
-    console.log("    npm install -g @abenjamin-ren/caboodle");
+    console.log("    npm install -g github:abenjamin-ren/Caboodle");
     console.log();
     console.log("  Usage:");
     console.log("    caboodle install        Install skills, rules, and site scaffold");

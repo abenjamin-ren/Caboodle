@@ -1,5 +1,5 @@
 # DEPRECATED: Prefer installing via GitHub Packages:
-#   npm install -g @abenjamin-ren/caboodle
+#   npm install -g github:abenjamin-ren/Caboodle
 # This formula is kept for backwards compatibility.
 class Caboodle < Formula
   desc "OOUX Agent Skills that turn any AI coding assistant into an Object-Oriented UX facilitator"
@@ -19,7 +19,7 @@ class Caboodle < Formula
     # Create a wrapper script that invokes the CLI via Node
     (bin/"caboodle").write <<~SH
       #!/bin/bash
-      exec "#{Formula["node"].opt_bin}/node" "#{libexec}/bin/install.mjs" "$@"
+      exec "#{Formula["node"].opt_bin}/node" "#{libexec}/bin/cli.js" "$@"
     SH
   end
 
