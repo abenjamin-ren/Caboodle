@@ -8,23 +8,18 @@ No external dependencies. No API keys. Install in one command and start designin
 
 ## Quick Start
 
-### Option A: GitHub Package (recommended)
+### Option A: npm (recommended)
 
 ```bash
-# 1. Authenticate with GitHub Packages (one-time setup)
-npm login --registry=https://npm.pkg.github.com
-
-# 2. Install Caboodle globally
+# 1. Install Caboodle globally
 npm install -g @abenjamin-ren/caboodle
 
-# 3. Navigate to your project
+# 2. Navigate to your project
 cd /path/to/your/project
 
-# 4. Install skills and resource site into your project
+# 3. Install skills and resource site into your project
 caboodle install
 ```
-
-> **Auth note:** GitHub Packages requires authentication. When prompted, use your GitHub username and a [Personal Access Token](https://github.com/settings/tokens) with `read:packages` scope as the password. Alternatively, add `//npm.pkg.github.com/:_authToken=YOUR_TOKEN` to your `~/.npmrc`.
 
 ### Option B: Git Clone (any OS)
 
@@ -259,7 +254,7 @@ caboodle --version      # Show version
 ## Requirements
 
 - **Node.js 18+** — [Download](https://nodejs.org)
-- **npm** — Comes with Node.js; used to install the package from GitHub Packages
+- **npm** — Comes with Node.js; used to install the package
 - **Cursor** (recommended) or any AI coding assistant that supports custom rules
 
 ## What Is OOUX?

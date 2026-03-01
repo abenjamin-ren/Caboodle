@@ -35,7 +35,7 @@
     "url": "https://github.com/abenjamin-ren/Caboodle.git"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com",
+    "registry": "https://registry.npmjs.org",
     "access": "public"
   },
   "engines": {
