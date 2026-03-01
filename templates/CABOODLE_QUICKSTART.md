@@ -19,15 +19,41 @@ caboodle install
 
 ## Getting Started
 
-**Start with the Planner.** Open Cursor and type:
+### Step 1: Start with the Planner
 
-> "Plan an ORCA workflow for [describe your project]"
+Every Caboodle project starts the same way — **tell the agent about your project**. Open your AI assistant (Cursor, Claude Code, etc.) and describe what you're working on:
 
-The ORCA Planner will:
-1. Ask about your project and goals
-2. Check for existing work in your resource site
-3. Recommend the right skill sequence
-4. Save a plan with progress tracking
+> "I'm building a learning management system where instructors create courses and students enroll in them. Help me plan the OOUX process."
+
+The planner will:
+1. **Ask about your project** — what you're building, who the users are, your timeline
+2. **Check for existing work** — scan your resource site for Object Guides or prior artifacts
+3. **Recommend a workflow** — suggest the right skill sequence for your situation
+4. **Save a plan** — create a project directory with a step-by-step plan you can track
+
+### Step 2: Follow the Plan
+
+The planner recommends a sequence of skills based on your project type:
+
+| Project Type | Typical Workflow |
+|---|---|
+| **New product** | All 16 steps: Discovery → Definition → Design → Build |
+| **Existing product audit** | System Audit → Object Discovery → Object Guides → Object Map |
+| **New feature** | Object Discovery → CTA Inventory → Attributes → CTA Matrix → User Stories |
+| **Documentation only** | Object Discovery → NOM → Object Guides → Object Map |
+| **Engineering handoff** | Relationship Lens → Governance → User Stories → Interaction Spec → Data Model |
+
+To run any skill, just ask:
+
+> "Run Object Discovery for my LMS project"
+
+### Step 3: Collaborate at Checkpoints
+
+Every skill has **collaboration checkpoints** — moments where the agent pauses and waits for your input. It won't guess or assume. You review, correct, and confirm. The agent moves to the next step.
+
+### Step 4: Artifacts Save to Your Resource Site
+
+Every finished artifact is saved as a markdown file in `site/docs/`. You'll build up a structured library over time. Preview it locally with `cd site && npm install && npm start`.
 
 ---
 

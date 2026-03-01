@@ -65,7 +65,7 @@ npm start      # Opens at http://localhost:3000
 
 ## Tips
 
-- Use **relative links** between pages: `[see Student](../objects/student.md)`
+- Use **relative links** between pages: `[see Student](../objects/student.md)` (only link to files that already exist)
 - Add **tags** in frontmatter for better searchability
 - Keep Object Guide titles consistent: "Object Guide: [Name]"
 - Use **tables** for attributes, CTAs, and relationships

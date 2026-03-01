@@ -11,14 +11,12 @@
     "bin/",
     "lib/",
     "skills/",
-    "templates/",
-    "site/"
+    "templates/"
   ],
   "scripts": {
     "site:dev": "cd site && npx docusaurus start",
     "site:build": "cd site && npx docusaurus build",
-    "site:init": "node bin/cli.js init-site",
-    "export": "bash scripts/export_all.sh"
+    "site:init": "node bin/cli.js init-site"
   },
   "keywords": [
     "ooux",
