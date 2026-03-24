@@ -1,0 +1,563 @@
+{
+  "identity": {
+    "slug": "standard",
+    "name": "Standard",
+    "qualifier": "(Core)",
+    "objectType": "core",
+    "category": "knowledge",
+    "definition": "A Standard is a grade-level learning expectation from a state or district-adopted framework that organizes and groups the ROCK Skills students are measured against, forming the primary column axis of the Skills Grid.",
+    "synonyms": ["learning expectation", "benchmark", "objective"],
+    "products": "All products"
+  },
+  "variations": [],
+  "representations": [
+    {
+      "layout": "card",
+      "heading": "Card layout",
+      "description": "How a Standard appears in grids and browsing views",
+      "defaultShape": "card",
+      "componentTag": "ren-standard-card",
+      "examples": [
+        {
+          "standardId": "3.RI.1",
+          "name": "Key Ideas and Details",
+          "domain": "Reading Informational Text",
+          "gradeLevel": "Grade 3",
+          "subject": "ELA",
+          "skillCount": 5,
+          "color": "#2563EB"
+        },
+        {
+          "standardId": "4.OA.2",
+          "name": "Operations & Algebraic Thinking",
+          "domain": "Number & Operations",
+          "gradeLevel": "Grade 4",
+          "subject": "Math",
+          "skillCount": 8,
+          "color": "#cf3a4e"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Standard Name",
+          "dataType": "String",
+          "source": "Framework Import",
+          "description": "Display name of the standard. Appears as the primary label on cards and grid columns."
+        },
+        {
+          "name": "Domain",
+          "dataType": "String",
+          "source": "Framework Import",
+          "description": "Grouping category within the framework (e.g., Reading Informational Text, Number & Operations)."
+        },
+        {
+          "name": "Grade Level",
+          "dataType": "String",
+          "source": "Framework Import",
+          "description": "Target grade level. Determines which Skills Grid the standard appears in."
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "source": "Framework Import",
+          "description": "Subject area: ELA or Math. Determines visual color coding."
+        },
+        {
+          "name": "Skill Count",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Number of Skills grouped under this Standard."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Standard Column",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Expand Standard",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "P",
+          "crossObjectSlug": "skill",
+          "crossObjectName": "Skill",
+          "roleKeys": ["teacher", "admin"]
+        }
+      ]
+    },
+    {
+      "layout": "list",
+      "heading": "List layout",
+      "description": "How a Standard appears in Skills Grid columns and tables",
+      "defaultShape": "row",
+      "componentTag": "ren-standard-row",
+      "examples": [
+        {
+          "standardId": "3.RI.1",
+          "name": "Key Ideas and Details",
+          "domain": "Reading Informational Text",
+          "gradeLevel": "Grade 3",
+          "subject": "ELA",
+          "skillCount": 5,
+          "expanded": false,
+          "color": "#2563EB"
+        },
+        {
+          "standardId": "4.OA.2",
+          "name": "Operations & Algebraic Thinking",
+          "domain": "Number & Operations",
+          "gradeLevel": "Grade 4",
+          "subject": "Math",
+          "skillCount": 8,
+          "expanded": true,
+          "color": "#cf3a4e"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Standard Name",
+          "dataType": "String",
+          "source": "Framework Import",
+          "description": "Display name of the standard."
+        },
+        {
+          "name": "Domain",
+          "dataType": "String",
+          "source": "Framework Import",
+          "description": "Grouping category within the framework."
+        },
+        {
+          "name": "Grade Level",
+          "dataType": "String",
+          "source": "Framework Import",
+          "description": "Target grade level."
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "source": "Framework Import",
+          "description": "Subject area: ELA or Math."
+        },
+        {
+          "name": "Skill Count",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Number of Skills grouped under this Standard."
+        },
+        {
+          "name": "Expanded/Collapsed State",
+          "dataType": "Boolean",
+          "source": "UI State",
+          "description": "Whether the standard column is expanded to show individual Skills."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "Expand Standard",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "P",
+          "crossObjectSlug": "skill",
+          "crossObjectName": "Skill",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Collapse Standard",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "skill",
+          "crossObjectName": "Skill",
+          "roleKeys": ["teacher", "admin"]
+        }
+      ]
+    },
+    {
+      "layout": "detail",
+      "heading": "Detail page layout",
+      "description": "Full Standard view with nested Skills and proficiency distribution",
+      "defaultShape": "profile",
+      "componentTag": "ren-standard-profile",
+      "examples": [
+        {
+          "standardId": "3.RI.1",
+          "name": "Key Ideas and Details",
+          "domain": "Reading Informational Text",
+          "gradeLevel": "Grade 3",
+          "subject": "ELA",
+          "skillCount": 5,
+          "color": "#2563EB",
+          "nestedObjects": [
+            { "label": "Skills", "count": 5, "href": "#" },
+            { "label": "Predictions", "count": 12, "href": "#" },
+            { "label": "Insights", "count": 3, "href": "#" }
+          ]
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Standard ID",
+          "dataType": "String",
+          "source": "Framework Import",
+          "description": "Unique identifier from the adopted framework (e.g., 3.RI.1, 4.OA.2)."
+        },
+        {
+          "name": "Standard Name",
+          "dataType": "String",
+          "source": "Framework Import",
+          "description": "Display name of the standard."
+        },
+        {
+          "name": "Domain",
+          "dataType": "String",
+          "source": "Framework Import",
+          "description": "Grouping category within the framework."
+        },
+        {
+          "name": "Grade Level",
+          "dataType": "String",
+          "source": "Framework Import",
+          "description": "Target grade level."
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "source": "Framework Import",
+          "description": "Subject area: ELA or Math."
+        },
+        {
+          "name": "Skill Count",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Number of Skills grouped under this Standard."
+        },
+        {
+          "name": "Expanded/Collapsed State",
+          "dataType": "Boolean",
+          "source": "UI State",
+          "description": "Whether the standard column is expanded to show individual Skills."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Standard Column",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Expand Standard",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "P",
+          "crossObjectSlug": "skill",
+          "crossObjectName": "Skill",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Collapse Standard",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "skill",
+          "crossObjectName": "Skill",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Filter by Domain",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "T",
+          "roleKeys": ["teacher", "admin"]
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "View Standards Grid",
+      "icon": "grid_view",
+      "role": "Teacher",
+      "action": "view",
+      "object": "Standard",
+      "benefit": "I can see all Standards as columns in the Skills Grid and understand which learning expectations my students are measured against.",
+      "whenClause": "I open the Skills Grid for my class,",
+      "thenClause": "each Standard appears as a column header, with its name and the number of Skills it contains."
+    },
+    {
+      "title": "Expand Standard for Skills",
+      "icon": "unfold_more",
+      "role": "Teacher",
+      "action": "expand",
+      "object": "Standard",
+      "benefit": "I can see the individual Skills grouped under it and review per-student proficiency at the Skill level.",
+      "whenClause": "I click on a Standard column header,",
+      "thenClause": "the column expands to reveal each Skill within the Standard as a sub-column, showing individual Skill proficiency cells.",
+      "crossObjects": [{ "slug": "skill", "name": "Skill" }]
+    },
+    {
+      "title": "Filter Standards by Domain",
+      "icon": "filter_list",
+      "role": "Teacher",
+      "action": "filter",
+      "object": "Standard",
+      "benefit": "I can focus on a specific domain within the framework and reduce visual clutter in the grid.",
+      "whenClause": "I select a domain filter (e.g., 'Reading Informational Text'),",
+      "thenClause": "the grid shows only Standards belonging to that domain, hiding unrelated columns."
+    }
+  ],
+  "businessRules": [
+    {
+      "title": "Framework Source",
+      "description": "Standards are imported from state or district-adopted frameworks (e.g., Common Core, TEKS, state-specific standards). They are not manually created."
+    },
+    {
+      "title": "Uniqueness",
+      "description": "A Standard is uniquely identified by its Standard ID within a given framework and grade level. The same Standard ID may appear across different grade levels."
+    },
+    {
+      "title": "Skill Grouping",
+      "description": "Every Skill must belong to exactly one Standard. A Standard contains one or more Skills. The Standard → Skill relationship defines the column structure of the Skills Grid."
+    },
+    {
+      "title": "Subject Binding",
+      "description": "A Standard is bound to exactly one subject area (ELA or Math). Cross-subject Standards are not supported; each subject has its own framework hierarchy."
+    },
+    {
+      "title": "Grade-Level Scope",
+      "description": "Standards are scoped to a specific grade level within a framework. The same conceptual standard may have different IDs and expectations at different grade levels."
+    },
+    {
+      "title": "Grid Column Axis",
+      "description": "Standards form the primary column axis of the Skills Grid. Each Standard occupies one column (collapsed) or multiple sub-columns (expanded, one per Skill)."
+    },
+    {
+      "title": "Expand/Collapse Behavior",
+      "description": "When collapsed, a Standard column shows an aggregate proficiency indicator. When expanded, individual Skill columns appear with per-student proficiency cells."
+    },
+    {
+      "title": "Deprecation",
+      "description": "When a framework is updated or replaced, Standards from the old framework are marked Deprecated. Deprecated Standards retain historical data but no longer appear in active Skills Grids."
+    },
+    {
+      "title": "Domain Filtering",
+      "description": "Standards are organized into Domains within a framework. Domain-level filtering allows teachers to focus the Skills Grid on a subset of related Standards."
+    }
+  ],
+  "lifecycle": {
+    "states": [
+      {
+        "name": "Active",
+        "description": "Currently part of the adopted framework and visible in Skills Grids",
+        "triggers": "Framework import, annual framework adoption",
+        "variant": "active"
+      },
+      {
+        "name": "Deprecated",
+        "description": "Superseded by a newer framework version; historical data retained",
+        "triggers": "Framework update, state/district framework adoption change",
+        "variant": "default"
+      }
+    ],
+    "transitions": [
+      { "from": "Active", "to": ["Deprecated"] }
+    ]
+  },
+  "relationships": [
+    {
+      "targetSlug": "skill",
+      "targetName": "Skill",
+      "mechanics": "Skills are grouped under Standards based on the adopted framework. The mapping is imported from the framework definition and is not editable by users.",
+      "cardinality": "One-to-many. A Standard contains one or more Skills; each Skill belongs to exactly one Standard. Typical: 3-8 skills per standard.",
+      "sorts": "Skills within a Standard: by Skill ID (default), by proficiency level, alphabetical by name.",
+      "filters": "By proficiency level (mastered, developing, not started), by assessment recency.",
+      "dependencies": "If a Standard is deprecated, its Skills are also deprecated. Skill proficiency data persists for historical reporting."
+    },
+    {
+      "targetSlug": "student",
+      "targetName": "Student",
+      "mechanics": "Students are measured against Standards via their Skill proficiency data. The intersection of Student × Standard produces aggregate proficiency in the Skills Grid.",
+      "cardinality": "Many-to-many (indirect via Skills). All Students in a class are measured against the same set of grade-level Standards.",
+      "sorts": "Students within a Standard column: by proficiency level (default), alphabetical by name.",
+      "filters": "By proficiency level (above, at, below), by class, by demographic group.",
+      "dependencies": "Student proficiency data for a Standard persists even if the student changes classes or schools."
+    }
+  ],
+  "relatedObjects": ["skill", "student", "class", "proficiency-prediction", "insight"],
+  "nestedObjects": [
+    {
+      "slug": "skill",
+      "name": "Skill",
+      "cardinality": "One-to-many",
+      "description": "Individual measurable skills grouped under this Standard"
+    },
+    {
+      "slug": "proficiency-prediction",
+      "name": "Proficiency Prediction",
+      "cardinality": "One-to-many",
+      "description": "AI-generated predictions of student proficiency for this Standard"
+    },
+    {
+      "slug": "insight",
+      "name": "Insight",
+      "cardinality": "One-to-many",
+      "description": "System-generated actionable insights about class performance on this Standard"
+    }
+  ],
+  "allAttributes": [
+    {
+      "name": "Standard ID",
+      "dataType": "String",
+      "required": true,
+      "source": "Framework Import",
+      "description": "Unique identifier from the adopted framework (e.g., 3.RI.1, 4.OA.2). Used for cross-system matching and reporting."
+    },
+    {
+      "name": "Standard Name",
+      "dataType": "String",
+      "required": true,
+      "source": "Framework Import",
+      "description": "Display name of the standard. Appears as the primary label on cards, grid columns, and detail views."
+    },
+    {
+      "name": "Domain",
+      "dataType": "String",
+      "source": "Framework Import",
+      "description": "Grouping category within the framework (e.g., Reading Informational Text, Number & Operations). Used for domain-level filtering."
+    },
+    {
+      "name": "Grade Level",
+      "dataType": "String",
+      "required": true,
+      "source": "Framework Import",
+      "description": "Target grade level. Determines which Skills Grid the standard appears in. PreK-12."
+    },
+    {
+      "name": "Subject",
+      "dataType": "Enum",
+      "required": true,
+      "source": "Framework Import",
+      "description": "Subject area: ELA or Math. Determines visual color coding and framework hierarchy."
+    },
+    {
+      "name": "Skill Count",
+      "dataType": "Number",
+      "source": "System",
+      "description": "Number of Skills grouped under this Standard. Auto-calculated from framework mapping."
+    },
+    {
+      "name": "Expanded/Collapsed State",
+      "dataType": "Boolean",
+      "source": "UI State",
+      "description": "Whether the standard column is expanded to show individual Skill sub-columns. Defaults to collapsed. Per-user, per-session."
+    }
+  ],
+  "allCTAs": [
+    {
+      "name": "View Standard Column",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "P",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Expand Standard",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "P",
+      "crossObjectSlug": "skill",
+      "crossObjectName": "Skill",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Collapse Standard",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "S",
+      "crossObjectSlug": "skill",
+      "crossObjectName": "Skill",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Filter by Domain",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "T",
+      "roleKeys": ["teacher", "admin"]
+    }
+  ],
+  "sipValidation": {
+    "structure": {
+      "pass": true,
+      "evidence": "A Standard has meaningful attributes: Standard ID, name, domain, grade level, subject, skill count, and expand/collapse state. You can design a detail view and grid column for a Standard."
+    },
+    "instances": {
+      "pass": true,
+      "evidence": "3.RI.1 — Key Ideas and Details (Grade 3 ELA), 4.OA.2 — Operations & Algebraic Thinking (Grade 4 Math), K.RF.1 — Foundational Skills (Kindergarten ELA). Hundreds of Standard instances per framework."
+    },
+    "purpose": {
+      "pass": true,
+      "evidence": "Standards are the organizing structure of the Skills Grid. Teachers expand Standards to see Skill-level proficiency, filter by Domain to focus instruction, and use Standard-level aggregations to identify areas of strength and weakness."
+    },
+    "verdict": "Core knowledge object. The primary column axis of the Skills Grid and the structural parent of Skills."
+  },
+  "synonyms": [
+    {
+      "term": "Learning Expectation",
+      "context": "State frameworks, assessment alignment",
+      "notes": "Generic term used across multiple state frameworks"
+    },
+    {
+      "term": "Benchmark",
+      "context": "Assessment design, curriculum mapping",
+      "notes": "Sometimes used interchangeably; in Renaissance context, Standard is preferred"
+    },
+    {
+      "term": "Objective",
+      "context": "Lesson planning, instructional design",
+      "notes": "More granular than Standard; closer to Skill in Renaissance taxonomy"
+    }
+  ],
+  "shapeshifterMatrix": [
+    {
+      "context": "Skills Grid Column",
+      "value": "skills-grid-column",
+      "shape": "card",
+      "description": "A standard shown as a column header in the skills proficiency grid. Teachers expand or collapse standards to focus on specific skill areas.",
+      "visibleAttributes": ["Standard Name", "Subject", "Skill Count", "Expanded/Collapsed State"],
+      "availableCTAs": ["View Standard Column", "Expand Standard", "Collapse Standard"],
+      "cardShape": "Column header"
+    },
+    {
+      "context": "Plan Instruction",
+      "value": "plan-instruction",
+      "shape": "row",
+      "description": "Standards listed with domain, grade level, and skill count for planning instruction. Teachers choose which standards to focus on and filter by domain.",
+      "visibleAttributes": ["Standard Name", "Domain", "Grade Level", "Subject", "Skill Count"],
+      "availableCTAs": ["View Standard Column", "Filter by Domain"],
+      "cardShape": "Compact row"
+    },
+    {
+      "context": "Assessment Alignment",
+      "value": "assessment-alignment",
+      "shape": "row",
+      "description": "Standards shown as data rows within an assessment's alignment section. Teachers verify which standards an assessment covers.",
+      "visibleAttributes": ["Standard ID", "Standard Name", "Domain", "Subject"],
+      "availableCTAs": ["View Standard Column"],
+      "cardShape": "Data row"
+    },
+    {
+      "context": "Freckle Tags",
+      "value": "freckle-tags",
+      "shape": "header",
+      "description": "A standard displayed as a tag chip within Freckle content, indicating which standard the practice activity addresses.",
+      "visibleAttributes": ["Standard Name", "Domain"],
+      "availableCTAs": ["View Standard Column"],
+      "cardShape": "Tag chip"
+    }
+  ]
+}

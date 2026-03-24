@@ -1,0 +1,113 @@
+---
+description: Information architecture, navigation patterns, wayfinding, and continuity
+globs: "**/*.html"
+alwaysApply: false
+---
+
+# Navigation & Information Architecture
+
+Navigation is the structure users use to find, reach, and move between content. Good IA is invisible — users find what they need without thinking about the system. Bad IA makes users feel lost.
+
+## Information Architecture Principles
+
+### Match user mental models
+- Organize content the way users think about it, not the way the organization stores it
+- OOUX provides a strong foundation: objects are natural mental models. Users think in terms of "Students," "Assessments," and "Classes" — not "Data Entities" or "Module 3"
+- Test IA with card sorting (open sort to discover groupings, closed sort to validate existing structure)
+- If >30% of users would look for something in a different location, the IA has a problem
+
+### Objects as IA anchors
+- In OOUX, objects are the primary navigation units. The Object Library is browsable by object, not by feature or workflow
+- Object detail pages are hub pages — they link outward to related objects, creating a navigable web
+- This fights the **Isolated Objects** anti-pattern: every object should be reachable from related objects, not just from a master list
+
+### Progressive depth
+- Use the **three page types** from OOUX: Landing pages (overview), List pages (browse/filter), Detail pages (deep content)
+- Each click should feel like going deeper into the content, not sideways into confusion
+- Breadcrumbs and back links help users understand depth and retrace their path
+
+## Navigation Patterns
+
+### Global navigation
+- Present on every page in a consistent position (Caboodle: top nav bar)
+- Contains 5–7 top-level items maximum — more requires grouping or mega-menus
+- Active item is visually distinguished (`aria-current="page"`)
+- Logo always links to the home page
+
+### Local navigation (within a section)
+- Use secondary tabs, sidebar nav, or in-page anchor links
+- Secondary tabs work well for switching between views of the same object (Overview, Relationships, Reference)
+- Sidebar nav works for long reference pages with many sections
+
+### Breadcrumbs
+- Show the user's path from the root: Home → Object Library → Student
+- Use `<nav aria-label="Breadcrumb">` with an ordered list
+- The current page is the last item, not linked, with `aria-current="page"`
+- Essential for pages more than 2 levels deep
+
+### Object-to-object navigation
+- Relationship links on Object Guide pages (Student → Class, Student → Score) create a network users can traverse
+- "Related objects" sections at the bottom of detail pages encourage exploration
+- This is the OOUX principle: humans navigate most naturally through relationships between objects
+
+## Wayfinding
+
+Users need to answer three questions at all times:
+
+1. **Where am I?** — Active nav tab, page heading, breadcrumbs, distinct visual treatment per section
+2. **Where can I go?** — Visible navigation options, related content links, CTAs
+3. **Where have I been?** — Visited link styles (`:visited`), breadcrumbs, browser back button support
+
+### Wayfinding signals
+- **Active states** on navigation items (highlighted tab, bold sidebar link)
+- **Page titles** that match the nav label exactly — if the nav says "Object Library," the page heading says "Object Library"
+- **Consistent layout** per section — all Object Guide pages share the same structure, so users learn the pattern once
+- **URL structure** that mirrors the IA: `/objects/student` makes location obvious
+
+## Continuity & Cross-Page Consistency
+
+### Structural continuity
+- Navigation position, footer content, and page shell remain identical across pages
+- Users should never feel like they've left the site when navigating between sections
+- Transition effects (if any) should be subtle and consistent
+
+### Visual continuity
+- Shared color palette, typography, and spacing across all pages
+- Object identity colors persist from the library to the detail page to embedded mentions
+- Card designs are consistent: an object card on the library page looks the same as an object card embedded in another guide
+
+### Behavioral continuity
+- Tabs work the same way everywhere (click to switch, keyboard arrow keys)
+- Code blocks always have a copy button
+- Interactive controls (dropdowns, toggles, filters) use the same component patterns
+- Scroll position is preserved when returning via back button
+
+### Content continuity
+- Terminology is consistent: if you call it "Student" on one page, don't call it "Learner" on another (unless explicitly noting synonyms)
+- Data consistency: if the Object Library card shows "42 attributes," the detail page should show 42 attributes
+- Status labels, priority levels, and categorical terms use the same vocabulary site-wide
+
+## Search (Future)
+
+When implementing search:
+- Place the search input in a consistent, prominent position (Caboodle: top nav, `⌘K` shortcut)
+- Show results grouped by type (Objects, Resources, Glossary Terms) with clear type labels
+- Support type-ahead / autocomplete for known entities
+- Include recent searches and suggested queries
+- Show the number of results
+- Provide empty-state guidance when no results are found ("No results for 'Asignment'. Did you mean 'Assignment'?")
+
+## Link Design
+
+- Links should be visually distinct from non-linked text (underline + color is the strongest signal)
+- Link text should describe the destination: "View the Student Object Guide" not "Click here"
+- External links should indicate they open in a new context (icon or text like "opens in a new tab")
+- Visited link color should differ from unvisited — it helps users track where they've been
+- Skip links ("Skip to main content") should be the first focusable element for keyboard users
+
+## URL Design
+
+- URLs are part of the UI — they should be readable, predictable, and stable
+- Use lowercase, hyphenated slugs: `/objects/proficiency-prediction` not `/Objects/ProficiencyPrediction`
+- Avoid query parameters for primary navigation (they're bookmarkable but hard to read)
+- Never break existing URLs — if a page moves, redirect the old URL

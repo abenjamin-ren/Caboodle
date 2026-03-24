@@ -1,0 +1,146 @@
+---
+description: Interaction design — usability heuristics, cognitive load, progressive enhancement, native patterns
+globs: "**/*.html"
+alwaysApply: false
+---
+
+# Interaction Design
+
+Interaction design governs how users act on the interface and how the interface responds. The goal is an experience that feels effortless, predictable, and respectful of the user's time and intelligence.
+
+## Nielsen's 10 Usability Heuristics
+
+These are not rules to follow mechanically — they are lenses for evaluating design decisions:
+
+### 1. Visibility of System Status
+The system should keep users informed about what is happening, through appropriate feedback within reasonable time.
+- Show loading states, progress indicators, and confirmation messages
+- Indicate the current location in navigation (active tab, breadcrumbs, `aria-current`)
+- Real-time feedback: hover states, pressed states, focus rings, selection highlights
+
+### 2. Match Between System and Real World
+Use language, concepts, and conventions familiar to the user, not internal system terminology.
+- Labels should use the user's vocabulary — "Object Library" not "Entity Repository"
+- Visual metaphors should match expectations — a trash can icon means delete, not archive
+- Follow real-world conventions for order: chronological, alphabetical, by priority — not by database ID
+
+### 3. User Control and Freedom
+Users make mistakes. Provide clearly marked exits, undo, and recovery.
+- "Back" and "Cancel" should always be available and obvious
+- Destructive actions need confirmation with clear consequences stated
+- Undo support for reversible actions (unsaved edits, removed items)
+- Never trap users in a flow with no exit
+
+### 4. Consistency and Standards
+Users should not have to wonder whether different words, situations, or actions mean the same thing.
+- Internal consistency: same pattern = same behavior across the entire site
+- External consistency: follow platform conventions users already know (underlined text = link, × = close)
+- Visual consistency: same component type = same appearance and interaction (see OOUX Shapeshifter anti-pattern)
+
+### 5. Error Prevention
+Design to prevent errors before they occur — better than any error message.
+- Disable or hide actions that aren't valid in the current state
+- Use constraints (dropdowns instead of free text when options are finite)
+- Confirm destructive or irreversible actions
+- Validate input inline and early
+
+### 6. Recognition Rather Than Recall
+Minimize memory load by making objects, actions, and options visible or easily retrievable.
+- Show recently used items, suggestions, and defaults
+- Labels should be visible, not hidden behind icons-only buttons
+- Use consistent visual cues (icons + text labels) so users recognize rather than remember
+
+### 7. Flexibility and Efficiency of Use
+Accommodate both novice and expert users.
+- Provide keyboard shortcuts for power users (disclose them in the UI)
+- Allow customization where meaningful (sort order, density, view mode)
+- Support multiple paths to the same goal (navigation, search, direct link)
+
+### 8. Aesthetic and Minimalist Design
+Every element should serve a purpose. Remove anything that doesn't.
+- Prioritize content over chrome — reduce visual clutter
+- Use whitespace actively, not as leftover space
+- Decorative elements should enhance meaning, not compete with content
+
+### 9. Help Users Recognize, Diagnose, and Recover from Errors
+Error messages should be expressed in plain language, indicate the problem precisely, and suggest a constructive solution.
+- See the Content Design rule for error message structure
+
+### 10. Help and Documentation
+Help should be easy to find, focused on the user's task, list concrete steps, and not be too long.
+- Contextual help beats documentation pages
+- Glossary tooltips for domain-specific terms
+- "Learn more" links that go to the right section, not a generic help page
+
+## Cognitive Load
+
+Every design choice either increases or decreases the user's mental effort:
+
+- **Intrinsic load** (inherent task complexity) — you can't remove this, but you can sequence it. Break complex tasks into steps
+- **Extraneous load** (poor design choices) — this is what you eliminate. Cluttered layouts, unclear labels, inconsistent patterns, and unnecessary choices all add extraneous load
+- **Germane load** (learning effort) — this is productive. Consistent patterns, clear mental models, and well-organized information help users build understanding
+
+**Reduce extraneous load by:**
+- Grouping related information (Gestalt proximity)
+- Using progressive disclosure — show what's needed now, reveal the rest on demand
+- Setting smart defaults — pre-fill the most common choice
+- Limiting visible choices — Hick's Law says fewer options = faster decisions
+- Consistent patterns — once learned, a pattern costs zero cognitive effort to reuse
+
+## Progressive Enhancement
+
+Build from the bottom up — the base experience works without JavaScript:
+
+1. **HTML first** — all content is readable and navigable with zero CSS and zero JS. Semantic structure carries meaning
+2. **CSS second** — layout, typography, color, and visual hierarchy enhance the HTML
+3. **JavaScript third** — interactivity (tabs, filters, search, animations) layers on top without breaking the base
+
+**Practical implications:**
+- Links navigate to real URLs (not JavaScript-only navigation)
+- Forms have real `action` attributes and work without JS
+- Content is visible in the HTML source, not injected by script
+- CSS-only interactions (`:hover`, `:focus`, `:checked`) should be preferred when they work
+- `<noscript>` is rarely needed — if the HTML is solid, it already works without JS
+
+## Native-Feeling Patterns
+
+Users bring expectations from their platform. Respect them:
+
+- **Scrolling** — vertical scroll is the primary navigation model for content pages. Horizontal scroll must be signaled visually (reel component with overflow cues)
+- **Links vs. buttons** — links navigate, buttons act. A `<button>` that navigates or an `<a>` that submits a form confuses assistive technology and violates user expectations
+- **Standard gestures** — back button works, refresh reloads, right-click opens context menus. Never hijack these
+- **System controls** — prefer native `<select>`, `<input>`, `<details>` elements over custom re-implementations. They are accessible by default, work with autofill, and feel native
+- **Clipboard** — allow copy-paste everywhere. Code blocks should have a copy button
+- **Browser zoom** — the layout must remain usable at 200% zoom without horizontal scrolling
+
+## Feedback & Responsiveness
+
+Users perceive interfaces as responsive based on timing:
+
+| Delay | User perception | Required feedback |
+|---|---|---|
+| 0–100ms | Instantaneous | None needed (button press, hover) |
+| 100–300ms | Slight delay | Visual state change (color, depression) |
+| 300ms–1s | Noticeable | Loading spinner or skeleton |
+| 1–5s | Slow | Progress indicator, skeleton screen |
+| 5s+ | Very slow | Determinate progress bar + explanation |
+
+- Perceived performance often matters more than actual performance. Skeleton screens feel ~30% faster than spinners for the same load time
+- Acknowledge user actions within 100ms — even if the result takes longer
+- Optimistic UI (show the expected result immediately, roll back on failure) works well for common, low-risk actions
+
+## State Management
+
+Every interactive element can be in multiple states. All must be designed:
+
+- **Default** — resting state
+- **Hover** — cursor is over the element (desktop)
+- **Focus** — element has keyboard focus
+- **Active/Pressed** — element is being clicked or tapped
+- **Disabled** — element is not available (explain why via tooltip or adjacent text)
+- **Loading** — action is in progress
+- **Error** — something went wrong
+- **Success** — action completed
+- **Empty** — no content to display yet
+
+Missing states feel like bugs. Design all states before building.

@@ -1,0 +1,90 @@
+---
+description: Visual design principles — hierarchy, color, spacing, density, and attention management
+globs: "**/*.html,styles/**/*.css"
+alwaysApply: false
+---
+
+# Visual Design
+
+Visual design is how the interface communicates priority, relationships, and state without words. Every visual choice should be intentional and traceable to a user need.
+
+## Visual Hierarchy
+
+Hierarchy is how users decide what to look at first, second, and third. Establish it through:
+
+1. **Size** — larger elements draw attention first
+2. **Weight** — bolder elements stand out from their surroundings
+3. **Contrast** — high-contrast elements pull focus; low-contrast elements recede
+4. **Color** — saturated or warm colors advance; muted or cool colors retreat
+5. **Position** — top-left (in LTR layouts) is scanned first; items above the fold get more attention
+6. **Space** — elements with more whitespace around them feel more important (isolation draws the eye)
+
+**Test:** Squint at the page. The 2–3 most important elements should still be identifiable. If everything looks the same, hierarchy has failed.
+
+## Attention Management
+
+Users have limited attention. Respect it:
+
+- **One primary action per view.** If everything is emphasized, nothing is. Use the OOUX P/S/T/Q framework: one Primary CTA, visually dominant; Secondary CTAs visible but subordinate; Tertiary/Quaternary CTAs revealed on demand
+- **Fitts's Law:** the time to reach a target is a function of distance and size. Make primary actions large and close to the user's current focus. Place destructive actions away from frequent targets
+- **Hick's Law:** decision time increases logarithmically with the number of choices. When presenting options, group related items, use progressive disclosure, and suggest defaults. 5–7 visible options is a practical ceiling before users need filtering or search
+- **Progressive disclosure:** show the minimum needed for the current task; reveal details on demand. Accordions, tabs, and "show more" patterns reduce visual overwhelm
+- **Signal-to-noise ratio:** every element on screen is either signal (helps the user) or noise (distracts). Ruthlessly reduce noise: decorative borders, redundant labels, low-value badges, repeated instructions
+
+## Gestalt Principles
+
+The brain groups visual elements automatically. Use these laws deliberately:
+
+- **Proximity** — elements near each other are perceived as related. Use spacing to create groups. A label 8px from its input feels connected; 24px away feels orphaned
+- **Similarity** — elements that look alike (color, shape, size) are perceived as belonging together. Object cards in Caboodle share a shape template — this signals "these are all the same kind of thing"
+- **Continuity** — the eye follows smooth lines and curves. Alignment grids and consistent gutters create paths for scanning
+- **Closure** — the brain fills in gaps to see complete shapes. Cards don't need heavy borders if consistent spacing and background color define their boundaries
+- **Figure/Ground** — the brain separates foreground from background. Use contrast, elevation (shadows), and overlays to layer information
+
+## Color
+
+- **Limit the active palette** to 3–5 colors plus neutrals. More colors create visual noise and reduce distinctiveness
+- **Reserve saturated/bright colors** for interactive elements and status indicators — not decoration
+- **Use color consistently:** if blue means "interactive" in one place, it must mean "interactive" everywhere
+- **Ensure accessibility:** every color combination must pass contrast ratios (see accessibility rule)
+- **Support color-independent meaning:** always pair color with text, icon, or pattern for users with color vision deficiency
+- **Object identity colors** (from OOUX): each object type should have a consistent color across the site. This fights the Shapeshifter anti-pattern — users learn that "teal means Student" and recognize it instantly
+
+## Spacing & Density
+
+- **Use a spacing scale** — Caboodle's modular scale (`--s-5` through `--s5`) ensures all spacing values are harmonious
+- **Information density should match the task:** scanning tasks benefit from generous whitespace; comparison tasks benefit from tighter density. Data tables can be denser than marketing pages
+- **Consistent spacing creates trust.** Inconsistent spacing (12px here, 14px there, 18px elsewhere) feels sloppy even when users can't articulate why
+- **Whitespace is not empty space** — it is an active design element that creates grouping, hierarchy, and breathing room. Do not fill it
+
+## Elevation & Depth
+
+- Use box-shadow sparingly to create a sense of layering (cards above the page, modals above everything)
+- Establish 2–3 elevation levels maximum: page surface → cards → overlays
+- Consistent shadow direction and intensity across the site
+- Prefer subtle shadows (small blur, low opacity) — heavy shadows feel dated
+
+## Aesthetic-Usability Effect
+
+Users perceive aesthetically pleasing designs as more usable than they actually are. This works in your favor — beautiful interfaces earn trust and forgiveness. But it also means:
+
+- Aesthetic quality cannot substitute for genuine usability
+- A beautiful interface that is confusing will be abandoned faster than an ugly one that works, because the disappointment is sharper
+- Invest in visual polish only after the interaction model is solid
+
+## Consistency
+
+The most important visual design rule. Inconsistency forces users to re-learn patterns on every page:
+
+- Same element → same appearance (buttons look like buttons everywhere)
+- Same meaning → same visual treatment (error states always use the same color and icon)
+- Same position → same function (if the search box is top-right, it stays top-right)
+- Intentional variation is fine (OOUX object identity colors distinguish different object types) — but document and enforce the system
+
+## Dark Mode (Future)
+
+When implementing dark mode:
+- Don't simply invert colors — reduce brightness and saturation of backgrounds, keep text contrast ratios
+- Shadows are ineffective on dark backgrounds — use lighter borders or subtle glows
+- Reduce image brightness slightly to prevent eye strain
+- Provide a manual toggle; also respect `prefers-color-scheme` as the default

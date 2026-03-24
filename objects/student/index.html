@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student — Object Guide — Caboodle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles/main.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class="page">
+  <header class="page-header">
+    <nav class="main-nav" aria-label="Primary">
+      <div class="nav-start">
+        <a class="logo-link" href="/" aria-label="Caboodle home">
+          <img src="../../caboodle-logo.svg" alt="Caboodle" height="40">
+        </a>
+        <button class="nav-search-trigger" type="button" aria-label="Search Caboodle">
+          <span class="nav-search-label">
+            <span class="material-icons" aria-hidden="true">search</span>
+            <span>Search</span>
+          </span>
+          <kbd class="nav-hotkey">
+            <span aria-hidden="true">⌘</span><span>K</span>
+          </kbd>
+        </button>
+      </div>
+      <div class="nav-end">
+        <ul class="nav-tabs">
+          <li><a href="/" class="nav-tab">Home</a></li>
+          <li><a href="/objects" class="nav-tab" aria-current="page">Object Library</a></li>
+          <li><a href="/resources" class="nav-tab">Resources</a></li>
+          <li><a href="/process" class="nav-tab">Process</a></li>
+          <li><a href="/glossary" class="nav-tab">Glossary</a></li>
+        </ul>
+        <button class="nav-profile-btn" type="button" aria-label="User profile">AB</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===== Identity Header ===== -->
+    <div class="guide-header">
+      <a href="/objects" class="guide-back">
+        <span class="material-icons" aria-hidden="true">arrow_back</span>
+        Object Library
+      </a>
+      <div class="guide-title-row">
+        <img class="guide-icon" src="../../img/object_icon.svg" alt="" width="40" height="40">
+        <h1 class="guide-title">Student <span>(Core)</span></h1>
+        <span class="synonyms-pill">~ learner, pupil, child, kid</span>
+      </div>
+      <p class="guide-definition">A Student is an individual learner enrolled in one or more educational organizations who engages in instructional activities, completes <a href="/objects/assessment">assessments</a> and <a href="/objects/assignment">assignments</a>, and serves as the primary anchor for all learning-related data, progress tracking, and outcomes across Renaissance products.</p>
+      <div class="product-tag">
+        <span class="material-icons" aria-hidden="true">school</span>
+        All products
+      </div>
+    </div>
+
+    <!-- ===== Variations ===== -->
+    <div class="guide-variations">
+      <div class="guide-variations-label">Variations</div>
+      <div class="guide-variations-row">
+        <a href="/objects/student-lesson-participant" class="guide-variation-card">
+          <img src="../../img/object-variation_icon.svg" alt="" width="40" height="42">
+          <div class="guide-variation-card-text">
+            <div class="guide-variation-name">Student <span>(Lesson Participant)</span></div>
+            <div class="guide-variation-product">Used in: Nearpod</div>
+          </div>
+          <span class="material-icons" aria-hidden="true">chevron_right</span>
+        </a>
+        <a href="/objects/student-reader" class="guide-variation-card">
+          <img src="../../img/object-variation_icon.svg" alt="" width="40" height="42">
+          <div class="guide-variation-card-text">
+            <div class="guide-variation-name">Student <span>(Reader)</span></div>
+            <div class="guide-variation-product">Used in: myON, AR</div>
+          </div>
+          <span class="material-icons" aria-hidden="true">chevron_right</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ===== Secondary Tabs ===== -->
+    <nav class="secondary-tabs" aria-label="Object guide sections">
+      <button class="secondary-tab" aria-selected="true">Overview</button>
+      <button class="secondary-tab" aria-selected="false">Stories &amp; Rules</button>
+      <button class="secondary-tab" aria-selected="false">Relationships</button>
+      <button class="secondary-tab" aria-selected="false">Reference</button>
+    </nav>
+
+    <!-- ===== OVERVIEW TAB ===== -->
+    <div class="content-area" data-tab-panel="0">
+      <div class="overview-layout">
+
+        <!-- ── Main content ── -->
+        <div class="overview-main">
+
+          <!-- Card Layout -->
+          <div class="section-group">
+            <h2 class="section-group-heading">Card layout</h2>
+            <p class="section-group-desc">How a <strong>Student</strong> appears in grids and dashboards</p>
+
+            <div class="example-showcase" data-showcase="card">
+              <div class="showcase-content">
+                <div class="showcase-card" style="background: white; border: 1px solid #ccc; border-radius: 8px; overflow: hidden; width: 100%;">
+                  <div style="padding: 23px; position: relative;">
+                    <div style="position: absolute; top: 23px; right: 23px; width: 40px; height: 40px; border-radius: 50%; background: #398b26; border: 2px solid white; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px;">HP</div>
+                    <div>
+                      <div style="font-weight: 700; font-size: 16px; color: #333; line-height: 1.33;">Harry Potter</div>
+                      <div style="font-size: 14px; color: #4d4d4d; line-height: 1.33;">3rd Grade <span style="color: #ccc;">·</span> Hogwarts</div>
+                    </div>
+                    <div style="margin-top: 8px; font-size: 14px; color: #666; line-height: 1.33;">
+                      <div>Reading: 3.2 GE <span style="color: #ccc;">·</span> <span class="showcase-status" style="font-weight: 500; color: #cf3a4e;">On watch</span></div>
+                      <div>Math: 320 SS</div>
+                    </div>
+                  </div>
+                  <div style="background: #fafafa; border-top: 1px solid #eee; padding: 15px 24px; display: flex; align-items: center; gap: 16px;">
+                    <span style="font-size: 16px; color: #333;">3 Classes</span>
+                    <span style="font-size: 16px; color: #333;">12 Scores</span>
+                    <a href="#" style="margin-inline-start: auto; font-size: 16px; font-weight: 500; color: #0076b3; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;" class="showcase-cta-primary">View profile <span class="material-icons" style="font-size: 16px;">chevron_right</span></a>
+                  </div>
+                </div>
+
+                <div class="showcase-card" style="background: white; border: 1px solid #ccc; border-radius: 8px; overflow: hidden; width: 100%;">
+                  <div style="padding: 23px; position: relative;">
+                    <div style="position: absolute; top: 23px; right: 23px; width: 40px; height: 40px; border-radius: 50%; background: #0076b3; border: 2px solid white; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px;">HG</div>
+                    <div>
+                      <div style="font-weight: 700; font-size: 16px; color: #333; line-height: 1.33;">Hermione Granger</div>
+                      <div style="font-size: 14px; color: #4d4d4d; line-height: 1.33;">3rd Grade <span style="color: #ccc;">·</span> Hogwarts</div>
+                    </div>
+                    <div style="margin-top: 8px; font-size: 14px; color: #666; line-height: 1.33;">
+                      <div>Reading: 920L <span style="color: #ccc;">·</span> <span class="showcase-status" style="font-weight: 500; color: #398b26;">At/Above</span></div>
+                      <div>Math: 740 SS</div>
+                    </div>
+                  </div>
+                  <div style="background: #fafafa; border-top: 1px solid #eee; padding: 15px 24px; display: flex; align-items: center; gap: 16px;">
+                    <span style="font-size: 16px; color: #333;">5 Classes</span>
+                    <span style="font-size: 16px; color: #333;">25 Scores</span>
+                    <a href="#" style="margin-inline-start: auto; font-size: 16px; font-weight: 500; color: #0076b3; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;" class="showcase-cta-primary">View profile <span class="material-icons" style="font-size: 16px;">chevron_right</span></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="data-subtabs" data-subtabs="card-attrs">
+              <div class="pill-tabs">
+                <button class="pill-tab" aria-selected="true">Attributes</button>
+                <button class="pill-tab" aria-selected="false">Calls-to-action (CTAs)</button>
+              </div>
+              <div class="tab-panel" data-panel="card-attributes">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th class="col-attr">Attribute</th>
+                      <th class="col-type">Data type</th>
+                      <th class="col-source">Source</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><span class="attr-name">Full Name</span> (First, Last)</td><td>String</td><td>SIS Import / Manual</td><td>Primary identifier. Appears everywhere a Student is shown.</td></tr>
+                    <tr><td><span class="attr-name">Grade Level</span></td><td>Enum</td><td>SIS Import / Manual</td><td>Determines age-appropriate content, benchmarks, and assessments. PreK-12, UG.</td></tr>
+                    <tr><td><a href="/objects/school" class="attr-ref"><img src="../../img/object_icon.svg" alt="" class="attr-ref-icon"> School <span class="material-icons" aria-hidden="true">arrow_right_alt</span></a></td><td>Reference &rarr; School</td><td>SIS Import</td><td>Which school the student is enrolled at.</td></tr>
+                    <tr><td><a href="/objects/class" class="attr-ref"><img src="../../img/object_icon.svg" alt="" class="attr-ref-icon"> Class(es) <span class="material-icons" aria-hidden="true">arrow_right_alt</span></a></td><td>Reference &rarr; Class[]</td><td>Roster sync / Admin</td><td>Which classes the student belongs to.</td></tr>
+                    <tr><td><span class="attr-name">Reading Level</span></td><td>Number</td><td>Star Reading, AR</td><td>Key metric for AR, myON, Star Reading. Updated on assessment completion.</td></tr>
+                    <tr><td><span class="attr-name">Math Level</span></td><td>Number</td><td>Star Math, Freckle</td><td>Key metric for Freckle, Star Math. Updated on assessment/practice.</td></tr>
+                    <tr><td><span class="attr-name">Status</span></td><td>Enum</td><td>SIS Import / Admin</td><td>Active, Inactive, or Transferred. Controls visibility and roster membership.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="tab-panel" data-panel="card-ctas" hidden>
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th class="col-attr">CTA</th>
+                      <th class="col-type">Roles</th>
+                      <th class="col-source">Permission</th>
+                      <th>Cross-object</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-roles="teacher admin student"><td><span class="attr-name">View Profile</span></td><td>Teacher, Admin, Student (self)</td><td>Read</td><td>&mdash;</td></tr>
+                    <tr data-roles="teacher admin"><td><span class="attr-name">Search / Filter</span></td><td>Teacher, Admin</td><td>Read</td><td>&mdash;</td></tr>
+                    <tr data-roles="teacher admin student"><td><span class="attr-name">View Scores</span></td><td>Teacher, Admin, Student (self)</td><td>Read</td><td><a href="/objects/score" class="attr-ref"><img src="../../img/object_icon.svg" alt="" class="attr-ref-icon"> Score <span class="material-icons" aria-hidden="true">arrow_right_alt</span></a></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="data-subtabs" data-subtabs="card-code">
+              <div class="pill-tabs">
+                <button class="pill-tab pill-tab-icon" aria-selected="true"><img src="../../img/webcomponentsdotorg.svg" alt="" aria-hidden="true">Web Components</button>
+                <button class="pill-tab pill-tab-icon" aria-selected="false"><img src="../../img/react.svg" alt="" aria-hidden="true">React</button>
+                <button class="pill-tab pill-tab-icon" aria-selected="false"><img src="../../img/angular.svg" alt="" aria-hidden="true">Angular</button>
+                <button class="pill-tab pill-tab-icon" aria-selected="false"><img src="../../img/vuedotjs.svg" alt="" aria-hidden="true">Vue</button>
+              </div>
+              <div class="code-block">
+                <button class="code-block-copy" type="button" aria-label="Copy code">
+                  <span class="material-icons" aria-hidden="true">content_copy</span>
+                </button>
+                <code>&lt;ren-student&gt;&lt;/ren-student&gt;</code>
+              </div>
+            </div>
+          </div>
+
+          <!-- List Layout -->
+          <div class="section-group">
+            <h2 class="section-group-heading">List layout</h2>
+            <p class="section-group-desc">How a <strong>Student</strong> appears in rosters and tables</p>
+
+            <div class="example-showcase" data-showcase="list">
+              <div class="showcase-content showcase-content--stack">
+                <div class="profile-list">
+                  <div class="profile-item">
+                    <div class="profile-info">
+                      <div class="profile-bubble" style="background: #398b26;">HP</div>
+                      <div>
+                        <div class="profile-name">Harry Potter</div>
+                        <div class="profile-meta">Grade 3 <span class="separator">·</span> Hogwarts <span class="separator">·</span> <span class="showcase-status status-watch">On watch</span></div>
+                      </div>
+                    </div>
+                    <div class="profile-perf">
+                      <div class="score-item">
+                        <div class="score-bar"><div class="score-fill score-fill--blue" style="width: 69%;"></div></div>
+                        <span class="score-value">680L</span>
+                      </div>
+                      <div class="score-item">
+                        <div class="score-bar"><div class="score-fill score-fill--red" style="width: 69%;"></div></div>
+                        <span class="score-value">Q520</span>
+                      </div>
+                      <a href="#" class="profile-action showcase-cta-primary">View profile</a>
+                    </div>
+                  </div>
+                  <div class="profile-item">
+                    <div class="profile-info">
+                      <div class="profile-bubble" style="background: #0076b3;">HG</div>
+                      <div>
+                        <div class="profile-name">Hermione Granger</div>
+                        <div class="profile-meta">Grade 3 <span class="separator">·</span> Hogwarts <span class="separator">·</span> <span class="showcase-status status-ok">At/Above</span></div>
+                      </div>
+                    </div>
+                    <div class="profile-perf">
+                      <div class="score-item">
+                        <div class="score-bar"><div class="score-fill score-fill--blue" style="width: 88%;"></div></div>
+                        <span class="score-value">920L</span>
+                      </div>
+                      <div class="score-item">
+                        <div class="score-bar"><div class="score-fill score-fill--red" style="width: 89%;"></div></div>
+                        <span class="score-value">Q740</span>
+                      </div>
+                      <a href="#" class="profile-action showcase-cta-primary">View profile</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="data-subtabs" data-subtabs="list-attrs">
+              <div class="pill-tabs">
+                <button class="pill-tab" aria-selected="true">Attributes</button>
+                <button class="pill-tab" aria-selected="false">Calls-to-action (CTAs)</button>
+              </div>
+              <div class="tab-panel" data-panel="list-attributes">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th class="col-attr">Attribute</th>
+                      <th class="col-type">Data type</th>
+                      <th class="col-source">Source</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><span class="attr-name">Full Name</span> (First, Last)</td><td>String</td><td>SIS Import / Manual</td><td>Primary identifier. Appears everywhere a Student is shown.</td></tr>
+                    <tr><td><span class="attr-name">Grade Level</span></td><td>Enum</td><td>SIS Import / Manual</td><td>Determines age-appropriate content, benchmarks, and assessments. PreK-12, UG.</td></tr>
+                    <tr><td><a href="/objects/school" class="attr-ref"><img src="../../img/object_icon.svg" alt="" class="attr-ref-icon"> School <span class="material-icons" aria-hidden="true">arrow_right_alt</span></a></td><td>Reference &rarr; School</td><td>SIS Import</td><td>Which school the student is enrolled at.</td></tr>
+                    <tr><td><span class="attr-name">Reading Level</span></td><td>Number</td><td>Star Reading, AR</td><td>Key metric for AR, myON, Star Reading. Updated on assessment completion.</td></tr>
+                    <tr><td><span class="attr-name">Math Level</span></td><td>Number</td><td>Star Math, Freckle</td><td>Key metric for Freckle, Star Math. Updated on assessment/practice.</td></tr>
+                    <tr><td><span class="attr-name">Status</span></td><td>Enum</td><td>SIS Import / Admin</td><td>Active, Inactive, or Transferred. Controls visibility and roster membership.</td></tr>
+                    <tr><td><span class="attr-name">Profile Photo</span></td><td>Image</td><td>Upload</td><td>Visual identifier. Max 2MB, JPG/PNG. Default: initials avatar.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="tab-panel" data-panel="list-ctas" hidden>
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th class="col-attr">CTA</th>
+                      <th class="col-type">Roles</th>
+                      <th class="col-source">Permission</th>
+                      <th>Cross-object</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-roles="teacher admin student"><td><span class="attr-name">View Profile</span></td><td>Teacher, Admin, Student (self)</td><td>Read</td><td>&mdash;</td></tr>
+                    <tr data-roles="teacher admin student"><td><span class="attr-name">View Scores</span></td><td>Teacher, Admin, Student (self)</td><td>Read</td><td><a href="/objects/score" class="attr-ref"><img src="../../img/object_icon.svg" alt="" class="attr-ref-icon"> Score <span class="material-icons" aria-hidden="true">arrow_right_alt</span></a></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="data-subtabs" data-subtabs="list-code">
+              <div class="pill-tabs">
+                <button class="pill-tab pill-tab-icon" aria-selected="true"><img src="../../img/webcomponentsdotorg.svg" alt="" aria-hidden="true">Web Components</button>
+                <button class="pill-tab pill-tab-icon" aria-selected="false"><img src="../../img/react.svg" alt="" aria-hidden="true">React</button>
+                <button class="pill-tab pill-tab-icon" aria-selected="false"><img src="../../img/angular.svg" alt="" aria-hidden="true">Angular</button>
+                <button class="pill-tab pill-tab-icon" aria-selected="false"><img src="../../img/vuedotjs.svg" alt="" aria-hidden="true">Vue</button>
+              </div>
+              <div class="code-block">
+                <button class="code-block-copy" type="button" aria-label="Copy code">
+                  <span class="material-icons" aria-hidden="true">content_copy</span>
+                </button>
+                <code>&lt;ren-student-row&gt;&lt;/ren-student-row&gt;</code>
+              </div>
+            </div>
+          </div>
+
+          <!-- Detail Page Layout -->
+          <div class="section-group">
+            <h2 class="section-group-heading">Detail page layout</h2>
+            <p class="section-group-desc">What users see when they open a full <strong>Student</strong> record</p>
+
+            <div class="example-showcase" data-showcase="detail">
+              <div class="showcase-content showcase-content--stack">
+                <div class="detail-view-mock">
+                  <div class="detail-view-header">
+                    <div class="detail-view-avatar" style="background: #398b26;">HP</div>
+                    <div class="detail-view-identity">
+                      <div class="detail-view-name">Harry Potter</div>
+                      <div class="detail-view-subtitle">3rd Grade <span style="color: #ccc;">&middot;</span> Hogwarts School of Witchcraft and Wizardry</div>
+                    </div>
+                    <span class="detail-view-badge detail-view-badge--active">
+                      <span class="material-icons" style="font-size: 0.875rem;">check_circle</span>
+                      Active
+                    </span>
+                    <div class="detail-view-actions">
+                      <button class="detail-view-action-btn showcase-cta-detail" type="button">
+                        <span class="material-icons" style="font-size: 1rem;">assessment</span>
+                        View Scores
+                      </button>
+                      <button class="detail-view-action-btn showcase-cta-detail" type="button">
+                        <span class="material-icons" style="font-size: 1rem;">file_download</span>
+                        Export Data
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="detail-view-section">
+                    <div class="detail-view-section-title">Student Information</div>
+                    <div class="detail-view-info-grid">
+                      <div>
+                        <div class="detail-view-info-label">Student ID</div>
+                        <div class="detail-view-info-value">STU-20230914-HP</div>
+                      </div>
+                      <div>
+                        <div class="detail-view-info-label">Date of Birth</div>
+                        <div class="detail-view-info-value">Jul 31, 2016</div>
+                      </div>
+                      <div>
+                        <div class="detail-view-info-label">Username</div>
+                        <div class="detail-view-info-value">harry.potter</div>
+                      </div>
+                      <div>
+                        <div class="detail-view-info-label">Guardian Contact</div>
+                        <div class="detail-view-info-value">james.potter@mail.com</div>
+                      </div>
+                      <div>
+                        <div class="detail-view-info-label">Language Preference</div>
+                        <div class="detail-view-info-value">English</div>
+                      </div>
+                      <div>
+                        <div class="detail-view-info-label">State/District ID</div>
+                        <div class="detail-view-info-value">NY-2023-00492</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="detail-view-section">
+                    <div class="detail-view-section-title">Academic Levels</div>
+                    <div class="detail-view-levels">
+                      <div class="detail-view-level">
+                        <span class="detail-view-level-label">Reading</span>
+                        <div class="detail-view-level-bar"><div class="detail-view-level-fill score-fill--blue" style="width: 69%;"></div></div>
+                        <span class="detail-view-level-value">3.2 GE</span>
+                        <span class="detail-view-level-status" style="color: #cf3a4e;">On watch</span>
+                      </div>
+                      <div class="detail-view-level">
+                        <span class="detail-view-level-label">Math</span>
+                        <div class="detail-view-level-bar"><div class="detail-view-level-fill score-fill--red" style="width: 45%;"></div></div>
+                        <span class="detail-view-level-value">320 SS</span>
+                        <span class="detail-view-level-status" style="color: #cf3a4e;">On watch</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="detail-view-section">
+                    <div class="detail-view-section-title">Nested Objects</div>
+                    <div class="detail-view-nested">
+                      <div class="detail-view-nested-card">
+                        <div class="detail-view-nested-count">3</div>
+                        <div class="detail-view-nested-label">Classes</div>
+                        <a href="#" class="detail-view-nested-link">View all</a>
+                      </div>
+                      <div class="detail-view-nested-card">
+                        <div class="detail-view-nested-count">12</div>
+                        <div class="detail-view-nested-label">Scores</div>
+                        <a href="#" class="detail-view-nested-link">View all</a>
+                      </div>
+                      <div class="detail-view-nested-card">
+                        <div class="detail-view-nested-count">5</div>
+                        <div class="detail-view-nested-label">Assignments</div>
+                        <a href="#" class="detail-view-nested-link">View all</a>
+                      </div>
+                      <div class="detail-view-nested-card">
+                        <div class="detail-view-nested-count">8</div>
+                        <div class="detail-view-nested-label">Skills</div>
+                        <a href="#" class="detail-view-nested-link">View all</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="data-subtabs" data-subtabs="detail-attrs">
+              <div class="pill-tabs">
+                <button class="pill-tab" aria-selected="true">Attributes</button>
+                <button class="pill-tab" aria-selected="false">Calls-to-action (CTAs)</button>
+              </div>
+              <div class="tab-panel" data-panel="detail-attributes">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th class="col-attr">Attribute</th>
+                      <th class="col-type">Data type</th>
+                      <th class="col-source">Source</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><span class="attr-name">Full Name</span> (First, Last)</td><td>String</td><td>SIS Import / Manual</td><td>Primary identifier. Appears everywhere a Student is shown.</td></tr>
+                    <tr><td><span class="attr-name">Grade Level</span></td><td>Enum</td><td>SIS Import / Manual</td><td>Determines age-appropriate content, benchmarks, and assessments. PreK-12, UG.</td></tr>
+                    <tr><td><span class="attr-name">Student ID</span></td><td>String</td><td>System</td><td>Unique system identifier. Used for rostering, data matching, and SIS sync.</td></tr>
+                    <tr><td><a href="/objects/school" class="attr-ref"><img src="../../img/object_icon.svg" alt="" class="attr-ref-icon"> School <span class="material-icons" aria-hidden="true">arrow_right_alt</span></a></td><td>Reference &rarr; School</td><td>SIS Import</td><td>Which school the student is enrolled at.</td></tr>
+                    <tr><td><a href="/objects/class" class="attr-ref"><img src="../../img/object_icon.svg" alt="" class="attr-ref-icon"> Class(es) <span class="material-icons" aria-hidden="true">arrow_right_alt</span></a></td><td>Reference &rarr; Class[]</td><td>Roster sync / Admin</td><td>Which classes the student belongs to.</td></tr>
+                    <tr><td><span class="attr-name">Reading Level</span></td><td>Number</td><td>Star Reading, AR</td><td>Key metric for AR, myON, Star Reading. Updated on assessment completion.</td></tr>
+                    <tr><td><span class="attr-name">Math Level</span></td><td>Number</td><td>Star Math, Freckle</td><td>Key metric for Freckle, Star Math. Updated on assessment/practice.</td></tr>
+                    <tr data-roles="admin"><td><span class="attr-name">Date of Birth</span></td><td>Date</td><td>SIS Import</td><td>Used for age calculations, COPPA compliance. Visible to Admin only.</td></tr>
+                    <tr><td><span class="attr-name">Username / Login</span></td><td>String</td><td>Manual / SSO</td><td>How the student authenticates. Unique within org.</td></tr>
+                    <tr><td><span class="attr-name">Enrollment Status</span></td><td>Enum</td><td>SIS Import / Manual</td><td>Active, Inactive, Transferred. Controls visibility. Default: Active.</td></tr>
+                    <tr data-roles="admin"><td><span class="attr-name">Demographic Data</span></td><td>Multiple</td><td>SIS Import</td><td>Ethnicity, gender, ELL status, IEP status. For disaggregated reporting.</td></tr>
+                    <tr data-roles="admin"><td><span class="attr-name">Guardian/Parent Contact</span></td><td>String</td><td>SIS Import / Manual</td><td>Email, phone. For parent-facing features.</td></tr>
+                    <tr data-roles="admin"><td><span class="attr-name">State/District Student ID</span></td><td>String</td><td>SIS Import</td><td>External identifier for state reporting and cross-system matching.</td></tr>
+                    <tr><td><span class="attr-name">Profile Photo</span></td><td>Image</td><td>Upload</td><td>Visual identifier. Max 2MB, JPG/PNG. Default: initials avatar.</td></tr>
+                    <tr><td><span class="attr-name">Language Preference</span></td><td>Enum</td><td>SIS Import</td><td>Primary language. Relevant for Lalilo, ELL accommodations. Default: English.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="tab-panel" data-panel="detail-ctas" hidden>
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th class="col-attr">CTA</th>
+                      <th class="col-type">Roles</th>
+                      <th class="col-source">Permission</th>
+                      <th>Cross-object</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-roles="teacher admin student"><td><span class="attr-name">View Profile</span></td><td>Teacher, Admin, Student (self)</td><td>Read</td><td>&mdash;</td></tr>
+                    <tr data-roles="teacher admin"><td><span class="attr-name">Search / Filter</span></td><td>Teacher, Admin</td><td>Read</td><td>&mdash;</td></tr>
+                    <tr data-roles="admin"><td><span class="attr-name">Enroll in Class</span></td><td>Admin, System</td><td>Write</td><td><a href="/objects/class" class="attr-ref"><img src="../../img/object_icon.svg" alt="" class="attr-ref-icon"> Class <span class="material-icons" aria-hidden="true">arrow_right_alt</span></a></td></tr>
+                    <tr data-roles="admin"><td><span class="attr-name">Remove from Class</span></td><td>Admin, System</td><td>Write</td><td><a href="/objects/class" class="attr-ref"><img src="../../img/object_icon.svg" alt="" class="attr-ref-icon"> Class <span class="material-icons" aria-hidden="true">arrow_right_alt</span></a></td></tr>
+                    <tr data-roles="admin"><td><span class="attr-name">Transfer (School)</span></td><td>District Admin, System</td><td>Write</td><td><a href="/objects/school" class="attr-ref"><img src="../../img/object_icon.svg" alt="" class="attr-ref-icon"> School <span class="material-icons" aria-hidden="true">arrow_right_alt</span></a></td></tr>
+                    <tr data-roles="teacher admin student"><td><span class="attr-name">View Scores</span></td><td>Teacher, Admin, Student (self)</td><td>Read</td><td><a href="/objects/score" class="attr-ref"><img src="../../img/object_icon.svg" alt="" class="attr-ref-icon"> Score <span class="material-icons" aria-hidden="true">arrow_right_alt</span></a></td></tr>
+                    <tr data-roles="teacher admin student"><td><span class="attr-name">View Skill Proficiency</span></td><td>Teacher, Admin, Student (self)</td><td>Read</td><td><a href="/objects/skill" class="attr-ref"><img src="../../img/object_icon.svg" alt="" class="attr-ref-icon"> Skill <span class="material-icons" aria-hidden="true">arrow_right_alt</span></a></td></tr>
+                    <tr data-roles="teacher"><td><span class="attr-name">Add to Student Group</span></td><td>Teacher, System</td><td>Write</td><td>&mdash;</td></tr>
+                    <tr data-roles="admin"><td><span class="attr-name">Export Data</span></td><td>Admin</td><td>Read</td><td>&mdash;</td></tr>
+                    <tr data-roles="admin"><td><span class="attr-name">Deactivate</span></td><td>Admin</td><td>Write</td><td>&mdash;</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="data-subtabs" data-subtabs="detail-code">
+              <div class="pill-tabs">
+                <button class="pill-tab pill-tab-icon" aria-selected="true"><img src="../../img/webcomponentsdotorg.svg" alt="" aria-hidden="true">Web Components</button>
+                <button class="pill-tab pill-tab-icon" aria-selected="false"><img src="../../img/react.svg" alt="" aria-hidden="true">React</button>
+                <button class="pill-tab pill-tab-icon" aria-selected="false"><img src="../../img/angular.svg" alt="" aria-hidden="true">Angular</button>
+                <button class="pill-tab pill-tab-icon" aria-selected="false"><img src="../../img/vuedotjs.svg" alt="" aria-hidden="true">Vue</button>
+              </div>
+              <div class="code-block">
+                <button class="code-block-copy" type="button" aria-label="Copy code">
+                  <span class="material-icons" aria-hidden="true">content_copy</span>
+                </button>
+                <code>&lt;ren-student-profile&gt;&lt;/ren-student-profile&gt;</code>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- end overview-main -->
+
+        <!-- ── Sidebar ── -->
+        <aside class="overview-sidebar">
+
+          <div class="sidebar-card">
+            <div class="sidebar-heading">Share</div>
+            <div class="share-url-field">
+              <input type="text" readonly id="share-url" value="/objects/student?role=all&state=active&context=dashboard">
+              <button type="button" id="share-copy" aria-label="Copy URL">
+                <span class="material-icons" aria-hidden="true" style="font-size: 1rem;">content_copy</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="sidebar-card">
+            <fieldset class="config-group">
+              <legend class="config-group-label">Role</legend>
+              <div class="config-options">
+                <label class="config-option"><input type="radio" name="role" value="all" checked> All users</label>
+                <label class="config-option"><input type="radio" name="role" value="teacher"> Teacher</label>
+                <label class="config-option"><input type="radio" name="role" value="student"> Student</label>
+                <label class="config-option"><input type="radio" name="role" value="admin"> Admin</label>
+              </div>
+            </fieldset>
+            <fieldset class="config-group">
+              <legend class="config-group-label">State</legend>
+              <div class="config-options">
+                <label class="config-option"><input type="radio" name="state" value="active" checked> Active</label>
+                <label class="config-option"><input type="radio" name="state" value="inactive"> Inactive</label>
+                <label class="config-option"><input type="radio" name="state" value="transferred"> Transferred</label>
+                <label class="config-option"><input type="radio" name="state" value="graduated"> Graduated</label>
+              </div>
+            </fieldset>
+            <fieldset class="config-group">
+              <legend class="config-group-label">Context</legend>
+              <div class="config-options">
+                <label class="config-option"><input type="radio" name="context" value="dashboard" checked> Dashboard</label>
+                <label class="config-option"><input type="radio" name="context" value="roster"> Class roster</label>
+                <label class="config-option"><input type="radio" name="context" value="search"> Search results</label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="sidebar-card">
+            <div class="sidebar-heading">Nested Objects</div>
+            <div class="nested-objects-list">
+              <a href="/objects/score" class="nested-object-card">
+                <img src="../../img/object_icon.svg" alt="" width="40" height="40">
+                <div>
+                  <div class="nested-object-name">Score</div>
+                  <div class="nested-object-cardinality">One-to-many</div>
+                </div>
+                <span class="material-icons" aria-hidden="true">chevron_right</span>
+                <div class="nested-object-desc">System-generated on assessment completion</div>
+              </a>
+              <a href="/objects/class" class="nested-object-card">
+                <img src="../../img/object_icon.svg" alt="" width="40" height="40">
+                <div>
+                  <div class="nested-object-name">Class</div>
+                  <div class="nested-object-cardinality">Many-to-many</div>
+                </div>
+                <span class="material-icons" aria-hidden="true">chevron_right</span>
+                <div class="nested-object-desc">Roster sync or admin enrollment</div>
+              </a>
+              <a href="/objects/assessment" class="nested-object-card">
+                <img src="../../img/object_icon.svg" alt="" width="40" height="40">
+                <div>
+                  <div class="nested-object-name">Assessment</div>
+                  <div class="nested-object-cardinality">Many-to-many</div>
+                </div>
+                <span class="material-icons" aria-hidden="true">chevron_right</span>
+                <div class="nested-object-desc">Teacher/admin schedules for student or class</div>
+              </a>
+              <a href="/objects/assignment" class="nested-object-card">
+                <img src="../../img/object_icon.svg" alt="" width="40" height="40">
+                <div>
+                  <div class="nested-object-name">Assignment</div>
+                  <div class="nested-object-cardinality">Many-to-many (via Class)</div>
+                </div>
+                <span class="material-icons" aria-hidden="true">chevron_right</span>
+                <div class="nested-object-desc">Teacher assigns to student directly or via class</div>
+              </a>
+            </div>
+          </div>
+
+        </aside><!-- end overview-sidebar -->
+
+      </div><!-- end overview-layout -->
+    </div><!-- end Overview tab -->
+
+    <!-- ===== STORIES & RULES TAB ===== -->
+    <div class="content-area" data-tab-panel="1" hidden>
+
+      <div class="section-group">
+        <h2 class="section-group-heading">User Stories</h2>
+        <p class="section-group-desc">Object-oriented user stories grounded in Student CTAs.</p>
+
+        <div style="margin-block-start: var(--s0);">
+          <div class="story-card">
+            <div class="story-card-header">
+              <span class="material-icons" aria-hidden="true">person</span>
+              View Student Profile
+            </div>
+            <div class="story-card-body">
+              <p class="story-field"><span class="story-field-label">As a</span> <strong>Teacher</strong>,</p>
+              <p class="story-field"><span class="story-field-label">I want to</span> <strong>view</strong> a <strong>Student's</strong> profile</p>
+              <p class="story-field"><span class="story-field-label">so that</span> I can understand their current reading and math levels, recent assessment scores, and assigned work.</p>
+              <div class="story-criteria">
+                <p><strong>When</strong> I navigate to a Student from my class roster,</p>
+                <p><strong>I should see</strong> their key attributes, recent Scores, current Assignments, and Skill proficiency at a glance.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="story-card">
+            <div class="story-card-header">
+              <span class="material-icons" aria-hidden="true">assessment</span>
+              View Student Scores
+            </div>
+            <div class="story-card-body">
+              <p class="story-field"><span class="story-field-label">As a</span> <strong>Teacher</strong>,</p>
+              <p class="story-field"><span class="story-field-label">I want to</span> <strong>view</strong> a <strong>Student's</strong> assessment <strong><a href="/objects/score" style="color: #0076b3;">Scores</a></strong></p>
+              <p class="story-field"><span class="story-field-label">so that</span> I can track their progress over time and identify areas for intervention.</p>
+              <div class="story-criteria">
+                <p><strong>When</strong> I view a Student's scores,</p>
+                <p><strong>I should see</strong> scores sorted by most recent, each linked to the source Assessment, with benchmark bands color-coded.</p>
+              </div>
+              <div class="story-cross-objects">
+                Cross-object:
+                <a href="/objects/score"><span class="material-icons" aria-hidden="true">link</span> Score</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="story-card">
+            <div class="story-card-header">
+              <span class="material-icons" aria-hidden="true">swap_horiz</span>
+              Transfer Student
+            </div>
+            <div class="story-card-body">
+              <p class="story-field"><span class="story-field-label">As a</span> <strong>District Admin</strong>,</p>
+              <p class="story-field"><span class="story-field-label">I want to</span> <strong>transfer</strong> a <strong>Student</strong> to a different <strong><a href="/objects/school" style="color: #0076b3;">School</a></strong></p>
+              <p class="story-field"><span class="story-field-label">so that</span> their historical data follows them and they appear in the correct school's reports.</p>
+              <div class="story-criteria">
+                <p><strong>When</strong> I transfer a student,</p>
+                <p><strong>I should see</strong> all historical scores and progress data move with them, and they are removed from their previous school's active roster.</p>
+              </div>
+              <div class="story-cross-objects">
+                Cross-object:
+                <a href="/objects/school"><span class="material-icons" aria-hidden="true">link</span> School</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-group">
+        <h2 class="section-group-heading">Business Rules</h2>
+        <p class="section-group-desc">Constraints and policies that govern how Student behaves across the system.</p>
+
+        <div style="margin-block-start: var(--s0);">
+          <ol class="rule-list">
+            <li class="rule-item"><span><strong>Uniqueness</strong> &mdash; A Student is uniquely identified within a District by their Student ID. State Student IDs provide cross-district matching.</span></li>
+            <li class="rule-item"><span><strong>Creation</strong> &mdash; Students are primarily created via SIS roster sync (OneRoster, Clever, ClassLink). Manual creation requires at minimum: First Name, Last Name, Grade Level.</span></li>
+            <li class="rule-item"><span><strong>Enrollment</strong> &mdash; A Student must be enrolled in at least one School to be active. They may belong to zero or more Classes.</span></li>
+            <li class="rule-item"><span><strong>Data Privacy</strong> &mdash; Student PII (date of birth, demographics) is restricted to Admin roles. Teachers see name, grade, and academic data. FERPA and COPPA compliance required.</span></li>
+            <li class="rule-item"><span><strong>Transfer</strong> &mdash; When a Student transfers schools, historical Scores and progress data travel with them. The student is removed from their previous school's active roster but historical records persist.</span></li>
+            <li class="rule-item"><span><strong>Deactivation</strong> &mdash; Deactivated students are hidden from active rosters and reports but their data is retained for historical reporting and can be reactivated.</span></li>
+            <li class="rule-item"><span><strong>Score Accumulation</strong> &mdash; Scores are append-only. Once generated, a Score cannot be deleted (only excluded from certain reports by Admins).</span></li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="section-group">
+        <h2 class="section-group-heading">Status / Lifecycle</h2>
+        <p class="section-group-desc">How a Student moves through system states over time.</p>
+
+        <div class="lifecycle-flow" style="margin-block-start: var(--s0);">
+          <span class="lifecycle-node lifecycle-node--default">Created</span>
+          <span class="lifecycle-arrow"><span class="material-icons">arrow_forward</span></span>
+          <span class="lifecycle-node lifecycle-node--active">Active</span>
+          <span class="lifecycle-arrow"><span class="material-icons">arrow_forward</span></span>
+          <div class="lifecycle-branch">
+            <span class="lifecycle-node lifecycle-node--warn">Transferred</span>
+            <span class="lifecycle-node lifecycle-node--default">Inactive</span>
+            <span class="lifecycle-node lifecycle-node--default">Graduated</span>
+          </div>
+        </div>
+
+        <div style="margin-block-start: var(--s0);">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="inline-size: 140px;">Status</th>
+                <th>Description</th>
+                <th>Triggers</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="attr-name">Active</span></td><td>Currently enrolled and participating</td><td>SIS sync enrollment, manual creation</td></tr>
+              <tr><td><span class="attr-name">Inactive</span></td><td>No longer participating but data retained</td><td>SIS sync removal, admin deactivation</td></tr>
+              <tr><td><span class="attr-name">Transferred</span></td><td>Moving between schools within district</td><td>SIS sync or admin action; temporary state</td></tr>
+              <tr><td><span class="attr-name">Graduated</span></td><td>Completed program/grade band</td><td>End-of-year processing, admin action</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div><!-- end Stories & Rules tab -->
+
+    <!-- ===== RELATIONSHIPS TAB ===== -->
+    <div class="content-area" data-tab-panel="2" hidden>
+
+      <div class="section-group">
+        <h2 class="section-group-heading">Relationship Specs (MCSFD)</h2>
+        <p class="section-group-desc">How Student connects to other objects: Mechanics, Cardinality, Sorts, Filters, and Dependencies.</p>
+
+        <div style="margin-block-start: var(--s0);">
+          <div class="relationship-card">
+            <div class="relationship-header">
+              <span class="material-icons" aria-hidden="true">sync_alt</span>
+              Student &harr; <a href="/objects/class">Class</a>
+            </div>
+            <table class="data-table">
+              <tbody>
+                <tr><th>Mechanics</th><td>Students are enrolled in Classes primarily via SIS roster sync (automated). Admins can also manually add/remove students.</td></tr>
+                <tr><th>Cardinality</th><td>Many-to-many. A Student can belong to multiple Classes; a Class has multiple Students. Typical: 1-8 classes per student, 15-35 students per class.</td></tr>
+                <tr><th>Sorts</th><td>Students within a Class: alphabetical by last name (default), by grade level, by reading/math level.</td></tr>
+                <tr><th>Filters</th><td>By grade level, by enrollment status (active/inactive), by demographic group, by proficiency level.</td></tr>
+                <tr><th>Dependencies</th><td>If a Class is archived, students remain in the system but lose their class association for that class. Historical data persists.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="relationship-card">
+            <div class="relationship-header">
+              <span class="material-icons" aria-hidden="true">sync_alt</span>
+              Student &harr; <a href="/objects/score">Score</a>
+            </div>
+            <table class="data-table">
+              <tbody>
+                <tr><th>Mechanics</th><td>Scores are system-generated when a Student completes an Assessment. Auto-calculated by the assessment engine.</td></tr>
+                <tr><th>Cardinality</th><td>One-to-many. A Student accumulates many Scores over time; each Score belongs to exactly one Student.</td></tr>
+                <tr><th>Sorts</th><td>By date (most recent first, default), by assessment type, by subject area, by score value.</td></tr>
+                <tr><th>Filters</th><td>By assessment type (Star, DnA, FastBridge), by subject (Reading, Math, SEL), by date range, by benchmark category.</td></tr>
+                <tr><th>Dependencies</th><td>If a Student is deactivated, Scores persist for historical reporting but are excluded from active aggregations.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="relationship-card">
+            <div class="relationship-header">
+              <span class="material-icons" aria-hidden="true">sync_alt</span>
+              Student &harr; <a href="/objects/school">School</a>
+            </div>
+            <table class="data-table">
+              <tbody>
+                <tr><th>Mechanics</th><td>Students are assigned to a School via SIS roster sync. Transfer is handled by District Admins or system sync.</td></tr>
+                <tr><th>Cardinality</th><td>Many-to-one (at a given time). A Student belongs to one School; a School contains many Students.</td></tr>
+                <tr><th>Sorts</th><td>Students within a School: alphabetical (default), by grade level.</td></tr>
+                <tr><th>Filters</th><td>By grade, by class, by enrollment status, by teacher.</td></tr>
+                <tr><th>Dependencies</th><td>If a School is deactivated, students must be transferred to another School or deactivated.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-group">
+        <h2 class="section-group-heading">Related Objects</h2>
+        <div class="related-objects-grid" style="margin-block-start: var(--s0);">
+          <article class="obj-card">
+            <div class="obj-card-body">
+              <div class="obj-card-header">
+                <div class="obj-card-avatar" style="background-color: #7C3AED"><img src="../../img/object_icon.svg" alt="" width="24" height="24"></div>
+                <div>
+                  <div class="obj-card-name">Class <span>(Core)</span></div>
+                  <div class="obj-card-used-in">Used in: All products</div>
+                </div>
+              </div>
+              <p class="obj-card-definition">A group of students assigned to a teacher for instruction, assessment, and progress tracking.</p>
+            </div>
+            <div class="obj-card-actions"><a href="/objects/class" class="obj-card-link">View details</a></div>
+          </article>
+
+          <article class="obj-card">
+            <div class="obj-card-body">
+              <div class="obj-card-header">
+                <div class="obj-card-avatar" style="background-color: #D97706"><img src="../../img/object_icon.svg" alt="" width="24" height="24"></div>
+                <div>
+                  <div class="obj-card-name">School <span>(Core)</span></div>
+                  <div class="obj-card-used-in">Used in: All products</div>
+                </div>
+              </div>
+              <p class="obj-card-definition">An educational institution that contains classes, teachers, and students within a district.</p>
+            </div>
+            <div class="obj-card-actions"><a href="/objects/school" class="obj-card-link">View details</a></div>
+          </article>
+
+          <article class="obj-card">
+            <div class="obj-card-body">
+              <div class="obj-card-header">
+                <div class="obj-card-avatar" style="background-color: #EA580C"><img src="../../img/object_icon.svg" alt="" width="24" height="24"></div>
+                <div>
+                  <div class="obj-card-name">Assessment <span>(Core)</span></div>
+                  <div class="obj-card-used-in">Used in: Star, AR, myON</div>
+                </div>
+              </div>
+              <p class="obj-card-definition">A structured evaluation that measures student proficiency in one or more skills or standards.</p>
+            </div>
+            <div class="obj-card-actions"><a href="/objects/assessment" class="obj-card-link">View details</a></div>
+          </article>
+
+          <article class="obj-card">
+            <div class="obj-card-body">
+              <div class="obj-card-header">
+                <div class="obj-card-avatar" style="background-color: #2563EB"><img src="../../img/object_icon.svg" alt="" width="24" height="24"></div>
+                <div>
+                  <div class="obj-card-name">Assignment <span>(Core)</span></div>
+                  <div class="obj-card-used-in">Used in: Freckle, Lalilo</div>
+                </div>
+              </div>
+              <p class="obj-card-definition">A teacher-created task that targets specific skills and is assigned to students or classes.</p>
+            </div>
+            <div class="obj-card-actions"><a href="/objects/assignment" class="obj-card-link">View details</a></div>
+          </article>
+
+          <article class="obj-card">
+            <div class="obj-card-body">
+              <div class="obj-card-header">
+                <div class="obj-card-avatar" style="background-color: #7C3AED"><img src="../../img/object_icon.svg" alt="" width="24" height="24"></div>
+                <div>
+                  <div class="obj-card-name">Score <span>(Core)</span></div>
+                  <div class="obj-card-used-in">Used in: Star, AR, Freckle</div>
+                </div>
+              </div>
+              <p class="obj-card-definition">A numeric or categorical result from an assessment that quantifies student performance.</p>
+            </div>
+            <div class="obj-card-actions"><a href="/objects/score" class="obj-card-link">View details</a></div>
+          </article>
+        </div>
+      </div>
+
+    </div><!-- end Relationships tab -->
+
+    <!-- ===== REFERENCE TAB ===== -->
+    <div class="content-area" data-tab-panel="3" hidden>
+
+      <div class="section-group">
+        <h2 class="section-group-heading">Attributes</h2>
+        <p class="section-group-desc">Complete attribute inventory for Student.</p>
+
+        <div style="margin-block-start: var(--s0);">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th class="col-attr">Attribute</th>
+                <th class="col-type">Data type</th>
+                <th class="col-source">Source</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="attr-name">Full Name</span> (First, Last)</td><td>String</td><td>SIS Import / Manual</td><td>Primary identifier. Appears everywhere a Student is shown.</td></tr>
+              <tr><td><span class="attr-name">Grade Level</span></td><td>Enum</td><td>SIS Import / Manual</td><td>Determines age-appropriate content, benchmarks, and assessments. PreK-12, UG.</td></tr>
+              <tr><td><span class="attr-name">Student ID</span></td><td>String</td><td>System</td><td>Unique system identifier. Used for rostering, data matching, and SIS sync.</td></tr>
+              <tr><td><a href="/objects/school" class="attr-ref"><img src="../../img/object_icon.svg" alt="" class="attr-ref-icon"> School <span class="material-icons" aria-hidden="true">arrow_right_alt</span></a></td><td>Reference &rarr; School</td><td>SIS Import</td><td>Which school the student is enrolled at.</td></tr>
+              <tr><td><a href="/objects/class" class="attr-ref"><img src="../../img/object_icon.svg" alt="" class="attr-ref-icon"> Class(es) <span class="material-icons" aria-hidden="true">arrow_right_alt</span></a></td><td>Reference &rarr; Class[]</td><td>Roster sync / Admin</td><td>Which classes the student belongs to.</td></tr>
+              <tr><td><span class="attr-name">Reading Level</span></td><td>Number</td><td>Star Reading, AR</td><td>Key metric for AR, myON, Star Reading. Updated on assessment completion.</td></tr>
+              <tr><td><span class="attr-name">Math Level</span></td><td>Number</td><td>Star Math, Freckle</td><td>Key metric for Freckle, Star Math. Updated on assessment/practice.</td></tr>
+              <tr><td><span class="attr-name">Status</span></td><td>Enum</td><td>SIS Import / Admin</td><td>Active, Inactive, Transferred, Graduated. Controls visibility and roster membership.</td></tr>
+              <tr><td><span class="attr-name">Date of Birth</span></td><td>Date</td><td>SIS Import</td><td>Used for age calculations, COPPA compliance. Visible to Admin only.</td></tr>
+              <tr><td><span class="attr-name">Username / Login</span></td><td>String</td><td>Manual / SSO</td><td>How the student authenticates. Unique within org.</td></tr>
+              <tr><td><span class="attr-name">Demographic Data</span></td><td>Multiple</td><td>SIS Import</td><td>Ethnicity, gender, ELL status, IEP status. For disaggregated reporting.</td></tr>
+              <tr><td><span class="attr-name">Guardian/Parent Contact</span></td><td>String</td><td>SIS Import / Manual</td><td>Email, phone. For parent-facing features.</td></tr>
+              <tr><td><span class="attr-name">State/District Student ID</span></td><td>String</td><td>SIS Import</td><td>External identifier for state reporting and cross-system matching.</td></tr>
+              <tr><td><span class="attr-name">Profile Photo</span></td><td>Image</td><td>Upload</td><td>Visual identifier. Max 2MB, JPG/PNG. Default: initials avatar.</td></tr>
+              <tr><td><span class="attr-name">Language Preference</span></td><td>Enum</td><td>SIS Import</td><td>Primary language. Relevant for Lalilo, ELL accommodations. Default: English.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="section-group">
+        <h2 class="section-group-heading">Calls-to-Action (CTAs)</h2>
+        <p class="section-group-desc">Complete action inventory with priority rankings.</p>
+
+        <div style="margin-block-start: var(--s0);">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th class="col-attr">CTA</th>
+                <th style="inline-size: 60px;">Priority</th>
+                <th class="col-type">Roles</th>
+                <th>Cross-object</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="attr-name">View Profile</span></td><td><span class="priority-badge priority-badge--p">P</span></td><td>Teacher, Admin, Student (self)</td><td>&mdash;</td></tr>
+              <tr><td><span class="attr-name">Search / Filter</span></td><td><span class="priority-badge priority-badge--s">S</span></td><td>Teacher, Admin</td><td>&mdash;</td></tr>
+              <tr><td><span class="attr-name">View Scores</span></td><td><span class="priority-badge priority-badge--s">S</span></td><td>Teacher, Admin, Student (self)</td><td><a href="/objects/score" class="attr-ref"><img src="../../img/object_icon.svg" alt="" class="attr-ref-icon"> Score <span class="material-icons" aria-hidden="true">arrow_right_alt</span></a></td></tr>
+              <tr><td><span class="attr-name">View Skill Proficiency</span></td><td><span class="priority-badge priority-badge--s">S</span></td><td>Teacher, Admin, Student (self)</td><td><a href="/objects/skill" class="attr-ref"><img src="../../img/object_icon.svg" alt="" class="attr-ref-icon"> Skill <span class="material-icons" aria-hidden="true">arrow_right_alt</span></a></td></tr>
+              <tr><td><span class="attr-name">Enroll in Class</span></td><td><span class="priority-badge priority-badge--t">T</span></td><td>Admin, System</td><td><a href="/objects/class" class="attr-ref"><img src="../../img/object_icon.svg" alt="" class="attr-ref-icon"> Class <span class="material-icons" aria-hidden="true">arrow_right_alt</span></a></td></tr>
+              <tr><td><span class="attr-name">Remove from Class</span></td><td><span class="priority-badge priority-badge--t">T</span></td><td>Admin, System</td><td><a href="/objects/class" class="attr-ref"><img src="../../img/object_icon.svg" alt="" class="attr-ref-icon"> Class <span class="material-icons" aria-hidden="true">arrow_right_alt</span></a></td></tr>
+              <tr><td><span class="attr-name">Add to Student Group</span></td><td><span class="priority-badge priority-badge--t">T</span></td><td>Teacher, System</td><td>&mdash;</td></tr>
+              <tr><td><span class="attr-name">Export Data</span></td><td><span class="priority-badge priority-badge--t">T</span></td><td>Admin</td><td>&mdash;</td></tr>
+              <tr><td><span class="attr-name">Transfer (School)</span></td><td><span class="priority-badge priority-badge--q">Q</span></td><td>District Admin, System</td><td><a href="/objects/school" class="attr-ref"><img src="../../img/object_icon.svg" alt="" class="attr-ref-icon"> School <span class="material-icons" aria-hidden="true">arrow_right_alt</span></a></td></tr>
+              <tr><td><span class="attr-name">Deactivate</span></td><td><span class="priority-badge priority-badge--q">Q</span></td><td>Admin</td><td>&mdash;</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="section-group">
+        <h2 class="section-group-heading">SIP Validation</h2>
+        <p class="section-group-desc">Does Student pass the Structure, Instances, and Purpose test?</p>
+
+        <div style="margin-block-start: var(--s0);">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="inline-size: 120px;">Criterion</th>
+                <th style="inline-size: 80px;">Result</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="attr-name">Structure</span></td>
+                <td><span class="sip-badge sip-badge--pass"><span class="material-icons" style="font-size: 0.875rem;">check</span> Pass</span></td>
+                <td>A Student has a rich set of attributes: name, grade level, student ID, date of birth, enrollment date, demographic data, reading level, math level, and more. You can design a detail page for a Student.</td>
+              </tr>
+              <tr>
+                <td><span class="attr-name">Instances</span></td>
+                <td><span class="sip-badge sip-badge--pass"><span class="material-icons" style="font-size: 0.875rem;">check</span> Pass</span></td>
+                <td>Jane Doe (3rd grader at Lincoln Elementary), Marcus Johnson (7th grader at Washington Middle School), Priya Patel (Kindergartener at Sunset Academy). Every school has hundreds or thousands of Student instances.</td>
+              </tr>
+              <tr>
+                <td><span class="attr-name">Purpose</span></td>
+                <td><span class="sip-badge sip-badge--pass"><span class="material-icons" style="font-size: 0.875rem;">check</span> Pass</span></td>
+                <td>Students are the reason Renaissance products exist. Teachers view Student profiles, track Student progress, assign Student work, and analyze Student scores. Students themselves log in to complete assignments, take assessments, and read books.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="verdict-banner">
+          <span class="material-icons" aria-hidden="true">verified</span>
+          <p><strong>Verdict:</strong> Core system object. The universal anchor across all Renaissance products.</p>
+        </div>
+      </div>
+
+      <div class="section-group">
+        <h2 class="section-group-heading">Synonyms / Also Known As</h2>
+        <p class="section-group-desc">Terms used across teams and markets that refer to the same object.</p>
+
+        <div style="margin-block-start: var(--s0);">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="inline-size: 140px;">Term</th>
+                <th style="inline-size: 240px;">Context</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="attr-name">Learner</span></td><td>Renaissance Intelligence, AI/ML teams</td><td>Used in "Learner Engine" and "Learning Path" contexts</td></tr>
+              <tr><td><span class="attr-name">Pupil</span></td><td>UK/international markets</td><td>Less common in US-focused products</td></tr>
+              <tr><td><span class="attr-name">Child</span></td><td>Parent-facing communications</td><td>Used when the audience is parents/guardians</td></tr>
+              <tr><td><span class="attr-name">Kid</span></td><td>Informal/internal</td><td>Not used in product UI</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div><!-- end Reference tab -->
+
+  </main>
+
+  <footer class="page-footer">
+    <div class="center cluster" style="--justify: space-between">
+      <span>&copy; 2026 Caboodle</span>
+      <span>An OOUX resource site</span>
+    </div>
+  </footer>
+
+<script>
+(function() {
+  /* ── Tab switching (4 tabs) ── */
+  var secTabs = document.querySelectorAll('.secondary-tab');
+  var panels = document.querySelectorAll('[data-tab-panel]');
+
+  secTabs.forEach(function(tab, i) {
+    tab.addEventListener('click', function() {
+      secTabs.forEach(function(t) { t.setAttribute('aria-selected', 'false'); });
+      tab.setAttribute('aria-selected', 'true');
+      panels.forEach(function(p) {
+        p.hidden = p.dataset.tabPanel !== String(i);
+      });
+    });
+  });
+
+  /* ── Pill tab switching (Attributes/CTAs + framework code) ── */
+  document.querySelectorAll('.data-subtabs').forEach(function(subtabs) {
+    var pills = subtabs.querySelectorAll('.pill-tab');
+    var panes = subtabs.querySelectorAll('.tab-panel');
+
+    pills.forEach(function(pill, i) {
+      pill.addEventListener('click', function() {
+        pills.forEach(function(p) { p.setAttribute('aria-selected', 'false'); });
+        pill.setAttribute('aria-selected', 'true');
+        if (panes.length) {
+          panes.forEach(function(p) { p.hidden = true; });
+          if (panes[i]) panes[i].hidden = false;
+        }
+      });
+    });
+  });
+
+  /* ── Sidebar config controls ── */
+  var STATE_LABELS = {
+    active: { text: 'Active', color: '#398b26', icon: 'check_circle' },
+    inactive: { text: 'Inactive', color: '#999', icon: 'block' },
+    transferred: { text: 'Transferred', color: '#e6a817', icon: 'swap_horiz' },
+    graduated: { text: 'Graduated', color: '#0076b3', icon: 'school' }
+  };
+
+  function getConfig() {
+    var role = document.querySelector('input[name="role"]:checked');
+    var state = document.querySelector('input[name="state"]:checked');
+    var context = document.querySelector('input[name="context"]:checked');
+    return {
+      role: role ? role.value : 'all',
+      state: state ? state.value : 'active',
+      context: context ? context.value : 'dashboard'
+    };
+  }
+
+  function updateShareUrl() {
+    var cfg = getConfig();
+    var url = '/objects/student?role=' + cfg.role + '&state=' + cfg.state + '&context=' + cfg.context;
+    var input = document.getElementById('share-url');
+    if (input) input.value = url;
+  }
+
+  function filterCTARows(role) {
+    document.querySelectorAll('.data-subtabs tr[data-roles]').forEach(function(row) {
+      if (role === 'all') {
+        row.hidden = false;
+        return;
+      }
+      var roles = row.dataset.roles.split(' ');
+      row.hidden = roles.indexOf(role) === -1;
+    });
+  }
+
+  function updateState(state) {
+    var info = STATE_LABELS[state] || STATE_LABELS.active;
+
+    document.querySelectorAll('.showcase-status').forEach(function(el) {
+      if (state === 'active') {
+        el.style.display = '';
+      } else {
+        el.textContent = info.text;
+        el.style.color = info.color;
+        el.className = 'showcase-status';
+      }
+    });
+
+    var badge = document.querySelector('.detail-view-badge');
+    if (badge) {
+      var icon = badge.querySelector('.material-icons');
+      if (icon) icon.textContent = info.icon;
+      badge.className = 'detail-view-badge';
+      badge.style.background = state === 'active' ? '' : info.color;
+      badge.style.color = state === 'active' ? '' : 'white';
+      if (state === 'active') {
+        badge.classList.add('detail-view-badge--active');
+      }
+      badge.childNodes.forEach(function(n) {
+        if (n.nodeType === 3 && n.textContent.trim()) {
+          n.textContent = '\n              ' + info.text + '\n            ';
+        }
+      });
+    }
+
+    var opacityVal = (state === 'inactive' || state === 'graduated') ? '0.55' :
+                     (state === 'transferred') ? '0.75' : '';
+
+    document.querySelectorAll('.showcase-card').forEach(function(el) { el.style.opacity = opacityVal; });
+    document.querySelectorAll('.profile-item').forEach(function(el) { el.style.opacity = opacityVal; });
+    var mock = document.querySelector('.detail-view-mock');
+    if (mock) mock.style.opacity = opacityVal;
+  }
+
+  function applyConfig() {
+    var cfg = getConfig();
+    filterCTARows(cfg.role);
+    updateState(cfg.state);
+    updateShareUrl();
+  }
+
+  document.querySelectorAll('input[name="role"], input[name="state"], input[name="context"]').forEach(function(radio) {
+    radio.addEventListener('change', applyConfig);
+  });
+
+  /* ── Share URL copy ── */
+  var copyBtn = document.getElementById('share-copy');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function() {
+      var input = document.getElementById('share-url');
+      if (input) {
+        navigator.clipboard.writeText(window.location.origin + input.value);
+      }
+    });
+  }
+
+  /* ── Code copy ── */
+  document.querySelectorAll('.code-block-copy').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var code = btn.closest('.code-block').querySelector('code');
+      if (code) navigator.clipboard.writeText(code.textContent);
+    });
+  });
+})();
+</script>
+</body>
+</html>

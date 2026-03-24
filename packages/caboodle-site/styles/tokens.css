@@ -1,0 +1,276 @@
+:root {
+  /* ============================================
+     Modular Scale (ratio 1.5)
+     ============================================ */
+  --ratio: 1.5;
+  --s-5: calc(var(--s-4) / var(--ratio));
+  --s-4: calc(var(--s-3) / var(--ratio));
+  --s-3: calc(var(--s-2) / var(--ratio));
+  --s-2: calc(var(--s-1) / var(--ratio));
+  --s-1: calc(var(--s0) / var(--ratio));
+  --s0: 1rem;
+  --s1: calc(var(--s0) * var(--ratio));
+  --s2: calc(var(--s1) * var(--ratio));
+  --s3: calc(var(--s2) * var(--ratio));
+  --s4: calc(var(--s3) * var(--ratio));
+  --s5: calc(var(--s4) * var(--ratio));
+
+  /* ============================================
+     Measure
+     ============================================ */
+  --measure: 60ch;
+
+  /* ============================================
+     Typography — Font Families
+     ============================================ */
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-plain: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+
+  /* ============================================
+     Typography — Scale
+     ============================================ */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+  --text-3xl: 3.5rem;
+
+  /* ============================================
+     Typography — Weights
+     ============================================ */
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* ============================================
+     Typography — Line Heights
+     ============================================ */
+  --line-height: 1.5;
+  --line-height-tight: 1.2;
+
+  /* ============================================
+     Colors — Gray Scale (aligned with Next DS)
+     ============================================ */
+  --gray-900: #1a1a2e;
+  --gray-800: #202020;
+  --gray-700: #444;
+  --gray-600: #4d4d4d;
+  --gray-500: #707070;
+  --gray-400: #999;
+  --gray-300: #e5e5e5;
+  --gray-200: #eee;
+  --gray-100: #f4f4f4;
+  --gray-50: #fafafa;
+  --white: #fff;
+
+  /* ============================================
+     Colors — Brand (aligned with Next DS)
+     ============================================ */
+  --color-dark: #1a1a2e;
+  --color-mid: #4a4a68;
+  --color-light: #f0f0f5;
+  --color-lightest: #fafafa;
+  --color-border: #e5e5e5;
+  --color-brand: #cf3a4e;
+  --color-accent: #2B87FF;
+  --color-accent-light: #6b82f7;
+  --color-interactive: #146EB3;
+  --color-focus: #2B87FF;
+  --color-link: var(--color-interactive);
+  --color-text: #202020;
+  --color-text-secondary: #4d4d4d;
+  --color-text-muted: #707070;
+  --color-bg-tertiary: #fff4f4;
+
+  /* ============================================
+     Colors — Ren Brand Palette (from Next DS Figma)
+     Source: figma.com/design/brUjKsMWXJsSVTdL4BDp0B
+     Each family has: primary, 10, 30, 60, 90, 100
+     ============================================ */
+
+  /* Primary palette */
+  --brand-primary-red: #FD4353;
+  --brand-website-red: #CF3A4E;
+  --brand-primary-black: #000000;
+  --brand-website-black: #202020;
+  --brand-primary-white: #FFFFFF;
+  --brand-beige: #F1EFE3;
+
+  /* Red */
+  --brand-red: #FD4353;
+  --brand-red-10: #F5E9EA;
+  --brand-red-30: #FEC7CB;
+  --brand-red-60: #FEA1A9;
+  --brand-red-90: #CF3A4E;
+  --brand-red-100: #972831;
+
+  /* AR Orange */
+  --brand-ar-orange: #F5692C;
+  --brand-ar-orange-10: #F4ECE8;
+  --brand-ar-orange-30: #FBD2C0;
+  --brand-ar-orange-60: #FAB496;
+  --brand-ar-orange-90: #C45423;
+  --brand-ar-orange-100: #933F1A;
+
+  /* Assessment Orange */
+  --brand-assessment-orange: #F99E1F;
+  --brand-assessment-orange-10: #F4EFE7;
+  --brand-assessment-orange-30: #FEE1BC;
+  --brand-assessment-orange-60: #FCCF8F;
+  --brand-assessment-orange-90: #C77E18;
+  --brand-assessment-orange-100: #955E12;
+
+  /* Assessment Teal */
+  --brand-assessment-teal: #41C395;
+  --brand-assessment-teal-10: #E9F1EE;
+  --brand-assessment-teal-30: #C7EDDF;
+  --brand-assessment-teal-60: #A0E1CA;
+  --brand-assessment-teal-90: #349C77;
+  --brand-assessment-teal-100: #277559;
+
+  /* Assessment Yellow */
+  --brand-assessment-yellow: #FFE61F;
+  --brand-assessment-yellow-10: #F5F3E7;
+  --brand-assessment-yellow-30: #FFF7BC;
+  --brand-assessment-yellow-60: #FFF38F;
+  --brand-assessment-yellow-90: #CCB818;
+  --brand-assessment-yellow-100: #998A12;
+
+  /* Freckle Pink */
+  --brand-freckle-pink: #F143AA;
+  --brand-freckle-pink-10: #F4E9F0;
+  --brand-freckle-pink-30: #FBC7E5;
+  --brand-freckle-pink-60: #F8A1D5;
+  --brand-freckle-pink-90: #C03588;
+  --brand-freckle-pink-100: #902866;
+
+  /* Lalilo Blue-Green */
+  --brand-lalilo: #31C0C4;
+  --brand-lalilo-10: #E8F1F1;
+  --brand-lalilo-30: #C1ECEC;
+  --brand-lalilo-60: #98E0E2;
+  --brand-lalilo-90: #27999C;
+  --brand-lalilo-100: #1D7375;
+
+  /* myON / Flocabulary Purple */
+  --brand-myon-purple: #8385F6;
+  --brand-myon-purple-10: #EDEDF4;
+  --brand-myon-purple-30: #DADAFC;
+  --brand-myon-purple-60: #C1C2FB;
+  --brand-myon-purple-90: #686AC4;
+  --brand-myon-purple-100: #4E4F93;
+
+  /* Nearpod Blue */
+  --brand-nearpod-blue: #00A8FF;
+  --brand-nearpod-blue-10: #E5EFF5;
+  --brand-nearpod-blue-30: #B3E5FF;
+  --brand-nearpod-blue-60: #80D4FF;
+  --brand-nearpod-blue-90: #007CBD;
+  --brand-nearpod-blue-100: #006499;
+
+  /* Brand Beige scale */
+  --brand-beige-10: #FEFDFC;
+  --brand-beige-30: #FBFAF7;
+  --brand-beige-60: #F8F7F1;
+  --brand-beige-90: #C0BFB5;
+  --brand-beige-100: #908F88;
+
+  /* Brand Dark Grey */
+  --brand-dark-grey: #54585E;
+  --brand-dark-grey-10: #EAEBEB;
+  --brand-dark-grey-30: #CCCDCF;
+  --brand-dark-grey-60: #AAACAF;
+  --brand-dark-grey-90: #43464B;
+  --brand-dark-grey-100: #323438;
+
+  /* Brand Medium Grey */
+  --brand-medium-grey: #808285;
+  --brand-medium-grey-10: #EDEDED;
+  --brand-medium-grey-30: #D9DADA;
+  --brand-medium-grey-60: #C0C1C2;
+  --brand-medium-grey-90: #66686A;
+  --brand-medium-grey-100: #4C4E4F;
+
+  /* Brand Light Grey */
+  --brand-light-grey: #DDDEE0;
+  --brand-light-grey-10: #F3F3F3;
+  --brand-light-grey-30: #F5F5F6;
+  --brand-light-grey-60: #EEEFF0;
+  --brand-light-grey-90: #B0B1B3;
+  --brand-light-grey-100: #848586;
+
+  /* Utility colors */
+  --brand-highlight-blue: #D0E2F0;
+  --brand-new-gray: #F3F5F7;
+  --brand-next-gray: #FFF4F4;
+
+  /* ============================================
+     Colors — Subject (categorical, not evaluative)
+     Used to differentiate academic domains.
+     Derived from brand palette above.
+     ============================================ */
+  --color-subject-reading: var(--brand-myon-purple);
+  --color-subject-math: var(--brand-assessment-teal);
+
+  /* ============================================
+     Colors — Object Types
+     ============================================ */
+  --color-core-object: #2563EB;
+  --color-domain-object: #059669;
+  --color-variation-object: #7C3AED;
+
+  /* ============================================
+     Colors — Status
+     ============================================ */
+  --color-status-active: #2e7d32;
+  --color-status-active-bg: #e8f5e9;
+  --color-status-inactive: #999;
+  --color-status-transferred: #e6a817;
+  --color-status-warn: #e65100;
+  --color-status-warn-bg: #fff3e0;
+  --color-status-error: #c62828;
+  --color-status-error-bg: #fce4ec;
+
+  /* ============================================
+     Colors — Actions
+     ============================================ */
+  --color-action-primary: #146EB3;
+
+  /* ============================================
+     Colors — Inspector
+     ============================================ */
+  --color-inspector-highlight: #ff1cdd;
+  --color-inspector-highlight-bg: rgba(255, 28, 221, 0.08);
+
+  /* ============================================
+     Borders
+     ============================================ */
+  --border-thin: 1px;
+  --border-thick: 3px;
+
+  /* ============================================
+     Border Radii
+     ============================================ */
+  --radius-xs: 3px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* ============================================
+     Tracking
+     ============================================ */
+  --tracking: 0.5px;
+
+  /* ============================================
+     Shadows
+     ============================================ */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-inset: inset 0 0 16px rgba(0, 0, 0, 0.08);
+}

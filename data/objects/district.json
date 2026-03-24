@@ -1,0 +1,752 @@
+{
+  "identity": {
+    "slug": "district",
+    "name": "District",
+    "qualifier": "(Core)",
+    "objectType": "core",
+    "category": "container",
+    "definition": "A District is the top-level organizational entity representing a school district, diocese, charter network, or other educational authority that contracts with Renaissance for product licensing — serving as the parent container for all schools, users, data, and administrative policies across Renaissance products.",
+    "synonyms": ["LEA", "organization", "network"],
+    "products": "All products"
+  },
+  "variations": [],
+  "representations": [
+    {
+      "layout": "card",
+      "heading": "Card layout",
+      "description": "How a District appears in grids and dashboards",
+      "defaultShape": "card",
+      "componentTag": "ren-district-card",
+      "examples": [
+        {
+          "name": "Springfield Public Schools",
+          "state": "IL",
+          "schoolCount": 25,
+          "studentCount": 15000,
+          "color": "#0D9488"
+        },
+        {
+          "name": "Success Academy Charter Network",
+          "state": "NY",
+          "schoolCount": 47,
+          "studentCount": 20000,
+          "color": "#2563EB"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "District Name",
+          "dataType": "String",
+          "required": true,
+          "source": "CRM / Manual",
+          "description": "Primary identifier. The official name of the school district or educational organization."
+        },
+        {
+          "name": "State",
+          "dataType": "Enum",
+          "required": true,
+          "source": "CRM / Manual",
+          "description": "US state or territory where the district is located."
+        },
+        {
+          "name": "School Count",
+          "dataType": "Number",
+          "source": "Calculated",
+          "description": "Total number of schools within the district."
+        },
+        {
+          "name": "Student Count",
+          "dataType": "Number",
+          "source": "Calculated",
+          "description": "Total number of active students across all schools in the district."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "District Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["admin"]
+        }
+      ]
+    },
+    {
+      "layout": "list",
+      "heading": "List layout",
+      "description": "How a District appears in admin tables and internal lists",
+      "defaultShape": "row",
+      "componentTag": "ren-district-row",
+      "examples": [
+        {
+          "name": "Springfield Public Schools",
+          "state": "IL",
+          "schoolCount": 25,
+          "studentCount": 15000,
+          "productLicenses": "Star, AR, Freckle, myON",
+          "color": "#0D9488"
+        },
+        {
+          "name": "Success Academy Charter Network",
+          "state": "NY",
+          "schoolCount": 47,
+          "studentCount": 20000,
+          "productLicenses": "Star, AR, Freckle, myON",
+          "color": "#2563EB"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "District Name",
+          "dataType": "String",
+          "required": true,
+          "source": "CRM / Manual",
+          "description": "Primary identifier. The official name of the school district or educational organization."
+        },
+        {
+          "name": "State",
+          "dataType": "Enum",
+          "required": true,
+          "source": "CRM / Manual",
+          "description": "US state or territory where the district is located."
+        },
+        {
+          "name": "School Count",
+          "dataType": "Number",
+          "source": "Calculated",
+          "description": "Total number of schools within the district."
+        },
+        {
+          "name": "Student Count",
+          "dataType": "Number",
+          "source": "Calculated",
+          "description": "Total number of active students across all schools in the district."
+        },
+        {
+          "name": "Product Licenses",
+          "dataType": "Enum (multi)",
+          "required": true,
+          "source": "Licensing system",
+          "description": "Which Renaissance products the district has licensed."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "District Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["admin"]
+        },
+        {
+          "name": "Manage Schools",
+          "roles": "District Admin",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "school",
+          "crossObjectName": "School",
+          "roleKeys": ["admin"]
+        }
+      ]
+    },
+    {
+      "layout": "detail",
+      "heading": "Detail page layout",
+      "description": "What users see when they open a full District record",
+      "defaultShape": "profile",
+      "componentTag": "ren-district-profile",
+      "examples": [
+        {
+          "name": "Springfield Public Schools",
+          "state": "IL",
+          "schoolCount": 25,
+          "studentCount": 15000,
+          "productLicenses": "Star, AR, Freckle, myON",
+          "address": "1900 W Monroe St, Springfield, IL 62704",
+          "ncesId": "1740180",
+          "phone": "(217) 525-3000",
+          "timeZone": "Central (CT)",
+          "districtType": "Public",
+          "status": "Active",
+          "contractPeriod": "Jul 2024 – Jun 2027",
+          "sisConfig": "Clever, OneRoster",
+          "color": "#0D9488"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "District Name",
+          "dataType": "String",
+          "required": true,
+          "source": "CRM / Manual",
+          "description": "Primary identifier. The official name of the school district or educational organization."
+        },
+        {
+          "name": "State",
+          "dataType": "Enum",
+          "required": true,
+          "source": "CRM / Manual",
+          "description": "US state or territory where the district is located."
+        },
+        {
+          "name": "School Count",
+          "dataType": "Number",
+          "source": "Calculated",
+          "description": "Total number of schools within the district."
+        },
+        {
+          "name": "Student Count",
+          "dataType": "Number",
+          "source": "Calculated",
+          "description": "Total number of active students across all schools in the district."
+        },
+        {
+          "name": "Product Licenses",
+          "dataType": "Enum (multi)",
+          "required": true,
+          "source": "Licensing system",
+          "description": "Which Renaissance products the district has licensed."
+        },
+        {
+          "name": "District Admin(s)",
+          "dataType": "Reference → User[]",
+          "source": "Manual / SIS",
+          "description": "Administrators with district-level access and permissions.",
+          "isReference": true,
+          "referenceSlug": "teacher",
+          "referenceName": "User"
+        },
+        {
+          "name": "NCES District ID",
+          "dataType": "String",
+          "source": "CRM / Manual",
+          "description": "National Center for Education Statistics identifier for federal reporting and cross-system matching."
+        },
+        {
+          "name": "SIS Configuration",
+          "dataType": "Multiple",
+          "source": "Admin setup",
+          "description": "Configured Student Information System integrations (Clever, ClassLink, OneRoster)."
+        },
+        {
+          "name": "Address",
+          "dataType": "String",
+          "source": "CRM / Manual",
+          "description": "Physical mailing address of the district office."
+        },
+        {
+          "name": "Phone",
+          "dataType": "String",
+          "source": "CRM / Manual",
+          "description": "Primary phone number for the district office."
+        },
+        {
+          "name": "Time Zone",
+          "dataType": "Enum",
+          "required": true,
+          "source": "CRM / Manual",
+          "description": "Time zone for scheduling, reporting, and data sync windows."
+        },
+        {
+          "name": "District Type",
+          "dataType": "Enum",
+          "source": "CRM / Manual",
+          "description": "Classification: Public, Private, Charter, or Diocese."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "required": true,
+          "source": "System / Admin",
+          "description": "Current lifecycle state: Active or Inactive."
+        },
+        {
+          "name": "Contract Period",
+          "dataType": "Date range",
+          "required": true,
+          "source": "CRM",
+          "description": "Start and end dates of the current Renaissance product license agreement."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "District Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["admin"]
+        },
+        {
+          "name": "Edit",
+          "roles": "District Admin",
+          "permission": "Write",
+          "priority": "S",
+          "roleKeys": ["admin"]
+        },
+        {
+          "name": "Manage Schools",
+          "roles": "District Admin",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "school",
+          "crossObjectName": "School",
+          "roleKeys": ["admin"]
+        },
+        {
+          "name": "Manage Users",
+          "roles": "District Admin",
+          "permission": "Write",
+          "priority": "T",
+          "crossObjectSlug": "teacher",
+          "crossObjectName": "User",
+          "roleKeys": ["admin"]
+        },
+        {
+          "name": "Configure SIS",
+          "roles": "District Admin",
+          "permission": "Write",
+          "priority": "T",
+          "roleKeys": ["admin"]
+        },
+        {
+          "name": "Configure Products",
+          "roles": "District Admin",
+          "permission": "Write",
+          "priority": "T",
+          "roleKeys": ["admin"]
+        },
+        {
+          "name": "View District Reports",
+          "roles": "District Admin",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "score",
+          "crossObjectName": "Score",
+          "roleKeys": ["admin"]
+        },
+        {
+          "name": "Create",
+          "roles": "Renaissance Admin, System",
+          "permission": "Write",
+          "priority": "Q",
+          "roleKeys": ["admin"]
+        },
+        {
+          "name": "Deactivate",
+          "roles": "Renaissance Admin",
+          "permission": "Write",
+          "priority": "Q",
+          "roleKeys": ["admin"]
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "View District Dashboard",
+      "icon": "dashboard",
+      "role": "District Admin",
+      "action": "view",
+      "object": "District",
+      "benefit": "I can see aggregate performance data, school counts, student counts, and product usage across my entire district.",
+      "whenClause": "I log into my district admin dashboard,",
+      "thenClause": "I see a summary of all schools, total student enrollment, licensed products, and key performance indicators for the current term."
+    },
+    {
+      "title": "Manage District Schools",
+      "icon": "domain",
+      "role": "District Admin",
+      "action": "manage",
+      "object": "District",
+      "benefit": "I can add, remove, or configure schools within my district so each school has the correct products, SIS integration, and admin assignments.",
+      "whenClause": "I navigate to my district's school management area,",
+      "thenClause": "I see a list of all schools with their status, student counts, and product licenses, and I can add new schools or modify existing ones.",
+      "crossObjects": [{ "slug": "school", "name": "School" }]
+    },
+    {
+      "title": "Compare School Performance",
+      "icon": "compare_arrows",
+      "role": "District Admin",
+      "action": "compare",
+      "object": "District",
+      "benefit": "I can identify which schools are excelling and which need additional support by comparing assessment outcomes across the district.",
+      "whenClause": "I open district-level reports,",
+      "thenClause": "I see comparative data across all schools — including Star scores, growth metrics, and product utilization rates — filterable by grade, subject, and time period.",
+      "crossObjects": [{ "slug": "school", "name": "School" }, { "slug": "score", "name": "Score" }]
+    }
+  ],
+  "businessRules": [
+    {
+      "title": "Top-Level Entity",
+      "description": "A District is the highest organizational container in the Renaissance hierarchy. All Schools, Users, and data exist within the scope of a District."
+    },
+    {
+      "title": "Licensing Authority",
+      "description": "Product licenses are contracted at the District level. Individual schools inherit their product access from the district's license agreement."
+    },
+    {
+      "title": "Admin Hierarchy",
+      "description": "District Admins have administrative access to all schools within their district. School-level admins cannot see or modify other schools' data."
+    },
+    {
+      "title": "Data Aggregation",
+      "description": "District-level reports aggregate data across all schools. Student counts, assessment scores, and usage metrics roll up from School to District."
+    },
+    {
+      "title": "SIS Integration",
+      "description": "SIS configuration (Clever, ClassLink, OneRoster) is set at the District level. All schools within the district share the same SIS pipeline and sync schedule."
+    },
+    {
+      "title": "Policy Cascade",
+      "description": "District-level policies (assessment windows, product configurations, grading scales) cascade down to all schools unless overridden at the school level."
+    },
+    {
+      "title": "Deactivation",
+      "description": "When a District is deactivated, all schools, users, and data within it become inaccessible. Historical data is retained for contractual and reporting purposes but no new activity can occur."
+    }
+  ],
+  "lifecycle": {
+    "states": [
+      {
+        "name": "Provisioned",
+        "description": "District record created, contract signed, awaiting initial setup",
+        "triggers": "CRM contract finalization, system provisioning",
+        "variant": "default"
+      },
+      {
+        "name": "Active",
+        "description": "District is fully operational with licensed products and active schools",
+        "triggers": "Initial setup complete, schools and users configured",
+        "variant": "active"
+      },
+      {
+        "name": "Inactive",
+        "description": "Contract expired or district deactivated — data retained, access suspended",
+        "triggers": "Contract expiration, admin deactivation, non-renewal",
+        "variant": "default"
+      },
+      {
+        "name": "Reactivated",
+        "description": "Previously inactive district restored with new or renewed contract",
+        "triggers": "Contract renewal, re-provisioning by Renaissance Admin",
+        "variant": "active"
+      }
+    ],
+    "transitions": [
+      { "from": "Provisioned", "to": ["Active"] },
+      { "from": "Active", "to": ["Inactive"] },
+      { "from": "Inactive", "to": ["Reactivated"] }
+    ]
+  },
+  "relationships": [
+    {
+      "targetSlug": "school",
+      "targetName": "School",
+      "mechanics": "Schools are created within a District during provisioning or added later by District Admins. Each school inherits the district's product licenses and SIS configuration.",
+      "cardinality": "One-to-many. A District contains one or more Schools; a School belongs to exactly one District. Typical: 1–200 schools per district.",
+      "sorts": "Schools within a District: alphabetical by name (default), by student count, by grade levels served.",
+      "filters": "By grade band (elementary, middle, high), by product usage, by school type, by status (active/inactive).",
+      "dependencies": "If a District is deactivated, all its Schools are also deactivated. Schools cannot exist without a parent District."
+    },
+    {
+      "targetSlug": "student",
+      "targetName": "Student",
+      "mechanics": "Students belong to a District indirectly through their School enrollment. District-level aggregation sums all students across all schools.",
+      "cardinality": "One-to-many (indirect via School). A District has many Students through its Schools; a Student belongs to one District through their School. Typical: 500–100,000 students per district.",
+      "sorts": "Students within a District: by school (default), by grade level, by last name.",
+      "filters": "By school, by grade level, by enrollment status, by assessment performance, by demographic group.",
+      "dependencies": "If a Student transfers schools within the same District, their data remains within the district scope. Cross-district transfers require separate handling."
+    }
+  ],
+  "relatedObjects": ["school", "student", "teacher"],
+  "nestedObjects": [
+    {
+      "slug": "school",
+      "name": "School",
+      "cardinality": "One-to-many",
+      "description": "Schools within the district"
+    },
+    {
+      "slug": "student",
+      "name": "Student",
+      "cardinality": "One-to-many (via Schools)",
+      "description": "All students enrolled across district schools"
+    },
+    {
+      "slug": "teacher",
+      "name": "Teacher",
+      "cardinality": "One-to-many (via Schools)",
+      "description": "All teachers employed across district schools"
+    },
+    {
+      "slug": "district-admin",
+      "name": "District Admin",
+      "cardinality": "One-to-many",
+      "description": "Administrators with district-level access"
+    }
+  ],
+  "allAttributes": [
+    {
+      "name": "District Name",
+      "dataType": "String",
+      "required": true,
+      "source": "CRM / Manual",
+      "description": "Primary identifier. The official name of the school district or educational organization."
+    },
+    {
+      "name": "State",
+      "dataType": "Enum",
+      "required": true,
+      "source": "CRM / Manual",
+      "description": "US state or territory where the district is located."
+    },
+    {
+      "name": "School Count",
+      "dataType": "Number",
+      "source": "Calculated",
+      "description": "Total number of schools within the district."
+    },
+    {
+      "name": "Student Count",
+      "dataType": "Number",
+      "source": "Calculated",
+      "description": "Total number of active students across all schools in the district."
+    },
+    {
+      "name": "Product Licenses",
+      "dataType": "Enum (multi)",
+      "required": true,
+      "source": "Licensing system",
+      "description": "Which Renaissance products the district has licensed."
+    },
+    {
+      "name": "District Admin(s)",
+      "dataType": "Reference → User[]",
+      "source": "Manual / SIS",
+      "description": "Administrators with district-level access and permissions.",
+      "isReference": true,
+      "referenceSlug": "teacher",
+      "referenceName": "User"
+    },
+    {
+      "name": "NCES District ID",
+      "dataType": "String",
+      "source": "CRM / Manual",
+      "description": "National Center for Education Statistics identifier for federal reporting and cross-system matching."
+    },
+    {
+      "name": "SIS Configuration",
+      "dataType": "Multiple",
+      "source": "Admin setup",
+      "description": "Configured Student Information System integrations (Clever, ClassLink, OneRoster)."
+    },
+    {
+      "name": "Address",
+      "dataType": "String",
+      "source": "CRM / Manual",
+      "description": "Physical mailing address of the district office."
+    },
+    {
+      "name": "Phone",
+      "dataType": "String",
+      "source": "CRM / Manual",
+      "description": "Primary phone number for the district office."
+    },
+    {
+      "name": "Time Zone",
+      "dataType": "Enum",
+      "required": true,
+      "source": "CRM / Manual",
+      "description": "Time zone for scheduling, reporting, and data sync windows."
+    },
+    {
+      "name": "District Type",
+      "dataType": "Enum",
+      "source": "CRM / Manual",
+      "description": "Classification: Public, Private, Charter, or Diocese."
+    },
+    {
+      "name": "Status",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System / Admin",
+      "description": "Current lifecycle state: Active or Inactive."
+    },
+    {
+      "name": "Contract Period",
+      "dataType": "Date range",
+      "required": true,
+      "source": "CRM",
+      "description": "Start and end dates of the current Renaissance product license agreement."
+    }
+  ],
+  "allCTAs": [
+    {
+      "name": "View",
+      "roles": "District Admin",
+      "permission": "Read",
+      "priority": "P",
+      "roleKeys": ["admin"]
+    },
+    {
+      "name": "Edit",
+      "roles": "District Admin",
+      "permission": "Write",
+      "priority": "S",
+      "roleKeys": ["admin"]
+    },
+    {
+      "name": "Manage Schools",
+      "roles": "District Admin",
+      "permission": "Write",
+      "priority": "S",
+      "crossObjectSlug": "school",
+      "crossObjectName": "School",
+      "roleKeys": ["admin"]
+    },
+    {
+      "name": "Manage Users",
+      "roles": "District Admin",
+      "permission": "Write",
+      "priority": "T",
+      "crossObjectSlug": "teacher",
+      "crossObjectName": "User",
+      "roleKeys": ["admin"]
+    },
+    {
+      "name": "Configure SIS",
+      "roles": "District Admin",
+      "permission": "Write",
+      "priority": "T",
+      "roleKeys": ["admin"]
+    },
+    {
+      "name": "Configure Products",
+      "roles": "District Admin",
+      "permission": "Write",
+      "priority": "T",
+      "roleKeys": ["admin"]
+    },
+    {
+      "name": "View District Reports",
+      "roles": "District Admin",
+      "permission": "Read",
+      "priority": "S",
+      "crossObjectSlug": "score",
+      "crossObjectName": "Score",
+      "roleKeys": ["admin"]
+    },
+    {
+      "name": "Create",
+      "roles": "Renaissance Admin, System",
+      "permission": "Write",
+      "priority": "Q",
+      "roleKeys": ["admin"]
+    },
+    {
+      "name": "Deactivate",
+      "roles": "Renaissance Admin",
+      "permission": "Write",
+      "priority": "Q",
+      "roleKeys": ["admin"]
+    }
+  ],
+  "sipValidation": {
+    "structure": {
+      "pass": true,
+      "evidence": "A District has a rich set of attributes: name, state, school count, student count, product licenses, NCES ID, address, phone, time zone, district type, status, contract period, SIS configuration, and admin users. You can design a detail page for a District."
+    },
+    "instances": {
+      "pass": true,
+      "evidence": "Springfield Public Schools (IL, 25 schools, 15K students), Success Academy Charter Network (NY, 47 schools, 20K students), Diocese of Arlington Catholic Schools (VA, 38 schools, 12K students). Renaissance serves thousands of District instances."
+    },
+    "purpose": {
+      "pass": true,
+      "evidence": "Districts are the contracting entity — the reason Renaissance has customers. District Admins configure products, manage schools, view aggregated reports, and govern policies. All product licensing flows through District."
+    },
+    "verdict": "Core system object. The top-level organizational container and contracting entity."
+  },
+  "synonyms": [
+    {
+      "term": "LEA",
+      "context": "Federal/state reporting, government communications",
+      "notes": "Local Educational Agency — the official government term for a school district"
+    },
+    {
+      "term": "Organization",
+      "context": "Renaissance internal systems, CRM",
+      "notes": "Generic container term used in some internal tools"
+    },
+    {
+      "term": "Network",
+      "context": "Charter school management organizations",
+      "notes": "Charter networks like Success Academy or KIPP use this term"
+    },
+    {
+      "term": "Diocese",
+      "context": "Catholic school systems",
+      "notes": "A diocese functions as a district for Catholic schools"
+    },
+    {
+      "term": "Account",
+      "context": "Sales, CRM, billing systems",
+      "notes": "Salesforce and billing systems refer to the contracting entity as Account"
+    }
+  ],
+  "shapeshifterMatrix": [
+    {
+      "context": "Renaissance Internal List",
+      "value": "internal-list",
+      "shape": "data-row",
+      "description": "Districts listed in an internal admin table with location, enrollment, and licensing data. Renaissance staff manage accounts and track customer scale from here.",
+      "visibleAttributes": ["District Name", "State", "School Count", "Student Count", "Product Licenses"],
+      "availableCTAs": ["View", "Edit"],
+      "cardShape": "Data row"
+    },
+    {
+      "context": "District Admin Dashboard",
+      "value": "district-dashboard",
+      "shape": "profile",
+      "description": "The complete district record — schools, licensing, SIS configuration, and admin contacts. District admins manage their organization and access district-wide reports from this page.",
+      "visibleAttributes": ["District Name", "State", "School Count", "Student Count", "Product Licenses", "District Admin(s)", "NCES District ID", "SIS Configuration", "Address", "Phone", "Time Zone", "District Type", "Status", "Contract Period"],
+      "availableCTAs": ["View", "Edit", "Manage Schools", "Manage Users", "Configure SIS", "Configure Products", "View District Reports", "Create", "Deactivate"],
+      "cardShape": "Full page"
+    },
+    {
+      "context": "District Picker",
+      "value": "district-picker",
+      "shape": "mini-row",
+      "description": "A minimal row for selecting a district during setup or filtering. Shows district name, state, and school count — just enough to choose the right one.",
+      "visibleAttributes": ["District Name", "State", "School Count"],
+      "availableCTAs": [],
+      "cardShape": "Mini row"
+    },
+    {
+      "context": "Report Header",
+      "value": "report-header",
+      "shape": "header",
+      "description": "The district displayed as a banner at the top of a report, providing organizational context for the data below. No interactive elements.",
+      "visibleAttributes": ["District Name", "State", "School Count", "Student Count"],
+      "availableCTAs": [],
+      "cardShape": "Banner"
+    },
+    {
+      "context": "District Overview Card",
+      "value": "district-overview",
+      "shape": "card",
+      "description": "A summary card showing district size and location on a regional dashboard. Used to scan district-level metrics at a glance.",
+      "visibleAttributes": ["District Name", "State", "School Count", "Student Count"],
+      "availableCTAs": ["View"],
+      "cardShape": "Summary card"
+    },
+    {
+      "context": "District Search Results",
+      "value": "district-search",
+      "shape": "row",
+      "description": "Districts matching a search query with state, school count, and student count. Used to find and navigate to a specific district.",
+      "visibleAttributes": ["District Name", "State", "School Count", "Student Count"],
+      "availableCTAs": ["View"],
+      "cardShape": "Compact row"
+    }
+  ]
+}

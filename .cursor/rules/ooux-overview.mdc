@@ -1,0 +1,123 @@
+---
+alwaysApply: true
+---
+
+# OOUX Agent Skills — Overview
+
+You have access to **OOUX Agent Skills** that follow the ORCA (Objects, Relationships, CTAs, Attributes) process — a 3-round, 12-step framework from the X-Ray UX approach (Sophia Prater). All skills live in `.cursor/skills/`. They read context from the local data workspace, collaborate with the user at structured checkpoints, and write artifacts to the ORCA workspace.
+
+**Critical rule:** If data is missing or unclear, always stop and ask the user. Never guess, invent, or use placeholder data. See the `ooux-collaboration` rule for details.
+
+## The Four Ancient Truths of OOUX
+
+These truths — rooted in human perception and cognition — guide every design decision in the ORCA process:
+
+1. **Objects** — Things that are different should look different. *(Anti-pattern: Masked Objects — different objects disguised as the same thing)*
+2. **Relationships** — Humans navigate most naturally through relationships between objects. *(Anti-pattern: Isolated Objects — objects with no visible connections)*
+3. **CTAs** — Humans act on objects through direct manipulation. *(Anti-pattern: Broken Objects — objects users can see but can't act on directly)*
+4. **Attributes** — Objects that are the same should look the same, unless they have a stellar reason not to. *(Anti-pattern: Shapeshifters — the same object looking arbitrarily different across contexts)*
+
+## Available Skills
+
+### Round 1: Discovery — "What's in our system?"
+
+| # | Skill ID | Name | What It Produces |
+|---|---|---|---|
+| 01 | `01-object-discovery` | Object Discovery | Validated object list (SIP-tested) |
+| 02 | `02-nom-builder` | NOM Builder | Nested-Object Matrix |
+| 03 | `03-cta-matrix-builder` | CTA Matrix Builder | CTA Matrix |
+| 04 | `04-object-map-builder` | Object Map Builder | Object Map diagram |
+
+### Round 2: Prioritization — "What matters most?"
+
+| # | Skill ID | Name | What It Produces |
+|---|---|---|---|
+| 05 | `05-object-guide-builder` | Object Guide Builder | Prioritized Object Guide |
+| 06 | `06-mcsfd-spec-writer` | MCSFD Spec Writer | Prioritized relationship specifications |
+| 07 | `07-cta-prioritization` | CTA Prioritization | Force-ranked CTAs (P/S/T/Q) |
+| 08 | `08-attribute-prioritization` | Attribute Prioritization | Force-ranked attributes + Object Map reorder |
+
+### Round 3: Representation — "How does it look and behave?"
+
+Each step in the Representation round directly addresses one of the Four Ancient Truths and fights a specific anti-pattern:
+
+| # | Skill ID | Name | Ancient Truth | Anti-Pattern Avoided | What It Produces |
+|---|---|---|---|---|---|
+| 09 | `09-object-card-designer` | Object Card Designer | Objects | Masked Objects | Visually distinct object cards |
+| 10 | `10-nav-flow-designer` | Nav Flow Designer | Relationships | Isolated Objects | Navigation blueprint with nested objects |
+| 11 | `11-cta-placement-designer` | CTA Placement Designer | CTAs | Broken Objects | CTA-equipped cards and detail pages |
+| 12 | `12-shapeshifter-matrix-builder` | Shapeshifter Matrix Builder | Attributes | Shapeshifters | Intentional object variant matrix |
+
+### Supporting Skills — Use Anytime
+
+| Skill ID | Name | Purpose |
+|---|---|---|
+| `s1-ooux-primer` | OOUX Primer | Teach OOUX concepts tailored to user's role |
+| `s2-orca-project-intake` | ORCA Project Intake | Scope effort, recommend skill sequence |
+| `s3-artifact-validator` | Artifact Validator | Check artifact quality and completeness |
+| `s4-facilitation-kit` | Workshop Facilitation Kit | Generate workshop agendas and materials |
+| `s5-engineering-handoff` | Engineering Handoff | Translate OOUX artifacts to engineering specs |
+| `s6-orca-planner` | ORCA Planner | Build a sequenced workflow plan and guide the user through executing each skill step by step |
+| `s7-research` | Research | Search web and project files to generate contextual research documents for design work |
+| `s8-user-story-writer` | User Story Writer | Write object-oriented user stories grounded in CTAs |
+| `s9-cross-object-artifacts` | Cross-Object Artifacts Publisher | Compile system-wide NOM + CTA Matrix |
+| `s10-case-study-writer` | Case Study Writer | Write engaging project case studies from OOUX artifacts |
+| `orca-promote` | ORCA Promote | Sync confirmed workspace artifacts into `data/objects/*.json` |
+| `orca-to-ui` | ORCA to UI | Translate OOUX artifacts into UI designs using object data |
+| `view-designer` | View Designer | Design and build object views — from ORCA-grounded proposal through Figma review to Lit Web Component |
+| `page-builder` | Page Builder | Generate Caboodle HTML pages using the Every Layout composition system |
+| `object-guide-builder` | Object Guide Builder | Build comprehensive Object Guides from object data |
+
+## Data & Workspace
+
+OOUX data lives in two locations:
+
+- **Published data**: `data/objects/*.json` — structured object definitions conforming to `data/schema.ts`
+- **ORCA workspace**: `orca/{project-name}/` — iterative drafts from ORCA sessions
+
+The workspace uses a draft-then-promote model:
+1. ORCA skills write artifacts to `orca/{project}/` as markdown files
+2. Each file tracks status in YAML frontmatter: `draft` → `confirmed` → `promoted`
+3. The **orca-promote** skill syncs confirmed artifacts into `data/objects/*.json`
+
+Existing object data can be read from `data/objects/` at any time. There are 26 object JSON files covering 13 core objects plus domain-specific objects.
+
+## UI Design Rules
+
+When designing or implementing UI from OOUX artifacts, apply the Caboodle UI rules: `ui-accessibility`, `ui-typography`, `ui-visual-design`, `ui-forms`, `ui-navigation`, `ui-interaction`, `ui-content`, and `ui-data-visualization`. The **orca-to-ui** skill translates object data into UI designs that follow these rules.
+
+## Slash Commands
+
+- `/orca-start` — Start an ORCA project (launches the Planner)
+- `/orca-teach` — Learn OOUX and ORCA (launches the Primer)
+- `/orca-objects` — Browse Renaissance core objects
+- `/orca-workshop` — Prepare a workshop (launches the Facilitation Kit)
+- `/orca-promote` — Promote confirmed workspace artifacts to `data/objects/`
+- `/orca-view` — Design and build an object view (launches the View Designer)
+
+## When to Suggest Skills
+
+- User mentions objects, nouns, entities, or "what things are in the system" → suggest **01 Object Discovery**
+- User mentions relationships, connections, nested objects → suggest **02 NOM Builder** or **06 MCSFD Spec Writer**
+- User mentions actions, CTAs, what users can do → suggest **03 CTA Matrix Builder**
+- User mentions attributes, properties, fields → suggest **04 Object Map Builder** or **08 Attribute Prioritization**
+- User wants a comprehensive reference for one object → suggest **05 Object Guide Builder** or **object-guide-builder**
+- User mentions prioritizing or ranking CTAs, button placement → suggest **07 CTA Prioritization**
+- User wants user stories → suggest **s8 User Story Writer**
+- User mentions navigation, page flow, information architecture → suggest **10 Nav Flow Designer**
+- User mentions cards, list views, detail pages, distinct objects → suggest **09 Object Card Designer**
+- User mentions CTA buttons, direct manipulation, action placement → suggest **11 CTA Placement Designer**
+- User mentions consistency, variants, masked objects, shapeshifters → suggest **12 Shapeshifter Matrix Builder**
+- User wants to compile everything → suggest **s9 Cross-Object Artifacts Publisher**
+- User is new to OOUX → suggest **s1 OOUX Primer**
+- User is starting a project or asks "where do I start" → suggest **s6 ORCA Planner** (or **s2 ORCA Project Intake** for a lighter scoping session)
+- User wants to validate work → suggest **s3 Artifact Validator**
+- User is running a workshop → suggest **s4 Facilitation Kit**
+- User needs engineering specs → suggest **s5 Engineering Handoff**
+- User wants to research a topic, explore patterns, or gather background → suggest **s7 Research**
+- User wants a case study, project summary, portfolio piece, or to document a completed project → suggest **s10 Case Study Writer**
+- User wants to promote confirmed artifacts to published data → suggest **orca-promote**
+- User wants to turn object data into UI designs → suggest **orca-to-ui**
+- User wants to design a view, card, row, or detail page for an object → suggest **view-designer** (or `/orca-view`)
+- User wants to create or scaffold a new Caboodle page → suggest **page-builder**
+- User is working on a Renaissance product or asks about Student, Class, Assessment, etc. → suggest **ooux-renaissance-objects** domain skill for context on the 13 core objects

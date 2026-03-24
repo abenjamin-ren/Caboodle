@@ -1,0 +1,670 @@
+{
+  "identity": {
+    "slug": "educator-academy-module",
+    "name": "Educator Academy Module",
+    "qualifier": "(Domain)",
+    "objectType": "domain",
+    "category": "content",
+    "definition": "An Educator Academy Module is a structured, self-paced professional learning unit that teaches educators how to use a specific feature or workflow in Renaissance Intelligence.",
+    "synonyms": ["Training", "Tutorial", "Course", "PD Module"],
+    "products": "Renaissance Intelligence"
+  },
+  "variations": [],
+  "representations": [
+    {
+      "layout": "card",
+      "heading": "Card layout",
+      "description": "How an Educator Academy Module appears in the academy catalog",
+      "defaultShape": "card",
+      "componentTag": "ren-educator-academy-module-card",
+      "examples": [
+        {
+          "title": "Getting Started with Star Assessments",
+          "featureArea": "assessments",
+          "targetRole": "teacher",
+          "format": "interactive-walkthrough",
+          "duration": 15,
+          "completionCriteria": "complete-practice",
+          "status": "not-started",
+          "badge": null,
+          "color": "#2563EB"
+        },
+        {
+          "title": "Building Custom Reports",
+          "featureArea": "reports",
+          "targetRole": "admin",
+          "format": "video",
+          "duration": 25,
+          "completionCriteria": "pass-quiz",
+          "status": "in-progress",
+          "badge": null,
+          "color": "#7C3AED"
+        },
+        {
+          "title": "Differentiated Assignments with Skills",
+          "featureArea": "assignments",
+          "targetRole": "teacher",
+          "format": "blended",
+          "duration": 30,
+          "completionCriteria": "complete-practice",
+          "status": "complete",
+          "badge": "Assignment Pro",
+          "color": "#059669"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Module Title",
+          "dataType": "String",
+          "source": "Content Team",
+          "description": "Display name of the learning module."
+        },
+        {
+          "name": "Feature Area",
+          "dataType": "Enum",
+          "source": "Content Team",
+          "description": "Which product area this module covers: assessments, lessons, reports, classes, skills, or assignments."
+        },
+        {
+          "name": "Target Role",
+          "dataType": "Enum",
+          "source": "Content Team",
+          "description": "Who this module is designed for: teacher, admin, or both."
+        },
+        {
+          "name": "Format",
+          "dataType": "Enum",
+          "source": "Content Team",
+          "description": "Delivery format: video, interactive-walkthrough, step-by-step-guide, quiz, or blended."
+        },
+        {
+          "name": "Duration",
+          "dataType": "Number",
+          "source": "Content Team",
+          "description": "Estimated time to complete in minutes."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System / User Action",
+          "description": "Current completion status: not-started, in-progress, or complete."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "Browse Academy",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Start Module",
+          "roles": "Teacher, Admin",
+          "permission": "Write",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Search Academy",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "S",
+          "roleKeys": ["teacher", "admin"]
+        }
+      ]
+    },
+    {
+      "layout": "list",
+      "heading": "List layout",
+      "description": "How an Educator Academy Module appears in search results and filtered lists",
+      "defaultShape": "row",
+      "componentTag": "ren-educator-academy-module-row",
+      "examples": [
+        {
+          "title": "Getting Started with Star Assessments",
+          "featureArea": "assessments",
+          "targetRole": "teacher",
+          "format": "interactive-walkthrough",
+          "duration": 15,
+          "completionCriteria": "complete-practice",
+          "status": "in-progress",
+          "badge": null,
+          "color": "#2563EB"
+        },
+        {
+          "title": "Building Custom Reports",
+          "featureArea": "reports",
+          "targetRole": "admin",
+          "format": "video",
+          "duration": 25,
+          "completionCriteria": "pass-quiz",
+          "status": "complete",
+          "badge": "Reporting Expert",
+          "color": "#7C3AED"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Module Title",
+          "dataType": "String",
+          "source": "Content Team",
+          "description": "Display name of the learning module."
+        },
+        {
+          "name": "Feature Area",
+          "dataType": "Enum",
+          "source": "Content Team",
+          "description": "Which product area this module covers."
+        },
+        {
+          "name": "Format",
+          "dataType": "Enum",
+          "source": "Content Team",
+          "description": "Delivery format of the module."
+        },
+        {
+          "name": "Duration",
+          "dataType": "Number",
+          "source": "Content Team",
+          "description": "Estimated time to complete in minutes."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System / User Action",
+          "description": "Current completion status."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "Start Module",
+          "roles": "Teacher, Admin",
+          "permission": "Write",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Resume Module",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "S",
+          "roleKeys": ["teacher", "admin"]
+        }
+      ]
+    },
+    {
+      "layout": "detail",
+      "heading": "Detail layout",
+      "description": "What users see when they open a full Educator Academy Module",
+      "defaultShape": "profile",
+      "componentTag": "ren-educator-academy-module-profile",
+      "examples": [
+        {
+          "title": "Getting Started with Star Assessments",
+          "description": "Learn how to schedule, administer, and interpret Star Reading and Star Math assessments. This interactive walkthrough covers the full assessment lifecycle from scheduling to score interpretation.",
+          "featureArea": "assessments",
+          "targetRole": "teacher",
+          "format": "interactive-walkthrough",
+          "duration": 15,
+          "completionCriteria": "complete-practice",
+          "status": "not-started",
+          "badge": null,
+          "color": "#2563EB"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Module Title",
+          "dataType": "String",
+          "source": "Content Team",
+          "description": "Display name of the learning module."
+        },
+        {
+          "name": "Description",
+          "dataType": "String",
+          "source": "Content Team",
+          "description": "Full description of what the module covers and learning outcomes."
+        },
+        {
+          "name": "Feature Area",
+          "dataType": "Enum",
+          "source": "Content Team",
+          "description": "Which product area this module covers."
+        },
+        {
+          "name": "Target Role",
+          "dataType": "Enum",
+          "source": "Content Team",
+          "description": "Who this module is designed for."
+        },
+        {
+          "name": "Format",
+          "dataType": "Enum",
+          "source": "Content Team",
+          "description": "Delivery format of the module."
+        },
+        {
+          "name": "Duration",
+          "dataType": "Number",
+          "source": "Content Team",
+          "description": "Estimated time to complete in minutes."
+        },
+        {
+          "name": "Completion Criteria",
+          "dataType": "Enum",
+          "source": "Content Team",
+          "description": "What the user must do to mark the module complete: view-all, pass-quiz, or complete-practice."
+        },
+        {
+          "name": "Badge/Certification",
+          "dataType": "String",
+          "source": "System",
+          "description": "Badge or certification name awarded upon completion."
+        },
+        {
+          "name": "Prerequisites",
+          "dataType": "Reference → Educator Academy Module[]",
+          "source": "Content Team",
+          "description": "Other modules that must be completed before this one.",
+          "isReference": true,
+          "referenceSlug": "educator-academy-module",
+          "referenceName": "Educator Academy Module"
+        },
+        {
+          "name": "Content URL",
+          "dataType": "String",
+          "source": "Content Team",
+          "description": "URL to the module content."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System / User Action",
+          "description": "Current completion status."
+        },
+        {
+          "name": "Created Date",
+          "dataType": "Date",
+          "source": "System",
+          "description": "When the module was published."
+        },
+        {
+          "name": "Last Updated",
+          "dataType": "Date",
+          "source": "System",
+          "description": "When the module content was last revised."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "Start Module",
+          "roles": "Teacher, Admin",
+          "permission": "Write",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Complete Module",
+          "roles": "Teacher, Admin",
+          "permission": "Write",
+          "priority": "P",
+          "crossObjectSlug": "onboarding-step",
+          "crossObjectName": "Onboarding Step",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Resume Module",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "S",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "View Certificate",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "T",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Share Module",
+          "roles": "Teacher, Admin",
+          "permission": "Write",
+          "priority": "T",
+          "crossObjectSlug": "teacher",
+          "crossObjectName": "Teacher",
+          "roleKeys": ["teacher", "admin"]
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "Browse Academy Catalog",
+      "icon": "school",
+      "role": "Teacher",
+      "action": "browse",
+      "object": "Educator Academy Module",
+      "benefit": "I can find training on the specific Renaissance feature I need help with and choose a format that fits my schedule.",
+      "whenClause": "I open the Educator Academy,",
+      "thenClause": "I see available modules organized by feature area, with duration estimates and format indicators so I can choose what fits my available time."
+    },
+    {
+      "title": "Complete Module and Earn Badge",
+      "icon": "emoji_events",
+      "role": "Teacher",
+      "action": "complete",
+      "object": "Educator Academy Module",
+      "benefit": "I have demonstrated competency with the feature and can reference my certification.",
+      "whenClause": "I finish all required activities in a module,",
+      "thenClause": "my status updates to complete, I receive a badge/certification if one is associated, and any linked onboarding steps are automatically marked complete.",
+      "crossObjects": [{ "slug": "onboarding-step", "name": "Onboarding Step" }]
+    }
+  ],
+  "businessRules": [
+    {
+      "title": "Self-Paced Only",
+      "description": "Modules are always self-paced. There are no scheduled sessions, live components, or cohort-based timelines."
+    },
+    {
+      "title": "Prerequisite Enforcement",
+      "description": "If a module has prerequisites, the Start Module CTA is disabled until all prerequisite modules are marked complete."
+    },
+    {
+      "title": "Completion Criteria Types",
+      "description": "Three completion modes exist: view-all (user must view all content pages), pass-quiz (score >= 80% on embedded quiz), complete-practice (user must complete hands-on practice activity)."
+    },
+    {
+      "title": "Progress Persistence",
+      "description": "Progress within a module is saved automatically. Users can leave and resume at the same point via the Resume Module CTA."
+    },
+    {
+      "title": "Role-Based Filtering",
+      "description": "The academy catalog filters modules by the current user's role. Admins see all modules; teachers see teacher and both-targeted modules."
+    },
+    {
+      "title": "Badge Award",
+      "description": "Badges are awarded automatically upon completion if a Badge/Certification value exists. Badges cannot be manually assigned or revoked."
+    },
+    {
+      "title": "Content Versioning",
+      "description": "When module content is updated, users who previously completed the module retain their completion status. A 'New content available' indicator may appear."
+    },
+    {
+      "title": "Onboarding Integration",
+      "description": "Completing a module that is linked to an Onboarding Step automatically updates the step's status to complete."
+    },
+    {
+      "title": "Duration Accuracy",
+      "description": "Duration is an estimate provided by the content team. Actual completion time may vary. The system does not enforce time limits."
+    },
+    {
+      "title": "No Deletion",
+      "description": "Modules cannot be deleted once published. They can be unpublished (hidden from catalog) but completion records persist."
+    }
+  ],
+  "lifecycle": {
+    "states": [
+      {
+        "name": "Not Started",
+        "description": "User has not begun the module",
+        "triggers": "Default state when module is first visible to user",
+        "variant": "default"
+      },
+      {
+        "name": "In Progress",
+        "description": "User has started but not completed the module",
+        "triggers": "User clicks Start Module or has partial progress saved",
+        "variant": "active"
+      },
+      {
+        "name": "Complete",
+        "description": "User has met all completion criteria",
+        "triggers": "Completion criteria satisfied (view-all, pass-quiz, or complete-practice)",
+        "variant": "active"
+      }
+    ],
+    "transitions": [
+      { "from": "Not Started", "to": ["In Progress"] },
+      { "from": "In Progress", "to": ["Complete"] }
+    ]
+  },
+  "relationships": [
+    {
+      "targetSlug": "onboarding-step",
+      "targetName": "Onboarding Step",
+      "mechanics": "An Educator Academy Module may be linked as the target of an Onboarding Step. Completing the module auto-completes the associated step.",
+      "cardinality": "One-to-many. A Module can be referenced by multiple Onboarding Steps across different checklists; each Step links to at most one Module.",
+      "sorts": "Modules linked from steps: by feature area, by duration.",
+      "filters": "By feature area, by target role, by completion status.",
+      "dependencies": "If a module is unpublished, linked onboarding steps that reference it show a fallback help link instead."
+    },
+    {
+      "targetSlug": "teacher",
+      "targetName": "Teacher",
+      "mechanics": "Teachers consume modules. The relationship tracks per-user progress, completion, and badge status.",
+      "cardinality": "Many-to-many. A Module has many teacher enrollments; a Teacher can enroll in many Modules.",
+      "sorts": "Teachers within a module: by completion status, by last activity date.",
+      "filters": "By completion status, by role (teacher vs. admin), by school.",
+      "dependencies": "If a teacher account is deactivated, their completion records persist for reporting but they no longer appear in active enrollment counts."
+    }
+  ],
+  "relatedObjects": ["onboarding-step", "teacher"],
+  "nestedObjects": [],
+  "allAttributes": [
+    {
+      "name": "Module Title",
+      "dataType": "String",
+      "required": true,
+      "source": "Content Team",
+      "description": "Display name of the learning module. Must be unique within the academy catalog."
+    },
+    {
+      "name": "Description",
+      "dataType": "String",
+      "required": true,
+      "source": "Content Team",
+      "description": "Full description of what the module covers, learning outcomes, and target audience."
+    },
+    {
+      "name": "Feature Area",
+      "dataType": "Enum",
+      "required": true,
+      "source": "Content Team",
+      "description": "Which product area this module covers: assessments, lessons, reports, classes, skills, or assignments."
+    },
+    {
+      "name": "Target Role",
+      "dataType": "Enum",
+      "required": true,
+      "source": "Content Team",
+      "description": "Who this module is designed for: teacher, admin, or both."
+    },
+    {
+      "name": "Format",
+      "dataType": "Enum",
+      "required": true,
+      "source": "Content Team",
+      "description": "Delivery format: video, interactive-walkthrough, step-by-step-guide, quiz, or blended."
+    },
+    {
+      "name": "Duration",
+      "dataType": "Number",
+      "required": true,
+      "source": "Content Team",
+      "description": "Estimated time to complete in minutes."
+    },
+    {
+      "name": "Completion Criteria",
+      "dataType": "Enum",
+      "required": true,
+      "source": "Content Team",
+      "description": "What the user must do to complete: view-all, pass-quiz, or complete-practice."
+    },
+    {
+      "name": "Status",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System / User Action",
+      "description": "Per-user completion status: not-started, in-progress, or complete."
+    },
+    {
+      "name": "Prerequisites",
+      "dataType": "Reference → Educator Academy Module[]",
+      "source": "Content Team",
+      "description": "Other modules that must be completed before starting this one.",
+      "isReference": true,
+      "referenceSlug": "educator-academy-module",
+      "referenceName": "Educator Academy Module"
+    },
+    {
+      "name": "Badge/Certification",
+      "dataType": "String",
+      "source": "Content Team",
+      "description": "Name of the badge or certification awarded upon module completion. Optional."
+    },
+    {
+      "name": "Content URL",
+      "dataType": "String",
+      "required": true,
+      "source": "Content Team",
+      "description": "URL pointing to the module's content delivery page."
+    },
+    {
+      "name": "Created Date",
+      "dataType": "Date",
+      "required": true,
+      "source": "System",
+      "description": "When the module was first published to the academy catalog."
+    },
+    {
+      "name": "Last Updated",
+      "dataType": "Date",
+      "required": true,
+      "source": "System",
+      "description": "When the module content was last revised or updated."
+    }
+  ],
+  "allCTAs": [
+    {
+      "name": "Browse Academy",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "P",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Start Module",
+      "roles": "Teacher, Admin",
+      "permission": "Write",
+      "priority": "P",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Complete Module",
+      "roles": "Teacher, Admin",
+      "permission": "Write",
+      "priority": "P",
+      "crossObjectSlug": "onboarding-step",
+      "crossObjectName": "Onboarding Step",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Resume Module",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "S",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "View Certificate",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "T",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Share Module",
+      "roles": "Teacher, Admin",
+      "permission": "Write",
+      "priority": "T",
+      "crossObjectSlug": "teacher",
+      "crossObjectName": "Teacher",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Search Academy",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "S",
+      "roleKeys": ["teacher", "admin"]
+    }
+  ],
+  "sipValidation": {
+    "structure": {
+      "pass": true,
+      "evidence": "An Educator Academy Module has rich attributes: title, description, feature area, target role, format, duration, completion criteria, status, prerequisites, badge, and content URL. You can design a detail page for a Module."
+    },
+    "instances": {
+      "pass": true,
+      "evidence": "'Getting Started with Star Assessments' (15 min interactive walkthrough for teachers), 'Building Custom Reports' (25 min video for admins), 'Differentiated Assignments with Skills' (30 min blended for teachers). An academy catalog has dozens of Module instances."
+    },
+    "purpose": {
+      "pass": true,
+      "evidence": "Modules are the primary vehicle for educator professional development within Renaissance Intelligence. Teachers browse the academy, start modules, complete them to earn badges, and the system uses completion data to track onboarding progress and recommend next steps."
+    },
+    "verdict": "Domain content object. Structured PD delivery unit that drives educator activation and feature adoption."
+  },
+  "synonyms": [
+    {
+      "term": "Training",
+      "context": "Customer success, onboarding teams",
+      "notes": "Generic term; Module is more specific to the self-paced, structured format"
+    },
+    {
+      "term": "Tutorial",
+      "context": "In-product help, support docs",
+      "notes": "Implies shorter, more focused content; Module is a broader container"
+    },
+    {
+      "term": "Course",
+      "context": "LMS integrations, professional development plans",
+      "notes": "Implies cohort-based or scheduled delivery; Module is always self-paced"
+    },
+    {
+      "term": "PD Module",
+      "context": "District administrators, professional development coordinators",
+      "notes": "Professional Development Module; used in admin-facing contexts"
+    }
+  ],
+  "shapeshifterMatrix": [
+    {
+      "context": "Browse Academy",
+      "value": "browse-academy",
+      "shape": "card",
+      "description": "Academy modules shown as catalog cards with feature area, role, format, and duration. Educators browse available training and start or resume modules.",
+      "visibleAttributes": ["Module Title", "Feature Area", "Target Role", "Format", "Duration", "Status"],
+      "availableCTAs": ["Start Module", "Resume Module"],
+      "cardShape": "Catalog card"
+    },
+    {
+      "context": "Module Detail",
+      "value": "module-detail",
+      "shape": "profile",
+      "description": "The complete module record — description, prerequisites, completion criteria, and certification. Educators work through content, track progress, and earn badges from this page.",
+      "visibleAttributes": ["Module Title", "Description", "Feature Area", "Target Role", "Format", "Duration", "Completion Criteria", "Status", "Badge/Certification", "Prerequisites", "Content URL", "Created Date", "Last Updated"],
+      "availableCTAs": ["Start Module", "Complete Module", "Resume Module", "View Certificate", "Share Module"],
+      "cardShape": "Full page"
+    },
+    {
+      "context": "In Checklist Context",
+      "value": "in-checklist-context",
+      "shape": "row",
+      "description": "A module shown as a compact row within an onboarding checklist, linking professional development to the setup workflow.",
+      "visibleAttributes": ["Module Title", "Format", "Duration", "Status"],
+      "availableCTAs": ["Start Module", "Resume Module"],
+      "cardShape": "Compact row"
+    }
+  ]
+}

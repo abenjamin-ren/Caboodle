@@ -1,0 +1,779 @@
+{
+  "identity": {
+    "slug": "skill",
+    "name": "Skill",
+    "qualifier": "(Core)",
+    "objectType": "core",
+    "category": "knowledge",
+    "definition": "A Skill is a discrete learning competency, standard, or objective — such as a Common Core standard, state standard, or Renaissance learning progression — that represents what a student should know or be able to do, serving as the connective thread across assessments, assignments, resources, and scores in the Renaissance platform.",
+    "synonyms": ["standard", "learning objective", "competency", "domain", "strand"],
+    "products": "Freckle, Lalilo"
+  },
+  "variations": [],
+  "representations": [
+    {
+      "layout": "card",
+      "heading": "Card layout",
+      "description": "How a Skill appears in skill browsers, assignment builders, and standards dashboards",
+      "defaultShape": "card",
+      "componentTag": "ren-skill-card",
+      "examples": [
+        {
+          "code": "3.OA.A.1",
+          "name": "Interpret products of whole numbers",
+          "subject": "Math",
+          "gradeLevel": "3rd Grade",
+          "domain": "Operations & Algebraic Thinking",
+          "framework": "CCSS",
+          "masteryPercent": 72,
+          "studentCount": 24,
+          "resourceCount": 8,
+          "color": "#2563EB",
+          "_contextData": {
+            "classMasteryPercent": 72,
+            "classMasteryBand": "Proficient",
+            "studentCount": 24,
+            "masteredCount": 14,
+            "developingCount": 7,
+            "notStartedCount": 3,
+            "resourceCount": 8,
+            "assessmentCount": 3,
+            "classAveragePercent": 72
+          }
+        },
+        {
+          "code": "RL.5.2",
+          "name": "Determine a theme of a story, drama, or poem",
+          "subject": "ELA",
+          "gradeLevel": "5th Grade",
+          "domain": "Reading: Literature",
+          "framework": "CCSS",
+          "masteryPercent": 58,
+          "studentCount": 31,
+          "resourceCount": 14,
+          "color": "#7C3AED",
+          "_contextData": {
+            "studentMasteryPercent": 58,
+            "studentMasteryBand": "Developing",
+            "lastAssessedDate": "Feb 28, 2026",
+            "practiceAvailable": true,
+            "resourceCount": 14,
+            "assessmentCount": 5,
+            "masteredCount": 10,
+            "developingCount": 14,
+            "belowCount": 7,
+            "classAveragePercent": 58
+          }
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Skill Code",
+          "dataType": "String",
+          "source": "Standards Framework",
+          "description": "Unique identifier within the framework (e.g. 3.OA.A.1, RL.5.2). Primary visual identifier on cards."
+        },
+        {
+          "name": "Skill Name/Description",
+          "dataType": "String",
+          "source": "Standards Framework",
+          "description": "Human-readable description of what the skill covers."
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "source": "Standards Framework",
+          "description": "Academic subject area: Math, ELA, Science, Social Studies."
+        },
+        {
+          "name": "Grade Level",
+          "dataType": "Enum (multi)",
+          "source": "Standards Framework",
+          "description": "Grade band(s) this skill applies to. A skill may span multiple grades."
+        },
+        {
+          "name": "Domain/Strand",
+          "dataType": "String",
+          "source": "Standards Framework",
+          "description": "Organizational grouping within the subject (e.g. Operations & Algebraic Thinking)."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "Teacher, Admin, Student",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin", "student"]
+        },
+        {
+          "name": "Find Resources",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "T",
+          "crossObjectSlug": "resource",
+          "crossObjectName": "Resource",
+          "roleKeys": ["teacher"]
+        }
+      ]
+    },
+    {
+      "layout": "list",
+      "heading": "List layout",
+      "description": "How a Skill appears in standards tables, mastery reports, and alignment views",
+      "defaultShape": "row",
+      "componentTag": "ren-skill-row",
+      "examples": [
+        {
+          "code": "3.OA.A.1",
+          "name": "Interpret products of whole numbers",
+          "subject": "Math",
+          "gradeLevel": "3rd Grade",
+          "domain": "Operations & Algebraic Thinking",
+          "framework": "CCSS",
+          "masteryPercent": 72,
+          "studentCount": 24,
+          "resourceCount": 8,
+          "color": "#2563EB"
+        },
+        {
+          "code": "RL.5.2",
+          "name": "Determine a theme of a story, drama, or poem",
+          "subject": "ELA",
+          "gradeLevel": "5th Grade",
+          "domain": "Reading: Literature",
+          "framework": "CCSS",
+          "masteryPercent": 58,
+          "studentCount": 31,
+          "resourceCount": 14,
+          "color": "#7C3AED"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Skill Code",
+          "dataType": "String",
+          "source": "Standards Framework",
+          "description": "Unique identifier within the framework."
+        },
+        {
+          "name": "Skill Name/Description",
+          "dataType": "String",
+          "source": "Standards Framework",
+          "description": "Human-readable description of what the skill covers."
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "source": "Standards Framework",
+          "description": "Academic subject area."
+        },
+        {
+          "name": "Grade Level",
+          "dataType": "Enum (multi)",
+          "source": "Standards Framework",
+          "description": "Grade band(s) this skill applies to."
+        },
+        {
+          "name": "Standard Framework",
+          "dataType": "Enum",
+          "source": "System Configuration",
+          "description": "Which standards framework this skill belongs to: CCSS, state-specific, or Renaissance."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Active or Deprecated. Controls visibility in assignment builders and reports."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "Teacher, Admin, Student",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin", "student"]
+        },
+        {
+          "name": "View Mastery Report",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "student",
+          "crossObjectName": "Student",
+          "roleKeys": ["teacher", "admin"]
+        }
+      ]
+    },
+    {
+      "layout": "detail",
+      "heading": "Detail page layout",
+      "description": "What users see when they open a full Skill record with mastery distribution and related objects",
+      "defaultShape": "profile",
+      "componentTag": "ren-skill-profile",
+      "examples": [
+        {
+          "code": "3.OA.A.1",
+          "name": "Interpret products of whole numbers, e.g., interpret 5 × 7 as the total number of objects in 5 groups of 7 objects each.",
+          "subject": "Math",
+          "gradeLevel": "3rd Grade",
+          "domain": "Operations & Algebraic Thinking",
+          "framework": "CCSS",
+          "masteryPercent": 72,
+          "studentCount": 24,
+          "resourceCount": 8,
+          "assessmentCount": 3,
+          "color": "#2563EB",
+          "nestedObjects": [
+            { "label": "Assessments", "count": 3 },
+            { "label": "Assignments", "count": 12 },
+            { "label": "Resources", "count": 8 },
+            { "label": "Scores", "count": 156 },
+            { "label": "Prerequisites", "count": 2 }
+          ]
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Skill Code",
+          "dataType": "String",
+          "source": "Standards Framework",
+          "description": "Unique identifier within the framework (e.g. 3.OA.A.1)."
+        },
+        {
+          "name": "Skill Name/Description",
+          "dataType": "String",
+          "source": "Standards Framework",
+          "description": "Full description of the learning competency."
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "source": "Standards Framework",
+          "description": "Academic subject area: Math, ELA, Science, Social Studies."
+        },
+        {
+          "name": "Grade Level",
+          "dataType": "Enum (multi)",
+          "source": "Standards Framework",
+          "description": "Grade band(s) this skill applies to."
+        },
+        {
+          "name": "Domain/Strand",
+          "dataType": "String",
+          "source": "Standards Framework",
+          "description": "Organizational grouping within the subject."
+        },
+        {
+          "name": "Standard Framework",
+          "dataType": "Enum",
+          "source": "System Configuration",
+          "description": "CCSS, state-specific, or Renaissance learning progression."
+        },
+        {
+          "name": "Difficulty",
+          "dataType": "Number",
+          "source": "System / Assessment Engine",
+          "description": "Difficulty rating derived from assessment performance data. Scale 1-5."
+        },
+        {
+          "name": "Prerequisites",
+          "dataType": "Reference → Skill[]",
+          "source": "Standards Framework / Curriculum",
+          "description": "Skills that should be mastered before this one.",
+          "isReference": true,
+          "referenceSlug": "skill",
+          "referenceName": "Skill"
+        },
+        {
+          "name": "Related Skills",
+          "dataType": "Reference → Skill[]",
+          "source": "Standards Framework / System",
+          "description": "Skills that share conceptual overlap or cross-domain connections.",
+          "isReference": true,
+          "referenceSlug": "skill",
+          "referenceName": "Skill"
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Active or Deprecated. Deprecated skills remain for historical reporting but are hidden from new assignments."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "Teacher, Admin, Student",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin", "student"]
+        },
+        {
+          "name": "View Mastery Report",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "student",
+          "crossObjectName": "Student",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Assign Practice",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "assignment",
+          "crossObjectName": "Assignment",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Find Resources",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "T",
+          "crossObjectSlug": "resource",
+          "crossObjectName": "Resource",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Create Assessment",
+          "roles": "Teacher, Admin",
+          "permission": "Write",
+          "priority": "T",
+          "crossObjectSlug": "assessment",
+          "crossObjectName": "Assessment",
+          "roleKeys": ["teacher", "admin"]
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "View Skill Mastery",
+      "icon": "school",
+      "role": "Teacher",
+      "action": "view",
+      "object": "Skill",
+      "benefit": "I can see which students have mastered, are progressing on, or are struggling with a specific standard so I can target my instruction.",
+      "whenClause": "I open a Skill from the standards browser,",
+      "thenClause": "the mastery distribution across my class, the number of related assessments and resources, and the skill's prerequisite chain."
+    },
+    {
+      "title": "Assign Skill Practice",
+      "icon": "assignment",
+      "role": "Teacher",
+      "action": "assign",
+      "object": "Skill",
+      "benefit": "students who haven't mastered the skill receive targeted practice through Freckle or Lalilo.",
+      "whenClause": "I select 'Assign Practice' on a Skill,",
+      "thenClause": "the system creates an adaptive assignment for selected students targeting that specific standard.",
+      "crossObjects": [
+        { "slug": "assignment", "name": "Assignment" },
+        { "slug": "student", "name": "Student" }
+      ]
+    },
+    {
+      "title": "Browse Standards Alignment",
+      "icon": "account_tree",
+      "role": "Admin",
+      "action": "browse",
+      "object": "Skill",
+      "benefit": "I can verify that our assessment and curriculum content aligns with state and district standards.",
+      "whenClause": "I filter skills by framework and grade level,",
+      "thenClause": "all matching skills with their assessment coverage, resource counts, and mastery data across the district."
+    }
+  ],
+  "businessRules": [
+    {
+      "title": "Uniqueness",
+      "description": "A Skill is uniquely identified by its Skill Code within a Standard Framework. The combination of framework + code is globally unique across the system."
+    },
+    {
+      "title": "Immutability",
+      "description": "Skill definitions are imported from external standards bodies (CCSS, state DOEs) and cannot be edited by users. Only Status can be changed (Active → Deprecated)."
+    },
+    {
+      "title": "Framework Alignment",
+      "description": "Each Skill belongs to exactly one Standard Framework. Cross-framework mappings (e.g. CCSS to a state standard) are maintained as Related Skills references."
+    },
+    {
+      "title": "Mastery Calculation",
+      "description": "A student's mastery percentage for a Skill is system-calculated from assessment and practice Scores. The algorithm varies by product (Star uses IRT; Freckle uses adaptive practice streaks)."
+    },
+    {
+      "title": "Prerequisite Ordering",
+      "description": "Prerequisites form a directed acyclic graph. Circular dependencies are rejected at import. Prerequisite chains inform adaptive learning paths in Freckle and Lalilo."
+    },
+    {
+      "title": "Deprecation",
+      "description": "When a standards framework is updated, superseded Skills are marked Deprecated. Historical Scores and mastery data persist, but the Skill no longer appears in assignment builders or active reports."
+    },
+    {
+      "title": "Grade Spanning",
+      "description": "A Skill may apply to multiple grade levels (e.g. a progression standard spanning grades 3-5). Grade Level is stored as an array and filtering matches any grade in the range."
+    }
+  ],
+  "lifecycle": {
+    "states": [
+      {
+        "name": "Active",
+        "description": "Currently in use for assessments, assignments, and reporting",
+        "triggers": "Standards framework import, manual activation",
+        "variant": "active"
+      },
+      {
+        "name": "Deprecated",
+        "description": "Superseded by updated standards; retained for historical data",
+        "triggers": "Framework update, admin deprecation action",
+        "variant": "default"
+      }
+    ],
+    "transitions": [
+      { "from": "Active", "to": ["Deprecated"] }
+    ]
+  },
+  "relationships": [
+    {
+      "targetSlug": "student",
+      "targetName": "Student",
+      "mechanics": "A Student's mastery of a Skill is system-calculated from assessment and practice Scores. Teachers view per-student mastery; students see their own proficiency in Freckle/Lalilo dashboards.",
+      "cardinality": "Many-to-many. A Skill is measured across many Students; a Student works on many Skills. Typical: 50-200 skills per student per subject per year.",
+      "sorts": "Students for a Skill: by mastery percentage (default), alphabetical, by grade level.",
+      "filters": "By mastery band (Not started, Developing, Proficient, Advanced), by class, by grade level.",
+      "dependencies": "If a Student is deactivated, their mastery data persists for historical reporting but is excluded from active class aggregations."
+    },
+    {
+      "targetSlug": "assessment",
+      "targetName": "Assessment",
+      "mechanics": "Assessments measure one or more Skills. Star assessments map items to Skills via IRT; DnA assessments have explicit skill alignment set by the creator.",
+      "cardinality": "Many-to-many. An Assessment measures multiple Skills; a Skill is measured by multiple Assessments.",
+      "sorts": "Assessments for a Skill: by date administered (default), by assessment type, by average score.",
+      "filters": "By assessment type (Star, DnA, Freckle), by date range, by class/school.",
+      "dependencies": "If an Assessment is archived, its Scores still contribute to Skill mastery calculations."
+    },
+    {
+      "targetSlug": "resource",
+      "targetName": "Resource",
+      "mechanics": "Resources are tagged with Skills they support. Teachers use Find Resources to discover content aligned to a specific Skill for remediation or enrichment.",
+      "cardinality": "Many-to-many. A Resource supports multiple Skills; a Skill has multiple aligned Resources.",
+      "sorts": "Resources for a Skill: by relevance (default), by type (video, article, activity), by grade level.",
+      "filters": "By resource type, by product (myON, Freckle), by grade level, by language.",
+      "dependencies": "If a Skill is deprecated, its resource alignments remain but the Skill is no longer surfaced in resource search results."
+    }
+  ],
+  "relatedObjects": ["student", "assessment", "assignment", "resource", "score", "insight"],
+  "nestedObjects": [
+    {
+      "slug": "assessment",
+      "name": "Assessment",
+      "cardinality": "Many-to-many",
+      "description": "Assessments that measure this skill"
+    },
+    {
+      "slug": "assignment",
+      "name": "Assignment",
+      "cardinality": "One-to-many",
+      "description": "Practice assignments targeting this skill"
+    },
+    {
+      "slug": "resource",
+      "name": "Resource",
+      "cardinality": "Many-to-many",
+      "description": "Content aligned to this skill for instruction or practice"
+    },
+    {
+      "slug": "score",
+      "name": "Score",
+      "cardinality": "One-to-many",
+      "description": "Assessment and practice scores that measure this skill"
+    },
+    {
+      "slug": "skill",
+      "name": "Prerequisite Skill",
+      "cardinality": "Many-to-many",
+      "description": "Skills that must be mastered before this one"
+    }
+  ],
+  "allAttributes": [
+    {
+      "name": "Skill Code",
+      "dataType": "String",
+      "required": true,
+      "source": "Standards Framework",
+      "description": "Unique identifier within the framework (e.g. 3.OA.A.1, RL.5.2). Primary visual identifier across all representations."
+    },
+    {
+      "name": "Skill Name/Description",
+      "dataType": "String",
+      "required": true,
+      "source": "Standards Framework",
+      "description": "Human-readable description of the learning competency the skill represents."
+    },
+    {
+      "name": "Subject",
+      "dataType": "Enum",
+      "required": true,
+      "source": "Standards Framework",
+      "description": "Academic subject area: Math, ELA, Science, Social Studies. Determines color coding and report grouping."
+    },
+    {
+      "name": "Grade Level",
+      "dataType": "Enum (multi)",
+      "required": true,
+      "source": "Standards Framework",
+      "description": "Grade band(s) this skill applies to. A skill may span multiple grades (e.g. 3-5). PreK-12."
+    },
+    {
+      "name": "Domain/Strand",
+      "dataType": "String",
+      "required": true,
+      "source": "Standards Framework",
+      "description": "Organizational grouping within the subject (e.g. Operations & Algebraic Thinking, Reading: Literature)."
+    },
+    {
+      "name": "Standard Framework",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System Configuration",
+      "description": "Which standards framework this skill belongs to: CCSS, state-specific, or Renaissance learning progression."
+    },
+    {
+      "name": "Difficulty",
+      "dataType": "Number",
+      "source": "System / Assessment Engine",
+      "description": "Difficulty rating derived from assessment performance data. Scale 1-5. Used by adaptive engines to sequence practice."
+    },
+    {
+      "name": "Prerequisites",
+      "dataType": "Reference → Skill[]",
+      "source": "Standards Framework / Curriculum",
+      "description": "Skills that should be mastered before this one. Forms a directed acyclic graph for learning path construction.",
+      "isReference": true,
+      "referenceSlug": "skill",
+      "referenceName": "Skill"
+    },
+    {
+      "name": "Related Skills",
+      "dataType": "Reference → Skill[]",
+      "source": "Standards Framework / System",
+      "description": "Skills that share conceptual overlap, cross-domain connections, or cross-framework equivalence.",
+      "isReference": true,
+      "referenceSlug": "skill",
+      "referenceName": "Skill"
+    },
+    {
+      "name": "Status",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System",
+      "description": "Active or Deprecated. Deprecated skills are retained for historical reporting but hidden from assignment builders and active reports."
+    }
+  ],
+  "allCTAs": [
+    {
+      "name": "View",
+      "roles": "Teacher, Admin, Student",
+      "permission": "Read",
+      "priority": "P",
+      "roleKeys": ["teacher", "admin", "student"]
+    },
+    {
+      "name": "View Mastery Report",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "S",
+      "crossObjectSlug": "student",
+      "crossObjectName": "Student",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Assign Practice",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "S",
+      "crossObjectSlug": "assignment",
+      "crossObjectName": "Assignment",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Find Resources",
+      "roles": "Teacher",
+      "permission": "Read",
+      "priority": "T",
+      "crossObjectSlug": "resource",
+      "crossObjectName": "Resource",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Create Assessment",
+      "roles": "Teacher, Admin",
+      "permission": "Write",
+      "priority": "T",
+      "crossObjectSlug": "assessment",
+      "crossObjectName": "Assessment",
+      "roleKeys": ["teacher", "admin"]
+    }
+  ],
+  "sipValidation": {
+    "structure": {
+      "pass": true,
+      "evidence": "A Skill has a rich set of attributes: code, name/description, subject, grade level, domain/strand, framework, difficulty, prerequisites, related skills, and status. You can design a detail page for a Skill."
+    },
+    "instances": {
+      "pass": true,
+      "evidence": "3.OA.A.1 (Interpret products of whole numbers), RL.5.2 (Determine a theme), 8.EE.B.5 (Graph proportional relationships). The Common Core alone contains thousands of Skill instances; state frameworks add thousands more."
+    },
+    "purpose": {
+      "pass": true,
+      "evidence": "Skills are the connective tissue of the Renaissance platform. Teachers view Skill mastery reports, assign practice by Skill, find resources aligned to Skills, and create assessments targeting specific Skills. Students see their Skill proficiency in dashboards."
+    },
+    "verdict": "Core knowledge object. The universal standard unit that connects assessments, assignments, resources, and scores."
+  },
+  "synonyms": [
+    {
+      "term": "Standard",
+      "context": "State education departments, CCSS documentation",
+      "notes": "The most common external synonym. Used in 'state standards', 'Common Core standards'."
+    },
+    {
+      "term": "Learning Objective",
+      "context": "Curriculum design, lesson planning",
+      "notes": "Used when describing what students should be able to do after instruction."
+    },
+    {
+      "term": "Competency",
+      "context": "Competency-based education, Renaissance Intelligence",
+      "notes": "Emphasizes mastery demonstration rather than coverage."
+    },
+    {
+      "term": "Domain",
+      "context": "CCSS Math, Renaissance reports",
+      "notes": "Technically a grouping level above individual skills, but often used interchangeably in casual conversation."
+    },
+    {
+      "term": "Strand",
+      "context": "State standards frameworks, curriculum mapping",
+      "notes": "Similar to Domain — a mid-level organizational grouping. Usage varies by state."
+    },
+    {
+      "term": "Benchmark",
+      "context": "Assessment teams, Star reports",
+      "notes": "Sometimes used to mean a Skill-level performance target rather than the Skill itself."
+    }
+  ],
+  "shapeshifterMatrix": [
+    {
+      "context": "Standards Browser",
+      "value": "standards-browser",
+      "shape": "card",
+      "description": "Skills organized by subject and grade for browsing the standards framework. Teachers explore what skills exist and find aligned resources for instruction.",
+      "visibleAttributes": ["Skill Code", "Skill Name/Description", "Subject", "Grade Level", "Domain/Strand"],
+      "availableCTAs": ["View", "Find Resources"],
+      "cardShape": "Medium card",
+      "userIntent": "What skills exist in this subject and grade?"
+    },
+    {
+      "context": "Mastery Report",
+      "value": "mastery-report",
+      "shape": "row",
+      "description": "Skills listed as data rows with class mastery percentages and student distribution. Teachers identify which skills the class has mastered and where to focus instruction next.",
+      "visibleAttributes": ["Skill Code", "Skill Name/Description", "Subject", "Grade Level", "Domain/Strand"],
+      "availableCTAs": ["View", "View Mastery Report", "Assign Practice"],
+      "cardShape": "Data row",
+      "userIntent": "How has my class mastered each skill?",
+      "contextDataSchema": {
+        "classMasteryPercent": { "type": "number", "description": "Class average mastery percentage" },
+        "classMasteryBand": { "type": "string", "description": "Distribution label for class mastery" },
+        "studentCount": { "type": "number", "description": "Number of students assessed" },
+        "masteredCount": { "type": "number", "description": "Students at mastery level" },
+        "developingCount": { "type": "number", "description": "Students at developing level" },
+        "notStartedCount": { "type": "number", "description": "Students not yet started" }
+      }
+    },
+    {
+      "context": "Skill Detail",
+      "value": "skill-detail",
+      "shape": "profile",
+      "description": "The complete skill record — standards alignment, prerequisites, related skills, and difficulty. Teachers dig into a specific skill to plan instruction or assign targeted practice.",
+      "visibleAttributes": ["Skill Code", "Skill Name/Description", "Subject", "Grade Level", "Domain/Strand", "Standard Framework", "Difficulty", "Prerequisites", "Related Skills", "Status"],
+      "availableCTAs": ["View", "View Mastery Report", "Assign Practice", "Find Resources", "Create Assessment"],
+      "cardShape": "Full page",
+      "userIntent": "What is the full detail of this skill?"
+    },
+    {
+      "context": "Student Proficiency Dashboard",
+      "value": "student-proficiency-dashboard",
+      "shape": "compact-card",
+      "description": "Skills shown as compact cards with individual student mastery levels. Teachers check which skills a student has mastered and assign targeted practice where needed.",
+      "visibleAttributes": ["Skill Code", "Skill Name/Description", "Subject", "Grade Level"],
+      "availableCTAs": ["View", "Assign Practice"],
+      "cardShape": "Compact card",
+      "userIntent": "How has this student mastered each skill?",
+      "contextDataSchema": {
+        "studentMasteryPercent": { "type": "number", "description": "This student's mastery percentage" },
+        "studentMasteryBand": { "type": "string", "description": "Mastery level label" },
+        "lastAssessedDate": { "type": "string", "description": "When last measured" },
+        "practiceAvailable": { "type": "boolean", "description": "Whether practice is assignable" }
+      }
+    },
+    {
+      "context": "Assignment Builder",
+      "value": "assignment-builder",
+      "shape": "mini-row",
+      "description": "A compact selection list of skills for targeting with an assignment. Shows mastery data and resource counts to help teachers choose the most impactful skills to practice.",
+      "visibleAttributes": ["Skill Code", "Skill Name/Description", "Grade Level", "Domain/Strand"],
+      "availableCTAs": [],
+      "cardShape": "Mini row",
+      "userIntent": "Which skills should I target with this assignment?",
+      "contextDataSchema": {
+        "resourceCount": { "type": "number", "description": "Available practice resources" },
+        "assessmentCount": { "type": "number", "description": "Assessments measuring this skill" },
+        "classMasteryPercent": { "type": "number", "description": "Current class mastery for prioritization" }
+      }
+    },
+    {
+      "context": "Assessment Skill Breakdown",
+      "value": "assessment-skill-breakdown",
+      "shape": "data-row",
+      "description": "Skills measured by an assessment, shown with class-level performance data. Teachers see how students performed on each skill to identify instructional gaps.",
+      "visibleAttributes": ["Skill Code", "Skill Name/Description", "Domain/Strand"],
+      "availableCTAs": ["View", "Assign Practice"],
+      "cardShape": "Data row",
+      "userIntent": "How did students perform on each skill within this assessment?",
+      "contextDataSchema": {
+        "classAveragePercent": { "type": "number", "description": "Class average on this skill" },
+        "masteredCount": { "type": "number", "description": "Students at mastery" },
+        "developingCount": { "type": "number", "description": "Students developing" },
+        "belowCount": { "type": "number", "description": "Students below expectations" }
+      }
+    },
+    {
+      "context": "Student Proficiency",
+      "value": "student-proficiency",
+      "shape": "header",
+      "description": "A skill shown as a section header within a student's proficiency view, identifying which skill is being profiled in the detail below.",
+      "visibleAttributes": ["Skill Code", "Skill Name/Description", "Subject", "Grade Level"],
+      "availableCTAs": ["View"],
+      "cardShape": "Section header",
+      "userIntent": "What skill is being profiled?"
+    },
+    {
+      "context": "Student Detail",
+      "value": "student-detail",
+      "shape": "compact-card",
+      "description": "Skills within a student's profile showing individual mastery percentages and proficiency bands. Teachers see at a glance which skills are solid and which need work.",
+      "visibleAttributes": ["Skill Code", "Skill Name/Description", "Subject", "Grade Level", "Domain/Strand"],
+      "availableCTAs": ["View", "View Mastery Report", "Assign Practice"],
+      "cardShape": "Compact card with mastery bar",
+      "userIntent": "How has this student mastered each skill?",
+      "contextDataSchema": {
+        "studentMasteryPercent": { "type": "number", "description": "Student mastery percentage for this skill" },
+        "studentMasteryBand": { "type": "string", "description": "Mastered, Developing, or Not Started" },
+        "lastAssessedDate": { "type": "string", "description": "Date of most recent assessment for this skill" },
+        "latestScore": { "type": "number", "description": "Most recent score value" }
+      }
+    }
+  ]
+}

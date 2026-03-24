@@ -1,0 +1,244 @@
+/* ============================================
+   Every Layout — Composition Primitives
+   https://every-layout.dev
+   ============================================ */
+
+/* ----- The Stack -----
+   Vertical rhythm between sibling elements.
+   --space: gap size (default --s1)
+*/
+.stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.stack > * {
+  margin-block: 0;
+}
+
+.stack > * + * {
+  margin-block-start: var(--space, var(--s1));
+}
+
+.stack-recursive * + * {
+  margin-block-start: var(--space, var(--s1));
+}
+
+/* ----- The Box -----
+   Padded container with optional border.
+   --padding: internal space (default --s1)
+   --border-width: border size (default --border-thin)
+*/
+.box {
+  padding: var(--padding, var(--s1));
+  border: var(--border-width, var(--border-thin)) solid;
+  outline: var(--border-width, var(--border-thin)) transparent;
+  outline-offset: calc(var(--border-width, var(--border-thin)) * -1);
+}
+
+.box.borderless {
+  border: none;
+}
+
+/* ----- The Center -----
+   Horizontally centered column with max-width.
+   --max-inline-size: max width (default --measure)
+   --gutter: inline padding (default --s1)
+*/
+.center {
+  box-sizing: content-box;
+  max-inline-size: var(--max-inline-size, var(--measure));
+  margin-inline: auto;
+  padding-inline: var(--gutter, var(--s1));
+}
+
+.center.intrinsic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ----- The Cluster -----
+   Horizontal wrapping group (nav items, tags, buttons).
+   --space: gap size (default --s1)
+   --justify: horizontal alignment (default flex-start)
+   --align: vertical alignment (default center)
+*/
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space, var(--s1));
+  justify-content: var(--justify, flex-start);
+  align-items: var(--align, center);
+}
+
+/* ----- The Sidebar -----
+   Two-panel layout: one fixed-width side, one fluid.
+   Apply to the parent wrapper. Direct children are the
+   sidebar and the content panel.
+   --sidebar-width: fixed side width (default 20rem)
+   --content-min: min content width before wrap (default 50%)
+   --space: gap (default --s1)
+*/
+.with-sidebar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space, var(--s1));
+}
+
+.with-sidebar > .sidebar {
+  flex-basis: var(--sidebar-width, 20rem);
+  flex-grow: 1;
+}
+
+.with-sidebar > .not-sidebar {
+  flex-basis: 0;
+  flex-grow: 999;
+  min-inline-size: var(--content-min, 50%);
+}
+
+/* ----- The Switcher -----
+   Horizontal row that flips to vertical below a threshold.
+   --threshold: container width breakpoint (default --measure)
+   --space: gap (default --s1)
+   --limit: max items shown horizontally (handled by quantity query)
+*/
+.switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space, var(--s1));
+}
+
+.switcher > * {
+  flex-grow: 1;
+  flex-basis: calc((var(--threshold, var(--measure)) - 100%) * 999);
+}
+
+.switcher > :nth-last-child(n+5),
+.switcher > :nth-last-child(n+5) ~ * {
+  flex-basis: 100%;
+}
+
+/* ----- The Cover -----
+   Vertically centered content within a min-height container.
+   --min-height: minimum block size (default 100vh)
+   --space: padding (default --s1)
+*/
+.cover {
+  display: flex;
+  flex-direction: column;
+  min-block-size: var(--min-height, 100vh);
+  padding: var(--space, var(--s1));
+}
+
+.cover > * {
+  margin-block: var(--space, var(--s1));
+}
+
+.cover > :first-child:not(.cover-centered) {
+  margin-block-start: 0;
+}
+
+.cover > :last-child:not(.cover-centered) {
+  margin-block-end: 0;
+}
+
+.cover > .cover-centered {
+  margin-block: auto;
+}
+
+/* ----- The Grid -----
+   Auto-filling equal-width columns.
+   --min: minimum column width (default 15rem)
+   --space: gap (default --s1)
+*/
+.grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(var(--min, 15rem), 100%), 1fr)
+  );
+  gap: var(--space, var(--s1));
+}
+
+/* ----- The Frame -----
+   Aspect-ratio container for media.
+   --ratio: aspect ratio (default 16/9)
+*/
+.frame {
+  aspect-ratio: var(--ratio, 16 / 9);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.frame > img,
+.frame > video {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+/* ----- The Reel -----
+   Horizontal scrolling strip.
+   --space: gap between items (default --s1)
+   --item-width: individual item width (default auto)
+*/
+.reel {
+  display: flex;
+  overflow-x: auto;
+  gap: var(--space, var(--s1));
+  scrollbar-color: var(--color-mid) var(--color-light);
+}
+
+.reel > * {
+  flex-shrink: 0;
+  flex-basis: var(--item-width, auto);
+}
+
+/* ----- The Imposter -----
+   Absolutely centered overlay.
+   Place inside a position:relative parent.
+*/
+.imposter {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.imposter.contain {
+  --margin: 0px;
+  overflow: auto;
+  max-inline-size: calc(100% - (var(--margin) * 2));
+  max-block-size: calc(100% - (var(--margin) * 2));
+}
+
+/* ----- The Icon -----
+   Inline icon sizing + icon-with-text pair.
+*/
+.icon {
+  width: 0.75em;
+  width: 1cap;
+  height: 0.75em;
+  height: 1cap;
+}
+
+.with-icon {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space, 0.5em);
+}
+
+/* ----- The Container -----
+   Page-width wrapper (wider than Center, no content-box trick).
+   --max-width: max container width (default 80rem)
+   --gutter: inline padding (default --s1)
+*/
+.container {
+  max-inline-size: var(--max-width, 80rem);
+  margin-inline: auto;
+  padding-inline: var(--gutter, var(--s1));
+}

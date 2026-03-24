@@ -1,0 +1,832 @@
+{
+  "identity": {
+    "slug": "learning-path",
+    "name": "Learning Path",
+    "qualifier": "(Domain)",
+    "objectType": "domain",
+    "category": "activity",
+    "definition": "A Learning Path is a personalized, adaptive sequence of instructional activities and practice resources generated from assessment data and aligned to specific skills.",
+    "synonyms": ["Path", "Pathway", "Personalized Plan", "Adaptive Sequence"],
+    "products": "Renaissance Intelligence"
+  },
+  "variations": [],
+  "representations": [
+    {
+      "layout": "card",
+      "heading": "Card layout",
+      "description": "How a Learning Path appears in student dashboards and teacher views",
+      "defaultShape": "card",
+      "componentTag": "ren-learning-path-card",
+      "examples": [
+        {
+          "name": "Math Foundations — Number Sense",
+          "studentName": "Harry Potter",
+          "subject": "math",
+          "focusSkills": ["Number Sense", "Place Value"],
+          "currentLevel": "2.8 GE",
+          "targetLevel": "3.5 GE",
+          "progress": 35,
+          "status": "active",
+          "estimatedRemaining": "2 weeks",
+          "color": "#cf3a4e"
+        },
+        {
+          "name": "Reading Comprehension Boost",
+          "studentName": "Hermione Granger",
+          "subject": "ela",
+          "focusSkills": ["Inference", "Main Idea"],
+          "currentLevel": "920L",
+          "targetLevel": "980L",
+          "progress": 80,
+          "status": "active",
+          "estimatedRemaining": "3 days",
+          "color": "#2563EB"
+        },
+        {
+          "name": "Geometry Mastery",
+          "studentName": "Ron Weasley",
+          "subject": "math",
+          "focusSkills": ["Angles", "Area & Perimeter"],
+          "currentLevel": "3.0 GE",
+          "targetLevel": "3.5 GE",
+          "progress": 100,
+          "status": "complete",
+          "estimatedRemaining": "—",
+          "color": "#059669"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Path Name",
+          "dataType": "String",
+          "source": "System",
+          "description": "Auto-generated name based on subject and focus skills."
+        },
+        {
+          "name": "Student",
+          "dataType": "Reference → Student",
+          "source": "System",
+          "description": "The student this path belongs to.",
+          "isReference": true,
+          "referenceSlug": "student",
+          "referenceName": "Student"
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Subject area: ela or math."
+        },
+        {
+          "name": "Focus Skills",
+          "dataType": "Reference → Skill[]",
+          "source": "System",
+          "description": "Skills targeted by this path.",
+          "isReference": true,
+          "referenceSlug": "skill",
+          "referenceName": "Skill"
+        },
+        {
+          "name": "Progress",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Percentage of activities completed (0-100)."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Current state: active, complete, paused, or stale."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Learning Path",
+          "roles": "Teacher, Student",
+          "permission": "Read",
+          "priority": "P",
+          "crossObjectSlug": "skill",
+          "crossObjectName": "Skill",
+          "roleKeys": ["teacher", "student"]
+        },
+        {
+          "name": "Start Next Activity",
+          "roles": "Student",
+          "permission": "Write",
+          "priority": "P",
+          "crossObjectSlug": "assignment",
+          "crossObjectName": "Assignment",
+          "roleKeys": ["student"]
+        }
+      ]
+    },
+    {
+      "layout": "list",
+      "heading": "List layout",
+      "description": "How a Learning Path appears in teacher class views",
+      "defaultShape": "row",
+      "componentTag": "ren-learning-path-row",
+      "examples": [
+        {
+          "name": "Math Foundations — Number Sense",
+          "studentName": "Harry Potter",
+          "subject": "math",
+          "focusSkills": ["Number Sense", "Place Value"],
+          "currentLevel": "2.8 GE",
+          "targetLevel": "3.5 GE",
+          "progress": 35,
+          "status": "active",
+          "estimatedRemaining": "2 weeks",
+          "color": "#cf3a4e"
+        },
+        {
+          "name": "Reading Comprehension Boost",
+          "studentName": "Hermione Granger",
+          "subject": "ela",
+          "focusSkills": ["Inference", "Main Idea"],
+          "currentLevel": "920L",
+          "targetLevel": "980L",
+          "progress": 80,
+          "status": "active",
+          "estimatedRemaining": "3 days",
+          "color": "#2563EB"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Path Name",
+          "dataType": "String",
+          "source": "System",
+          "description": "Path display name."
+        },
+        {
+          "name": "Student",
+          "dataType": "Reference → Student",
+          "source": "System",
+          "description": "The student this path belongs to.",
+          "isReference": true,
+          "referenceSlug": "student",
+          "referenceName": "Student"
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "ela or math."
+        },
+        {
+          "name": "Progress",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Completion percentage."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Current state."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Learning Path",
+          "roles": "Teacher, Student",
+          "permission": "Read",
+          "priority": "P",
+          "crossObjectSlug": "skill",
+          "crossObjectName": "Skill",
+          "roleKeys": ["teacher", "student"]
+        },
+        {
+          "name": "Customize Path",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "student",
+          "crossObjectName": "Student",
+          "roleKeys": ["teacher"]
+        }
+      ]
+    },
+    {
+      "layout": "detail",
+      "heading": "Detail layout",
+      "description": "Full Learning Path view with activity sequence",
+      "defaultShape": "profile",
+      "componentTag": "ren-learning-path-profile",
+      "examples": [
+        {
+          "name": "Math Foundations — Number Sense",
+          "studentName": "Harry Potter",
+          "subject": "math",
+          "focusSkills": ["Number Sense", "Place Value"],
+          "currentLevel": "2.8 GE",
+          "targetLevel": "3.5 GE",
+          "progress": 35,
+          "status": "active",
+          "estimatedRemaining": "2 weeks",
+          "activityCount": 12,
+          "color": "#cf3a4e"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Path Name",
+          "dataType": "String",
+          "source": "System",
+          "description": "Auto-generated name."
+        },
+        {
+          "name": "Student",
+          "dataType": "Reference → Student",
+          "source": "System",
+          "description": "The student this path belongs to.",
+          "isReference": true,
+          "referenceSlug": "student",
+          "referenceName": "Student"
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Subject area: ela or math."
+        },
+        {
+          "name": "Focus Skills",
+          "dataType": "Reference → Skill[]",
+          "source": "System",
+          "description": "Skills targeted by this path.",
+          "isReference": true,
+          "referenceSlug": "skill",
+          "referenceName": "Skill"
+        },
+        {
+          "name": "Current Level",
+          "dataType": "String",
+          "source": "System",
+          "description": "Student's current proficiency level in the path's subject."
+        },
+        {
+          "name": "Target Level",
+          "dataType": "String",
+          "source": "System",
+          "description": "Target proficiency level the path aims to reach."
+        },
+        {
+          "name": "Activities",
+          "dataType": "Reference → Assignment[]",
+          "source": "System",
+          "description": "Ordered sequence of activities in this path.",
+          "isReference": true,
+          "referenceSlug": "assignment",
+          "referenceName": "Assignment"
+        },
+        {
+          "name": "Progress",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Percentage of activities completed."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Current state."
+        },
+        {
+          "name": "Generated From",
+          "dataType": "Reference → Assessment",
+          "source": "System",
+          "description": "The assessment whose results triggered path generation.",
+          "isReference": true,
+          "referenceSlug": "assessment",
+          "referenceName": "Assessment"
+        },
+        {
+          "name": "Last Updated",
+          "dataType": "Date",
+          "source": "System",
+          "description": "When the path was last adapted based on new data."
+        },
+        {
+          "name": "Estimated Remaining",
+          "dataType": "String",
+          "source": "System",
+          "description": "Estimated time to complete the remaining activities."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Learning Path",
+          "roles": "Teacher, Student",
+          "permission": "Read",
+          "priority": "P",
+          "crossObjectSlug": "skill",
+          "crossObjectName": "Skill",
+          "roleKeys": ["teacher", "student"]
+        },
+        {
+          "name": "Start Next Activity",
+          "roles": "Student",
+          "permission": "Write",
+          "priority": "P",
+          "crossObjectSlug": "assignment",
+          "crossObjectName": "Assignment",
+          "roleKeys": ["student"]
+        },
+        {
+          "name": "Customize Path",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "student",
+          "crossObjectName": "Student",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Accept Recommendation",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "P",
+          "crossObjectSlug": "assignment",
+          "crossObjectName": "Assignment",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Reject Recommendation",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "T",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "View Path Progress",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "score",
+          "crossObjectName": "Score",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Reset Path",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "T",
+          "crossObjectSlug": "student",
+          "crossObjectName": "Student",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Generate Path",
+          "roles": "System",
+          "permission": "Write",
+          "priority": "P",
+          "crossObjectSlug": "student",
+          "crossObjectName": "Student",
+          "roleKeys": ["system"]
+        },
+        {
+          "name": "Update Path",
+          "roles": "System",
+          "permission": "Write",
+          "priority": "T",
+          "crossObjectSlug": "score",
+          "crossObjectName": "Score",
+          "roleKeys": ["system"]
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "View Student's Learning Path",
+      "icon": "route",
+      "role": "Teacher",
+      "action": "view",
+      "object": "Learning Path",
+      "benefit": "I can see the personalized sequence of activities the system has generated and understand how the student is progressing toward their skill targets.",
+      "whenClause": "I navigate to a student's Learning Path,",
+      "thenClause": "I see the path name, focus skills, current vs. target levels, progress bar, and the ordered list of upcoming activities with their types and estimated times.",
+      "crossObjects": [{ "slug": "student", "name": "Student" }, { "slug": "skill", "name": "Skill" }]
+    },
+    {
+      "title": "Continue Learning Path Activity",
+      "icon": "play_circle",
+      "role": "Student",
+      "action": "start",
+      "object": "Learning Path",
+      "benefit": "I can continue my personalized learning sequence and make progress toward my skill goals.",
+      "whenClause": "I open my Learning Path and click Start Next Activity,",
+      "thenClause": "the next activity in my sequence launches, and when I complete it, my path progress updates and the system may adapt upcoming activities based on my performance.",
+      "crossObjects": [{ "slug": "assignment", "name": "Assignment" }]
+    }
+  ],
+  "businessRules": [
+    {
+      "title": "System Generation",
+      "description": "Learning Paths are generated by the system after a student completes a qualifying assessment (Star Reading or Star Math). Teachers cannot create paths from scratch."
+    },
+    {
+      "title": "One Path Per Subject",
+      "description": "A student has at most one active Learning Path per subject (ELA and Math). A new path replaces the previous one for that subject."
+    },
+    {
+      "title": "Adaptive Sequencing",
+      "description": "The activity sequence adapts based on student performance. When a student completes an activity, the system may reorder or replace upcoming activities based on demonstrated proficiency."
+    },
+    {
+      "title": "Teacher Override",
+      "description": "Teachers can customize a path by accepting/rejecting recommended activities, adding custom assignments, or reordering the sequence. Customizations persist through subsequent system updates."
+    },
+    {
+      "title": "Staleness Detection",
+      "description": "A path becomes stale if the student takes a new assessment that significantly changes their proficiency profile. Stale paths prompt the system to offer a new path generation."
+    },
+    {
+      "title": "Progress Calculation",
+      "description": "Progress = completed activities / total activities * 100. Skipped or removed activities do not count toward the total."
+    },
+    {
+      "title": "Completion Trigger",
+      "description": "A path is marked complete when all activities are finished and the student's proficiency meets or exceeds the target level."
+    },
+    {
+      "title": "Pause and Resume",
+      "description": "Paths can be paused by the teacher. Paused paths retain their state and can be resumed at any time."
+    },
+    {
+      "title": "Level Sourcing",
+      "description": "Current Level and Target Level are derived from the most recent assessment data. Target Level is determined by grade-level benchmarks and teacher-adjustable goals."
+    },
+    {
+      "title": "Activity Types",
+      "description": "Path activities can include practice assignments (Freckle), reading assignments (AR/myON), and focused skill exercises. The mix is determined by the adaptive engine."
+    }
+  ],
+  "lifecycle": {
+    "states": [
+      {
+        "name": "Active",
+        "description": "Path is generated and student is working through activities",
+        "triggers": "System generates path after qualifying assessment",
+        "variant": "active"
+      },
+      {
+        "name": "Complete",
+        "description": "All activities finished and target level met",
+        "triggers": "Last activity completed and proficiency target reached",
+        "variant": "active"
+      },
+      {
+        "name": "Paused",
+        "description": "Path is temporarily suspended by teacher",
+        "triggers": "Teacher clicks pause; student activity is halted",
+        "variant": "default"
+      },
+      {
+        "name": "Stale",
+        "description": "New assessment data has significantly changed the student's profile",
+        "triggers": "Student completes a new assessment with significantly different results",
+        "variant": "warn"
+      }
+    ],
+    "transitions": [
+      { "from": "Active", "to": ["Complete", "Paused", "Stale"] },
+      { "from": "Paused", "to": ["Active", "Stale"] },
+      { "from": "Stale", "to": ["Active"] }
+    ]
+  },
+  "relationships": [
+    {
+      "targetSlug": "student",
+      "targetName": "Student",
+      "mechanics": "Each Learning Path belongs to exactly one Student. The path adapts to the student's performance over time.",
+      "cardinality": "One-to-one per subject. A Student has at most one active Path per subject; each Path belongs to one Student.",
+      "sorts": "Paths for a student: by subject, by status.",
+      "filters": "By subject (ELA, Math), by status.",
+      "dependencies": "If a Student is deactivated, their paths are paused. If reactivated, paths can resume."
+    },
+    {
+      "targetSlug": "skill",
+      "targetName": "Skill",
+      "mechanics": "Paths target specific skills for improvement. Focus skills determine the types of activities included in the sequence.",
+      "cardinality": "Many-to-many. A Path targets multiple Skills; a Skill can be targeted by many Paths across students.",
+      "sorts": "Skills within a path: by priority (most critical gap first).",
+      "filters": "By skill domain, by proficiency level.",
+      "dependencies": "If a Skill is retired, the path may need regeneration to focus on replacement skills."
+    },
+    {
+      "targetSlug": "assignment",
+      "targetName": "Assignment",
+      "mechanics": "Paths contain an ordered sequence of assignments/activities. The system generates these automatically and teachers can modify the sequence.",
+      "cardinality": "One-to-many. A Path contains multiple Activities (Assignments); each Activity belongs to one Path.",
+      "sorts": "Activities within a path: by sequence order.",
+      "filters": "By activity type, by completion status.",
+      "dependencies": "If an Assignment is deleted externally, the path skips it and moves to the next activity."
+    },
+    {
+      "targetSlug": "assessment",
+      "targetName": "Assessment",
+      "mechanics": "Paths are generated from assessment results. The assessment that triggered path generation is recorded for reference.",
+      "cardinality": "Many-to-one (origin). A Path is generated from one Assessment; an Assessment can trigger multiple Paths (one per student).",
+      "sorts": "N/A — origin reference.",
+      "filters": "By assessment type.",
+      "dependencies": "A new assessment may trigger path staleness and regeneration."
+    },
+    {
+      "targetSlug": "score",
+      "targetName": "Score",
+      "mechanics": "Scores from completed path activities feed back into the adaptive engine to adjust upcoming activities.",
+      "cardinality": "One-to-many. Path activities generate Scores; Scores inform path adaptation.",
+      "sorts": "Scores from path activities: by date.",
+      "filters": "By activity type, by proficiency level.",
+      "dependencies": "Score availability is required for adaptive sequencing to function."
+    },
+    {
+      "targetSlug": "resource",
+      "targetName": "Resource",
+      "mechanics": "Path activities may include resource recommendations (AR books, practice sets) alongside formal assignments.",
+      "cardinality": "Many-to-many. A Path may reference multiple Resources; a Resource can appear in multiple Paths.",
+      "sorts": "Resources within a path: by sequence position.",
+      "filters": "By resource type, by subject.",
+      "dependencies": "If a Resource is removed from the catalog, the path substitutes an equivalent."
+    },
+    {
+      "targetSlug": "teacher",
+      "targetName": "Teacher",
+      "mechanics": "Teachers monitor and customize student paths. They can accept/reject recommendations, pause paths, and view progress.",
+      "cardinality": "Many-to-one. A Teacher's students have multiple Paths; each Path's student belongs to the Teacher's class(es).",
+      "sorts": "Paths for a teacher's students: by student name, by progress, by status.",
+      "filters": "By subject, by status, by progress range.",
+      "dependencies": "If a teacher changes, the new teacher inherits visibility of student paths."
+    },
+    {
+      "targetSlug": "student-group",
+      "targetName": "Student Group",
+      "mechanics": "Path data informs student grouping. Students with similar path profiles may be grouped together.",
+      "cardinality": "Many-to-many (indirect). Path proficiency data can inform group creation.",
+      "sorts": "N/A — indirect relationship.",
+      "filters": "N/A — indirect relationship.",
+      "dependencies": "Group creation from path data is informational and does not modify paths."
+    }
+  ],
+  "relatedObjects": ["student", "skill", "assignment", "resource", "assessment", "score", "teacher", "student-group"],
+  "nestedObjects": [
+    {
+      "slug": "assignment",
+      "name": "Assignment",
+      "cardinality": "One-to-many",
+      "description": "Ordered sequence of activities the student works through"
+    },
+    {
+      "slug": "resource",
+      "name": "Resource",
+      "cardinality": "One-to-many",
+      "description": "Recommended practice resources included in the path"
+    }
+  ],
+  "allAttributes": [
+    {
+      "name": "Path Name",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "Auto-generated display name based on subject and focus skills."
+    },
+    {
+      "name": "Student",
+      "dataType": "Reference → Student",
+      "required": true,
+      "source": "System",
+      "description": "The student this path belongs to.",
+      "isReference": true,
+      "referenceSlug": "student",
+      "referenceName": "Student"
+    },
+    {
+      "name": "Subject",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System",
+      "description": "Subject area: ela or math. Determines the activity types and skill targets."
+    },
+    {
+      "name": "Focus Skills",
+      "dataType": "Reference → Skill[]",
+      "required": true,
+      "source": "System",
+      "description": "Skills targeted by this path, ordered by priority (most critical gap first).",
+      "isReference": true,
+      "referenceSlug": "skill",
+      "referenceName": "Skill"
+    },
+    {
+      "name": "Current Level",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "Student's current proficiency level in the path's subject. Format varies by subject (GE, Lexile, Scaled Score)."
+    },
+    {
+      "name": "Target Level",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "Target proficiency level. Derived from grade-level benchmarks, adjustable by teacher."
+    },
+    {
+      "name": "Activities",
+      "dataType": "Reference → Assignment[]",
+      "required": true,
+      "source": "System",
+      "description": "Ordered sequence of activities composing this path.",
+      "isReference": true,
+      "referenceSlug": "assignment",
+      "referenceName": "Assignment"
+    },
+    {
+      "name": "Progress",
+      "dataType": "Number",
+      "required": true,
+      "source": "System",
+      "description": "Percentage of activities completed (0-100)."
+    },
+    {
+      "name": "Status",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System",
+      "description": "Current state: active, complete, paused, or stale."
+    },
+    {
+      "name": "Generated From",
+      "dataType": "Reference → Assessment",
+      "source": "System",
+      "description": "The assessment whose results triggered this path's generation.",
+      "isReference": true,
+      "referenceSlug": "assessment",
+      "referenceName": "Assessment"
+    },
+    {
+      "name": "Last Updated",
+      "dataType": "Date",
+      "required": true,
+      "source": "System",
+      "description": "When the path was last adapted based on new student data."
+    },
+    {
+      "name": "Estimated Remaining",
+      "dataType": "String",
+      "source": "System",
+      "description": "Estimated time to complete remaining activities. Expressed in natural language (e.g., '2 weeks', '3 days')."
+    }
+  ],
+  "allCTAs": [
+    {
+      "name": "View Learning Path",
+      "roles": "Teacher, Student",
+      "permission": "Read",
+      "priority": "P",
+      "crossObjectSlug": "skill",
+      "crossObjectName": "Skill",
+      "roleKeys": ["teacher", "student"]
+    },
+    {
+      "name": "Start Next Activity",
+      "roles": "Student",
+      "permission": "Write",
+      "priority": "P",
+      "crossObjectSlug": "assignment",
+      "crossObjectName": "Assignment",
+      "roleKeys": ["student"]
+    },
+    {
+      "name": "Customize Path",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "S",
+      "crossObjectSlug": "student",
+      "crossObjectName": "Student",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Accept Recommendation",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "P",
+      "crossObjectSlug": "assignment",
+      "crossObjectName": "Assignment",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Reject Recommendation",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "T",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "View Path Progress",
+      "roles": "Teacher",
+      "permission": "Read",
+      "priority": "S",
+      "crossObjectSlug": "score",
+      "crossObjectName": "Score",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Reset Path",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "T",
+      "crossObjectSlug": "student",
+      "crossObjectName": "Student",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Generate Path",
+      "roles": "System",
+      "permission": "Write",
+      "priority": "P",
+      "crossObjectSlug": "student",
+      "crossObjectName": "Student",
+      "roleKeys": ["system"]
+    },
+    {
+      "name": "Update Path",
+      "roles": "System",
+      "permission": "Write",
+      "priority": "T",
+      "crossObjectSlug": "score",
+      "crossObjectName": "Score",
+      "roleKeys": ["system"]
+    }
+  ],
+  "sipValidation": {
+    "structure": {
+      "pass": true,
+      "evidence": "A Learning Path has rich attributes: name, student, subject, focus skills, current/target levels, activities, progress, status, generated from, last updated, and estimated remaining. You can design a detail page for a Path."
+    },
+    "instances": {
+      "pass": true,
+      "evidence": "'Math Foundations — Number Sense' (Harry, 35% progress, active, 2 weeks remaining), 'Reading Comprehension Boost' (Hermione, 80% progress, 3 days remaining), 'Geometry Mastery' (Ron, 100% complete). Each student can have multiple Path instances across subjects."
+    },
+    "purpose": {
+      "pass": true,
+      "evidence": "Learning Paths personalize instruction by sequencing activities to address individual skill gaps. Students follow their path, teachers monitor and customize, and the adaptive engine adjusts the sequence based on ongoing performance data."
+    },
+    "verdict": "Domain activity object. Personalized adaptive learning sequence that connects assessment data to targeted instruction through ordered activities."
+  },
+  "synonyms": [
+    {
+      "term": "Path",
+      "context": "In-product UI, student-facing language",
+      "notes": "Shortened form used in most UI surfaces"
+    },
+    {
+      "term": "Pathway",
+      "context": "Professional development, administrator documentation",
+      "notes": "Slightly more formal synonym; used interchangeably"
+    },
+    {
+      "term": "Personalized Plan",
+      "context": "Parent communications, marketing materials",
+      "notes": "Emphasizes the individualization aspect"
+    },
+    {
+      "term": "Adaptive Sequence",
+      "context": "Engineering, AI/ML teams",
+      "notes": "Technical term emphasizing the adaptive algorithm"
+    }
+  ],
+  "shapeshifterMatrix": [
+    {
+      "context": "Student Dashboard",
+      "value": "student-dashboard",
+      "shape": "card",
+      "description": "A student's active learning path with progress, focus skills, and estimated time remaining. Students see where they are and start their next activity.",
+      "visibleAttributes": ["Path Name", "Subject", "Focus Skills", "Progress", "Status", "Estimated Remaining"],
+      "availableCTAs": ["View Learning Path", "Start Next Activity"],
+      "cardShape": "Dashboard card"
+    },
+    {
+      "context": "Teacher View",
+      "value": "teacher-view",
+      "shape": "row",
+      "description": "Learning paths for students in a class, listed with progress and status. Teachers monitor pacing and customize paths for individual students.",
+      "visibleAttributes": ["Path Name", "Student", "Subject", "Progress", "Status"],
+      "availableCTAs": ["View Learning Path", "Customize Path"],
+      "cardShape": "Teacher list row"
+    },
+    {
+      "context": "Detail View",
+      "value": "detail-view",
+      "shape": "profile",
+      "description": "The complete learning path — skill targets, activity sequence, progress, and all management controls. Teachers review path logic, adjust levels, or regenerate the path entirely.",
+      "visibleAttributes": ["Path Name", "Student", "Subject", "Focus Skills", "Current Level", "Target Level", "Activities", "Progress", "Status", "Generated From", "Last Updated", "Estimated Remaining"],
+      "availableCTAs": ["View Learning Path", "Start Next Activity", "Customize Path", "Accept Recommendation", "Reject Recommendation", "View Path Progress", "Reset Path", "Generate Path", "Update Path"],
+      "cardShape": "Full page"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+---
+description: Accessibility and inclusive design principles — WCAG 2.2 AA compliance
+globs: "**/*.html"
+alwaysApply: false
+---
+
+# Accessibility & Inclusive Design
+
+Target: **WCAG 2.2 Level AA**. Accessibility is not a feature — it is a baseline quality attribute of every page and component.
+
+## The POUR Principles
+
+Every design decision must satisfy all four:
+
+1. **Perceivable** — information must be presentable in ways all users can perceive
+2. **Operable** — UI must be navigable and usable by all input methods
+3. **Understandable** — content and operation must be comprehensible
+4. **Robust** — content must work reliably across assistive technologies
+
+## Semantic Structure
+
+- Use HTML elements for their meaning, not their appearance: `<nav>`, `<main>`, `<section>`, `<article>`, `<aside>`, `<header>`, `<footer>`, `<button>`, `<a>`
+- Every page must have exactly one `<main>` landmark
+- Heading levels (`h1`–`h6`) must form a logical outline — never skip levels for styling
+- Lists of items use `<ul>`, `<ol>`, or `<dl>` — not `<div>` chains
+- Tables use `<th scope="col">` or `<th scope="row">` — never layout tables
+- Use `<button>` for actions, `<a>` for navigation — never `<div onclick>`
+
+## Color & Contrast
+
+- **Text contrast:** minimum 4.5:1 for normal text, 3:1 for large text (≥18pt or ≥14pt bold)
+- **Non-text contrast:** minimum 3:1 for UI components and graphical objects (borders, icons, focus indicators, chart elements)
+- **Never use color alone** to convey meaning — always pair with text, icon, pattern, or shape
+- Test with simulated color blindness (protanopia, deuteranopia, tritanopia) — if meaning is lost, add a redundant cue
+- Ensure sufficient contrast in both light and dark contexts
+
+## Keyboard Accessibility
+
+- Every interactive element must be reachable and operable via keyboard
+- Tab order must follow the visual reading order (avoid positive `tabindex` values)
+- Focus must be visible at all times — use `:focus-visible` with a 2px+ solid outline at ≥3:1 contrast against adjacent colors
+- **Focus not obscured (WCAG 2.4.11):** focused elements must not be entirely hidden behind sticky headers, drawers, or overlays
+- Provide keyboard shortcuts for frequent actions, disclosed via UI (e.g., `⌘K` badge)
+- Trap focus inside modals and dialogs; restore focus to the trigger on close
+- Custom components must implement appropriate ARIA keyboard patterns (arrow keys for tabs, Escape to close, Enter/Space to activate)
+
+## Touch & Pointer
+
+- **Target size:** minimum 24×24 CSS pixels (WCAG 2.5.8); prefer 44×44 for primary actions
+- **Spacing:** at least 8px between adjacent touch targets
+- **Dragging alternatives (WCAG 2.5.7):** every drag-and-drop interaction must have a single-pointer alternative (buttons, menus, or form controls)
+- Touch targets can be visually smaller if padding expands the tappable area
+
+## Images & Media
+
+- Every `<img>` must have an `alt` attribute — descriptive for content images, empty (`alt=""`) for decorative ones
+- Decorative images also get `aria-hidden="true"`
+- Complex images (charts, diagrams) need a text summary or linked data table
+- Videos need captions; audio needs transcripts
+- Avoid autoplay for media with sound
+
+## ARIA — Use Sparingly
+
+- Prefer native HTML semantics over ARIA — ARIA is a repair tool, not a first choice
+- If ARIA is necessary: `aria-label` for invisible labels, `aria-describedby` for supplemental descriptions, `aria-live` for dynamic content announcements, `aria-expanded`/`aria-controls` for disclosure widgets
+- Never use `role` to override an element's native semantics unless building a true custom widget
+- Test with a screen reader (VoiceOver, NVDA) — if the experience is confusing, simplify the markup
+
+## Motion & Animation
+
+- Respect `prefers-reduced-motion: reduce` — disable or minimize non-essential animations
+- Essential transitions (page loads, route changes) should complete quickly (<300ms)
+- Never use flashing or strobing content (risks seizures)
+- Parallax scrolling and auto-advancing carousels must have pause controls
+
+## Cognitive Accessibility
+
+- **Consistent help (WCAG 3.2.6):** help mechanisms (links, chat, FAQs) must appear in the same location on every page
+- **Redundant entry (WCAG 3.3.7):** never ask users to re-enter information they already provided in a multi-step flow
+- **Accessible authentication (WCAG 3.3.8):** avoid cognitive function tests (CAPTCHAs); allow password managers and copy-paste
+- Use plain language, short sentences, and clear labels
+- Provide visible instructions before complex interactions
+
+## Testing Checklist
+
+Before considering a page complete, verify:
+
+- [ ] Keyboard-only navigation reaches and operates all interactive elements
+- [ ] Focus order matches visual order
+- [ ] All images have appropriate alt text
+- [ ] Color contrast passes (text ≥4.5:1, non-text ≥3:1)
+- [ ] No information conveyed by color alone
+- [ ] Heading hierarchy is logical
+- [ ] ARIA attributes are valid and necessary
+- [ ] Page works at 200% zoom without horizontal scrolling
+- [ ] Touch targets meet minimum size (24×24 CSS px)

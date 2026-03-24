@@ -1,0 +1,905 @@
+{
+  "identity": {
+    "slug": "assessment",
+    "name": "Assessment",
+    "qualifier": "(Core)",
+    "objectType": "core",
+    "category": "activity",
+    "definition": "An Assessment is a formal evaluation instrument — such as Star Reading, Star Math, a district benchmark, or a teacher-created quiz — that is administered to students to measure their knowledge, proficiency, or growth on specific skills and standards, producing scores that inform instructional decisions.",
+    "synonyms": ["test", "quiz", "benchmark", "exam", "probe"],
+    "products": "Star, AR, myON"
+  },
+  "variations": [],
+  "representations": [
+    {
+      "layout": "card",
+      "heading": "Card layout",
+      "description": "How an Assessment appears in dashboards and library views",
+      "defaultShape": "card",
+      "componentTag": "ren-assessment-card",
+      "examples": [
+        {
+          "name": "Star Reading 3rd Grade",
+          "type": "Star",
+          "subject": "Reading",
+          "gradeRange": "3-5",
+          "status": "Completed",
+          "completionPercent": 100,
+          "studentCount": 28,
+          "scoreAvg": "680L",
+          "testingWindow": "Sep 9–Sep 13, 2024",
+          "color": "#2B87FF",
+          "_contextData": {
+            "classCompletionPercent": 100,
+            "classAverageScore": "680L",
+            "assignedClassCount": 4,
+            "studentScore": 742,
+            "studentBand": "At/Above",
+            "studentDate": "Sep 11, 2024",
+            "studentGrowth": 65,
+            "studentPercentile": 82,
+            "windowStart": "Sep 9",
+            "windowEnd": "Sep 13"
+          }
+        },
+        {
+          "name": "Math Benchmark Q2",
+          "type": "Benchmark",
+          "subject": "Math",
+          "gradeRange": "6-8",
+          "status": "In Progress",
+          "completionPercent": 64,
+          "studentCount": 142,
+          "scoreAvg": "—",
+          "testingWindow": "Dec 2–Dec 6, 2024",
+          "color": "#cf3a4e",
+          "_contextData": {
+            "classCompletionPercent": 64,
+            "classAverageScore": "—",
+            "assignedClassCount": 8,
+            "schoolCompletionPercent": 72,
+            "schoolAverageScore": "415",
+            "schoolCount": 12,
+            "classCount": 45,
+            "studentScore": null,
+            "studentBand": null,
+            "windowStart": "Dec 2",
+            "windowEnd": "Dec 6"
+          }
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Assessment Name",
+          "dataType": "String",
+          "source": "System / Teacher",
+          "description": "Primary identifier. Appears in every assessment listing and header."
+        },
+        {
+          "name": "Assessment Type",
+          "dataType": "Enum",
+          "source": "System / Admin",
+          "description": "Star, Benchmark, Formative, or Progress Monitoring. Determines workflow and scoring."
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "source": "System / Admin",
+          "description": "Reading, Math, Early Literacy, SEL, etc. Determines item bank and scoring norms."
+        },
+        {
+          "name": "Grade Range",
+          "dataType": "String",
+          "source": "System / Admin",
+          "description": "Target grade band. Determines item difficulty, norms, and benchmark thresholds."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Scheduled, In Progress, Completed, or Canceled. Controls available CTAs."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "View Results",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "score",
+          "crossObjectName": "Score",
+          "roleKeys": ["teacher", "admin"]
+        }
+      ]
+    },
+    {
+      "layout": "list",
+      "heading": "List layout",
+      "description": "How an Assessment appears in scheduling tables and assignment lists",
+      "defaultShape": "row",
+      "componentTag": "ren-assessment-row",
+      "examples": [
+        {
+          "name": "Star Reading 3rd Grade",
+          "type": "Star",
+          "subject": "Reading",
+          "gradeRange": "3-5",
+          "status": "Completed",
+          "completionPercent": 100,
+          "studentCount": 28,
+          "scoreAvg": "680L",
+          "testingWindow": "Sep 9–Sep 13, 2024",
+          "color": "#2B87FF"
+        },
+        {
+          "name": "Weekly Phonics Check",
+          "type": "Formative",
+          "subject": "Early Literacy",
+          "gradeRange": "K-2",
+          "status": "Scheduled",
+          "completionPercent": 0,
+          "studentCount": 22,
+          "scoreAvg": "—",
+          "testingWindow": "Mar 18, 2025",
+          "color": "#6c5ce7"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Assessment Name",
+          "dataType": "String",
+          "source": "System / Teacher",
+          "description": "Primary identifier. Appears in every assessment listing and header."
+        },
+        {
+          "name": "Assessment Type",
+          "dataType": "Enum",
+          "source": "System / Admin",
+          "description": "Star, Benchmark, Formative, or Progress Monitoring."
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "source": "System / Admin",
+          "description": "Reading, Math, Early Literacy, SEL, etc."
+        },
+        {
+          "name": "Grade Range",
+          "dataType": "String",
+          "source": "System / Admin",
+          "description": "Target grade band for the assessment."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Scheduled, In Progress, Completed, or Canceled."
+        },
+        {
+          "name": "Testing Window",
+          "dataType": "Date Range",
+          "source": "Teacher / Admin",
+          "description": "Start and end dates during which students may take the assessment."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Schedule",
+          "roles": "Teacher, Admin",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "class",
+          "crossObjectName": "Class",
+          "roleKeys": ["teacher", "admin"]
+        }
+      ]
+    },
+    {
+      "layout": "detail",
+      "heading": "Detail page layout",
+      "description": "What users see when they open a full Assessment record",
+      "defaultShape": "profile",
+      "componentTag": "ren-assessment-profile",
+      "examples": [
+        {
+          "name": "Star Reading 3rd Grade — Fall BOY",
+          "type": "Star",
+          "subject": "Reading",
+          "gradeRange": "3-5",
+          "status": "Completed",
+          "completionPercent": 100,
+          "studentCount": 28,
+          "scoreAvg": "680L",
+          "testingWindow": "Sep 9–Sep 13, 2024",
+          "duration": 25,
+          "itemCount": 34,
+          "scoringMethod": "Computer Adaptive",
+          "accommodations": "Extended time, Text-to-speech",
+          "createdBy": "System (Star)",
+          "color": "#2B87FF",
+          "nestedObjects": [
+            { "label": "Scores", "count": 28, "href": "#" },
+            { "label": "Skills", "count": 14, "href": "#" },
+            { "label": "Items", "count": 34, "href": "#" },
+            { "label": "Students", "count": 28, "href": "#" }
+          ]
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Assessment Name",
+          "dataType": "String",
+          "source": "System / Teacher",
+          "description": "Primary identifier. Appears in every assessment listing and header."
+        },
+        {
+          "name": "Assessment Type",
+          "dataType": "Enum",
+          "source": "System / Admin",
+          "description": "Star, Benchmark, Formative, or Progress Monitoring."
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "source": "System / Admin",
+          "description": "Reading, Math, Early Literacy, SEL, etc."
+        },
+        {
+          "name": "Grade Range",
+          "dataType": "String",
+          "source": "System / Admin",
+          "description": "Target grade band for the assessment."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Scheduled, In Progress, Completed, or Canceled."
+        },
+        {
+          "name": "Testing Window",
+          "dataType": "Date Range",
+          "source": "Teacher / Admin",
+          "description": "Start and end dates during which students may take the assessment."
+        },
+        {
+          "name": "Class/Students",
+          "dataType": "Reference → Class",
+          "source": "Teacher / Admin",
+          "description": "Which class or students are assigned to take this assessment.",
+          "isReference": true,
+          "referenceSlug": "class",
+          "referenceName": "Class"
+        },
+        {
+          "name": "Duration",
+          "dataType": "Number",
+          "source": "System / Admin",
+          "description": "Estimated or maximum time in minutes for the assessment."
+        },
+        {
+          "name": "Item Count",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Number of items or questions in the assessment."
+        },
+        {
+          "name": "Standards Alignment",
+          "dataType": "Reference → Skill[]",
+          "source": "System / Admin",
+          "description": "Which skills and standards this assessment measures.",
+          "isReference": true,
+          "referenceSlug": "skill",
+          "referenceName": "Skill"
+        },
+        {
+          "name": "Scoring Method",
+          "dataType": "Enum",
+          "source": "System / Admin",
+          "description": "Computer Adaptive, Fixed Form, Rubric-based. Determines score calculation."
+        },
+        {
+          "name": "Administered By",
+          "dataType": "Reference → Teacher",
+          "source": "System",
+          "description": "The teacher or proctor who administers the assessment.",
+          "isReference": true,
+          "referenceSlug": "teacher",
+          "referenceName": "Teacher"
+        },
+        {
+          "name": "Accommodations",
+          "dataType": "Enum (multi)",
+          "source": "Admin / Teacher",
+          "description": "Extended time, Text-to-speech, Large print, etc. Applied per student."
+        },
+        {
+          "name": "Created By",
+          "dataType": "String",
+          "source": "System",
+          "description": "System or user who created the assessment instance."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "View Results",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "score",
+          "crossObjectName": "Score",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Schedule",
+          "roles": "Teacher, Admin",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "class",
+          "crossObjectName": "Class",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Edit",
+          "roles": "Teacher, Admin",
+          "permission": "Write",
+          "priority": "T",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Administer",
+          "roles": "Teacher, System",
+          "permission": "Write",
+          "priority": "T",
+          "crossObjectSlug": "student",
+          "crossObjectName": "Student",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Cancel",
+          "roles": "Teacher, Admin",
+          "permission": "Write",
+          "priority": "Q",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Reassign",
+          "roles": "Teacher, Admin",
+          "permission": "Write",
+          "priority": "T",
+          "crossObjectSlug": "student",
+          "crossObjectName": "Student",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Print",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "T",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Export Results",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "T",
+          "crossObjectSlug": "score",
+          "crossObjectName": "Score",
+          "roleKeys": ["teacher", "admin"]
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "View Assessment Results",
+      "icon": "assessment",
+      "role": "Teacher",
+      "action": "view results for",
+      "object": "Assessment",
+      "benefit": "I can see how my students performed and identify which skills need re-teaching.",
+      "whenClause": "I open a completed Assessment,",
+      "thenClause": "I see the class average, individual student scores, skill breakdowns, and benchmark distribution.",
+      "crossObjects": [{ "slug": "score", "name": "Score" }]
+    },
+    {
+      "title": "Schedule Assessment for Class",
+      "icon": "event",
+      "role": "Teacher",
+      "action": "schedule",
+      "object": "Assessment",
+      "benefit": "students in that class will receive the assessment during the testing window and I can plan instruction around it.",
+      "whenClause": "I schedule an Assessment for a class,",
+      "thenClause": "the assessment appears on the class calendar, students see it in their to-do list, and the status changes to Scheduled.",
+      "crossObjects": [{ "slug": "class", "name": "Class" }]
+    },
+    {
+      "title": "Monitor Assessment Progress",
+      "icon": "monitoring",
+      "role": "School Admin",
+      "action": "monitor progress of",
+      "object": "Assessment",
+      "benefit": "I can track completion rates across classrooms and ensure all students complete the assessment within the testing window.",
+      "whenClause": "I open an in-progress Assessment,",
+      "thenClause": "I see real-time completion percentages, a list of students who have not yet started, and projected completion timelines."
+    }
+  ],
+  "businessRules": [
+    {
+      "title": "Uniqueness",
+      "description": "An Assessment is uniquely identified by its system ID. Multiple instances of the same assessment type (e.g., Star Reading BOY vs. MOY) are distinct Assessment objects with different testing windows."
+    },
+    {
+      "title": "Creation",
+      "description": "Star assessments are system-generated based on product configuration. Benchmark assessments are created by district admins using item banks. Formative assessments can be created by teachers from templates."
+    },
+    {
+      "title": "Scheduling",
+      "description": "An Assessment must be scheduled for at least one Class or Student before it can be administered. The testing window defines the valid administration period."
+    },
+    {
+      "title": "Administration",
+      "description": "Once a student begins an Assessment, it transitions to In Progress. Adaptive assessments (Star) cannot be paused — they must be completed in a single session. Benchmark assessments may allow multi-session completion."
+    },
+    {
+      "title": "Score Generation",
+      "description": "A Score is automatically generated when a student completes an Assessment. Scores are immutable once created — they cannot be edited or deleted, only excluded from reports by Admins."
+    },
+    {
+      "title": "Accommodations",
+      "description": "Accommodations (extended time, text-to-speech, large print) are applied per student based on IEP/504 records. The Assessment engine enforces accommodations automatically during administration."
+    },
+    {
+      "title": "Cancellation",
+      "description": "A Scheduled assessment can be canceled before any student has started. An In Progress assessment can only be canceled by an Admin, and partial scores are discarded."
+    }
+  ],
+  "lifecycle": {
+    "states": [
+      {
+        "name": "Created",
+        "description": "Assessment configured but not yet scheduled for any class or student",
+        "triggers": "System generation, admin/teacher creation",
+        "variant": "default"
+      },
+      {
+        "name": "Scheduled",
+        "description": "Assigned to classes/students with a defined testing window",
+        "triggers": "Teacher or admin schedules the assessment",
+        "variant": "active"
+      },
+      {
+        "name": "In Progress",
+        "description": "At least one student has started the assessment",
+        "triggers": "First student opens the assessment",
+        "variant": "warn"
+      },
+      {
+        "name": "Completed",
+        "description": "All assigned students have finished or the testing window has closed",
+        "triggers": "Last student submits, or window expires",
+        "variant": "active"
+      },
+      {
+        "name": "Canceled",
+        "description": "Assessment was canceled before or during administration",
+        "triggers": "Admin or teacher cancels; partial scores discarded",
+        "variant": "default"
+      }
+    ],
+    "transitions": [
+      { "from": "Created", "to": ["Scheduled", "Canceled"] },
+      { "from": "Scheduled", "to": ["In Progress", "Canceled"] },
+      { "from": "In Progress", "to": ["Completed", "Canceled"] }
+    ]
+  },
+  "relationships": [
+    {
+      "targetSlug": "score",
+      "targetName": "Score",
+      "mechanics": "Scores are system-generated when a Student completes an Assessment. Each completed assessment session produces exactly one Score per student.",
+      "cardinality": "One-to-many. An Assessment produces many Scores (one per student); each Score belongs to exactly one Assessment.",
+      "sorts": "By student name (alphabetical, default), by score value (high to low), by completion date, by benchmark category.",
+      "filters": "By benchmark category (At/Above, On Watch, Intervention, Urgent Intervention), by class, by grade level, by accommodation type.",
+      "dependencies": "If an Assessment is canceled, any incomplete Scores are discarded. Completed Scores persist even if the Assessment is later archived."
+    },
+    {
+      "targetSlug": "student",
+      "targetName": "Student",
+      "mechanics": "Students are assigned to an Assessment via Class enrollment or individual assignment. The assessment engine tracks each student's completion status independently.",
+      "cardinality": "Many-to-many. An Assessment is administered to many Students; a Student takes many Assessments over time.",
+      "sorts": "By last name (default), by completion status (not started, in progress, completed), by score value.",
+      "filters": "By completion status, by accommodation type, by class, by grade level.",
+      "dependencies": "If a Student is deactivated, their pending assessments are removed but completed scores persist."
+    },
+    {
+      "targetSlug": "skill",
+      "targetName": "Skill",
+      "mechanics": "Assessment items are mapped to Skills/Standards. The assessment measures student proficiency on the aligned skills and updates skill-level data upon completion.",
+      "cardinality": "Many-to-many. An Assessment measures multiple Skills; a Skill is measured by multiple Assessments.",
+      "sorts": "By domain/strand (default), by item count per skill, by class average proficiency.",
+      "filters": "By standard set (CCSS, state standards), by domain, by proficiency level.",
+      "dependencies": "If a Skill is deprecated from the standard set, existing Assessment alignments persist for historical reporting but new assessments use updated standards."
+    }
+  ],
+  "relatedObjects": ["score", "student", "class", "teacher", "skill"],
+  "nestedObjects": [
+    {
+      "slug": "score",
+      "name": "Score",
+      "cardinality": "One-to-many",
+      "description": "System-generated when each student completes the assessment"
+    },
+    {
+      "slug": "skill",
+      "name": "Skill / Standard",
+      "cardinality": "Many-to-many",
+      "description": "Skills and standards this assessment is aligned to measure"
+    },
+    {
+      "slug": "assessment-item",
+      "name": "Assessment Item",
+      "cardinality": "One-to-many",
+      "description": "Individual questions or tasks within the assessment"
+    },
+    {
+      "slug": "student",
+      "name": "Student",
+      "cardinality": "Many-to-many",
+      "description": "Students assigned to take the assessment via class or individual assignment"
+    }
+  ],
+  "allAttributes": [
+    {
+      "name": "Assessment Name",
+      "dataType": "String",
+      "required": true,
+      "source": "System / Teacher",
+      "description": "Primary identifier. Appears in every assessment listing and header."
+    },
+    {
+      "name": "Assessment Type",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System / Admin",
+      "description": "Star, Benchmark, Formative, or Progress Monitoring. Determines workflow, item selection, and scoring."
+    },
+    {
+      "name": "Subject",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System / Admin",
+      "description": "Reading, Math, Early Literacy, SEL, etc. Determines item bank and scoring norms."
+    },
+    {
+      "name": "Grade Range",
+      "dataType": "String",
+      "required": true,
+      "source": "System / Admin",
+      "description": "Target grade band (e.g., 3-5, K-2). Determines item difficulty, norms, and benchmark thresholds."
+    },
+    {
+      "name": "Status",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System",
+      "description": "Created, Scheduled, In Progress, Completed, or Canceled. Controls available CTAs and visibility."
+    },
+    {
+      "name": "Testing Window",
+      "dataType": "Date Range",
+      "source": "Teacher / Admin",
+      "description": "Start and end dates during which students may take the assessment. Enforced by the system."
+    },
+    {
+      "name": "Class/Students",
+      "dataType": "Reference → Class",
+      "source": "Teacher / Admin",
+      "description": "Which class or individual students are assigned to take this assessment.",
+      "isReference": true,
+      "referenceSlug": "class",
+      "referenceName": "Class"
+    },
+    {
+      "name": "Duration",
+      "dataType": "Number",
+      "source": "System / Admin",
+      "description": "Estimated or maximum time in minutes. Star assessments are typically 15-25 min; benchmarks vary."
+    },
+    {
+      "name": "Item Count",
+      "dataType": "Number",
+      "source": "System",
+      "description": "Total number of questions or tasks. Star: 25-34 items (adaptive); benchmarks: varies by configuration."
+    },
+    {
+      "name": "Standards Alignment",
+      "dataType": "Reference → Skill[]",
+      "source": "System / Admin",
+      "description": "Which skills and standards this assessment measures. Used for skill-level reporting.",
+      "isReference": true,
+      "referenceSlug": "skill",
+      "referenceName": "Skill"
+    },
+    {
+      "name": "Scoring Method",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System / Admin",
+      "description": "Computer Adaptive, Fixed Form, or Rubric-based. Determines how scores are calculated."
+    },
+    {
+      "name": "Administered By",
+      "dataType": "Reference → Teacher",
+      "source": "System",
+      "description": "The teacher or proctor who administers the assessment session.",
+      "isReference": true,
+      "referenceSlug": "teacher",
+      "referenceName": "Teacher"
+    },
+    {
+      "name": "Accommodations",
+      "dataType": "Enum (multi)",
+      "source": "Admin / Teacher",
+      "description": "Extended time, Text-to-speech, Large print, Separate setting. Applied per student based on IEP/504."
+    },
+    {
+      "name": "Created By",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "System name or user who created the assessment instance. E.g., 'System (Star)', 'Jane Smith'."
+    }
+  ],
+  "allCTAs": [
+    {
+      "name": "View",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "P",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Create",
+      "roles": "Teacher, Admin",
+      "permission": "Write",
+      "priority": "S",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Schedule",
+      "roles": "Teacher, Admin",
+      "permission": "Write",
+      "priority": "S",
+      "crossObjectSlug": "class",
+      "crossObjectName": "Class",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Administer",
+      "roles": "Teacher, System",
+      "permission": "Write",
+      "priority": "T",
+      "crossObjectSlug": "student",
+      "crossObjectName": "Student",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "View Results",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "S",
+      "crossObjectSlug": "score",
+      "crossObjectName": "Score",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Edit",
+      "roles": "Teacher, Admin",
+      "permission": "Write",
+      "priority": "T",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Cancel",
+      "roles": "Teacher, Admin",
+      "permission": "Write",
+      "priority": "Q",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Reassign",
+      "roles": "Teacher, Admin",
+      "permission": "Write",
+      "priority": "T",
+      "crossObjectSlug": "student",
+      "crossObjectName": "Student",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Print",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "T",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Export Results",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "T",
+      "crossObjectSlug": "score",
+      "crossObjectName": "Score",
+      "roleKeys": ["teacher", "admin"]
+    }
+  ],
+  "sipValidation": {
+    "structure": {
+      "pass": true,
+      "evidence": "An Assessment has a rich attribute set: name, type, subject, grade range, testing window, duration, item count, scoring method, standards alignment, accommodations. You can design a detail page for an Assessment."
+    },
+    "instances": {
+      "pass": true,
+      "evidence": "Star Reading 3rd Grade (Fall BOY, Mrs. Johnson's class), Math Benchmark Q2 (District-wide, grades 6-8), Weekly Phonics Check (K-2, formative). Schools administer dozens of assessments per year."
+    },
+    "purpose": {
+      "pass": true,
+      "evidence": "Assessments are the primary mechanism for measuring student learning in Renaissance products. Teachers schedule assessments, monitor completion, and analyze results to drive instructional decisions. Admins track school/district-wide assessment programs."
+    },
+    "verdict": "Core activity object. The primary measurement instrument across all Renaissance products."
+  },
+  "synonyms": [
+    {
+      "term": "Test",
+      "context": "General / student-facing",
+      "notes": "Most common informal synonym. Used by students and parents."
+    },
+    {
+      "term": "Quiz",
+      "context": "Formative assessment contexts",
+      "notes": "Implies shorter, lower-stakes assessment. Common for teacher-created formatives."
+    },
+    {
+      "term": "Benchmark",
+      "context": "District/admin contexts",
+      "notes": "Specifically refers to periodic benchmark assessments (BOY, MOY, EOY)."
+    },
+    {
+      "term": "Exam",
+      "context": "Formal/summative contexts",
+      "notes": "Implies higher-stakes, end-of-unit or end-of-term evaluation."
+    },
+    {
+      "term": "Probe",
+      "context": "Progress monitoring / intervention",
+      "notes": "Short, frequent assessment for tracking growth in intervention programs."
+    }
+  ],
+  "shapeshifterMatrix": [
+    {
+      "context": "Assessment Library",
+      "value": "assessment-library",
+      "shape": "card",
+      "description": "Available assessments shown as cards with type, subject, and completion status. Teachers browse here to find assessments to schedule or check results on ones already given.",
+      "visibleAttributes": ["Assessment Name", "Assessment Type", "Subject", "Grade Range", "Status"],
+      "availableCTAs": ["View", "View Results", "Schedule"],
+      "cardShape": "Medium card",
+      "userIntent": "What assessments have I given or need to give?",
+      "contextDataSchema": {
+        "classCompletionPercent": { "type": "number", "description": "Percentage of students finished" },
+        "classAverageScore": { "type": "string", "description": "Class average score" },
+        "assignedClassCount": { "type": "number", "description": "Number of classes assigned" }
+      }
+    },
+    {
+      "context": "Class Assessment Schedule",
+      "value": "class-schedule",
+      "shape": "row",
+      "description": "Assessments scheduled for a specific class, listed with testing windows and status. Teachers see what's coming up and can administer or cancel from here.",
+      "visibleAttributes": ["Assessment Name", "Assessment Type", "Subject", "Testing Window", "Status"],
+      "availableCTAs": ["View", "Administer", "Cancel"],
+      "cardShape": "Compact row",
+      "userIntent": "What assessments are scheduled for this class?"
+    },
+    {
+      "context": "Assessment Detail",
+      "value": "assessment-detail",
+      "shape": "profile",
+      "description": "The complete assessment record — configuration, scheduling, standards alignment, and all administrative controls. Teachers and admins manage every aspect of an assessment from this page.",
+      "visibleAttributes": ["Assessment Name", "Assessment Type", "Subject", "Grade Range", "Status", "Testing Window", "Duration", "Item Count", "Scoring Method", "Accommodations", "Created By", "Administered By", "Class/Students", "Standards Alignment"],
+      "availableCTAs": ["View", "View Results", "Schedule", "Administer", "Edit", "Cancel", "Reassign", "Print", "Export Results"],
+      "cardShape": "Full page",
+      "userIntent": "What is the full detail of this assessment?"
+    },
+    {
+      "context": "Student Score History",
+      "value": "student-score-history",
+      "shape": "row",
+      "description": "Assessments a student has taken, paired with their individual scores and proficiency bands. Teachers review a student's assessment history to track growth over time.",
+      "visibleAttributes": ["Assessment Name", "Assessment Type", "Subject"],
+      "availableCTAs": ["View", "View Results"],
+      "cardShape": "Compact row",
+      "userIntent": "What assessments has this student taken, and what did they score?",
+      "contextDataSchema": {
+        "studentScore": { "type": "number", "description": "This student's score on the assessment" },
+        "studentBand": { "type": "string", "description": "Proficiency band for this student" },
+        "studentDate": { "type": "string", "description": "When the student took the assessment" },
+        "studentGrowth": { "type": "number", "description": "Student Growth Percentile" },
+        "studentPercentile": { "type": "number", "description": "Percentile rank" }
+      }
+    },
+    {
+      "context": "Admin Dashboard",
+      "value": "admin-dashboard",
+      "shape": "data-row",
+      "description": "Assessments listed with school-wide completion rates and average scores. Admins monitor assessment rollout and performance across schools and districts.",
+      "visibleAttributes": ["Assessment Name", "Assessment Type", "Subject", "Grade Range", "Status", "Testing Window"],
+      "availableCTAs": ["View", "View Results", "Export Results"],
+      "cardShape": "Data row",
+      "userIntent": "How is this assessment performing across my school/district?",
+      "contextDataSchema": {
+        "schoolCompletionPercent": { "type": "number", "description": "School-wide completion percentage" },
+        "schoolAverageScore": { "type": "string", "description": "School average score" },
+        "schoolCount": { "type": "number", "description": "Number of schools (district context)" },
+        "classCount": { "type": "number", "description": "Number of classes assigned" }
+      }
+    },
+    {
+      "context": "Score Report Header",
+      "value": "score-report-header",
+      "shape": "header",
+      "description": "The assessment shown as a section header identifying which assessment the score report below covers. Provides context — no interactive elements.",
+      "visibleAttributes": ["Assessment Name", "Assessment Type", "Subject"],
+      "availableCTAs": ["View"],
+      "cardShape": "Section header",
+      "userIntent": "What assessment is this score report about?"
+    },
+    {
+      "context": "Student Assessment List",
+      "value": "student-assessment-list",
+      "shape": "compact-card",
+      "description": "A student's view of their assessments — what's upcoming, what's available to start, and past results with scores. Shows testing windows and proficiency bands for completed work.",
+      "visibleAttributes": ["Assessment Name", "Assessment Type", "Subject", "Status"],
+      "availableCTAs": ["View"],
+      "cardShape": "Compact card",
+      "userIntent": "What do I need to take, and how did I do on past ones?",
+      "contextDataSchema": {
+        "studentScore": { "type": "number", "description": "Own score if completed" },
+        "studentBand": { "type": "string", "description": "Own proficiency band if completed" },
+        "windowStart": { "type": "string", "description": "When assessment becomes available" },
+        "windowEnd": { "type": "string", "description": "Assessment deadline" }
+      }
+    },
+    {
+      "context": "Student Detail",
+      "value": "student-detail",
+      "shape": "row",
+      "description": "Assessments listed within a student's profile as a sortable table with scores and status. Teachers review assessment history and take action on individual assessments.",
+      "visibleAttributes": ["Assessment Name", "Assessment Type", "Subject", "Testing Window", "Score", "Proficiency Band"],
+      "availableCTAs": ["View Results", "Start", "View Score", "Export", "Cancel", "Schedule"],
+      "cardShape": "Table row in sortable list",
+      "userIntent": "What assessments has this student taken?"
+    }
+  ]
+}

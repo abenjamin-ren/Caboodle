@@ -1,0 +1,75 @@
+@import './tokens.css';
+@import './layouts.css';
+
+/* ============================================
+   Global Resets
+   ============================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+
+html {
+  font-family: var(--font-plain);
+  line-height: var(--line-height);
+  color: var(--color-dark);
+  background-color: var(--gray-50);
+}
+
+img,
+svg,
+video {
+  max-inline-size: 100%;
+  block-size: auto;
+  display: block;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+a {
+  color: var(--color-link);
+}
+
+code,
+pre {
+  font-family: var(--font-mono);
+}
+
+dl,
+dd {
+  margin: 0;
+}
+
+ul[role="list"] {
+  list-style: none;
+  padding: 0;
+}
+
+/* ============================================
+   Utilities
+   ============================================ */
+
+.sr-only {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

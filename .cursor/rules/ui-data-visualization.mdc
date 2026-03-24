@@ -1,0 +1,95 @@
+---
+description: Data visualization principles — charts, tables, accessible data representation
+globs: "**/*.html"
+alwaysApply: false
+---
+
+# Data Visualization
+
+Data visualization exists to reveal patterns, support comparison, and aid decision-making. If a visualization doesn't help the user think more clearly, use a table or plain text instead.
+
+## Tufte's Core Principles
+
+### Data-Ink Ratio
+Maximize the share of ink (pixels) devoted to actual data. Remove chartjunk — decorative gridlines, 3D effects, gradient fills, unnecessary borders, redundant legends, and ornamental axes.
+
+**Ask:** if I remove this element, does the user lose any information? If not, remove it.
+
+### Graphical Integrity
+- Represent quantities honestly and proportionally. A bar twice as tall should represent twice the value
+- Start quantitative axes at zero unless there is a compelling reason (and it's clearly labeled)
+- Never use area or volume to represent single-dimensional values — humans misjudge area badly
+- Label data directly when possible instead of requiring legend lookups
+
+### Small Multiples
+When comparing the same metric across categories, use small multiples (repeated small charts with the same axes) rather than one complex chart with many overlapping series. Each chart is simple; the pattern emerges from repetition.
+
+## Choosing Chart Types
+
+| Data question | Recommended chart | Avoid |
+|---|---|---|
+| How do parts relate to a whole? | Stacked bar, treemap | Pie chart (hard to compare slices) |
+| How does a value change over time? | Line chart | Bar chart (implies discrete categories) |
+| How do categories compare? | Bar chart (horizontal for many categories) | Pie chart, radar |
+| What is the distribution? | Histogram, box plot | Bar chart of means (hides variation) |
+| What is the correlation? | Scatter plot | Dual-axis charts (misleading) |
+| What is the composition over time? | Stacked area | 3D charts |
+| What is the ranking? | Horizontal bar, sorted | Unsorted bar, bubble chart |
+
+**Default to the simplest chart that answers the question.** A well-labeled table is often better than a chart for precise values.
+
+## Accessible Visualization
+
+### Never rely on color alone
+- Use patterns (stripes, dots, hatching), shapes, or direct labels alongside color
+- Ensure 3:1 contrast between adjacent chart elements and between chart elements and background
+- Test with simulated color blindness — if two series become indistinguishable, add a redundant cue
+
+### Provide text alternatives
+- Every chart needs a descriptive `alt` text or `aria-label` summarizing the key takeaway ("Student proficiency scores improved 15% from Q1 to Q3")
+- Complex charts need a longer text summary highlighting trends and key data points
+- Provide a data table alternative — either visible or accessible via toggle. Use `<table>` with `<th scope>` for rows and columns
+
+### Keyboard and screen reader support
+- Interactive charts must be keyboard-navigable (arrow keys to move between data points, Enter/Space to select)
+- Announce data values on focus for screen reader users (`aria-label` on each data point)
+- Provide a "skip to data table" link before complex interactive charts
+
+### Downloadable data
+- Offer CSV or JSON download for any dataset backing a visualization
+- Link to the source data when available
+
+## Tables as Visualization
+
+Data tables are a legitimate and often superior visualization for:
+- Precise values (charts show trends; tables show numbers)
+- Small datasets (fewer than 10 rows)
+- Multi-attribute comparison (many columns per row)
+- Reference lookup (finding a specific value)
+
+### Table design rules
+- **Align numbers right** and use monospace or tabular-lining figures for column scanning
+- **Align text left** — never center text columns
+- **Right-align column headers** to match right-aligned data, left-align headers for left-aligned data
+- Use **horizontal lines** to separate header from body; minimize other borders. Zebra striping is acceptable for wide tables
+- **Sort meaningfully** — alphabetically, chronologically, or by magnitude. Default to the most useful order
+- **Sticky headers** on tall, scrollable tables so column labels remain visible
+- **Compact density** is acceptable for data tables — users scanning data expect tighter spacing than content pages
+- **Responsive tables:** wrap in a horizontally scrollable container rather than stacking columns (stacking breaks comparison)
+
+## Color in Data
+
+- Use **sequential palettes** (light-to-dark of one hue) for continuous data
+- Use **diverging palettes** (two hues with a neutral midpoint) for data with a meaningful center (above/below average)
+- Use **categorical palettes** (distinct hues) for nominal categories — maximum 6–8 categories before colors become hard to distinguish
+- Use Caboodle's object identity colors when visualizing object-level data (Student = teal, Teacher = gold, etc.)
+- Test palettes with a color blindness simulator
+
+## Interactive Visualization (Future)
+
+When adding interactive data visualization:
+- Provide hover/focus tooltips with exact values
+- Allow filtering and drilling down without losing context (keep axes stable)
+- Include a reset/clear filters action
+- Don't auto-animate — let users trigger transitions
+- Ensure all interactions are keyboard-accessible

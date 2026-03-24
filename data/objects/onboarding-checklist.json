@@ -1,0 +1,600 @@
+{
+  "identity": {
+    "slug": "onboarding-checklist",
+    "name": "Onboarding Checklist",
+    "qualifier": "(Domain)",
+    "objectType": "domain",
+    "category": "container",
+    "definition": "An Onboarding Checklist is a system-generated, user-specific sequence of setup and discovery tasks that appears after a user's first login to Renaissance Intelligence.",
+    "synonyms": ["Setup Guide", "Getting Started", "Welcome Checklist", "Activation Guide"],
+    "products": "Renaissance Intelligence"
+  },
+  "variations": [],
+  "representations": [
+    {
+      "layout": "card",
+      "heading": "Card layout",
+      "description": "How an Onboarding Checklist appears as a dashboard widget",
+      "defaultShape": "card",
+      "componentTag": "ren-onboarding-checklist-card",
+      "examples": [
+        {
+          "roleVariant": "teacher",
+          "progress": 40,
+          "status": "in-progress",
+          "stepCount": 5,
+          "userName": "Ms. Johnson",
+          "daysSinceStart": 3,
+          "color": "#2563EB"
+        },
+        {
+          "roleVariant": "admin",
+          "progress": 100,
+          "status": "complete",
+          "stepCount": 8,
+          "userName": "Dr. Smith",
+          "daysSinceStart": 14,
+          "color": "#059669"
+        },
+        {
+          "roleVariant": "teacher",
+          "progress": 60,
+          "status": "dismissed",
+          "stepCount": 5,
+          "userName": "Mr. Garcia",
+          "daysSinceStart": 7,
+          "color": "#999"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Role Variant",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Whether this is a teacher or admin checklist."
+        },
+        {
+          "name": "Progress",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Percentage of steps completed or skipped (0-100)."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Overall checklist state: not-started, in-progress, complete, or dismissed."
+        },
+        {
+          "name": "Steps",
+          "dataType": "Reference → Onboarding Step[]",
+          "source": "System",
+          "description": "The ordered set of steps in this checklist.",
+          "isReference": true,
+          "referenceSlug": "onboarding-step",
+          "referenceName": "Onboarding Step"
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Checklist",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Resume Checklist",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "S",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Dismiss Checklist",
+          "roles": "Teacher, Admin",
+          "permission": "Write",
+          "priority": "S",
+          "roleKeys": ["teacher", "admin"]
+        }
+      ]
+    },
+    {
+      "layout": "list",
+      "heading": "List layout",
+      "description": "How an Onboarding Checklist appears in admin views",
+      "defaultShape": "row",
+      "componentTag": "ren-onboarding-checklist-row",
+      "examples": [
+        {
+          "roleVariant": "teacher",
+          "progress": 40,
+          "status": "in-progress",
+          "stepCount": 5,
+          "userName": "Ms. Johnson",
+          "daysSinceStart": 3,
+          "color": "#2563EB"
+        },
+        {
+          "roleVariant": "admin",
+          "progress": 75,
+          "status": "in-progress",
+          "stepCount": 8,
+          "userName": "Dr. Smith",
+          "daysSinceStart": 10,
+          "color": "#7C3AED"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "User",
+          "dataType": "Reference → Teacher",
+          "source": "System",
+          "description": "The teacher or admin this checklist belongs to.",
+          "isReference": true,
+          "referenceSlug": "teacher",
+          "referenceName": "Teacher"
+        },
+        {
+          "name": "Role Variant",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Whether this is a teacher or admin checklist."
+        },
+        {
+          "name": "Progress",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Percentage of steps completed or skipped."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Overall checklist state."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Checklist",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin"]
+        }
+      ]
+    },
+    {
+      "layout": "detail",
+      "heading": "Detail layout",
+      "description": "Full expanded Onboarding Checklist with all steps",
+      "defaultShape": "profile",
+      "componentTag": "ren-onboarding-checklist-profile",
+      "examples": [
+        {
+          "roleVariant": "teacher",
+          "progress": 40,
+          "status": "in-progress",
+          "stepCount": 5,
+          "completedSteps": 2,
+          "userName": "Ms. Johnson",
+          "daysSinceStart": 3,
+          "color": "#2563EB"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Checklist ID",
+          "dataType": "String",
+          "source": "System",
+          "description": "Unique system identifier."
+        },
+        {
+          "name": "User",
+          "dataType": "Reference → Teacher",
+          "source": "System",
+          "description": "The teacher or admin this checklist belongs to.",
+          "isReference": true,
+          "referenceSlug": "teacher",
+          "referenceName": "Teacher"
+        },
+        {
+          "name": "Role Variant",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "teacher or admin — determines which steps appear."
+        },
+        {
+          "name": "Progress",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Percentage of steps completed or skipped (0-100)."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Overall checklist state."
+        },
+        {
+          "name": "Steps",
+          "dataType": "Reference → Onboarding Step[]",
+          "source": "System",
+          "description": "The ordered set of steps in this checklist.",
+          "isReference": true,
+          "referenceSlug": "onboarding-step",
+          "referenceName": "Onboarding Step"
+        },
+        {
+          "name": "Created Date",
+          "dataType": "Date",
+          "source": "System",
+          "description": "When the checklist was generated (user's first login)."
+        },
+        {
+          "name": "Completed Date",
+          "dataType": "Date",
+          "source": "System",
+          "description": "When all steps were completed or skipped."
+        },
+        {
+          "name": "Dismissed Date",
+          "dataType": "Date",
+          "source": "System",
+          "description": "When the user dismissed the checklist."
+        },
+        {
+          "name": "Days Since Start",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Calculated field: days elapsed since the checklist was created."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Checklist",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Resume Checklist",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "S",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Dismiss Checklist",
+          "roles": "Teacher, Admin",
+          "permission": "Write",
+          "priority": "S",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Complete Checklist",
+          "roles": "System",
+          "permission": "Write",
+          "priority": "P",
+          "roleKeys": ["system"]
+        },
+        {
+          "name": "Reset Checklist",
+          "roles": "Admin",
+          "permission": "Write",
+          "priority": "T",
+          "roleKeys": ["admin"]
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "First Login Onboarding",
+      "icon": "rocket_launch",
+      "role": "Teacher",
+      "action": "view",
+      "object": "Onboarding Checklist",
+      "benefit": "I know exactly what setup steps to take and can track my progress toward being fully onboarded.",
+      "whenClause": "I log in to Renaissance Intelligence for the first time,",
+      "thenClause": "a personalized checklist appears on my dashboard showing the steps I need to complete, with progress tracking and direct links to each action.",
+      "crossObjects": [{ "slug": "onboarding-step", "name": "Onboarding Step" }]
+    },
+    {
+      "title": "Monitor Teacher Onboarding",
+      "icon": "monitoring",
+      "role": "School Admin",
+      "action": "monitor",
+      "object": "Onboarding Checklist",
+      "benefit": "I can identify which teachers need onboarding support and intervene before they stall.",
+      "whenClause": "I view the admin onboarding dashboard,",
+      "thenClause": "I see a list of teachers with their checklist progress, days since start, and current status so I can prioritize outreach.",
+      "crossObjects": [{ "slug": "teacher", "name": "Teacher" }]
+    }
+  ],
+  "businessRules": [
+    {
+      "title": "Auto-Generation",
+      "description": "A checklist is automatically created for every user upon their first login. The step set is determined by the user's role (teacher vs. admin)."
+    },
+    {
+      "title": "One Per User",
+      "description": "Each user gets exactly one Onboarding Checklist. It cannot be duplicated, and re-login does not create a new one."
+    },
+    {
+      "title": "Progress Calculation",
+      "description": "Progress = (completed steps + skipped steps) / total steps * 100. Both completed and skipped steps count toward progress."
+    },
+    {
+      "title": "Auto-Completion",
+      "description": "When all steps reach a terminal state (complete or skipped), the checklist status automatically transitions to complete."
+    },
+    {
+      "title": "Dismissal",
+      "description": "Users can dismiss the checklist widget from their dashboard. Dismissal hides it from view but the checklist data persists for admin reporting."
+    },
+    {
+      "title": "Role-Based Step Sets",
+      "description": "Teacher checklists typically have 5 steps focused on classroom setup. Admin checklists have 8 steps including school-level configuration tasks."
+    },
+    {
+      "title": "Staleness Detection",
+      "description": "If daysSinceStart exceeds a threshold (e.g., 14 days) and progress is below 50%, the checklist may trigger an admin notification."
+    },
+    {
+      "title": "Reset Capability",
+      "description": "Only admins can reset a teacher's checklist, which returns all steps to not-started and resets progress to 0%. This is used for re-training scenarios."
+    }
+  ],
+  "lifecycle": {
+    "states": [
+      {
+        "name": "Not Started",
+        "description": "Checklist has been generated but no steps attempted",
+        "triggers": "User's first login generates the checklist",
+        "variant": "default"
+      },
+      {
+        "name": "In Progress",
+        "description": "At least one step has been started, completed, or skipped",
+        "triggers": "First step interaction",
+        "variant": "active"
+      },
+      {
+        "name": "Complete",
+        "description": "All steps are in a terminal state (complete or skipped)",
+        "triggers": "Last step reaches terminal state",
+        "variant": "active"
+      },
+      {
+        "name": "Dismissed",
+        "description": "User has dismissed the checklist from their dashboard",
+        "triggers": "User clicks Dismiss Checklist",
+        "variant": "warn"
+      }
+    ],
+    "transitions": [
+      { "from": "Not Started", "to": ["In Progress", "Dismissed"] },
+      { "from": "In Progress", "to": ["Complete", "Dismissed"] },
+      { "from": "Dismissed", "to": ["In Progress"] }
+    ]
+  },
+  "relationships": [
+    {
+      "targetSlug": "onboarding-step",
+      "targetName": "Onboarding Step",
+      "mechanics": "A checklist contains an ordered set of steps. Step status changes propagate to recalculate checklist progress and potentially trigger checklist completion.",
+      "cardinality": "One-to-many. A Checklist contains 5-8 Steps; each Step belongs to exactly one Checklist.",
+      "sorts": "Steps within a checklist: by order (ascending, fixed).",
+      "filters": "By step status (not-started, in-progress, complete, skipped).",
+      "dependencies": "If a checklist is reset, all its steps return to not-started."
+    },
+    {
+      "targetSlug": "teacher",
+      "targetName": "Teacher",
+      "mechanics": "Each checklist belongs to exactly one teacher/admin user. Generated automatically on first login based on the user's role.",
+      "cardinality": "One-to-one. Each Teacher has exactly one Checklist; each Checklist belongs to one Teacher.",
+      "sorts": "Checklists across teachers: by progress (ascending for admins to find stragglers), by days since start.",
+      "filters": "By role variant (teacher vs. admin), by status, by progress range.",
+      "dependencies": "If a teacher is deactivated, the checklist data is retained for historical reporting."
+    },
+    {
+      "targetSlug": "educator-academy-module",
+      "targetName": "Educator Academy Module",
+      "mechanics": "Steps within a checklist may link to Educator Academy Modules for supplementary training. Module completion can auto-complete associated steps.",
+      "cardinality": "Many-to-many (indirect, through steps). A Checklist's steps may reference multiple Modules; a Module can be linked from steps in multiple Checklists.",
+      "sorts": "N/A — indirect relationship through steps.",
+      "filters": "N/A — indirect relationship.",
+      "dependencies": "Module availability affects step help links but not checklist structure."
+    }
+  ],
+  "relatedObjects": ["onboarding-step", "teacher", "educator-academy-module"],
+  "nestedObjects": [
+    {
+      "slug": "onboarding-step",
+      "name": "Onboarding Step",
+      "cardinality": "One-to-many",
+      "description": "Ordered sequence of actionable setup tasks within this checklist"
+    }
+  ],
+  "allAttributes": [
+    {
+      "name": "Checklist ID",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "Unique system identifier for this checklist instance."
+    },
+    {
+      "name": "User",
+      "dataType": "Reference → Teacher",
+      "required": true,
+      "source": "System",
+      "description": "The teacher or admin this checklist belongs to.",
+      "isReference": true,
+      "referenceSlug": "teacher",
+      "referenceName": "Teacher"
+    },
+    {
+      "name": "Role Variant",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System",
+      "description": "Determines the step set: teacher (5 steps) or admin (8 steps)."
+    },
+    {
+      "name": "Progress",
+      "dataType": "Number",
+      "required": true,
+      "source": "System",
+      "description": "Percentage of steps in terminal state (complete + skipped) / total. 0-100."
+    },
+    {
+      "name": "Status",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System",
+      "description": "Overall state: not-started, in-progress, complete, or dismissed."
+    },
+    {
+      "name": "Steps",
+      "dataType": "Reference → Onboarding Step[]",
+      "required": true,
+      "source": "System",
+      "description": "Ordered array of step references composing this checklist.",
+      "isReference": true,
+      "referenceSlug": "onboarding-step",
+      "referenceName": "Onboarding Step"
+    },
+    {
+      "name": "Created Date",
+      "dataType": "Date",
+      "required": true,
+      "source": "System",
+      "description": "Timestamp of checklist generation (user's first login)."
+    },
+    {
+      "name": "Completed Date",
+      "dataType": "Date",
+      "source": "System",
+      "description": "Timestamp when checklist reached 100% progress. Null if not complete."
+    },
+    {
+      "name": "Dismissed Date",
+      "dataType": "Date",
+      "source": "System",
+      "description": "Timestamp when the user dismissed the checklist widget. Null if not dismissed."
+    },
+    {
+      "name": "Days Since Start",
+      "dataType": "Number",
+      "required": true,
+      "source": "System",
+      "description": "Calculated field: calendar days since Created Date. Used for staleness detection."
+    }
+  ],
+  "allCTAs": [
+    {
+      "name": "View Checklist",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "P",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Resume Checklist",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "S",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Dismiss Checklist",
+      "roles": "Teacher, Admin",
+      "permission": "Write",
+      "priority": "S",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Complete Checklist",
+      "roles": "System",
+      "permission": "Write",
+      "priority": "P",
+      "roleKeys": ["system"]
+    },
+    {
+      "name": "Reset Checklist",
+      "roles": "Admin",
+      "permission": "Write",
+      "priority": "T",
+      "roleKeys": ["admin"]
+    }
+  ],
+  "sipValidation": {
+    "structure": {
+      "pass": true,
+      "evidence": "An Onboarding Checklist has structured attributes: ID, user reference, role variant, progress percentage, status, step references, created/completed/dismissed dates, and days since start. You can design a detail page for a Checklist."
+    },
+    "instances": {
+      "pass": true,
+      "evidence": "Ms. Johnson's teacher checklist (40% progress, 3 days in), Dr. Smith's admin checklist (100% complete, 14 days), Mr. Garcia's teacher checklist (60% progress, dismissed after 7 days). Every user gets a unique Checklist instance."
+    },
+    "purpose": {
+      "pass": true,
+      "evidence": "Checklists drive user activation by providing guided setup workflows. Teachers use them to complete first-time configuration. Admins monitor them to identify teachers who need onboarding support. Completion data feeds activation metrics."
+    },
+    "verdict": "Domain container object. User-specific onboarding workflow that contains ordered steps and tracks activation progress."
+  },
+  "synonyms": [
+    {
+      "term": "Setup Guide",
+      "context": "Help documentation, in-product tooltips",
+      "notes": "Emphasizes the guided nature; Checklist emphasizes progress tracking"
+    },
+    {
+      "term": "Getting Started",
+      "context": "User-facing UI, marketing materials",
+      "notes": "The section name where the checklist appears on the dashboard"
+    },
+    {
+      "term": "Welcome Checklist",
+      "context": "Customer success, onboarding playbooks",
+      "notes": "Emphasizes the first-login trigger; used in CS team documentation"
+    },
+    {
+      "term": "Activation Guide",
+      "context": "Product analytics, growth team",
+      "notes": "Emphasizes the business goal of user activation; internal analytics term"
+    }
+  ],
+  "shapeshifterMatrix": [
+    {
+      "context": "Dashboard Widget",
+      "value": "dashboard-widget",
+      "shape": "card",
+      "description": "The onboarding checklist shown as a dashboard widget with progress and next steps. New users see what they need to complete and pick up where they left off.",
+      "visibleAttributes": ["Role Variant", "Progress", "Status", "Steps"],
+      "availableCTAs": ["View Checklist", "Resume Checklist", "Dismiss Checklist"],
+      "cardShape": "Dashboard widget card"
+    },
+    {
+      "context": "Full Checklist",
+      "value": "full-checklist",
+      "shape": "profile",
+      "description": "The complete onboarding checklist — all steps, progress, and management controls. Users work through setup tasks; admins can reset or review completion status.",
+      "visibleAttributes": ["Checklist ID", "User", "Role Variant", "Progress", "Status", "Steps", "Created Date", "Completed Date", "Dismissed Date", "Days Since Start"],
+      "availableCTAs": ["View Checklist", "Resume Checklist", "Dismiss Checklist", "Complete Checklist", "Reset Checklist"],
+      "cardShape": "Full page"
+    },
+    {
+      "context": "Admin View",
+      "value": "admin-view",
+      "shape": "row",
+      "description": "Onboarding checklists listed in an admin table with progress, status, and days since start. Admins monitor which users are completing onboarding and who's stalled.",
+      "visibleAttributes": ["User", "Role Variant", "Progress", "Status", "Days Since Start"],
+      "availableCTAs": ["View Checklist", "Reset Checklist"],
+      "cardShape": "Admin data row"
+    }
+  ]
+}

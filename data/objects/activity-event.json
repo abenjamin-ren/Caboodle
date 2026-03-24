@@ -1,0 +1,646 @@
+{
+  "identity": {
+    "slug": "activity-event",
+    "name": "Activity Event",
+    "qualifier": "(Domain)",
+    "objectType": "domain",
+    "category": "activity",
+    "definition": "An Activity Event is a record of a single student interaction with Renaissance content — completing a skills practice session, reading a book, finishing an assignment, taking an assessment, or participating in a live lesson.",
+    "synonyms": ["activity", "event", "interaction", "action"],
+    "products": "All products"
+  },
+  "variations": [],
+  "representations": [
+    {
+      "layout": "card",
+      "heading": "Card layout",
+      "description": "How an Activity Event appears in activity feeds and dashboards",
+      "defaultShape": "card",
+      "componentTag": "ren-activity-event-card",
+      "examples": [
+        {
+          "activityLabel": "Star Reading Assessment",
+          "activityType": "assessment",
+          "sourceProduct": "Star Reading",
+          "subject": "Reading",
+          "scoreSummary": "680L",
+          "startedAt": "2025-11-15T09:30:00",
+          "completedAt": "2025-11-15T10:05:00",
+          "studentName": "Harry Potter",
+          "color": "#2563EB"
+        },
+        {
+          "activityLabel": "Fraction Operations Practice",
+          "activityType": "skills_practice",
+          "sourceProduct": "Freckle",
+          "subject": "Math",
+          "scoreSummary": "8/10 correct",
+          "startedAt": "2025-11-15T13:00:00",
+          "completedAt": "2025-11-15T13:22:00",
+          "studentName": "Hermione Granger",
+          "color": "#398b26"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Activity Label",
+          "dataType": "String",
+          "source": "System",
+          "description": "Human-readable name for the activity."
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Category: skills practice, reading activity, assignment, assessment, or live lesson."
+        },
+        {
+          "name": "Source Product",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Which Renaissance product generated this event."
+        },
+        {
+          "name": "Score Summary",
+          "dataType": "Multiple",
+          "source": "System",
+          "description": "Condensed score or outcome for display."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "Open Details",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher"]
+        }
+      ]
+    },
+    {
+      "layout": "list",
+      "heading": "List layout",
+      "description": "How an Activity Event appears in student activity logs and reports",
+      "defaultShape": "row",
+      "componentTag": "ren-activity-event-row",
+      "examples": [
+        {
+          "activityLabel": "Star Reading Assessment",
+          "activityType": "assessment",
+          "sourceProduct": "Star Reading",
+          "subject": "Reading",
+          "scoreSummary": "680L",
+          "startedAt": "2025-11-15T09:30:00",
+          "completedAt": "2025-11-15T10:05:00",
+          "studentName": "Harry Potter",
+          "color": "#2563EB"
+        },
+        {
+          "activityLabel": "Charlotte's Web — Chapter 5",
+          "activityType": "reading_activity",
+          "sourceProduct": "myON",
+          "subject": "Reading",
+          "scoreSummary": "15 min read",
+          "startedAt": "2025-11-14T14:00:00",
+          "completedAt": "2025-11-14T14:15:00",
+          "studentName": "Harry Potter",
+          "color": "#0076b3"
+        },
+        {
+          "activityLabel": "Vocabulary Quiz — Unit 3",
+          "activityType": "assignment",
+          "sourceProduct": "AR",
+          "subject": "Reading",
+          "scoreSummary": "90%",
+          "startedAt": "2025-11-13T10:00:00",
+          "completedAt": "2025-11-13T10:12:00",
+          "studentName": "Hermione Granger",
+          "color": "#7C3AED"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Activity Label",
+          "dataType": "String",
+          "source": "System",
+          "description": "Human-readable name for the activity."
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Category of activity."
+        },
+        {
+          "name": "Source Product",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Which Renaissance product generated this event."
+        },
+        {
+          "name": "Score Summary",
+          "dataType": "Multiple",
+          "source": "System",
+          "description": "Condensed score or outcome for display."
+        },
+        {
+          "name": "Started At",
+          "dataType": "Date",
+          "source": "System",
+          "description": "When the student began the activity."
+        },
+        {
+          "name": "Completed At",
+          "dataType": "Date",
+          "source": "System",
+          "description": "When the student finished the activity."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "Open Details",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Open Report",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "S",
+          "roleKeys": ["teacher"]
+        }
+      ]
+    },
+    {
+      "layout": "detail",
+      "heading": "Detail page layout",
+      "description": "What users see when they open a full Activity Event record",
+      "defaultShape": "profile",
+      "componentTag": "ren-activity-event-profile",
+      "examples": [
+        {
+          "activityLabel": "Star Reading Assessment",
+          "activityType": "assessment",
+          "sourceProduct": "Star Reading",
+          "subject": "Reading",
+          "scoreSummary": "680L",
+          "startedAt": "2025-11-15T09:30:00",
+          "completedAt": "2025-11-15T10:05:00",
+          "studentName": "Harry Potter",
+          "dataFreshness": "real_time",
+          "color": "#2563EB"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Event ID",
+          "dataType": "String",
+          "source": "System",
+          "description": "Unique system identifier for this Activity Event."
+        },
+        {
+          "name": "Student ID",
+          "dataType": "Reference → Student",
+          "source": "System",
+          "description": "The Student who performed the activity.",
+          "isReference": true,
+          "referenceSlug": "student",
+          "referenceName": "Student"
+        },
+        {
+          "name": "Class ID",
+          "dataType": "Reference → Class",
+          "source": "System",
+          "description": "The Class context in which the activity occurred.",
+          "isReference": true,
+          "referenceSlug": "class",
+          "referenceName": "Class"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Category: skills_practice, reading_activity, assignment, assessment, live_lesson."
+        },
+        {
+          "name": "Source Product",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Which Renaissance product generated this event."
+        },
+        {
+          "name": "Activity Label",
+          "dataType": "String",
+          "source": "System",
+          "description": "Human-readable name for the activity."
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Subject area of the activity."
+        },
+        {
+          "name": "Content Level",
+          "dataType": "String",
+          "source": "System",
+          "description": "Difficulty or grade level of the content."
+        },
+        {
+          "name": "Started At",
+          "dataType": "Date",
+          "source": "System",
+          "description": "When the student began the activity."
+        },
+        {
+          "name": "Completed At",
+          "dataType": "Date",
+          "source": "System",
+          "description": "When the student finished. Null if still in progress."
+        },
+        {
+          "name": "Data Freshness",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Whether the data is real-time or from a nightly sync."
+        },
+        {
+          "name": "Last Updated At",
+          "dataType": "Date",
+          "source": "System",
+          "description": "Timestamp of the most recent data update."
+        },
+        {
+          "name": "Score Summary",
+          "dataType": "Multiple",
+          "source": "System",
+          "description": "Condensed score, outcome, or progress metric."
+        },
+        {
+          "name": "Drill Down Destination",
+          "dataType": "String",
+          "source": "System",
+          "description": "Deep link to the detailed report in the source product."
+        },
+        {
+          "name": "Response Details",
+          "dataType": "Multiple",
+          "source": "System",
+          "description": "Granular item-level response data for drill-down analysis."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "Open Details",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Open Report",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "S",
+          "roleKeys": ["teacher"]
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "Review Student Activity",
+      "icon": "history",
+      "role": "Teacher",
+      "action": "browse",
+      "object": "Activity Event",
+      "benefit": "I can see what work a student has completed across all Renaissance products in a unified timeline.",
+      "whenClause": "I view a student's activity feed,",
+      "thenClause": "I see a chronological list of Activity Events with type badges, scores, and product sources.",
+      "crossObjects": [{ "slug": "student", "name": "Student" }]
+    },
+    {
+      "title": "Drill into Activity Details",
+      "icon": "open_in_new",
+      "role": "Teacher",
+      "action": "view",
+      "object": "Activity Event",
+      "benefit": "I can understand exactly how a student performed and identify areas for follow-up instruction.",
+      "whenClause": "I open an Activity Event's detail view,",
+      "thenClause": "I see the full score summary, response details, content level, and a link to the source product's detailed report."
+    }
+  ],
+  "businessRules": [
+    {
+      "title": "Immutability",
+      "description": "Activity Events are write-once records. Once created, they cannot be edited or deleted. Score summaries may be updated as scoring completes."
+    },
+    {
+      "title": "Student Required",
+      "description": "Every Activity Event must reference a Student ID. Anonymous or unlinked activities are not recorded."
+    },
+    {
+      "title": "Data Freshness",
+      "description": "Events have a data freshness indicator: real_time (available immediately) or nightly_sync (available after overnight processing). Source product determines freshness."
+    },
+    {
+      "title": "Lifecycle Progression",
+      "description": "Events progress through states: in_progress → completed → synced → scored or unscored. Not all events reach 'scored' (e.g., reading activities may remain 'completed')."
+    }
+  ],
+  "lifecycle": {
+    "states": [
+      {
+        "name": "In Progress",
+        "description": "Student has started but not yet finished the activity",
+        "triggers": "Student begins an activity in any Renaissance product",
+        "variant": "active"
+      },
+      {
+        "name": "Completed",
+        "description": "Student has finished the activity; awaiting data processing",
+        "triggers": "Student submits or finishes the activity",
+        "variant": "active"
+      },
+      {
+        "name": "Synced",
+        "description": "Activity data has been synchronized to the central platform",
+        "triggers": "Real-time sync or nightly batch processing completes",
+        "variant": "default"
+      },
+      {
+        "name": "Scored",
+        "description": "Activity has been scored and results are available",
+        "triggers": "Scoring engine processes the completed activity",
+        "variant": "active"
+      },
+      {
+        "name": "Unscored",
+        "description": "Activity is complete but does not produce a score",
+        "triggers": "Activity type does not require scoring (e.g., reading time)",
+        "variant": "default"
+      }
+    ],
+    "transitions": [
+      { "from": "In Progress", "to": ["Completed"] },
+      { "from": "Completed", "to": ["Synced"] },
+      { "from": "Synced", "to": ["Scored", "Unscored"] }
+    ]
+  },
+  "relationships": [
+    {
+      "targetSlug": "student",
+      "targetName": "Student",
+      "mechanics": "Activity Events are generated automatically when a Student interacts with Renaissance content. The Student ID is captured at event creation.",
+      "cardinality": "Many-to-one. A Student generates many Activity Events; each event belongs to exactly one Student.",
+      "sorts": "Events for a Student: by date (most recent first, default), by activity type, by source product, by subject.",
+      "filters": "By activity type, by source product, by subject, by date range, by completion status.",
+      "dependencies": "If a Student is deactivated, their Activity Events persist for historical reporting."
+    },
+    {
+      "targetSlug": "class",
+      "targetName": "Class",
+      "mechanics": "Activity Events capture the Class context in which the activity was initiated. This enables class-level activity reports.",
+      "cardinality": "Many-to-one. A Class has many Activity Events; each event references one Class.",
+      "sorts": "Events for a Class: by date, by student name, by activity type.",
+      "filters": "By student, by activity type, by source product, by date range.",
+      "dependencies": "If a Class is archived, Activity Events referencing it remain for historical reporting."
+    }
+  ],
+  "relatedObjects": ["student", "class", "assignment", "assessment", "score"],
+  "nestedObjects": [
+    {
+      "slug": "student",
+      "name": "Student",
+      "cardinality": "Many-to-one",
+      "description": "The Student who performed the activity"
+    },
+    {
+      "slug": "class",
+      "name": "Class",
+      "cardinality": "Many-to-one",
+      "description": "The Class context for the activity"
+    },
+    {
+      "slug": "assignment",
+      "name": "Assignment",
+      "cardinality": "Many-to-one",
+      "description": "The Assignment being completed (if applicable)"
+    },
+    {
+      "slug": "assessment",
+      "name": "Assessment",
+      "cardinality": "Many-to-one",
+      "description": "The Assessment being taken (if applicable)"
+    },
+    {
+      "slug": "skill",
+      "name": "Skill",
+      "cardinality": "Many-to-many",
+      "description": "Skills practiced or assessed during the activity"
+    },
+    {
+      "slug": "resource",
+      "name": "Resource",
+      "cardinality": "Many-to-one",
+      "description": "The content resource used (if applicable)"
+    },
+    {
+      "slug": "score",
+      "name": "Score",
+      "cardinality": "One-to-one",
+      "description": "The Score generated from a scored activity"
+    }
+  ],
+  "allAttributes": [
+    {
+      "name": "Event ID",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "Unique system identifier for this Activity Event."
+    },
+    {
+      "name": "Student ID",
+      "dataType": "Reference → Student",
+      "required": true,
+      "source": "System",
+      "description": "The Student who performed the activity.",
+      "isReference": true,
+      "referenceSlug": "student",
+      "referenceName": "Student"
+    },
+    {
+      "name": "Class ID",
+      "dataType": "Reference → Class",
+      "required": true,
+      "source": "System",
+      "description": "The Class context in which the activity occurred.",
+      "isReference": true,
+      "referenceSlug": "class",
+      "referenceName": "Class"
+    },
+    {
+      "name": "Activity Type",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System",
+      "description": "Category of activity: skills_practice, reading_activity, assignment, assessment, live_lesson."
+    },
+    {
+      "name": "Source Product",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System",
+      "description": "Which Renaissance product generated this event: Freckle, myON, AR, DnA, Nearpod, Lalilo."
+    },
+    {
+      "name": "Activity Label",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "Human-readable name for the activity (e.g., 'Star Reading Assessment', 'Fraction Operations Practice')."
+    },
+    {
+      "name": "Subject",
+      "dataType": "Enum",
+      "source": "System",
+      "description": "Subject area: Reading, Math, Science, SEL, or All."
+    },
+    {
+      "name": "Content Level",
+      "dataType": "String",
+      "source": "System",
+      "description": "Difficulty or grade level of the content presented to the student."
+    },
+    {
+      "name": "Started At",
+      "dataType": "Date",
+      "required": true,
+      "source": "System",
+      "description": "Timestamp of when the student began the activity."
+    },
+    {
+      "name": "Completed At",
+      "dataType": "Date",
+      "source": "System",
+      "description": "Timestamp of when the student finished. Null if still in progress."
+    },
+    {
+      "name": "Data Freshness",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System",
+      "description": "Whether the data is real_time (immediate) or nightly_sync (batch processed)."
+    },
+    {
+      "name": "Last Updated At",
+      "dataType": "Date",
+      "required": true,
+      "source": "System",
+      "description": "Timestamp of the most recent data update for this event."
+    },
+    {
+      "name": "Score Summary",
+      "dataType": "Multiple",
+      "source": "System",
+      "description": "Condensed score, outcome, or progress metric for display (e.g., '680L', '8/10 correct', '15 min read')."
+    },
+    {
+      "name": "Drill Down Destination",
+      "dataType": "String",
+      "source": "System",
+      "description": "Deep link URL to the detailed report in the source product."
+    },
+    {
+      "name": "Response Details",
+      "dataType": "Multiple",
+      "source": "System",
+      "description": "Granular item-level response data: questions answered, time per item, correctness per item."
+    }
+  ],
+  "allCTAs": [
+    {
+      "name": "Open Details",
+      "roles": "Teacher",
+      "permission": "Read",
+      "priority": "P",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Open Report",
+      "roles": "Teacher",
+      "permission": "Read",
+      "priority": "S",
+      "roleKeys": ["teacher"]
+    }
+  ],
+  "sipValidation": {
+    "structure": {
+      "pass": true,
+      "evidence": "An Activity Event has rich attributes: student reference, class context, activity type, source product, timestamps, score summary, response details, and data freshness. A detail view can be designed."
+    },
+    "instances": {
+      "pass": true,
+      "evidence": "Harry Potter's Star Reading Assessment (680L, 35 min), Hermione's Freckle Math Practice (8/10 correct, 22 min), Ron's myON Reading Session (15 min, Charlotte's Web). Every student generates hundreds of events per year."
+    },
+    "purpose": {
+      "pass": true,
+      "evidence": "Activity Events power the unified activity feed in Renaissance Intelligence. Teachers use them to understand student engagement across products, track time-on-task, and identify students who need support."
+    },
+    "verdict": "Domain object. The cross-product engagement record that unifies student activity across the Renaissance ecosystem."
+  },
+  "synonyms": [
+    {
+      "term": "Activity",
+      "context": "Teacher-facing UI and activity feeds",
+      "notes": "Shortened form used in the activity feed interface"
+    },
+    {
+      "term": "Event",
+      "context": "Engineering and data teams",
+      "notes": "Technical term for the event record in the data pipeline"
+    },
+    {
+      "term": "Interaction",
+      "context": "Product management and analytics",
+      "notes": "Used when discussing engagement metrics and usage patterns"
+    },
+    {
+      "term": "Action",
+      "context": "Student-facing UI",
+      "notes": "Used in student dashboards to describe completed work"
+    }
+  ],
+  "shapeshifterMatrix": [
+    {
+      "context": "Student Activity Feed",
+      "value": "student-activity-feed",
+      "shape": "card",
+      "description": "Individual activity events for a student — what they worked on, when, and how they scored. Teachers scan the feed to gauge engagement and spot recent performance.",
+      "visibleAttributes": ["Activity Label", "Activity Type", "Source Product", "Score Summary", "Started At", "Completed At"],
+      "availableCTAs": ["Open Details"],
+      "cardShape": "Medium card"
+    },
+    {
+      "context": "Class Activity Log",
+      "value": "class-activity-log",
+      "shape": "row",
+      "description": "Activity events across a class listed with timestamps and scores. Teachers review what students have been doing and jump to detailed reports.",
+      "visibleAttributes": ["Activity Label", "Activity Type", "Source Product", "Score Summary", "Started At"],
+      "availableCTAs": ["Open Details", "Open Report"],
+      "cardShape": "Compact row"
+    },
+    {
+      "context": "Activity Detail",
+      "value": "activity-detail",
+      "shape": "profile",
+      "description": "The complete activity event record — student, class, content level, timing, scores, and response details. Teachers dig into a specific activity for granular performance data.",
+      "visibleAttributes": ["Event ID", "Student ID", "Class ID", "Activity Type", "Source Product", "Activity Label", "Subject", "Content Level", "Started At", "Completed At", "Data Freshness", "Last Updated At", "Score Summary", "Drill Down Destination", "Response Details"],
+      "availableCTAs": ["Open Details", "Open Report"],
+      "cardShape": "Full page"
+    }
+  ]
+}

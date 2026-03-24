@@ -1,0 +1,90 @@
+---
+description: CSS authoring rules for Caboodle stylesheets
+globs: "styles/**/*.css"
+alwaysApply: false
+---
+
+# Caboodle CSS Rules
+
+## Architecture
+
+CSS is split into three files imported by `main.css` in this order:
+
+1. **`tokens.css`** — Design tokens only (custom properties on `:root`)
+2. **`layouts.css`** — Every Layout primitives (DO NOT modify for page-specific needs)
+3. **`components.css`** — All site-specific component styles
+
+## Adding new styles
+
+- **New spacing/color/typography values** → add to `tokens.css` as custom properties
+- **New component styles** → add to `components.css`, grouped with related components
+- **New layout needs** → compose existing primitives from `layouts.css`; do not create one-off layout classes
+
+## Design tokens
+
+### Spacing (modular scale, ratio 1.5)
+
+Use `--s-5` through `--s5`. Never use raw pixel values for spacing.
+
+```css
+/* Good */
+padding: var(--s1);
+gap: var(--s0);
+margin-block-start: var(--s2);
+
+/* Bad */
+padding: 24px;
+gap: 1rem; /* use --s0 instead */
+margin-top: 37px;
+```
+
+### Colors
+
+Use token variables, not raw hex values:
+
+- `--color-dark` (#1a1a2e) — primary text
+- `--color-mid` (#4a4a68) — secondary text
+- `--color-light` (#f0f0f5) — light backgrounds
+- `--color-lightest` (#fafafa) — page background
+- `--color-brand` (#cf3a4e) — brand red
+- `--color-accent` (#2B87FF) — links, focus, interactive elements
+- `--color-border` (#ccc) — borders
+
+### Typography
+
+- `--font-display` — headings (Georgia)
+- `--font-plain` — body text (Roboto)
+- `--font-mono` — code blocks
+
+## Naming
+
+- Use lowercase kebab-case for class names (`.obj-card`, `.guide-header`)
+- Keep names semantic and descriptive of what the element represents, not how it looks
+- Prefix object-related components with `obj-` (`.obj-card`, `.obj-card-stats`)
+- Prefix guide-related components with `guide-` (`.guide-header`, `.guide-variations`)
+
+## Properties
+
+- Use logical properties: `margin-block-start` not `margin-top`, `inline-size` not `width`, `padding-inline` not `padding-left`
+- Exception: `width` and `height` are acceptable for explicit element sizing (icons, avatars)
+- Never use `!important` on layout-related rules
+- Use `var()` references to tokens for all spacing, colors, and typography values
+
+## Selectors
+
+- Prefer class selectors over element selectors
+- Avoid deep nesting (max 3 levels)
+- Do not use ID selectors for styling
+- Do not override layout primitive internals (`.stack > *`, `.grid`, etc.) from component CSS
+
+## Component organization in `components.css`
+
+Group related styles with a comment header:
+
+```css
+/* ----- Component Name ----- */
+.component { … }
+.component-child { … }
+```
+
+Existing groups include: global resets, main nav, hero, page shell, sections, cards, object cards, secondary tabs, content area, guide header, data tables, code blocks, showcases, pills/badges.

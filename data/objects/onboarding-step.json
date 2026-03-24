@@ -1,0 +1,655 @@
+{
+  "identity": {
+    "slug": "onboarding-step",
+    "name": "Onboarding Step",
+    "qualifier": "(Domain)",
+    "objectType": "domain",
+    "category": "activity",
+    "definition": "An Onboarding Step is a single, actionable task within an Onboarding Checklist that guides a user to perform a specific activation behavior.",
+    "synonyms": ["Task", "Setup Task", "Action Item", "Getting Started Step"],
+    "products": "Renaissance Intelligence"
+  },
+  "variations": [],
+  "representations": [
+    {
+      "layout": "card",
+      "heading": "Card layout",
+      "description": "How an Onboarding Step appears as a standalone card",
+      "defaultShape": "card",
+      "componentTag": "ren-onboarding-step-card",
+      "examples": [
+        {
+          "title": "Schedule Your First Star Assessment",
+          "description": "Set up a Star Reading or Star Math assessment for your class to establish baseline scores.",
+          "order": 1,
+          "status": "not-started",
+          "targetObject": "Assessment",
+          "targetCTA": "Schedule Assessment",
+          "completionMethod": "auto-detect",
+          "icon": "assignment",
+          "color": "#2563EB"
+        },
+        {
+          "title": "Create Your First Class",
+          "description": "Set up your class roster so students can be assigned work and assessments.",
+          "order": 2,
+          "status": "complete",
+          "targetObject": "Class",
+          "targetCTA": "Create Class",
+          "completionMethod": "auto-detect",
+          "icon": "group",
+          "color": "#059669"
+        },
+        {
+          "title": "Review the Reports Dashboard",
+          "description": "Explore the reports dashboard to understand how student data is organized.",
+          "order": 3,
+          "status": "skipped",
+          "targetObject": "Report",
+          "targetCTA": "View Report",
+          "completionMethod": "manual",
+          "icon": "bar_chart",
+          "color": "#999"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Step Title",
+          "dataType": "String",
+          "source": "System",
+          "description": "Short, action-oriented title describing what the user should do."
+        },
+        {
+          "name": "Step Description",
+          "dataType": "String",
+          "source": "System",
+          "description": "Brief explanation of why this step matters and what it accomplishes."
+        },
+        {
+          "name": "Order",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Position within the parent checklist sequence."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System / User Action",
+          "description": "Current state: not-started, in-progress, complete, or skipped."
+        },
+        {
+          "name": "Target Object",
+          "dataType": "String",
+          "source": "System",
+          "description": "The object type this step directs the user to interact with.",
+          "isReference": true
+        },
+        {
+          "name": "Icon",
+          "dataType": "String",
+          "source": "System",
+          "description": "Material Icon name for visual identification."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Step",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Start Step",
+          "roles": "Teacher, Admin",
+          "permission": "Write",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Skip Step",
+          "roles": "Teacher, Admin",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "onboarding-checklist",
+          "crossObjectName": "Onboarding Checklist",
+          "roleKeys": ["teacher", "admin"]
+        }
+      ]
+    },
+    {
+      "layout": "list",
+      "heading": "List layout",
+      "description": "How an Onboarding Step appears within a checklist",
+      "defaultShape": "row",
+      "componentTag": "ren-onboarding-step-row",
+      "examples": [
+        {
+          "title": "Schedule Your First Star Assessment",
+          "description": "Set up a Star Reading or Star Math assessment for your class.",
+          "order": 1,
+          "status": "complete",
+          "targetObject": "Assessment",
+          "targetCTA": "Schedule Assessment",
+          "completionMethod": "auto-detect",
+          "icon": "assignment",
+          "color": "#059669"
+        },
+        {
+          "title": "Create Your First Class",
+          "description": "Set up your class roster so students can be assigned work.",
+          "order": 2,
+          "status": "in-progress",
+          "targetObject": "Class",
+          "targetCTA": "Create Class",
+          "completionMethod": "auto-detect",
+          "icon": "group",
+          "color": "#2563EB"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Step Title",
+          "dataType": "String",
+          "source": "System",
+          "description": "Short, action-oriented title."
+        },
+        {
+          "name": "Order",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Position within the checklist."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System / User Action",
+          "description": "Current state of the step."
+        },
+        {
+          "name": "Target Object",
+          "dataType": "String",
+          "source": "System",
+          "description": "What object this step links to.",
+          "isReference": true
+        }
+      ],
+      "ctas": [
+        {
+          "name": "Start Step",
+          "roles": "Teacher, Admin",
+          "permission": "Write",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Complete Step",
+          "roles": "Teacher, Admin, System",
+          "permission": "Write",
+          "priority": "P",
+          "crossObjectSlug": "onboarding-checklist",
+          "crossObjectName": "Onboarding Checklist",
+          "roleKeys": ["teacher", "admin"]
+        }
+      ]
+    },
+    {
+      "layout": "detail",
+      "heading": "Detail layout",
+      "description": "What users see when they expand a full Onboarding Step",
+      "defaultShape": "profile",
+      "componentTag": "ren-onboarding-step-profile",
+      "examples": [
+        {
+          "title": "Schedule Your First Star Assessment",
+          "description": "Set up a Star Reading or Star Math assessment for your class to establish baseline scores. Baseline data drives personalized learning paths and helps identify students who need intervention.",
+          "order": 1,
+          "status": "not-started",
+          "targetObject": "Assessment",
+          "targetCTA": "Schedule Assessment",
+          "completionMethod": "auto-detect",
+          "icon": "assignment",
+          "successMetric": "At least one Star assessment scheduled for a class",
+          "color": "#2563EB"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Step Title",
+          "dataType": "String",
+          "source": "System",
+          "description": "Short, action-oriented title."
+        },
+        {
+          "name": "Step Description",
+          "dataType": "String",
+          "source": "System",
+          "description": "Full explanation of the step and its purpose."
+        },
+        {
+          "name": "Order",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Position within the parent checklist."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System / User Action",
+          "description": "Current state: not-started, in-progress, complete, or skipped."
+        },
+        {
+          "name": "Target Object",
+          "dataType": "String",
+          "source": "System",
+          "description": "The object type this step directs the user to.",
+          "isReference": true
+        },
+        {
+          "name": "Target CTA",
+          "dataType": "String",
+          "source": "System",
+          "description": "The specific CTA on the target object that completes this step."
+        },
+        {
+          "name": "Completion Method",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "How completion is determined: manual (user clicks done) or auto-detect (system detects the target CTA was performed)."
+        },
+        {
+          "name": "Help Link",
+          "dataType": "String",
+          "source": "System",
+          "description": "URL to an Educator Academy Module or help article related to this step."
+        },
+        {
+          "name": "Icon",
+          "dataType": "String",
+          "source": "System",
+          "description": "Material Icon name for visual identification."
+        },
+        {
+          "name": "Success Metric",
+          "dataType": "String",
+          "source": "System",
+          "description": "Description of what constitutes successful completion of this step."
+        },
+        {
+          "name": "Completed Date",
+          "dataType": "Date",
+          "source": "System",
+          "description": "When the step was marked complete."
+        },
+        {
+          "name": "Skipped Date",
+          "dataType": "Date",
+          "source": "System",
+          "description": "When the step was skipped by the user."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Step",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Start Step",
+          "roles": "Teacher, Admin",
+          "permission": "Write",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Complete Step",
+          "roles": "Teacher, Admin, System",
+          "permission": "Write",
+          "priority": "P",
+          "crossObjectSlug": "onboarding-checklist",
+          "crossObjectName": "Onboarding Checklist",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Skip Step",
+          "roles": "Teacher, Admin",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "onboarding-checklist",
+          "crossObjectName": "Onboarding Checklist",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Undo Skip",
+          "roles": "Teacher, Admin",
+          "permission": "Write",
+          "priority": "T",
+          "crossObjectSlug": "onboarding-checklist",
+          "crossObjectName": "Onboarding Checklist",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "View Help",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "T",
+          "crossObjectSlug": "educator-academy-module",
+          "crossObjectName": "Educator Academy Module",
+          "roleKeys": ["teacher", "admin"]
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "Complete Onboarding Step",
+      "icon": "check_circle",
+      "role": "Teacher",
+      "action": "complete",
+      "object": "Onboarding Step",
+      "benefit": "I make progress toward setting up my account and the checklist reflects my advancement.",
+      "whenClause": "I perform the target action for a step (e.g., schedule my first assessment),",
+      "thenClause": "the step is automatically marked complete if auto-detect is enabled, or I can manually mark it done, and the parent checklist progress updates.",
+      "crossObjects": [{ "slug": "onboarding-checklist", "name": "Onboarding Checklist" }]
+    },
+    {
+      "title": "Skip Optional Step",
+      "icon": "skip_next",
+      "role": "Teacher",
+      "action": "skip",
+      "object": "Onboarding Step",
+      "benefit": "I can focus on the setup tasks most relevant to my immediate needs without being blocked.",
+      "whenClause": "I skip a step I don't need right now,",
+      "thenClause": "the step is marked skipped, the checklist progress still advances, and I can undo the skip later if I change my mind.",
+      "crossObjects": [{ "slug": "onboarding-checklist", "name": "Onboarding Checklist" }]
+    }
+  ],
+  "businessRules": [
+    {
+      "title": "Ordering",
+      "description": "Steps within a checklist have a fixed order determined by the system. Users cannot reorder steps."
+    },
+    {
+      "title": "Auto-Detection",
+      "description": "Steps with completionMethod 'auto-detect' monitor the target object for the target CTA being performed. Once detected, status changes to complete automatically."
+    },
+    {
+      "title": "Manual Completion",
+      "description": "Steps with completionMethod 'manual' require the user to explicitly click a 'Mark as done' button."
+    },
+    {
+      "title": "Skip Behavior",
+      "description": "Skipped steps count toward checklist progress but are visually distinguished. Users can undo a skip at any time to return the step to not-started."
+    },
+    {
+      "title": "Status Immutability",
+      "description": "Once a step is marked complete, it cannot be reverted. Skipped steps can be un-skipped (returned to not-started) but completed steps are permanent."
+    },
+    {
+      "title": "Checklist Propagation",
+      "description": "Every step status change (complete, skip, undo-skip) triggers a recalculation of the parent Onboarding Checklist's progress percentage."
+    },
+    {
+      "title": "Help Link Association",
+      "description": "Each step may link to an Educator Academy Module for deeper training on the step's topic. This is optional and managed by the content team."
+    }
+  ],
+  "lifecycle": {
+    "states": [
+      {
+        "name": "Not Started",
+        "description": "Step has not been attempted by the user",
+        "triggers": "Default state on checklist generation",
+        "variant": "default"
+      },
+      {
+        "name": "In Progress",
+        "description": "User has begun but not completed the target action",
+        "triggers": "User clicks Start Step or begins the target CTA",
+        "variant": "active"
+      },
+      {
+        "name": "Complete",
+        "description": "User has performed the target action successfully",
+        "triggers": "Auto-detection or manual confirmation",
+        "variant": "active"
+      },
+      {
+        "name": "Skipped",
+        "description": "User has chosen to skip this step",
+        "triggers": "User clicks Skip Step",
+        "variant": "warn"
+      }
+    ],
+    "transitions": [
+      { "from": "Not Started", "to": ["In Progress", "Skipped"] },
+      { "from": "In Progress", "to": ["Complete", "Skipped"] },
+      { "from": "Skipped", "to": ["Not Started"] }
+    ]
+  },
+  "relationships": [
+    {
+      "targetSlug": "onboarding-checklist",
+      "targetName": "Onboarding Checklist",
+      "mechanics": "Steps belong to a single Onboarding Checklist. Status changes on a step propagate to recalculate checklist progress.",
+      "cardinality": "Many-to-one. Each Step belongs to exactly one Checklist; a Checklist contains multiple Steps.",
+      "sorts": "Steps within a checklist: by order (ascending, fixed).",
+      "filters": "By status (not-started, in-progress, complete, skipped).",
+      "dependencies": "If a Checklist is dismissed, its steps are hidden but retain their status for analytics."
+    },
+    {
+      "targetSlug": "educator-academy-module",
+      "targetName": "Educator Academy Module",
+      "mechanics": "A step may link to an Educator Academy Module as supplementary training. Completing the linked module may auto-complete the step.",
+      "cardinality": "Many-to-one. A Step may link to one Module; a Module can be linked from multiple Steps across checklists.",
+      "sorts": "N/A — one-to-one link per step.",
+      "filters": "By whether the linked module is complete.",
+      "dependencies": "If the linked module is unpublished, the help link falls back to a generic help URL."
+    },
+    {
+      "targetSlug": "teacher",
+      "targetName": "Teacher",
+      "mechanics": "Steps are generated per-user as part of their onboarding checklist. Each teacher has their own set of step instances.",
+      "cardinality": "Many-to-one. Each Step instance belongs to one Teacher's checklist; a Teacher has one checklist with multiple Steps.",
+      "sorts": "N/A — steps are scoped per-teacher.",
+      "filters": "By teacher role (teacher vs. admin) to determine step set.",
+      "dependencies": "If a teacher is deactivated, their step data is retained for analytics but no longer visible in active views."
+    }
+  ],
+  "relatedObjects": ["onboarding-checklist", "educator-academy-module", "teacher"],
+  "nestedObjects": [],
+  "allAttributes": [
+    {
+      "name": "Step Title",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "Short, action-oriented title describing what the user should do."
+    },
+    {
+      "name": "Step Description",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "Brief explanation of why this step matters and what it accomplishes."
+    },
+    {
+      "name": "Order",
+      "dataType": "Number",
+      "required": true,
+      "source": "System",
+      "description": "1-based position within the parent checklist sequence."
+    },
+    {
+      "name": "Status",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System / User Action",
+      "description": "Current state: not-started, in-progress, complete, or skipped."
+    },
+    {
+      "name": "Target Object",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "The object type this step directs the user to interact with.",
+      "isReference": true
+    },
+    {
+      "name": "Target CTA",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "The specific CTA on the target object that completes this step."
+    },
+    {
+      "name": "Completion Method",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System",
+      "description": "How completion is determined: manual or auto-detect."
+    },
+    {
+      "name": "Help Link",
+      "dataType": "String",
+      "source": "System",
+      "description": "URL to related Educator Academy Module or help article."
+    },
+    {
+      "name": "Icon",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "Material Icon name for visual identification of the step."
+    },
+    {
+      "name": "Success Metric",
+      "dataType": "String",
+      "source": "System",
+      "description": "Description of what constitutes successful completion."
+    },
+    {
+      "name": "Completed Date",
+      "dataType": "Date",
+      "source": "System",
+      "description": "Timestamp when the step was marked complete. Null if not complete."
+    },
+    {
+      "name": "Skipped Date",
+      "dataType": "Date",
+      "source": "System",
+      "description": "Timestamp when the step was skipped. Null if not skipped."
+    }
+  ],
+  "allCTAs": [
+    {
+      "name": "View Step",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "P",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Start Step",
+      "roles": "Teacher, Admin",
+      "permission": "Write",
+      "priority": "P",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Complete Step",
+      "roles": "Teacher, Admin, System",
+      "permission": "Write",
+      "priority": "P",
+      "crossObjectSlug": "onboarding-checklist",
+      "crossObjectName": "Onboarding Checklist",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Skip Step",
+      "roles": "Teacher, Admin",
+      "permission": "Write",
+      "priority": "S",
+      "crossObjectSlug": "onboarding-checklist",
+      "crossObjectName": "Onboarding Checklist",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Undo Skip",
+      "roles": "Teacher, Admin",
+      "permission": "Write",
+      "priority": "T",
+      "crossObjectSlug": "onboarding-checklist",
+      "crossObjectName": "Onboarding Checklist",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "View Help",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "T",
+      "crossObjectSlug": "educator-academy-module",
+      "crossObjectName": "Educator Academy Module",
+      "roleKeys": ["teacher", "admin"]
+    }
+  ],
+  "sipValidation": {
+    "structure": {
+      "pass": true,
+      "evidence": "An Onboarding Step has structured attributes: title, description, order, status, target object, target CTA, completion method, help link, icon, and success metric. You can design a detail view for a Step."
+    },
+    "instances": {
+      "pass": true,
+      "evidence": "'Schedule Your First Star Assessment' (order 1, auto-detect, targets Assessment), 'Create Your First Class' (order 2, auto-detect, targets Class), 'Review the Reports Dashboard' (order 3, manual, targets Report). Each user's checklist has 5-10 Step instances."
+    },
+    "purpose": {
+      "pass": true,
+      "evidence": "Onboarding Steps guide new users through critical setup tasks, reducing time-to-value and ensuring key activation behaviors occur. Teachers interact with steps by starting, completing, or skipping them, and the parent checklist tracks overall progress."
+    },
+    "verdict": "Domain activity object. Atomic unit of onboarding guidance that drives user activation within a structured checklist."
+  },
+  "synonyms": [
+    {
+      "term": "Task",
+      "context": "Internal project discussions, engineering",
+      "notes": "Generic term; Step emphasizes the sequential, guided nature"
+    },
+    {
+      "term": "Setup Task",
+      "context": "Customer success, implementation teams",
+      "notes": "Emphasizes the setup/configuration nature of onboarding steps"
+    },
+    {
+      "term": "Action Item",
+      "context": "Project management, sprint planning",
+      "notes": "Conflates with general task management; Step is onboarding-specific"
+    },
+    {
+      "term": "Getting Started Step",
+      "context": "User-facing help documentation",
+      "notes": "Descriptive term used in help articles and tooltips"
+    }
+  ],
+  "shapeshifterMatrix": [
+    {
+      "context": "In Checklist",
+      "value": "in-checklist",
+      "shape": "row",
+      "description": "An individual onboarding step shown as a row within the checklist. Users start, complete, or skip steps as they work through setup.",
+      "visibleAttributes": ["Step Title", "Order", "Status", "Target Object", "Icon"],
+      "availableCTAs": ["Start Step", "Complete Step", "Skip Step"],
+      "cardShape": "Checklist row"
+    },
+    {
+      "context": "Step Detail",
+      "value": "step-detail",
+      "shape": "profile",
+      "description": "The complete step record — description, target object, completion method, and help link. Users get guidance on what to do and how to complete each onboarding task.",
+      "visibleAttributes": ["Step Title", "Step Description", "Order", "Status", "Target Object", "Target CTA", "Completion Method", "Help Link", "Icon", "Success Metric", "Completed Date", "Skipped Date"],
+      "availableCTAs": ["View Step", "Start Step", "Complete Step", "Skip Step", "Undo Skip", "View Help"],
+      "cardShape": "Full detail"
+    }
+  ]
+}

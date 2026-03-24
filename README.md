@@ -1,110 +1,116 @@
 # Caboodle
 
-**Caboodle** turns your AI coding assistant into an Object-Oriented UX (OOUX) facilitator. It installs 18 structured Agent Skills that guide you through the ORCA process, from discovering system objects to generating implementation specs. It also publishes everything to a local, organized resource site.
+An internal OOUX resource site for Renaissance. Caboodle houses the Object Directory — structured definitions for 26 objects across Renaissance products — and provides tools, templates, and workflows for Object-Oriented UX practitioners using the ORCA process.
 
-No external dependencies. No API keys. Install in one command and start designing.
+## Prerequisites
 
----
+- **Node.js** 20+
+- **npm** 10+ (ships with Node 20)
 
 ## Quick Start
 
-### Option A: npm (recommended)
-
 ```bash
-# 1. Install Caboodle globally from GitHub
-npm install -g github:abenjamin-ren/Caboodle
-
-# 2. Navigate to your project
-cd /path/to/your/project
-
-# 3. Install skills and resource site into your project
-caboodle install
+git clone <repo-url> && cd Caboodle
+npm install
+npm run dev
 ```
 
-### Option B: Git Clone
+The dev server starts at `http://localhost:3000`.
 
-```bash
-# 1. Clone Caboodle
-git clone https://github.com/abenjamin-ren/Caboodle.git ~/Caboodle
+## Project Structure
 
-# 2. Navigate to your project
-cd /path/to/your/project
+Caboodle is a monorepo with two packages:
 
-# 3. Install
-node ~/Caboodle/bin/cli.js install
+```
+Caboodle/
+├── data/                    # Shared data layer
+│   ├── schema.ts            # TypeScript types (ObjectDefinition, SystemDefinition, etc.)
+│   ├── objects/             # One JSON file per object (26 files)
+│   └── mock/                # Mock data for prototypes
+├── packages/
+│   ├── caboodle-site/       # Next.js 16 App Router site (React 19)
+│   └── object-components/   # Lit 3 Web Component library (rebuilding)
+├── docs/
+│   ├── requirements/        # Requirement specs and ORCA process artifacts
+│   ├── decisions/           # Architecture Decision Records
+│   ├── developer-guide.md   # In-depth developer documentation
+│   └── templates/           # Confluence-style ORCA artifact templates
+├── orca/                    # ORCA workspace (project-specific iterative drafts)
+└── .cursor/
+    ├── rules/               # Agent behavior rules
+    └── skills/              # ORCA skill definitions
 ```
 
-Then open Cursor and type:
+## Architecture
 
-> "Plan an ORCA workflow for my project"
+Caboodle uses a **two-layer component architecture**:
 
----
+- **React components** (`packages/caboodle-site/components/`) handle site UI: navigation, tabs, data tables, configuration panels. These are Next.js-specific and not distributed.
+- **Lit Web Components** (`packages/object-components/src/`) render object representations: cards, rows, profiles, headers. These are framework-agnostic Custom Elements published as `@renaissance/object-components` for product teams to import. The WC library is currently being rebuilt — see [AGENTS.md](AGENTS.md#current-status) for details.
 
-## The 18 Skills
+**Data flows from JSON to pages at build time.** Object definitions live in `data/objects/*.json`, conforming to the `ObjectDefinition` type in `data/schema.ts`. The Next.js site reads these via `lib/objects.ts` at build time. Objects are grouped into product systems via `lib/systems.ts`, which derives system membership from each object's `identity.products` field.
 
-| Phase | # | Skill | What You Get |
-|-------|---|-------|--------------|
-| **Start** | - | ORCA Planner | Sequenced plan with progress tracking |
-| **Discovery** | 01 | Object Discovery | Validated object list (noun foraging + SIP test) |
-| | 02 | NOM Builder | Nested-Object Matrix showing containment |
-| | 03 | CTA Inventory | Actions per object with role mappings |
-| | 04 | Attribute Definition | Data fields per object with types |
-| **Definition** | 05 | Object Guide | Comprehensive reference for one object |
-| | 06 | Relationship Lens | MCSFD analysis for object pairs |
-| | 07 | CTA Matrix | Cross-reference of objects × actions |
-| | 08 | Shapeshifter Matrix | Attribute visibility per viewing context |
-| **Design** | 09 | Object Map | Visual system architecture diagram |
-| | 10 | Nav Flow | Navigation paths and entry points |
-| | 11 | CTA Prioritization | Ranked, phased action backlog |
-| | 12 | Object Card | Card/list UI component specs |
-| **Build** | 13 | OO User Stories | Dev stories with acceptance criteria |
-| | 14 | Relationship Governance | Technical rules for object interactions |
-| | 15 | Interaction Spec | Detailed CTA behavior specs |
-| | 16 | Data Model Spec | Database/API schema |
-| **Standalone** | - | System Audit | Evaluate an existing product against OOUX principles |
+**CSS uses design tokens and composition primitives.** All spacing uses a modular scale (`--s-5` through `--s5`). Page layout uses Every Layout primitives (`.stack`, `.grid`, `.cluster`, etc.) configured via CSS custom properties — no media query breakpoints. Component-specific styles live in `components.css`.
 
----
+## Available Scripts
 
-## What Gets Installed
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start the Next.js dev server |
+| `npm run build` | Build the WC library, then the Next.js site |
+| `npm run build:components` | Build the Lit Web Component library only |
+| `npm run build:site` | Build the Next.js site only |
 
-| What | Where | Purpose |
-|------|-------|---------|
-| 18 Agent Skills | `.cursor/rules/caboodle-*.md` | Step-by-step OOUX workflows |
-| 7 Cursor Rules | `.cursor/rules/caboodle-*.mdc` | Persistent OOUX context for the agent |
-| AGENTS.md | `./AGENTS.md` | High-level agent instructions |
-| Quick Reference | `./CABOODLE_QUICKSTART.md` | Human-readable cheat sheet |
-| Resource Site | `./site/` | Docusaurus-powered artifact site |
+## Key Directories
 
-## Commands
-
-```bash
-caboodle install        # Full install (skills, rules, site scaffold)
-caboodle update         # Re-install latest skills and rules
-caboodle uninstall      # Remove all Caboodle files from your project
-caboodle init-site      # Initialize the resource site only
-caboodle verify         # Check your installation
-caboodle --help         # Show all commands
-caboodle --version      # Show version
-```
-
-> If you cloned the repo instead of installing via npm, substitute `node ~/Caboodle/bin/cli.js` for `caboodle`.
-
-## Requirements
-
-- **Node.js 18+** - [Download](https://nodejs.org)
-- **npm** - Comes with Node.js; used to install the package
-- **Cursor** (recommended) or any AI coding assistant that supports custom rules
-
-## What Is OOUX?
-
-Object-Oriented UX (OOUX) is a design philosophy that grounds product decisions in the concrete "things" users interact with, such as **objects** like Student, Course, or Report, rather than screens or user flows.
-
-The **ORCA process** (Objects, Relationships, CTAs, Attributes) is the framework for systematically discovering and designing those objects across four rounds: Discovery, Definition, Design, and Build.
+| Directory | What's There |
+|-----------|-------------|
+| `data/objects/` | Object JSON files — the source of truth for all object data |
+| `data/schema.ts` | TypeScript types shared by both packages |
+| `packages/caboodle-site/app/` | Next.js pages and routes |
+| `packages/caboodle-site/components/` | React components (nav, ui, preview, roster, prototype) |
+| `packages/caboodle-site/styles/` | CSS: `tokens.css`, `layouts.css`, `globals.css`, `components.css` |
+| `packages/caboodle-site/lib/` | Data loading, system derivation, preview registry |
+| `packages/object-components/src/` | Lit Web Components (currently rebuilding) |
+| `docs/requirements/` | ORCA process artifacts and implementation specs |
+| `docs/decisions/` | Architecture Decision Records |
 
 ## Contributing
 
-Contributions welcome! The canonical skill definitions live in `skills/` as `skill.yaml` + `SKILL.md` pairs. Templates and rules are in `templates/`.
+### Adding a New Object
 
-## License
+1. Create `data/objects/{slug}.json` conforming to `ObjectDefinition` in `data/schema.ts`
+2. Set `identity.products` to the appropriate product name(s) — this determines system membership
+3. The Object Library, system detail, and Object Guide pages generate automatically from the JSON
+4. Add an icon at `packages/caboodle-site/public/img/{slug}_icon.svg`
 
-MIT
+### Adding a New Page
+
+1. Create `packages/caboodle-site/app/{route}/page.tsx`
+2. Use server components by default; add `'use client'` only when needed for interactivity
+3. Use Every Layout primitives (`.stack`, `.center`, `.grid`, etc.) for page structure
+4. Add any new component styles to `styles/components.css`
+
+### Working with Styles
+
+- **Spacing**: Always use modular scale tokens (`--s-5` through `--s5`)
+- **Layout**: Compose Every Layout primitives — never write custom layout CSS when a primitive exists
+- **Tokens**: Add new design tokens to `tokens.css`
+- **Components**: Add new component styles to `components.css`
+- **Properties**: Use logical properties (`margin-block-start`, `padding-inline`)
+
+### Building Web Components
+
+Use `ren-student-row.ts` as the reference implementation. Components follow this pattern:
+- Tag: `<ren-{object}-{shape}>` (e.g., `<ren-student-row>`)
+- Extend `LitElement` with `@customElement` decorator
+- Import shared `tokenDefaults` from `shared/tokens.ts`
+- Expose data via `@property` decorators
+- Use CSS custom properties (`--ren-*`) for theming
+
+## Further Reading
+
+- [AGENTS.md](AGENTS.md) — detailed architecture, ORCA process, agent guidelines
+- [docs/developer-guide.md](docs/developer-guide.md) — in-depth development workflows
+- [docs/decisions/](docs/decisions/) — architecture decision records
+- [docs/requirements/STATUS.md](docs/requirements/STATUS.md) — requirement status index

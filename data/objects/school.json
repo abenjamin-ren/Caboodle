@@ -1,0 +1,746 @@
+{
+  "identity": {
+    "slug": "school",
+    "name": "School",
+    "qualifier": "(Core)",
+    "objectType": "core",
+    "category": "container",
+    "definition": "A School is a physical or virtual educational site within a district where students are enrolled, teachers are assigned, and Renaissance products are provisioned and configured — serving as the mid-level organizational container that determines product access, data scope, and administrative authority.",
+    "synonyms": ["site", "building", "campus"],
+    "products": "All products"
+  },
+  "variations": [],
+  "representations": [
+    {
+      "layout": "card",
+      "heading": "Card layout",
+      "description": "How a School appears in grids and dashboards",
+      "defaultShape": "card",
+      "componentTag": "ren-school-card",
+      "examples": [
+        {
+          "name": "Lincoln Elementary",
+          "gradeSpan": "K-5",
+          "studentCount": 450,
+          "teacherCount": 28,
+          "color": "#D97706"
+        },
+        {
+          "name": "Washington Middle School",
+          "gradeSpan": "6-8",
+          "studentCount": 800,
+          "teacherCount": 45,
+          "color": "#0D9488"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "School Name",
+          "dataType": "String",
+          "source": "SIS Import / Manual",
+          "description": "Primary identifier. The official name of the school."
+        },
+        {
+          "name": "Grade Span",
+          "dataType": "String",
+          "source": "SIS Import / Manual",
+          "description": "Range of grade levels served (e.g. K-5, 6-8, 9-12)."
+        },
+        {
+          "name": "Student Count",
+          "dataType": "Number",
+          "source": "Calculated",
+          "description": "Total number of active students enrolled at the school."
+        },
+        {
+          "name": "Teacher Count",
+          "dataType": "Number",
+          "source": "Calculated",
+          "description": "Total number of teachers assigned to the school."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "School Admin, District Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["school-admin", "district-admin"]
+        },
+        {
+          "name": "Manage Users",
+          "roles": "School Admin, District Admin",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "teacher",
+          "crossObjectName": "Teacher",
+          "roleKeys": ["school-admin", "district-admin"]
+        }
+      ]
+    },
+    {
+      "layout": "list",
+      "heading": "List layout",
+      "description": "How a School appears in district rosters and tables",
+      "defaultShape": "row",
+      "componentTag": "ren-school-row",
+      "examples": [
+        {
+          "name": "Lincoln Elementary",
+          "gradeSpan": "K-5",
+          "studentCount": 450,
+          "teacherCount": 28,
+          "classCount": 32,
+          "color": "#D97706"
+        },
+        {
+          "name": "Washington Middle School",
+          "gradeSpan": "6-8",
+          "studentCount": 800,
+          "teacherCount": 45,
+          "classCount": 48,
+          "color": "#0D9488"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "School Name",
+          "dataType": "String",
+          "source": "SIS Import / Manual",
+          "description": "Primary identifier. The official name of the school."
+        },
+        {
+          "name": "District",
+          "dataType": "Reference → District",
+          "source": "SIS Import",
+          "description": "The district this school belongs to.",
+          "isReference": true,
+          "referenceSlug": "district",
+          "referenceName": "District"
+        },
+        {
+          "name": "Grade Span",
+          "dataType": "String",
+          "source": "SIS Import / Manual",
+          "description": "Range of grade levels served (e.g. K-5, 6-8, 9-12)."
+        },
+        {
+          "name": "Student Count",
+          "dataType": "Number",
+          "source": "Calculated",
+          "description": "Total number of active students enrolled at the school."
+        },
+        {
+          "name": "Teacher Count",
+          "dataType": "Number",
+          "source": "Calculated",
+          "description": "Total number of teachers assigned to the school."
+        },
+        {
+          "name": "Product Licenses",
+          "dataType": "Enum (multi)",
+          "source": "Admin / District",
+          "description": "Which Renaissance products are licensed at this school (Star, AR, Freckle, Lalilo, myON, etc.)."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "School Admin, District Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["school-admin", "district-admin"]
+        },
+        {
+          "name": "Manage Users",
+          "roles": "School Admin, District Admin",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "teacher",
+          "crossObjectName": "Teacher",
+          "roleKeys": ["school-admin", "district-admin"]
+        }
+      ]
+    },
+    {
+      "layout": "detail",
+      "heading": "Detail page layout",
+      "description": "What users see when they open a full School record",
+      "defaultShape": "profile",
+      "componentTag": "ren-school-profile",
+      "examples": [
+        {
+          "name": "Lincoln Elementary",
+          "gradeSpan": "K-5",
+          "studentCount": 450,
+          "teacherCount": 28,
+          "classCount": 32,
+          "district": "Springfield Unified School District",
+          "address": "1200 Oak Avenue, Springfield, IL 62704",
+          "ncesId": "170993001234",
+          "stateSchoolId": "IL-0429-0012",
+          "productLicenses": "Star Reading, Star Math, AR, Freckle, myON",
+          "phone": "(217) 555-0142",
+          "timeZone": "America/Chicago (CT)",
+          "schoolType": "Public",
+          "status": "Active",
+          "color": "#D97706"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "School Name",
+          "dataType": "String",
+          "source": "SIS Import / Manual",
+          "description": "Primary identifier. The official name of the school."
+        },
+        {
+          "name": "District",
+          "dataType": "Reference → District",
+          "source": "SIS Import",
+          "description": "The district this school belongs to.",
+          "isReference": true,
+          "referenceSlug": "district",
+          "referenceName": "District"
+        },
+        {
+          "name": "Grade Span",
+          "dataType": "String",
+          "source": "SIS Import / Manual",
+          "description": "Range of grade levels served (e.g. K-5, 6-8, 9-12)."
+        },
+        {
+          "name": "Student Count",
+          "dataType": "Number",
+          "source": "Calculated",
+          "description": "Total number of active students enrolled at the school."
+        },
+        {
+          "name": "Teacher Count",
+          "dataType": "Number",
+          "source": "Calculated",
+          "description": "Total number of teachers assigned to the school."
+        },
+        {
+          "name": "Address",
+          "dataType": "String",
+          "source": "SIS Import / Manual",
+          "description": "Physical street address of the school."
+        },
+        {
+          "name": "NCES ID",
+          "dataType": "String",
+          "source": "SIS Import",
+          "description": "National Center for Education Statistics identifier."
+        },
+        {
+          "name": "State School ID",
+          "dataType": "String",
+          "source": "SIS Import",
+          "description": "State-assigned school identifier for reporting."
+        },
+        {
+          "name": "Product Licenses",
+          "dataType": "Enum (multi)",
+          "source": "Admin / District",
+          "description": "Which Renaissance products are licensed at this school."
+        },
+        {
+          "name": "Admin Contact(s)",
+          "dataType": "Reference → User[]",
+          "source": "Admin / District",
+          "description": "School administrators with management authority."
+        },
+        {
+          "name": "Phone",
+          "dataType": "String",
+          "source": "SIS Import / Manual",
+          "description": "Primary contact phone number for the school."
+        },
+        {
+          "name": "Time Zone",
+          "dataType": "Enum",
+          "source": "Admin / District",
+          "description": "Time zone used for scheduling, reporting, and display."
+        },
+        {
+          "name": "School Type",
+          "dataType": "Enum",
+          "source": "SIS Import / Manual",
+          "description": "Classification: Public, Private, Charter, or Virtual."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "Admin / System",
+          "description": "Current operational status: Active or Inactive."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "School Admin, District Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["school-admin", "district-admin"]
+        },
+        {
+          "name": "Edit",
+          "roles": "School Admin, District Admin",
+          "permission": "Write",
+          "priority": "S",
+          "roleKeys": ["school-admin", "district-admin"]
+        },
+        {
+          "name": "Manage Users",
+          "roles": "School Admin, District Admin",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "teacher",
+          "crossObjectName": "Teacher",
+          "roleKeys": ["school-admin", "district-admin"]
+        },
+        {
+          "name": "Configure Products",
+          "roles": "School Admin, District Admin",
+          "permission": "Write",
+          "priority": "T",
+          "roleKeys": ["school-admin", "district-admin"]
+        },
+        {
+          "name": "View Reports",
+          "roles": "School Admin, District Admin",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "score",
+          "crossObjectName": "Score",
+          "roleKeys": ["school-admin", "district-admin"]
+        },
+        {
+          "name": "Create",
+          "roles": "District Admin, System",
+          "permission": "Write",
+          "priority": "T",
+          "roleKeys": ["district-admin"]
+        },
+        {
+          "name": "Deactivate",
+          "roles": "District Admin",
+          "permission": "Write",
+          "priority": "Q",
+          "roleKeys": ["district-admin"]
+        },
+        {
+          "name": "Manage Classes",
+          "roles": "School Admin",
+          "permission": "Write",
+          "priority": "T",
+          "crossObjectSlug": "class",
+          "crossObjectName": "Class",
+          "roleKeys": ["school-admin"]
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "Manage School Users",
+      "icon": "group",
+      "role": "School Admin",
+      "action": "manage users in",
+      "object": "School",
+      "benefit": "teachers and students are properly rostered, have correct product access, and appear in the right reports.",
+      "whenClause": "I add, remove, or reassign users at my school,",
+      "thenClause": "their product access, class assignments, and data scope update immediately to reflect the change.",
+      "crossObjects": [
+        { "slug": "teacher", "name": "Teacher" },
+        { "slug": "student", "name": "Student" }
+      ]
+    },
+    {
+      "title": "View School-Level Reports",
+      "icon": "assessment",
+      "role": "School Admin",
+      "action": "view reports for",
+      "object": "School",
+      "benefit": "I can see aggregate performance data, assessment completion rates, and growth trends across all students at my school.",
+      "whenClause": "I navigate to my school's reports,",
+      "thenClause": "I see dashboards showing reading and math performance, assessment completion, and growth metrics for all enrolled students.",
+      "crossObjects": [{ "slug": "score", "name": "Score" }]
+    },
+    {
+      "title": "Configure Product Settings",
+      "icon": "settings",
+      "role": "School Admin",
+      "action": "configure products for",
+      "object": "School",
+      "benefit": "product features are tailored to my school's instructional needs and policies.",
+      "whenClause": "I update product configuration for my school,",
+      "thenClause": "the settings apply to all teachers and students at this school and take effect for new sessions."
+    }
+  ],
+  "businessRules": [
+    {
+      "title": "District Membership",
+      "description": "A School must belong to exactly one District. It cannot exist outside a District context."
+    },
+    {
+      "title": "Licensing Inheritance",
+      "description": "Product licenses are provisioned at the School level. Teachers and students at the school inherit access to licensed products. A school cannot use a product not licensed at the district level."
+    },
+    {
+      "title": "Grade Span Consistency",
+      "description": "Students enrolled at a school must fall within the school's declared grade span. Cross-grade enrollment requires admin override."
+    },
+    {
+      "title": "Admin Authority",
+      "description": "School Admins have authority only within their assigned school(s). District Admins have authority across all schools in the district."
+    },
+    {
+      "title": "Data Scope",
+      "description": "Reports and data views are scoped to the school. School Admins see only their school's data unless granted cross-school access by a District Admin."
+    },
+    {
+      "title": "Deactivation Cascade",
+      "description": "When a school is deactivated, all students and teachers must be transferred to another school or deactivated. Classes at the school are archived. Historical data is retained."
+    },
+    {
+      "title": "Roster Sync Priority",
+      "description": "SIS roster syncs are the authoritative source for school enrollment data. Manual overrides are permitted but flagged for reconciliation at next sync."
+    }
+  ],
+  "lifecycle": {
+    "states": [
+      {
+        "name": "Active",
+        "description": "School is operational with enrolled students and assigned teachers",
+        "triggers": "Initial provisioning, reactivation by District Admin",
+        "variant": "active"
+      },
+      {
+        "name": "Inactive",
+        "description": "School is closed or suspended; no active enrollment permitted",
+        "triggers": "District Admin deactivation, end-of-year closure",
+        "variant": "default"
+      },
+      {
+        "name": "Reactivated",
+        "description": "Previously inactive school restored to operational status",
+        "triggers": "District Admin reactivation action",
+        "variant": "active"
+      }
+    ],
+    "transitions": [
+      { "from": "Active", "to": ["Inactive"] },
+      { "from": "Inactive", "to": ["Reactivated"] }
+    ]
+  },
+  "relationships": [
+    {
+      "targetSlug": "student",
+      "targetName": "Student",
+      "mechanics": "Students are enrolled at a School via SIS roster sync. Admins can manually transfer students between schools.",
+      "cardinality": "One-to-many. A School contains many Students; a Student belongs to one School at a time. Typical: 200-2000 students per school.",
+      "sorts": "Students within a School: alphabetical by last name (default), by grade level, by teacher assignment.",
+      "filters": "By grade level, by enrollment status, by class, by teacher, by product usage.",
+      "dependencies": "If a School is deactivated, all students must be transferred or deactivated. Student data scoped to the school remains for historical reporting."
+    },
+    {
+      "targetSlug": "teacher",
+      "targetName": "Teacher",
+      "mechanics": "Teachers are assigned to a School via SIS roster sync or admin action. A teacher may be assigned to multiple schools.",
+      "cardinality": "One-to-many. A School has many Teachers; a Teacher is assigned to one or more Schools. Typical: 15-150 teachers per school.",
+      "sorts": "Teachers within a School: alphabetical by last name (default), by grade/subject, by class count.",
+      "filters": "By grade level taught, by subject, by product usage, by class assignment.",
+      "dependencies": "If a School is deactivated, teachers must be reassigned or deactivated. Class assignments at the school are archived."
+    },
+    {
+      "targetSlug": "district",
+      "targetName": "District",
+      "mechanics": "A School is provisioned within a District during initial setup or SIS sync. District Admins manage school creation and deactivation.",
+      "cardinality": "Many-to-one. A School belongs to exactly one District; a District contains many Schools. Typical: 5-500 schools per district.",
+      "sorts": "Schools within a District: alphabetical (default), by grade span, by student count, by geographic region.",
+      "filters": "By grade span, by school type, by status (active/inactive), by product licenses, by region.",
+      "dependencies": "A School cannot exist without a District. District-level license changes cascade to all schools within."
+    }
+  ],
+  "relatedObjects": ["district", "student", "teacher", "class"],
+  "nestedObjects": [
+    {
+      "slug": "student",
+      "name": "Student",
+      "cardinality": "One-to-many",
+      "description": "Students enrolled at this school"
+    },
+    {
+      "slug": "teacher",
+      "name": "Teacher",
+      "cardinality": "One-to-many",
+      "description": "Teachers assigned to this school"
+    },
+    {
+      "slug": "class",
+      "name": "Class",
+      "cardinality": "One-to-many",
+      "description": "Classes held at this school"
+    },
+    {
+      "slug": "admin-user",
+      "name": "Admin User",
+      "cardinality": "One-to-many",
+      "description": "Administrators with authority at this school"
+    }
+  ],
+  "allAttributes": [
+    {
+      "name": "School Name",
+      "dataType": "String",
+      "required": true,
+      "source": "SIS Import / Manual",
+      "description": "Primary identifier. The official name of the school."
+    },
+    {
+      "name": "District",
+      "dataType": "Reference → District",
+      "required": true,
+      "source": "SIS Import",
+      "description": "The district this school belongs to.",
+      "isReference": true,
+      "referenceSlug": "district",
+      "referenceName": "District"
+    },
+    {
+      "name": "Grade Span",
+      "dataType": "String",
+      "required": true,
+      "source": "SIS Import / Manual",
+      "description": "Range of grade levels served (e.g. K-5, 6-8, 9-12)."
+    },
+    {
+      "name": "Student Count",
+      "dataType": "Number",
+      "source": "Calculated",
+      "description": "Total number of active students enrolled at the school."
+    },
+    {
+      "name": "Teacher Count",
+      "dataType": "Number",
+      "source": "Calculated",
+      "description": "Total number of teachers assigned to the school."
+    },
+    {
+      "name": "Address",
+      "dataType": "String",
+      "source": "SIS Import / Manual",
+      "description": "Physical street address of the school."
+    },
+    {
+      "name": "NCES ID",
+      "dataType": "String",
+      "source": "SIS Import",
+      "description": "National Center for Education Statistics identifier."
+    },
+    {
+      "name": "State School ID",
+      "dataType": "String",
+      "source": "SIS Import",
+      "description": "State-assigned school identifier for reporting."
+    },
+    {
+      "name": "Product Licenses",
+      "dataType": "Enum (multi)",
+      "required": true,
+      "source": "Admin / District",
+      "description": "Which Renaissance products are licensed at this school (Star, AR, Freckle, Lalilo, myON, etc.)."
+    },
+    {
+      "name": "Admin Contact(s)",
+      "dataType": "Reference → User[]",
+      "source": "Admin / District",
+      "description": "School administrators with management authority."
+    },
+    {
+      "name": "Phone",
+      "dataType": "String",
+      "source": "SIS Import / Manual",
+      "description": "Primary contact phone number for the school."
+    },
+    {
+      "name": "Time Zone",
+      "dataType": "Enum",
+      "required": true,
+      "source": "Admin / District",
+      "description": "Time zone used for scheduling, reporting, and display."
+    },
+    {
+      "name": "School Type",
+      "dataType": "Enum",
+      "source": "SIS Import / Manual",
+      "description": "Classification: Public, Private, Charter, or Virtual."
+    },
+    {
+      "name": "Status",
+      "dataType": "Enum",
+      "required": true,
+      "source": "Admin / System",
+      "description": "Current operational status: Active or Inactive."
+    }
+  ],
+  "allCTAs": [
+    {
+      "name": "View",
+      "roles": "School Admin, District Admin",
+      "permission": "Read",
+      "priority": "P",
+      "roleKeys": ["school-admin", "district-admin"]
+    },
+    {
+      "name": "Edit",
+      "roles": "School Admin, District Admin",
+      "permission": "Write",
+      "priority": "S",
+      "roleKeys": ["school-admin", "district-admin"]
+    },
+    {
+      "name": "Manage Users",
+      "roles": "School Admin, District Admin",
+      "permission": "Write",
+      "priority": "S",
+      "crossObjectSlug": "teacher",
+      "crossObjectName": "Teacher",
+      "roleKeys": ["school-admin", "district-admin"]
+    },
+    {
+      "name": "Configure Products",
+      "roles": "School Admin, District Admin",
+      "permission": "Write",
+      "priority": "T",
+      "roleKeys": ["school-admin", "district-admin"]
+    },
+    {
+      "name": "View Reports",
+      "roles": "School Admin, District Admin",
+      "permission": "Read",
+      "priority": "S",
+      "crossObjectSlug": "score",
+      "crossObjectName": "Score",
+      "roleKeys": ["school-admin", "district-admin"]
+    },
+    {
+      "name": "Create",
+      "roles": "District Admin, System",
+      "permission": "Write",
+      "priority": "T",
+      "roleKeys": ["district-admin"]
+    },
+    {
+      "name": "Deactivate",
+      "roles": "District Admin",
+      "permission": "Write",
+      "priority": "Q",
+      "roleKeys": ["district-admin"]
+    },
+    {
+      "name": "Manage Classes",
+      "roles": "School Admin",
+      "permission": "Write",
+      "priority": "T",
+      "crossObjectSlug": "class",
+      "crossObjectName": "Class",
+      "roleKeys": ["school-admin"]
+    }
+  ],
+  "sipValidation": {
+    "structure": {
+      "pass": true,
+      "evidence": "A School has a rich set of attributes: name, grade span, address, NCES ID, state ID, product licenses, admin contacts, phone, time zone, school type, and status. You can design a detail page for a School."
+    },
+    "instances": {
+      "pass": true,
+      "evidence": "Lincoln Elementary (K-5, 450 students in Springfield), Washington Middle School (6-8, 800 students), Riverside High School (9-12, 1,200 students). Every district has multiple School instances."
+    },
+    "purpose": {
+      "pass": true,
+      "evidence": "Schools are the mid-level organizational container for all Renaissance products. District Admins provision schools, School Admins manage users and product configuration, Teachers are assigned to schools, and Students are enrolled at schools. All product data is scoped to a school."
+    },
+    "verdict": "Core system object. The mid-level organizational container for all Renaissance products."
+  },
+  "synonyms": [
+    {
+      "term": "Site",
+      "context": "Renaissance internal systems, provisioning",
+      "notes": "Used in admin provisioning workflows and API references"
+    },
+    {
+      "term": "Building",
+      "context": "SIS integrations, facility management",
+      "notes": "Reflects physical location terminology from SIS vendors"
+    },
+    {
+      "term": "Campus",
+      "context": "Multi-site districts, higher education",
+      "notes": "Used when a single school spans multiple physical locations"
+    },
+    {
+      "term": "Org",
+      "context": "Renaissance platform internals",
+      "notes": "Legacy term from platform data model; being deprecated in favor of School"
+    }
+  ],
+  "shapeshifterMatrix": [
+    {
+      "context": "District School List",
+      "value": "district-school-list",
+      "shape": "data-row",
+      "description": "Schools in a district listed with enrollment, staffing, and licensing data. District admins compare schools and manage user access from this table.",
+      "visibleAttributes": ["School Name", "Grade Span", "Student Count", "Teacher Count", "Product Licenses"],
+      "availableCTAs": ["View", "Manage Users"],
+      "cardShape": "Data row"
+    },
+    {
+      "context": "School Detail",
+      "value": "school-detail",
+      "shape": "profile",
+      "description": "The complete school record — enrollment, staffing, contact info, product configuration, and administrative tools. School and district admins manage everything about a school from this page.",
+      "visibleAttributes": ["School Name", "District", "Grade Span", "Student Count", "Teacher Count", "Address", "NCES ID", "State School ID", "Product Licenses", "Admin Contact(s)", "Phone", "Time Zone", "School Type", "Status"],
+      "availableCTAs": ["View", "Edit", "Manage Users", "Configure Products", "View Reports", "Create", "Deactivate", "Manage Classes"],
+      "cardShape": "Full page"
+    },
+    {
+      "context": "School Picker",
+      "value": "school-picker",
+      "shape": "mini-row",
+      "description": "A minimal row for selecting a school during setup or filtering. Shows name, grade span, and student count — just enough to choose the right one.",
+      "visibleAttributes": ["School Name", "Grade Span", "Student Count"],
+      "availableCTAs": [],
+      "cardShape": "Mini row"
+    },
+    {
+      "context": "Report Header",
+      "value": "report-header",
+      "shape": "header",
+      "description": "The school displayed as a banner identifying which school a report covers. Provides context for the data below — no interactive elements.",
+      "visibleAttributes": ["School Name", "Grade Span", "Student Count"],
+      "availableCTAs": [],
+      "cardShape": "Banner"
+    },
+    {
+      "context": "District Dashboard Card",
+      "value": "district-dashboard",
+      "shape": "card",
+      "description": "A summary card for each school on the district dashboard, showing enrollment and staffing at a glance. District admins scan these to spot schools that need attention.",
+      "visibleAttributes": ["School Name", "Grade Span", "Student Count", "Teacher Count"],
+      "availableCTAs": ["View"],
+      "cardShape": "Summary card"
+    },
+    {
+      "context": "School Search Results",
+      "value": "school-search",
+      "shape": "row",
+      "description": "Schools matching a search query with district affiliation and enrollment numbers. Used to find and navigate to a specific school.",
+      "visibleAttributes": ["School Name", "District", "Grade Span", "Student Count", "Teacher Count"],
+      "availableCTAs": ["View"],
+      "cardShape": "Compact row"
+    }
+  ]
+}

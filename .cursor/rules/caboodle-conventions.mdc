@@ -1,0 +1,102 @@
+---
+description: Project-wide conventions for Caboodle development
+globs:
+alwaysApply: true
+---
+
+# Caboodle Conventions
+
+## Project overview
+
+Caboodle is a monorepo with two packages: a Next.js 16 site (`packages/caboodle-site`) and a Lit Web Component library (`packages/object-components`). Object data lives in `data/objects/*.json` (26 files) with a shared TypeScript schema in `data/schema.ts`. The WC library is currently rebuilding — only `ren-student-row.ts` and `shared/tokens.ts` remain on disk.
+
+## File organization
+
+- **Site pages**: `packages/caboodle-site/app/{route}/page.tsx` (Next.js App Router)
+- **React components**: `packages/caboodle-site/components/{category}/ComponentName.tsx`
+- **Lit Web Components**: `packages/object-components/src/ren-{object}-{shape}.ts` (rebuilding)
+- **Styles**: `packages/caboodle-site/styles/` — tokens.css, layouts.css, globals.css, components.css
+- **Object data**: `data/objects/{slug}.json` — one file per object (26 files)
+- **Data schema**: `data/schema.ts` — TypeScript types shared by site and WC library
+- **Data loading**: `packages/caboodle-site/lib/objects.ts` and `lib/systems.ts`
+- **Server actions**: `packages/caboodle-site/app/actions.ts` — updateAttribute, updateCTA
+- **Preview registry**: `packages/caboodle-site/lib/preview-registry.ts` — maps view contexts to preview components
+- **Static assets**: `packages/caboodle-site/public/` — logo, icons, framework logos, PWA icons
+- **Reference docs**: `docs/requirements/` (see `docs/requirements/STATUS.md` for status)
+- **Architecture decisions**: `docs/decisions/`
+
+## Routing
+
+The site uses system-based routing for the Object Library:
+
+- `/` — Home
+- `/objects` — Object Library (system catalog)
+- `/objects/[systemSlug]` — System Detail (object grid)
+- `/objects/[systemSlug]/[objectSlug]` — Object Guide (tabbed detail)
+- `/objects/[systemSlug]/[objectSlug]/views/[viewSlug]` — View Inspector
+- `/design-system` — Component style guide (not in nav)
+- `/glossary`, `/process`, `/resources` — Placeholder pages
+
+Systems are derived from each object's `identity.products` field via `lib/systems.ts`.
+
+## Component conventions
+
+- **React components** handle site-specific UI: navigation, tabs, data tables, config panels, preview renderers, roster components
+- **Lit Web Components** handle object representations: cards, list rows, profiles, headers (currently rebuilding)
+- Client components use `'use client'` directive; server components are the default
+- Tabs component has full ARIA support (tablist, tab, tabpanel, keyboard navigation)
+- Server/client split: page.tsx loads data, client component receives props for interactivity
+
+## CSS conventions
+
+- Entry point is `styles/globals.css` which imports: tokens → layouts
+- Component styles in `styles/components.css`
+- Add new tokens to `tokens.css` — use token categories: `--color-*`, `--font-*`, `--s-*`, `--radius-*`, `--shadow-*`
+- Never modify `layouts.css` — compose existing Every Layout primitives instead
+- Use modular scale tokens (`--s-5` to `--s5`) for all spacing
+- Use logical properties (`margin-block-start`, `padding-inline`) instead of physical
+- Web Components consume CSS custom properties through shadow DOM for theming (`--ren-*` tokens)
+
+## TypeScript conventions
+
+- Strict mode enabled in both packages
+- Object data types defined in `data/schema.ts` — import from there
+- Use `ObjectDefinition` as the top-level type for object data
+- Use `SystemDefinition` for system groupings
+- Data loading via `lib/objects.ts` — `getObjectBySlug()`, `getAllObjects()`, `getAllObjectSlugs()`
+- System loading via `lib/systems.ts` — `getAllSystems()`, `getSystemBySlug()`, `getAllSystemSlugs()`
+
+## Object identity system
+
+- **Core objects** use `object_icon.svg`
+- **Object variations** use `object-variation_icon.svg`
+- **Domain objects** use `domain-object_icon.svg`
+- No per-object colors or avatar shapes — icon type is the visual differentiator
+- `ObjectIcon` component resolves the correct icon based on `objectType`
+
+## Accessibility
+
+- WCAG 2.1 AA target
+- All images must have `alt` text (decorative images use `alt=""` with `aria-hidden="true"`)
+- Focus styles via `:focus-visible` (defined in globals.css)
+- Keyboard-navigable tab interfaces with arrow key support
+- Material Icons must include `aria-hidden="true"` when decorative
+- ARIA roles on all interactive components (tablist/tab/tabpanel, radio groups)
+
+## Navigation
+
+Navigation is handled by the `MainNav` React component, which uses `usePathname()` to set `aria-current="page"` automatically. Routes: `/`, `/objects`, `/resources`, `/process`, `/glossary`. The `/design-system` route exists but is not linked in the nav.
+
+## Asset paths
+
+All assets are in `packages/caboodle-site/public/`:
+- Logo: `/img/caboodle-logo.svg`
+- Object icons: `/img/object_icon.svg`, `/img/domain-object_icon.svg`, `/img/object-variation_icon.svg`
+- Framework logos: `/img/react.svg`, `/img/angular.svg`, `/img/vuedotjs.svg`, `/img/webcomponentsdotorg.svg`
+
+## Commands
+
+- `npm run dev` — start Next.js dev server
+- `npm run build` — build WC library + site
+- `npm run build:components` — build WC library only
+- `npm run build:site` — build site only

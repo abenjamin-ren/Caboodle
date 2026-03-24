@@ -1,0 +1,893 @@
+{
+  "identity": {
+    "slug": "teacher",
+    "name": "Teacher",
+    "qualifier": "(Core)",
+    "objectType": "core",
+    "category": "people",
+    "definition": "A Teacher is an educator associated with one or more schools and classes who creates and delivers instructional content, assigns and monitors student work, administers assessments, and analyzes learning data to make informed instructional decisions across Renaissance products.",
+    "synonyms": ["educator", "instructor", "staff"],
+    "products": "All products"
+  },
+  "variations": [],
+  "representations": [
+    {
+      "layout": "card",
+      "heading": "Card layout",
+      "description": "How a Teacher appears in grids and dashboards",
+      "defaultShape": "card",
+      "componentTag": "ren-teacher-card",
+      "examples": [
+        {
+          "name": "Maria Rodriguez",
+          "initials": "MR",
+          "color": "#059669",
+          "school": "Lincoln Elementary",
+          "role": "3rd Grade Teacher",
+          "subject": "ELA",
+          "classCount": 4,
+          "studentCount": 87
+        },
+        {
+          "name": "James Chen",
+          "initials": "JC",
+          "color": "#7C3AED",
+          "school": "Washington Middle",
+          "role": "Math Teacher",
+          "subject": "Mathematics",
+          "classCount": 6,
+          "studentCount": 142
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Full Name",
+          "dataType": "String",
+          "source": "SIS Import / Manual",
+          "description": "Primary identifier. Appears everywhere a Teacher is shown."
+        },
+        {
+          "name": "Role/Title",
+          "dataType": "Enum",
+          "source": "SIS Import / Manual",
+          "description": "Job title or teaching position. Determines display context."
+        },
+        {
+          "name": "Profile Photo",
+          "dataType": "Image",
+          "source": "Upload",
+          "description": "Visual identifier. Max 2MB, JPG/PNG. Default: initials avatar."
+        },
+        {
+          "name": "School(s)",
+          "dataType": "Reference → School",
+          "source": "SIS Import",
+          "description": "Which school(s) the teacher is assigned to.",
+          "isReference": true,
+          "referenceSlug": "school",
+          "referenceName": "School"
+        },
+        {
+          "name": "Subject Area(s)",
+          "dataType": "Enum (multi)",
+          "source": "SIS Import / Manual",
+          "description": "Teaching subject area(s). Drives product recommendations and content filtering."
+        },
+        {
+          "name": "Class(es)",
+          "dataType": "Reference → Class[]",
+          "source": "Roster sync / Admin",
+          "description": "Which classes the teacher is assigned to.",
+          "isReference": true,
+          "referenceSlug": "class",
+          "referenceName": "Class"
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Profile",
+          "roles": "Self, Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "View Classes",
+          "roles": "Self, Admin",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "class",
+          "crossObjectName": "Class",
+          "roleKeys": ["teacher", "admin"]
+        }
+      ]
+    },
+    {
+      "layout": "list",
+      "heading": "List layout",
+      "description": "How a Teacher appears in staff rosters and tables",
+      "defaultShape": "row",
+      "componentTag": "ren-teacher-row",
+      "examples": [
+        {
+          "name": "Maria Rodriguez",
+          "initials": "MR",
+          "color": "#059669",
+          "school": "Lincoln Elementary",
+          "role": "3rd Grade Teacher",
+          "subject": "ELA",
+          "classCount": 4,
+          "studentCount": 87
+        },
+        {
+          "name": "James Chen",
+          "initials": "JC",
+          "color": "#7C3AED",
+          "school": "Washington Middle",
+          "role": "Math Teacher",
+          "subject": "Mathematics",
+          "classCount": 6,
+          "studentCount": 142
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Full Name",
+          "dataType": "String",
+          "source": "SIS Import / Manual",
+          "description": "Primary identifier. Appears everywhere a Teacher is shown."
+        },
+        {
+          "name": "Role/Title",
+          "dataType": "Enum",
+          "source": "SIS Import / Manual",
+          "description": "Job title or teaching position. Determines display context."
+        },
+        {
+          "name": "Profile Photo",
+          "dataType": "Image",
+          "source": "Upload",
+          "description": "Visual identifier. Max 2MB, JPG/PNG. Default: initials avatar."
+        },
+        {
+          "name": "School(s)",
+          "dataType": "Reference → School",
+          "source": "SIS Import",
+          "description": "Which school(s) the teacher is assigned to.",
+          "isReference": true,
+          "referenceSlug": "school",
+          "referenceName": "School"
+        },
+        {
+          "name": "Subject Area(s)",
+          "dataType": "Enum (multi)",
+          "source": "SIS Import / Manual",
+          "description": "Teaching subject area(s). Drives product recommendations and content filtering."
+        },
+        {
+          "name": "Class(es)",
+          "dataType": "Reference → Class[]",
+          "source": "Roster sync / Admin",
+          "description": "Which classes the teacher is assigned to.",
+          "isReference": true,
+          "referenceSlug": "class",
+          "referenceName": "Class"
+        },
+        {
+          "name": "Grade Band",
+          "dataType": "Enum (multi)",
+          "source": "SIS Import / Manual",
+          "description": "Grade levels the teacher works with. Inferred from class assignments or set manually."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Profile",
+          "roles": "Self, Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "View Classes",
+          "roles": "Self, Admin",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "class",
+          "crossObjectName": "Class",
+          "roleKeys": ["teacher", "admin"]
+        }
+      ]
+    },
+    {
+      "layout": "detail",
+      "heading": "Detail page layout",
+      "description": "What users see when they open a full Teacher record",
+      "defaultShape": "profile",
+      "componentTag": "ren-teacher-profile",
+      "examples": [
+        {
+          "name": "Maria Rodriguez",
+          "initials": "MR",
+          "color": "#059669",
+          "school": "Lincoln Elementary",
+          "role": "3rd Grade Teacher",
+          "subject": "ELA",
+          "gradeBand": "K-5",
+          "classCount": 4,
+          "studentCount": 87,
+          "email": "maria.rodriguez@lincoln.edu",
+          "employeeId": "TCH-00482",
+          "phone": "(555) 234-5678",
+          "username": "mrodriguez",
+          "certifications": "Elementary Education, ESL Endorsement",
+          "language": "English",
+          "productAccess": "Star Reading, Star Math, AR, Freckle",
+          "nestedObjects": [
+            { "label": "Classes", "count": 4, "href": "#" },
+            { "label": "Assignments", "count": 23, "href": "#" },
+            { "label": "Students", "count": 87, "href": "#" },
+            { "label": "Resources", "count": 15, "href": "#" },
+            { "label": "Assessments", "count": 8, "href": "#" }
+          ]
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Full Name",
+          "dataType": "String",
+          "source": "SIS Import / Manual",
+          "description": "Primary identifier. Appears everywhere a Teacher is shown."
+        },
+        {
+          "name": "Email",
+          "dataType": "String",
+          "source": "SIS Import / Manual",
+          "description": "Primary contact and notification address. Must be unique within district."
+        },
+        {
+          "name": "School(s)",
+          "dataType": "Reference → School",
+          "source": "SIS Import",
+          "description": "Which school(s) the teacher is assigned to.",
+          "isReference": true,
+          "referenceSlug": "school",
+          "referenceName": "School"
+        },
+        {
+          "name": "Class(es)",
+          "dataType": "Reference → Class[]",
+          "source": "Roster sync / Admin",
+          "description": "Which classes the teacher is assigned to.",
+          "isReference": true,
+          "referenceSlug": "class",
+          "referenceName": "Class"
+        },
+        {
+          "name": "Role/Title",
+          "dataType": "Enum",
+          "source": "SIS Import / Manual",
+          "description": "Job title or teaching position. Determines display context."
+        },
+        {
+          "name": "Subject Area(s)",
+          "dataType": "Enum (multi)",
+          "source": "SIS Import / Manual",
+          "description": "Teaching subject area(s). Drives product recommendations and content filtering."
+        },
+        {
+          "name": "Grade Band",
+          "dataType": "Enum (multi)",
+          "source": "SIS Import / Manual",
+          "description": "Grade levels the teacher works with. Inferred from class assignments or set manually."
+        },
+        {
+          "name": "Employee ID",
+          "dataType": "String",
+          "source": "System",
+          "description": "Unique system identifier. Used for rostering, data matching, and SIS sync."
+        },
+        {
+          "name": "Product Access",
+          "dataType": "Enum (multi)",
+          "source": "Licensing system",
+          "description": "Which Renaissance products the teacher is licensed to use."
+        },
+        {
+          "name": "Username / Login",
+          "dataType": "String",
+          "source": "Manual / SSO",
+          "description": "How the teacher authenticates. Unique within org."
+        },
+        {
+          "name": "Profile Photo",
+          "dataType": "Image",
+          "source": "Upload",
+          "description": "Visual identifier. Max 2MB, JPG/PNG. Default: initials avatar."
+        },
+        {
+          "name": "District",
+          "dataType": "Reference → District",
+          "source": "SIS Import",
+          "description": "The district the teacher belongs to.",
+          "isReference": true,
+          "referenceSlug": "district",
+          "referenceName": "District"
+        },
+        {
+          "name": "Phone",
+          "dataType": "String",
+          "source": "Manual",
+          "description": "Contact phone number. Optional, not displayed in product UI."
+        },
+        {
+          "name": "Certifications",
+          "dataType": "String",
+          "source": "Manual",
+          "description": "Teaching certifications and endorsements. Informational only."
+        },
+        {
+          "name": "Preferred Language",
+          "dataType": "Enum",
+          "source": "Manual",
+          "description": "UI language preference. Default: English."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Profile",
+          "roles": "Self, Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Edit Profile",
+          "roles": "Self, Admin",
+          "permission": "Write",
+          "priority": "S",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Assign to Class",
+          "roles": "Admin, System",
+          "permission": "Write",
+          "priority": "T",
+          "crossObjectSlug": "class",
+          "crossObjectName": "Class",
+          "roleKeys": ["admin"]
+        },
+        {
+          "name": "Remove from Class",
+          "roles": "Admin, System",
+          "permission": "Write",
+          "priority": "T",
+          "crossObjectSlug": "class",
+          "crossObjectName": "Class",
+          "roleKeys": ["admin"]
+        },
+        {
+          "name": "Create Assignment",
+          "roles": "Self",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "assignment",
+          "crossObjectName": "Assignment",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Create Assessment",
+          "roles": "Self",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "assessment",
+          "crossObjectName": "Assessment",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "View Reports",
+          "roles": "Self, Admin",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "score",
+          "crossObjectName": "Score",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Manage Class Settings",
+          "roles": "Self",
+          "permission": "Write",
+          "priority": "T",
+          "crossObjectSlug": "class",
+          "crossObjectName": "Class",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Search Resources",
+          "roles": "Self",
+          "permission": "Read",
+          "priority": "T",
+          "crossObjectSlug": "resource",
+          "crossObjectName": "Resource",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Manage Settings",
+          "roles": "Self, Admin",
+          "permission": "Write",
+          "priority": "T",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Deactivate",
+          "roles": "Admin",
+          "permission": "Write",
+          "priority": "Q",
+          "roleKeys": ["admin"]
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "View Class Dashboard",
+      "icon": "dashboard",
+      "role": "Teacher",
+      "action": "view",
+      "object": "Class",
+      "benefit": "I can monitor student activity, track assignment completion, and review recent assessment results for my class.",
+      "whenClause": "I navigate to one of my Classes,",
+      "thenClause": "a dashboard showing student activity, assignment progress, and recent assessment results.",
+      "crossObjects": [{ "slug": "class", "name": "Class" }]
+    },
+    {
+      "title": "Create and Assign Work",
+      "icon": "assignment",
+      "role": "Teacher",
+      "action": "create",
+      "object": "Assignment",
+      "benefit": "students receive targeted practice aligned to their skill levels and curricular goals.",
+      "whenClause": "I create an Assignment for my Class,",
+      "thenClause": "the assignment is distributed to enrolled students with targeted skills and due dates.",
+      "crossObjects": [{ "slug": "assignment", "name": "Assignment" }, { "slug": "class", "name": "Class" }]
+    },
+    {
+      "title": "Analyze Student Progress",
+      "icon": "insights",
+      "role": "Teacher",
+      "action": "view",
+      "object": "Score",
+      "benefit": "I can identify students who need intervention and adjust my instruction accordingly.",
+      "whenClause": "I view Score reports for my Students,",
+      "thenClause": "aggregated and individual score data across assessments, with trend indicators and benchmark comparisons.",
+      "crossObjects": [{ "slug": "score", "name": "Score" }, { "slug": "student", "name": "Student" }]
+    }
+  ],
+  "businessRules": [
+    {
+      "title": "Uniqueness",
+      "description": "A Teacher is uniquely identified within a District by their Employee ID and email address. Both must be unique."
+    },
+    {
+      "title": "Creation",
+      "description": "Teachers are primarily created via SIS roster sync (OneRoster, Clever, ClassLink). Manual creation requires at minimum: First Name, Last Name, Email, Role/Title."
+    },
+    {
+      "title": "Class Assignment",
+      "description": "A Teacher must be assigned to at least one Class to access student data and instructional tools. Teachers without class assignments see only their profile and settings."
+    },
+    {
+      "title": "Data Scope",
+      "description": "Teachers can only view data for Students enrolled in their own Classes. Cross-class visibility requires Admin privileges."
+    },
+    {
+      "title": "Product Licensing",
+      "description": "A Teacher's available product features are determined by their Product Access licenses. Unlicensed products are hidden from the teacher's view."
+    },
+    {
+      "title": "Multi-School",
+      "description": "A Teacher may be assigned to multiple Schools within a District. Each school assignment grants access to classes and students at that school."
+    },
+    {
+      "title": "Deactivation",
+      "description": "Deactivated teachers lose product access and are hidden from active staff lists. Their historical data (assignments created, reports generated) is retained."
+    }
+  ],
+  "lifecycle": {
+    "states": [
+      {
+        "name": "Active",
+        "description": "Currently employed and using the platform",
+        "triggers": "SIS sync import, manual creation, reactivation",
+        "variant": "active"
+      },
+      {
+        "name": "Inactive",
+        "description": "Temporarily not using the platform (e.g. leave of absence)",
+        "triggers": "SIS sync status change, admin action",
+        "variant": "default"
+      },
+      {
+        "name": "Transferred",
+        "description": "Moving between schools within the district",
+        "triggers": "SIS sync or admin action; temporary state during school reassignment",
+        "variant": "warn"
+      },
+      {
+        "name": "Deactivated",
+        "description": "No longer employed; account disabled, data retained",
+        "triggers": "Admin action, SIS sync removal",
+        "variant": "default"
+      }
+    ],
+    "transitions": [
+      { "from": "Active", "to": ["Inactive", "Transferred", "Deactivated"] }
+    ]
+  },
+  "relationships": [
+    {
+      "targetSlug": "class",
+      "targetName": "Class",
+      "mechanics": "Teachers are assigned to Classes via SIS roster sync (automated) or by Admins manually. A teacher is the primary instructor for their assigned classes.",
+      "cardinality": "One-to-many. A Teacher can teach multiple Classes; each Class has one primary Teacher. Typical: 1-8 classes per teacher.",
+      "sorts": "Classes for a Teacher: alphabetical by class name (default), by grade level, by subject area, by period/schedule.",
+      "filters": "By subject area, by grade level, by school (for multi-school teachers), by active/archived status.",
+      "dependencies": "If a Class is archived, the teacher loses access to that class's student data. If a teacher is deactivated, their classes must be reassigned."
+    },
+    {
+      "targetSlug": "school",
+      "targetName": "School",
+      "mechanics": "Teachers are assigned to Schools via SIS roster sync. Multi-school assignments are supported for district-level staff.",
+      "cardinality": "Many-to-many. A Teacher can be assigned to multiple Schools; a School has many Teachers. Typical: 1-3 schools per teacher.",
+      "sorts": "Teachers within a School: alphabetical by last name (default), by role/title, by subject area.",
+      "filters": "By role/title, by subject area, by grade band, by active/inactive status.",
+      "dependencies": "If a School is deactivated, teachers must be transferred to another School or deactivated."
+    },
+    {
+      "targetSlug": "student",
+      "targetName": "Student",
+      "mechanics": "Teachers access Students indirectly through Class enrollment. A teacher sees students enrolled in their classes.",
+      "cardinality": "Many-to-many (via Class). A Teacher sees all Students in their Classes; a Student may have multiple Teachers. Typical: 20-150 students per teacher.",
+      "sorts": "Students for a Teacher: alphabetical by last name (default), by grade level, by reading/math level, by class.",
+      "filters": "By class, by grade level, by proficiency level, by enrollment status, by demographic group.",
+      "dependencies": "If a Student is removed from all of a Teacher's classes, the teacher loses visibility of that student's data."
+    }
+  ],
+  "relatedObjects": ["class", "school", "student", "assignment", "assessment", "score", "resource", "district"],
+  "nestedObjects": [
+    {
+      "slug": "class",
+      "name": "Class",
+      "cardinality": "One-to-many",
+      "description": "Roster sync or admin assignment"
+    },
+    {
+      "slug": "assignment",
+      "name": "Assignment",
+      "cardinality": "One-to-many",
+      "description": "Teacher creates assignments for their classes"
+    },
+    {
+      "slug": "student",
+      "name": "Student",
+      "cardinality": "One-to-many (indirect)",
+      "description": "Via class enrollment"
+    },
+    {
+      "slug": "resource",
+      "name": "Resource",
+      "cardinality": "One-to-many",
+      "description": "Teacher saves or creates resources"
+    },
+    {
+      "slug": "assessment",
+      "name": "Assessment",
+      "cardinality": "One-to-many",
+      "description": "Teacher schedules or creates assessments"
+    }
+  ],
+  "allAttributes": [
+    {
+      "name": "Full Name",
+      "dataType": "String",
+      "required": true,
+      "source": "SIS Import / Manual",
+      "description": "Primary identifier. Appears everywhere a Teacher is shown."
+    },
+    {
+      "name": "Email",
+      "dataType": "String",
+      "required": true,
+      "source": "SIS Import / Manual",
+      "description": "Primary contact and notification address. Must be unique within district."
+    },
+    {
+      "name": "School(s)",
+      "dataType": "Reference → School",
+      "required": true,
+      "source": "SIS Import",
+      "description": "Which school(s) the teacher is assigned to.",
+      "isReference": true,
+      "referenceSlug": "school",
+      "referenceName": "School"
+    },
+    {
+      "name": "Class(es)",
+      "dataType": "Reference → Class[]",
+      "source": "Roster sync / Admin",
+      "description": "Which classes the teacher is assigned to.",
+      "isReference": true,
+      "referenceSlug": "class",
+      "referenceName": "Class"
+    },
+    {
+      "name": "Role/Title",
+      "dataType": "Enum",
+      "required": true,
+      "source": "SIS Import / Manual",
+      "description": "Job title or teaching position. Determines display context."
+    },
+    {
+      "name": "Subject Area(s)",
+      "dataType": "Enum (multi)",
+      "source": "SIS Import / Manual",
+      "description": "Teaching subject area(s). Drives product recommendations and content filtering."
+    },
+    {
+      "name": "Grade Band",
+      "dataType": "Enum (multi)",
+      "source": "SIS Import / Manual",
+      "description": "Grade levels the teacher works with. Inferred from class assignments or set manually."
+    },
+    {
+      "name": "Employee ID",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "Unique system identifier. Used for rostering, data matching, and SIS sync."
+    },
+    {
+      "name": "Product Access",
+      "dataType": "Enum (multi)",
+      "required": true,
+      "source": "Licensing system",
+      "description": "Which Renaissance products the teacher is licensed to use."
+    },
+    {
+      "name": "Username / Login",
+      "dataType": "String",
+      "required": true,
+      "source": "Manual / SSO",
+      "description": "How the teacher authenticates. Unique within org."
+    },
+    {
+      "name": "Profile Photo",
+      "dataType": "Image",
+      "source": "Upload",
+      "description": "Visual identifier. Max 2MB, JPG/PNG. Default: initials avatar."
+    },
+    {
+      "name": "District",
+      "dataType": "Reference → District",
+      "required": true,
+      "source": "SIS Import",
+      "description": "The district the teacher belongs to.",
+      "isReference": true,
+      "referenceSlug": "district",
+      "referenceName": "District"
+    },
+    {
+      "name": "Phone",
+      "dataType": "String",
+      "source": "Manual",
+      "description": "Contact phone number. Optional, not displayed in product UI."
+    },
+    {
+      "name": "Certifications",
+      "dataType": "String",
+      "source": "Manual",
+      "description": "Teaching certifications and endorsements. Informational only."
+    },
+    {
+      "name": "Preferred Language",
+      "dataType": "Enum",
+      "source": "Manual",
+      "description": "UI language preference. Default: English."
+    }
+  ],
+  "allCTAs": [
+    {
+      "name": "View Profile",
+      "roles": "Self, Admin",
+      "permission": "Read",
+      "priority": "P",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Edit Profile",
+      "roles": "Self, Admin",
+      "permission": "Write",
+      "priority": "S",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Assign to Class",
+      "roles": "Admin, System",
+      "permission": "Write",
+      "priority": "T",
+      "crossObjectSlug": "class",
+      "crossObjectName": "Class",
+      "roleKeys": ["admin"]
+    },
+    {
+      "name": "Remove from Class",
+      "roles": "Admin, System",
+      "permission": "Write",
+      "priority": "T",
+      "crossObjectSlug": "class",
+      "crossObjectName": "Class",
+      "roleKeys": ["admin"]
+    },
+    {
+      "name": "Create Assignment",
+      "roles": "Self",
+      "permission": "Write",
+      "priority": "S",
+      "crossObjectSlug": "assignment",
+      "crossObjectName": "Assignment",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Create Assessment",
+      "roles": "Self",
+      "permission": "Write",
+      "priority": "S",
+      "crossObjectSlug": "assessment",
+      "crossObjectName": "Assessment",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "View Reports",
+      "roles": "Self, Admin",
+      "permission": "Read",
+      "priority": "S",
+      "crossObjectSlug": "score",
+      "crossObjectName": "Score",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Manage Class Settings",
+      "roles": "Self",
+      "permission": "Write",
+      "priority": "T",
+      "crossObjectSlug": "class",
+      "crossObjectName": "Class",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Search Resources",
+      "roles": "Self",
+      "permission": "Read",
+      "priority": "T",
+      "crossObjectSlug": "resource",
+      "crossObjectName": "Resource",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Manage Settings",
+      "roles": "Self, Admin",
+      "permission": "Write",
+      "priority": "T",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Deactivate",
+      "roles": "Admin",
+      "permission": "Write",
+      "priority": "Q",
+      "roleKeys": ["admin"]
+    }
+  ],
+  "sipValidation": {
+    "structure": {
+      "pass": true,
+      "evidence": "A Teacher has a rich set of attributes: name, email, employee ID, role/title, subject areas, grade band, school, classes, certifications, product access, and more. You can design a detail page for a Teacher."
+    },
+    "instances": {
+      "pass": true,
+      "evidence": "Ms. Rodriguez (3rd Grade ELA teacher at Lincoln Elementary), Mr. Chen (Math teacher at Washington Middle), Dr. Williams (Science teacher at Jefferson High). Every school has dozens of Teacher instances."
+    },
+    "purpose": {
+      "pass": true,
+      "evidence": "Teachers are the primary power users across all Renaissance products. They create assignments, administer assessments, analyze student data, and make instructional decisions. The entire platform is designed around empowering teachers."
+    },
+    "verdict": "Core system object. The primary actor/user across all Renaissance products."
+  },
+  "synonyms": [
+    {
+      "term": "Educator",
+      "context": "Renaissance Intelligence, marketing",
+      "notes": "Used in broader contexts that include coaches and specialists"
+    },
+    {
+      "term": "Instructor",
+      "context": "Higher-ed contexts",
+      "notes": "Less common in K-12 Renaissance products"
+    },
+    {
+      "term": "Staff",
+      "context": "Admin/rostering systems",
+      "notes": "Broader term that includes non-teaching staff"
+    },
+    {
+      "term": "User",
+      "context": "Engineering/platform teams",
+      "notes": "Generic term in technical contexts; not used in product UI"
+    }
+  ],
+  "shapeshifterMatrix": [
+    {
+      "context": "School Staff List",
+      "value": "school-staff",
+      "shape": "row",
+      "description": "Teachers at a school listed with their role, subjects, and class assignments. Admins browse this to check staffing and jump to individual profiles.",
+      "visibleAttributes": ["Full Name", "Role/Title", "Profile Photo", "Subject Area(s)", "Class(es)"],
+      "availableCTAs": ["View Profile"],
+      "cardShape": "Compact row"
+    },
+    {
+      "context": "Class Assignment Picker",
+      "value": "class-assignment-picker",
+      "shape": "mini-row",
+      "description": "A minimal row for selecting which teacher to assign to a class. Shows name, role, photo, and subject area — just enough to pick the right person.",
+      "visibleAttributes": ["Full Name", "Role/Title", "Profile Photo", "Subject Area(s)"],
+      "availableCTAs": [],
+      "cardShape": "Mini row"
+    },
+    {
+      "context": "Teacher Detail Page",
+      "value": "teacher-detail",
+      "shape": "profile",
+      "description": "The complete teacher profile — contact info, school and class assignments, product access, and administrative controls. Admins manage teacher accounts and permissions from here.",
+      "visibleAttributes": ["Full Name", "Email", "School(s)", "Class(es)", "Role/Title", "Subject Area(s)", "Grade Band", "Employee ID", "Product Access", "Username / Login", "Profile Photo", "District", "Phone", "Certifications", "Preferred Language"],
+      "availableCTAs": ["View Profile", "Edit Profile", "Assign to Class", "Remove from Class", "Create Assignment", "Create Assessment", "View Reports", "Manage Class Settings", "Search Resources", "Manage Settings", "Deactivate"],
+      "cardShape": "Full page"
+    },
+    {
+      "context": "Admin User Management",
+      "value": "admin-user-mgmt",
+      "shape": "data-row",
+      "description": "Teachers listed in an admin data table for bulk account management. Focused on role, school assignment, and account status with quick edit and deactivation controls.",
+      "visibleAttributes": ["Full Name", "Role/Title", "School(s)", "Subject Area(s)", "Class(es)"],
+      "availableCTAs": ["Edit Profile", "Deactivate"],
+      "cardShape": "Data row"
+    },
+    {
+      "context": "Report Attribution",
+      "value": "report-attribution",
+      "shape": "header",
+      "description": "The teacher's name displayed inline within a report to attribute results. Purely informational — no interactive elements.",
+      "visibleAttributes": ["Full Name"],
+      "availableCTAs": [],
+      "cardShape": "Inline text"
+    },
+    {
+      "context": "Class Header",
+      "value": "class-header",
+      "shape": "header",
+      "description": "The teacher shown as part of a class banner — name, role, and photo identifying who teaches this class.",
+      "visibleAttributes": ["Full Name", "Role/Title", "Profile Photo"],
+      "availableCTAs": [],
+      "cardShape": "Banner element"
+    },
+    {
+      "context": "Teacher Overview Card",
+      "value": "teacher-overview",
+      "shape": "card",
+      "description": "A summary card showing role, subjects, classes, and school at a glance. Used in dashboards where admins need a quick overview of a teacher.",
+      "visibleAttributes": ["Full Name", "Role/Title", "Profile Photo", "Subject Area(s)", "Class(es)", "School(s)"],
+      "availableCTAs": ["View Profile"],
+      "cardShape": "Medium card"
+    }
+  ]
+}

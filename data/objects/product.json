@@ -1,0 +1,428 @@
+{
+  "identity": {
+    "slug": "product",
+    "name": "Product",
+    "qualifier": "(Domain)",
+    "objectType": "domain",
+    "category": "container",
+    "definition": "A Product is an individual Renaissance application that can be included in a Solution or assigned independently.",
+    "synonyms": ["app", "application", "tool"],
+    "products": "All products"
+  },
+  "variations": [],
+  "representations": [
+    {
+      "layout": "card",
+      "heading": "Card layout",
+      "description": "How a Product appears in catalogs and selection interfaces",
+      "defaultShape": "card",
+      "componentTag": "ren-product-card",
+      "examples": [
+        {
+          "name": "Star Reading",
+          "tier": "Premium",
+          "availability": "available",
+          "subject": "Reading",
+          "productType": "assessment",
+          "color": "#2563EB"
+        },
+        {
+          "name": "Freckle",
+          "tier": "Standard",
+          "availability": "available",
+          "subject": "Math",
+          "productType": "practice",
+          "color": "#398b26"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Name",
+          "dataType": "String",
+          "source": "System",
+          "description": "Display name of the Product."
+        },
+        {
+          "name": "Tier",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Product tier level for licensing."
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Primary subject area the Product addresses."
+        },
+        {
+          "name": "Product Type",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Category of product: assessment, practice, reading, or instruction."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Details",
+          "roles": "Teacher, Admin, Student",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin", "student"]
+        }
+      ]
+    },
+    {
+      "layout": "list",
+      "heading": "List layout",
+      "description": "How a Product appears in Solution detail views and assignment tables",
+      "defaultShape": "row",
+      "componentTag": "ren-product-row",
+      "examples": [
+        {
+          "name": "Star Reading",
+          "tier": "Premium",
+          "availability": "available",
+          "subject": "Reading",
+          "productType": "assessment",
+          "color": "#2563EB"
+        },
+        {
+          "name": "Nearpod",
+          "tier": "Standard",
+          "availability": "available",
+          "subject": "All",
+          "productType": "instruction",
+          "color": "#e65100"
+        },
+        {
+          "name": "FastBridge",
+          "tier": "Premium",
+          "availability": "deprecated",
+          "subject": "Reading",
+          "productType": "assessment",
+          "color": "#999"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Name",
+          "dataType": "String",
+          "source": "System",
+          "description": "Display name of the Product."
+        },
+        {
+          "name": "Tier",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Product tier level for licensing."
+        },
+        {
+          "name": "Availability",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Current availability: available, deprecated, or sunset."
+        },
+        {
+          "name": "Product Type",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Category of product: assessment, practice, reading, or instruction."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Details",
+          "roles": "Teacher, Admin, Student",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin", "student"]
+        }
+      ]
+    },
+    {
+      "layout": "detail",
+      "heading": "Detail page layout",
+      "description": "What users see when they open a full Product record",
+      "defaultShape": "profile",
+      "componentTag": "ren-product-profile",
+      "examples": [
+        {
+          "name": "Star Reading",
+          "tier": "Premium",
+          "availability": "available",
+          "subject": "Reading",
+          "productType": "assessment",
+          "solutionNames": ["Renaissance Star 360", "myON + Accelerated Reader"],
+          "color": "#2563EB"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Product ID",
+          "dataType": "String",
+          "source": "System",
+          "description": "Unique system identifier for this Product."
+        },
+        {
+          "name": "Name",
+          "dataType": "String",
+          "source": "System",
+          "description": "Display name of the Product."
+        },
+        {
+          "name": "Apps Tag",
+          "dataType": "String",
+          "source": "System",
+          "description": "Machine-readable tag used in the apps platform."
+        },
+        {
+          "name": "Tier",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Product tier level for licensing."
+        },
+        {
+          "name": "Availability",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Current availability: available, deprecated, or sunset."
+        },
+        {
+          "name": "Included Solutions",
+          "dataType": "Reference → Solution[]",
+          "source": "System",
+          "description": "Solutions that include this Product.",
+          "isReference": true,
+          "referenceSlug": "solution",
+          "referenceName": "Solution"
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Primary subject area: Reading, Math, SEL, All."
+        },
+        {
+          "name": "Product Type",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Category: assessment, practice, reading, or instruction."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Details",
+          "roles": "Teacher, Admin, Student",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin", "student"]
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "Browse Product Catalog",
+      "icon": "apps",
+      "role": "Admin",
+      "action": "browse",
+      "object": "Product",
+      "benefit": "I can understand which individual applications are available and how they relate to Solutions.",
+      "whenClause": "I navigate to the Product catalog,",
+      "thenClause": "I see all Products with their types, subjects, tiers, and availability status."
+    }
+  ],
+  "businessRules": [
+    {
+      "title": "Uniqueness",
+      "description": "A Product is uniquely identified by its Product ID. The Apps Tag must also be unique across all Products."
+    },
+    {
+      "title": "Solution Membership",
+      "description": "A Product can belong to zero or more Solutions. Products can also be assigned independently via Product Assignments."
+    },
+    {
+      "title": "Availability Transitions",
+      "description": "Available Products can be deprecated (no new assignments). Deprecated Products can be sunset (fully removed). Sunset Products cannot be restored."
+    },
+    {
+      "title": "Student Access",
+      "description": "A Student's access to a Product is computed from the Product Assignments that apply to their school, grade, and class. Direct Product-to-Student access is derived, not stored."
+    },
+    {
+      "title": "Deprecation",
+      "description": "Deprecated Products remain accessible to existing users but cannot be included in new Solution configurations or new Product Assignments."
+    },
+    {
+      "title": "Cross-Product Data",
+      "description": "Activity Events and Scores reference a Product as their source. Product identity is preserved in historical data even after deprecation or sunset."
+    }
+  ],
+  "lifecycle": {
+    "states": [
+      {
+        "name": "Available",
+        "description": "Product is active and can be assigned or included in Solutions",
+        "triggers": "Product launch or relaunch",
+        "variant": "active"
+      },
+      {
+        "name": "Deprecated",
+        "description": "Product is being phased out; existing access continues but no new assignments",
+        "triggers": "Product management decision to retire",
+        "variant": "warn"
+      },
+      {
+        "name": "Sunset",
+        "description": "Product is fully removed from the platform",
+        "triggers": "End-of-life date reached after deprecation period",
+        "variant": "default"
+      }
+    ],
+    "transitions": [
+      { "from": "Available", "to": ["Deprecated"] },
+      { "from": "Deprecated", "to": ["Sunset"] }
+    ]
+  },
+  "relationships": [
+    {
+      "targetSlug": "student",
+      "targetName": "Student",
+      "mechanics": "Student access to a Product is computed from Product Assignments that apply to the Student's school, grade, and class. There is no direct Student-Product link stored.",
+      "cardinality": "Many-to-many (computed). A Product is accessible to many Students; a Student can access many Products.",
+      "sorts": "Students accessing a Product: by school, by grade, by name.",
+      "filters": "By school, by grade, by class, by enrollment status.",
+      "dependencies": "If a Product is deprecated, existing Student access is maintained until the corresponding Product Assignment is deactivated."
+    }
+  ],
+  "relatedObjects": ["solution", "product-assignment", "student", "teacher"],
+  "nestedObjects": [],
+  "allAttributes": [
+    {
+      "name": "Product ID",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "Unique system identifier for this Product."
+    },
+    {
+      "name": "Name",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "Display name of the Product. Must be unique across all Products."
+    },
+    {
+      "name": "Apps Tag",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "Machine-readable tag used in the apps platform for routing and identification."
+    },
+    {
+      "name": "Tier",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System",
+      "description": "Product tier level for licensing and commercial grouping."
+    },
+    {
+      "name": "Availability",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System",
+      "description": "Current availability: available, deprecated, or sunset."
+    },
+    {
+      "name": "Included Solutions",
+      "dataType": "Reference → Solution[]",
+      "source": "System",
+      "description": "Solutions that include this Product. Computed from Solution configurations.",
+      "isReference": true,
+      "referenceSlug": "solution",
+      "referenceName": "Solution"
+    },
+    {
+      "name": "Subject",
+      "dataType": "Enum",
+      "source": "System",
+      "description": "Primary subject area: Reading, Math, SEL, Science, or All."
+    },
+    {
+      "name": "Product Type",
+      "dataType": "Enum",
+      "source": "System",
+      "description": "Category of product: assessment, practice, reading, or instruction."
+    }
+  ],
+  "allCTAs": [
+    {
+      "name": "View Details",
+      "roles": "Teacher, Admin, Student",
+      "permission": "Read",
+      "priority": "P",
+      "roleKeys": ["teacher", "admin", "student"]
+    }
+  ],
+  "sipValidation": {
+    "structure": {
+      "pass": true,
+      "evidence": "A Product has meaningful attributes: name, apps tag, tier, availability, subject, product type, and Solution memberships. A detail page can be designed."
+    },
+    "instances": {
+      "pass": true,
+      "evidence": "Star Reading (Premium, assessment, Reading), Freckle (Standard, practice, Math), myON (Standard, reading, Reading), Nearpod (Standard, instruction, All). Renaissance has ~15 distinct Product instances."
+    },
+    "purpose": {
+      "pass": true,
+      "evidence": "Products are the individual applications that Students and Teachers use daily. They are the atomic unit of Renaissance's software portfolio, referenced by Solutions, Product Assignments, Activity Events, and Scores."
+    },
+    "verdict": "Domain object. The atomic application unit that Solutions bundle and Product Assignments provision."
+  },
+  "synonyms": [
+    {
+      "term": "App",
+      "context": "Internal engineering and platform teams",
+      "notes": "Short form used in technical contexts and the apps platform"
+    },
+    {
+      "term": "Application",
+      "context": "Formal documentation and contracts",
+      "notes": "Full form used in legal and commercial contexts"
+    },
+    {
+      "term": "Tool",
+      "context": "Teacher-facing communications",
+      "notes": "Used when describing Products as classroom tools"
+    }
+  ],
+  "shapeshifterMatrix": [
+    {
+      "context": "Product Catalog",
+      "value": "product-catalog",
+      "shape": "card",
+      "description": "Products shown as cards with tier, subject, and type. Admins browse the catalog to understand what's available and drill into product details.",
+      "visibleAttributes": ["Name", "Tier", "Subject", "Product Type"],
+      "availableCTAs": ["View Details"],
+      "cardShape": "Medium card"
+    },
+    {
+      "context": "Solution Detail",
+      "value": "solution-detail",
+      "shape": "row",
+      "description": "Products listed within a solution's detail page, showing tier and availability. Admins see which products are bundled in a given solution.",
+      "visibleAttributes": ["Name", "Tier", "Availability", "Product Type"],
+      "availableCTAs": ["View Details"],
+      "cardShape": "Compact row"
+    },
+    {
+      "context": "Product Detail",
+      "value": "product-detail",
+      "shape": "profile",
+      "description": "The complete product record — ID, tier, included solutions, subject, and availability. Admins review product configuration and component details.",
+      "visibleAttributes": ["Product ID", "Name", "Apps Tag", "Tier", "Availability", "Included Solutions", "Subject", "Product Type"],
+      "availableCTAs": ["View Details"],
+      "cardShape": "Full page"
+    }
+  ]
+}

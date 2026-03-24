@@ -1,0 +1,849 @@
+{
+  "identity": {
+    "slug": "score",
+    "name": "Score",
+    "qualifier": "(Core)",
+    "objectType": "core",
+    "category": "data-ai",
+    "definition": "A Score is the measured outcome of a student's performance on an assessment or assignment — including scaled scores, percentiles, proficiency bands, growth measures, and skill-level breakdowns — that informs instructional decisions, tracks progress over time, and feeds platform recommendations.",
+    "synonyms": ["result", "grade", "performance", "measure", "data point"],
+    "products": "Star, AR, Freckle"
+  },
+  "variations": [],
+  "representations": [
+    {
+      "layout": "card",
+      "heading": "Card layout",
+      "description": "How a Score appears in dashboards and score grids",
+      "defaultShape": "card",
+      "componentTag": "ren-score-card",
+      "examples": [
+        {
+          "value": 742,
+          "scoreType": "Scaled",
+          "proficiencyBand": "At/Above",
+          "studentName": "Harry Potter",
+          "assessmentName": "Star Reading",
+          "date": "Mar 12, 2026",
+          "growth": 65,
+          "percentile": 82,
+          "gradeEquivalent": 4.2,
+          "color": "#398b26",
+          "_contextData": {
+            "classAverage": 680,
+            "classPercentile": 65,
+            "trendDirection": "up",
+            "priorScore": 695,
+            "growthTarget": 720,
+            "gradeAverage": 710,
+            "studentName": "Harry Potter",
+            "classCount": 4,
+            "studentCount": 96,
+            "benchmarkAbovePercent": 62,
+            "benchmarkOnWatchPercent": 24,
+            "benchmarkInterventionPercent": 14
+          }
+        },
+        {
+          "value": 38,
+          "scoreType": "Percentile",
+          "proficiencyBand": "On Watch",
+          "studentName": "Neville Longbottom",
+          "assessmentName": "Star Math",
+          "date": "Mar 10, 2026",
+          "growth": 28,
+          "percentile": 38,
+          "gradeEquivalent": 2.1,
+          "color": "#e6a817",
+          "_contextData": {
+            "classAverage": 420,
+            "classPercentile": 42,
+            "trendDirection": "down",
+            "priorScore": 45,
+            "growthTarget": 50,
+            "gradeAverage": 455,
+            "studentName": "Neville Longbottom",
+            "classCount": 3,
+            "studentCount": 88,
+            "benchmarkAbovePercent": 38,
+            "benchmarkOnWatchPercent": 35,
+            "benchmarkInterventionPercent": 27
+          }
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Score Value",
+          "dataType": "Number",
+          "source": "Assessment Engine",
+          "description": "The primary numeric result. Meaning depends on Score Type."
+        },
+        {
+          "name": "Score Type",
+          "dataType": "Enum",
+          "source": "Assessment Engine",
+          "description": "Scaled, Percentile, Proficiency, Growth, or Percent."
+        },
+        {
+          "name": "Proficiency Band",
+          "dataType": "Enum",
+          "source": "Assessment Engine",
+          "description": "At/Above, On Watch, Intervention, or Urgent."
+        },
+        {
+          "name": "Student",
+          "dataType": "Reference → Student",
+          "source": "System",
+          "description": "The student who earned this score.",
+          "isReference": true,
+          "referenceSlug": "student",
+          "referenceName": "Student"
+        },
+        {
+          "name": "Assessment/Assignment",
+          "dataType": "Reference → Assessment",
+          "source": "System",
+          "description": "The assessment or assignment this score belongs to.",
+          "isReference": true,
+          "referenceSlug": "assessment",
+          "referenceName": "Assessment"
+        },
+        {
+          "name": "Date",
+          "dataType": "Date",
+          "source": "System",
+          "description": "When the score was recorded."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "Student, Teacher, Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["student", "teacher", "admin"]
+        },
+        {
+          "name": "View Skill Breakdown",
+          "roles": "Teacher, Admin, Student",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "skill",
+          "crossObjectName": "Skill",
+          "roleKeys": ["teacher", "admin", "student"]
+        }
+      ]
+    },
+    {
+      "layout": "list",
+      "heading": "List layout",
+      "description": "How a Score appears in score tables and history views",
+      "defaultShape": "row",
+      "componentTag": "ren-score-row",
+      "examples": [
+        {
+          "value": 742,
+          "scoreType": "Scaled",
+          "proficiencyBand": "At/Above",
+          "studentName": "Harry Potter",
+          "assessmentName": "Star Reading",
+          "date": "Mar 12, 2026",
+          "growth": 65,
+          "percentile": 82,
+          "gradeEquivalent": 4.2,
+          "color": "#398b26"
+        },
+        {
+          "value": 215,
+          "scoreType": "Scaled",
+          "proficiencyBand": "Intervention",
+          "studentName": "Ron Weasley",
+          "assessmentName": "Star Math",
+          "date": "Mar 8, 2026",
+          "growth": 42,
+          "percentile": 24,
+          "gradeEquivalent": 1.9,
+          "color": "#cf3a4e"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Score Value",
+          "dataType": "Number",
+          "source": "Assessment Engine",
+          "description": "The primary numeric result."
+        },
+        {
+          "name": "Score Type",
+          "dataType": "Enum",
+          "source": "Assessment Engine",
+          "description": "Scaled, Percentile, Proficiency, Growth, or Percent."
+        },
+        {
+          "name": "Assessment/Assignment",
+          "dataType": "Reference → Assessment",
+          "source": "System",
+          "description": "The assessment or assignment this score belongs to.",
+          "isReference": true,
+          "referenceSlug": "assessment",
+          "referenceName": "Assessment"
+        },
+        {
+          "name": "Date",
+          "dataType": "Date",
+          "source": "System",
+          "description": "When the score was recorded."
+        },
+        {
+          "name": "Proficiency Band",
+          "dataType": "Enum",
+          "source": "Assessment Engine",
+          "description": "At/Above, On Watch, Intervention, or Urgent."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "Student, Teacher, Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["student", "teacher", "admin"]
+        },
+        {
+          "name": "View Trend",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "assessment",
+          "crossObjectName": "Assessment",
+          "roleKeys": ["teacher", "admin"]
+        }
+      ]
+    },
+    {
+      "layout": "detail",
+      "heading": "Detail page layout",
+      "description": "What users see when they open a full Score record",
+      "defaultShape": "profile",
+      "componentTag": "ren-score-profile",
+      "examples": [
+        {
+          "value": 742,
+          "scoreType": "Scaled",
+          "proficiencyBand": "At/Above",
+          "studentName": "Harry Potter",
+          "assessmentName": "Star Reading Enterprise",
+          "date": "Mar 12, 2026",
+          "growth": 65,
+          "percentile": 82,
+          "gradeEquivalent": 4.2,
+          "duration": 22,
+          "color": "#398b26",
+          "skillBreakdown": [
+            { "name": "Vocabulary", "level": "Proficient", "percent": 85 },
+            { "name": "Comprehension", "level": "Proficient", "percent": 78 },
+            { "name": "Literary Analysis", "level": "Developing", "percent": 52 },
+            { "name": "Informational Text", "level": "Proficient", "percent": 74 }
+          ],
+          "nestedObjects": [
+            { "label": "Skills", "count": 4 },
+            { "label": "Items", "count": 34 }
+          ]
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Score Value",
+          "dataType": "Number",
+          "source": "Assessment Engine",
+          "description": "The primary numeric result. Meaning depends on Score Type."
+        },
+        {
+          "name": "Score Type",
+          "dataType": "Enum",
+          "source": "Assessment Engine",
+          "description": "Scaled, Percentile, Proficiency, Growth, or Percent."
+        },
+        {
+          "name": "Proficiency Band",
+          "dataType": "Enum",
+          "source": "Assessment Engine",
+          "description": "At/Above, On Watch, Intervention, or Urgent."
+        },
+        {
+          "name": "Student",
+          "dataType": "Reference → Student",
+          "source": "System",
+          "description": "The student who earned this score.",
+          "isReference": true,
+          "referenceSlug": "student",
+          "referenceName": "Student"
+        },
+        {
+          "name": "Assessment/Assignment",
+          "dataType": "Reference → Assessment",
+          "source": "System",
+          "description": "The assessment or assignment this score belongs to.",
+          "isReference": true,
+          "referenceSlug": "assessment",
+          "referenceName": "Assessment"
+        },
+        {
+          "name": "Date",
+          "dataType": "Date",
+          "source": "System",
+          "description": "When the score was recorded."
+        },
+        {
+          "name": "Growth SGP",
+          "dataType": "Number",
+          "source": "Assessment Engine",
+          "description": "Student Growth Percentile. Compares growth to similar peers."
+        },
+        {
+          "name": "Percentile Rank",
+          "dataType": "Number",
+          "source": "Assessment Engine",
+          "description": "National percentile rank. Compares to norming population."
+        },
+        {
+          "name": "Grade Equivalent",
+          "dataType": "Number",
+          "source": "Assessment Engine",
+          "description": "Grade-level equivalent for the score. e.g. 4.2 = 4th grade, 2nd month."
+        },
+        {
+          "name": "Duration",
+          "dataType": "Number",
+          "source": "Assessment Engine",
+          "description": "Time in minutes to complete the assessment."
+        },
+        {
+          "name": "Skill Breakdown",
+          "dataType": "Multiple",
+          "source": "Assessment Engine",
+          "description": "Per-skill proficiency levels derived from item responses."
+        },
+        {
+          "name": "Class",
+          "dataType": "Reference → Class",
+          "source": "System",
+          "description": "The class context in which this score was generated.",
+          "isReference": true,
+          "referenceSlug": "class",
+          "referenceName": "Class"
+        },
+        {
+          "name": "Item-Level Data",
+          "dataType": "Multiple",
+          "source": "Assessment Engine",
+          "description": "Per-item correct/incorrect and time-on-task. Available for diagnostic views."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "Student, Teacher, Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["student", "teacher", "admin"]
+        },
+        {
+          "name": "View Trend",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "assessment",
+          "crossObjectName": "Assessment",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "View Skill Breakdown",
+          "roles": "Teacher, Admin, Student",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "skill",
+          "crossObjectName": "Skill",
+          "roleKeys": ["teacher", "admin", "student"]
+        },
+        {
+          "name": "Compare",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "T",
+          "crossObjectSlug": "student",
+          "crossObjectName": "Student",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Export",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "T",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Share with Parent",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "T",
+          "crossObjectSlug": "student",
+          "crossObjectName": "Student",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Assign Follow-Up",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "T",
+          "crossObjectSlug": "assignment",
+          "crossObjectName": "Assignment",
+          "roleKeys": ["teacher"]
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "Review Student Score",
+      "icon": "assessment",
+      "role": "Teacher",
+      "action": "view",
+      "object": "Score",
+      "benefit": "I can understand how the student performed, identify proficiency gaps, and decide on next instructional steps.",
+      "whenClause": "a student completes a Star assessment,",
+      "thenClause": "their Score appears with scaled value, proficiency band, percentile rank, and skill breakdown so I can quickly triage."
+    },
+    {
+      "title": "Track Growth Over Time",
+      "icon": "trending_up",
+      "role": "Teacher",
+      "action": "view trend",
+      "object": "Score",
+      "benefit": "I can evaluate whether a student's interventions are working and adjust my teaching strategy accordingly.",
+      "whenClause": "I compare multiple Scores for a student across assessment windows,",
+      "thenClause": "the growth SGP and scaled score trend are visualized so I can see trajectory at a glance.",
+      "crossObjects": [{ "slug": "assessment", "name": "Assessment" }]
+    },
+    {
+      "title": "Share Score with Parent",
+      "icon": "share",
+      "role": "Teacher",
+      "action": "share",
+      "object": "Score",
+      "benefit": "parents can understand their child's performance and support learning at home.",
+      "whenClause": "I share a Score report with a parent,",
+      "thenClause": "a parent-friendly summary with proficiency band, grade equivalent, and growth context is sent.",
+      "crossObjects": [{ "slug": "student", "name": "Student" }]
+    }
+  ],
+  "businessRules": [
+    {
+      "title": "Immutability",
+      "description": "Scores are append-only. Once generated, a Score cannot be edited or deleted — only invalidated by an Admin with documented justification."
+    },
+    {
+      "title": "Ownership",
+      "description": "Every Score belongs to exactly one Student and exactly one Assessment or Assignment. These references are set at creation and never change."
+    },
+    {
+      "title": "Proficiency Calculation",
+      "description": "Proficiency bands are derived from scaled scores using grade-level benchmarks configured at the district level. Bands: At/Above, On Watch, Intervention, Urgent."
+    },
+    {
+      "title": "Growth Computation",
+      "description": "Student Growth Percentile (SGP) requires at least two Scores from the same assessment family within the same school year. SGP ranges from 1-99."
+    },
+    {
+      "title": "Recency",
+      "description": "The most recent Score for a given assessment type is the 'active' Score used in dashboards and recommendations. Historical Scores remain accessible for trend analysis."
+    },
+    {
+      "title": "Access Control",
+      "description": "Students can view their own Scores. Teachers see Scores for students in their classes. Admins see all Scores within their school or district."
+    },
+    {
+      "title": "Invalidation",
+      "description": "An Admin can mark a Score as Invalidated (e.g. testing irregularity). Invalidated Scores are excluded from proficiency calculations and growth measures but remain in the historical record."
+    }
+  ],
+  "lifecycle": {
+    "states": [
+      {
+        "name": "Active",
+        "description": "Current, valid score used in dashboards and calculations",
+        "triggers": "Assessment completion, auto-scoring, manual grading",
+        "variant": "active"
+      },
+      {
+        "name": "Historical",
+        "description": "Superseded by a newer score but retained for trend analysis",
+        "triggers": "A newer Score of the same assessment type is recorded",
+        "variant": "default"
+      },
+      {
+        "name": "Invalidated",
+        "description": "Excluded from calculations due to testing irregularity",
+        "triggers": "Admin action with documented justification",
+        "variant": "warn"
+      }
+    ],
+    "transitions": [
+      { "from": "Active", "to": ["Historical", "Invalidated"] },
+      { "from": "Historical", "to": ["Invalidated"] }
+    ]
+  },
+  "relationships": [
+    {
+      "targetSlug": "student",
+      "targetName": "Student",
+      "mechanics": "A Score is system-generated when a Student completes an Assessment. The Student reference is set at creation and is immutable.",
+      "cardinality": "Many-to-one. Each Score belongs to exactly one Student; a Student accumulates many Scores over time.",
+      "sorts": "Scores for a Student: by date (most recent first, default), by assessment type, by score value, by proficiency band.",
+      "filters": "By assessment type (Star Reading, Star Math, AR), by proficiency band, by date range, by score type (Scaled, Percentile, Growth).",
+      "dependencies": "If a Student is deactivated, their Scores persist for historical reporting but are excluded from active class-level aggregations."
+    },
+    {
+      "targetSlug": "assessment",
+      "targetName": "Assessment",
+      "mechanics": "A Score is the output of an Assessment completion. Each Score references exactly one Assessment instance.",
+      "cardinality": "Many-to-one. Each Score belongs to one Assessment; an Assessment can produce many Scores (one per student).",
+      "sorts": "Scores within an Assessment: by student name (default), by score value (descending), by proficiency band.",
+      "filters": "By proficiency band, by growth percentile range, by class, by demographic group.",
+      "dependencies": "If an Assessment is deleted, associated Scores are orphaned but retained. Assessment metadata is cached on the Score for display."
+    },
+    {
+      "targetSlug": "skill",
+      "targetName": "Skill",
+      "mechanics": "Assessment engines decompose Scores into per-Skill proficiency levels based on item-level responses. This mapping is system-generated.",
+      "cardinality": "One-to-many. A Score may map to multiple Skill proficiency data points; each Skill aggregates data from many Scores.",
+      "sorts": "Skills within a Score: by domain (default), by proficiency level, by percent correct.",
+      "filters": "By proficiency level (Proficient, Developing, Beginning), by domain/strand.",
+      "dependencies": "Skill proficiency data depends on having item-level data. If item data is unavailable, skill breakdown is empty."
+    }
+  ],
+  "relatedObjects": ["student", "assessment", "assignment", "skill", "class", "teacher", "resource"],
+  "nestedObjects": [
+    {
+      "slug": "skill-mastery",
+      "name": "Skill Mastery",
+      "cardinality": "One-to-many",
+      "description": "Per-skill proficiency level derived from item-level responses within this score"
+    },
+    {
+      "slug": "item-response",
+      "name": "Item Response",
+      "cardinality": "One-to-many",
+      "description": "Individual item correct/incorrect with time-on-task data"
+    }
+  ],
+  "allAttributes": [
+    {
+      "name": "Score Value",
+      "dataType": "Number",
+      "required": true,
+      "source": "Assessment Engine",
+      "description": "The primary numeric result. Interpretation depends on Score Type (scaled score, percentile, percent correct, etc.)."
+    },
+    {
+      "name": "Score Type",
+      "dataType": "Enum",
+      "required": true,
+      "source": "Assessment Engine",
+      "description": "Categorizes the score: Scaled, Percentile, Proficiency, Growth, or Percent. Determines how the value is interpreted."
+    },
+    {
+      "name": "Student",
+      "dataType": "Reference → Student",
+      "required": true,
+      "source": "System",
+      "description": "The student who earned this score. Set at creation, immutable.",
+      "isReference": true,
+      "referenceSlug": "student",
+      "referenceName": "Student"
+    },
+    {
+      "name": "Assessment/Assignment",
+      "dataType": "Reference → Assessment",
+      "source": "System",
+      "description": "The assessment or assignment this score belongs to.",
+      "isReference": true,
+      "referenceSlug": "assessment",
+      "referenceName": "Assessment"
+    },
+    {
+      "name": "Date",
+      "dataType": "Date",
+      "required": true,
+      "source": "System",
+      "description": "When the score was recorded. Typically the assessment completion timestamp."
+    },
+    {
+      "name": "Proficiency Band",
+      "dataType": "Enum",
+      "source": "Assessment Engine",
+      "description": "Performance band based on district-configured benchmarks: At/Above, On Watch, Intervention, Urgent."
+    },
+    {
+      "name": "Growth SGP",
+      "dataType": "Number",
+      "source": "Assessment Engine",
+      "description": "Student Growth Percentile (1-99). Requires at least two Scores from the same assessment family."
+    },
+    {
+      "name": "Percentile Rank",
+      "dataType": "Number",
+      "source": "Assessment Engine",
+      "description": "National percentile rank compared to norming population. Range 1-99."
+    },
+    {
+      "name": "Grade Equivalent",
+      "dataType": "Number",
+      "source": "Assessment Engine",
+      "description": "Grade-level equivalent (e.g. 4.2 = 4th grade, 2nd month). Star assessments only."
+    },
+    {
+      "name": "Skill Breakdown",
+      "dataType": "Multiple",
+      "source": "Assessment Engine",
+      "description": "Per-skill proficiency levels and percent correct, derived from item-level analysis."
+    },
+    {
+      "name": "Class",
+      "dataType": "Reference → Class",
+      "source": "System",
+      "description": "The class context in which this score was generated.",
+      "isReference": true,
+      "referenceSlug": "class",
+      "referenceName": "Class"
+    },
+    {
+      "name": "Duration",
+      "dataType": "Number",
+      "source": "Assessment Engine",
+      "description": "Time in minutes the student spent completing the assessment."
+    },
+    {
+      "name": "Item-Level Data",
+      "dataType": "Multiple",
+      "source": "Assessment Engine",
+      "description": "Per-item correct/incorrect, response time, and distractor analysis. Powers skill breakdown and diagnostic views."
+    }
+  ],
+  "allCTAs": [
+    {
+      "name": "View",
+      "roles": "Student, Teacher, Admin",
+      "permission": "Read",
+      "priority": "P",
+      "roleKeys": ["student", "teacher", "admin"]
+    },
+    {
+      "name": "View Trend",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "S",
+      "crossObjectSlug": "assessment",
+      "crossObjectName": "Assessment",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Compare",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "T",
+      "crossObjectSlug": "student",
+      "crossObjectName": "Student",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Export",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "T",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "View Skill Breakdown",
+      "roles": "Teacher, Admin, Student",
+      "permission": "Read",
+      "priority": "S",
+      "crossObjectSlug": "skill",
+      "crossObjectName": "Skill",
+      "roleKeys": ["teacher", "admin", "student"]
+    },
+    {
+      "name": "Share with Parent",
+      "roles": "Teacher",
+      "permission": "Read",
+      "priority": "T",
+      "crossObjectSlug": "student",
+      "crossObjectName": "Student",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Assign Follow-Up",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "T",
+      "crossObjectSlug": "assignment",
+      "crossObjectName": "Assignment",
+      "roleKeys": ["teacher"]
+    }
+  ],
+  "sipValidation": {
+    "structure": {
+      "pass": true,
+      "evidence": "A Score has a rich attribute set: value, type, proficiency band, growth percentile, grade equivalent, skill breakdown, item-level data, and duration. You can design a full detail page for a Score."
+    },
+    "instances": {
+      "pass": true,
+      "evidence": "Star Reading 742 SS for Harry Potter (Mar 12, 2026), Star Math 215 SS for Ron Weasley (Mar 8, 2026), AR Quiz 90% for Hermione Granger (Feb 28, 2026). Schools generate thousands of Score instances per assessment window."
+    },
+    "purpose": {
+      "pass": true,
+      "evidence": "Scores are the primary output of assessments and the foundation for instructional decision-making. Teachers view Scores to triage students, track growth, group by proficiency, and assign follow-up work. Admins use Scores for school and district reporting."
+    },
+    "verdict": "Core data object. The essential output of assessment and the primary driver of instructional decisions across all Renaissance products."
+  },
+  "synonyms": [
+    {
+      "term": "Result",
+      "context": "AR quizzes, Freckle practice",
+      "notes": "Common in assignment and practice contexts where 'score' feels too formal"
+    },
+    {
+      "term": "Grade",
+      "context": "Parent communications, report cards",
+      "notes": "Overloaded — also means grade level. Avoid in product UI to prevent confusion"
+    },
+    {
+      "term": "Performance",
+      "context": "Admin dashboards, district reports",
+      "notes": "Used as a category label ('Student Performance') rather than individual score"
+    },
+    {
+      "term": "Measure",
+      "context": "Assessment/psychometrics teams",
+      "notes": "Technical term for a score within a measurement framework"
+    },
+    {
+      "term": "Data Point",
+      "context": "Analytics, data science",
+      "notes": "Used when Scores are treated as elements of a dataset rather than standalone objects"
+    },
+    {
+      "term": "Mark",
+      "context": "UK/international markets",
+      "notes": "British English equivalent. Not used in US-focused products"
+    }
+  ],
+  "shapeshifterMatrix": [
+    {
+      "context": "Student Score View",
+      "value": "student-score-view",
+      "shape": "card",
+      "description": "A student's view of their own score — the value, proficiency band, and trend compared to their last attempt. Communicates what the score means, not just what it is.",
+      "visibleAttributes": ["Score Value", "Score Type", "Proficiency Band", "Assessment/Assignment", "Date"],
+      "availableCTAs": ["View"],
+      "cardShape": "Summary card",
+      "userIntent": "What did I score and what does it mean?",
+      "contextDataSchema": {
+        "trendDirection": { "type": "string", "description": "Trend compared to prior: up, down, or flat" },
+        "priorScore": { "type": "number", "description": "Previous score for comparison" }
+      }
+    },
+    {
+      "context": "Class Score Report",
+      "value": "class-score-report",
+      "shape": "row",
+      "description": "Scores for each student in a class on a specific assessment, with growth and percentile data. Teachers compare performance, identify struggling students, and assign follow-up work.",
+      "visibleAttributes": ["Score Value", "Score Type", "Student", "Proficiency Band", "Growth SGP"],
+      "availableCTAs": ["View", "Compare", "Assign Follow-Up"],
+      "cardShape": "Data row",
+      "userIntent": "How did my class perform on this assessment?",
+      "contextDataSchema": {
+        "studentName": { "type": "string", "description": "Which student (when embedded in class view)" },
+        "classAverage": { "type": "number", "description": "Class average for comparison" },
+        "classPercentile": { "type": "number", "description": "Class percentile rank" },
+        "growthTarget": { "type": "number", "description": "Expected growth target" }
+      }
+    },
+    {
+      "context": "Student Profile Score History",
+      "value": "student-profile-score-history",
+      "shape": "card",
+      "description": "A student's scores over time, displayed as timeline cards showing trends and growth targets. Teachers track whether a student is improving, plateauing, or declining.",
+      "visibleAttributes": ["Score Value", "Proficiency Band", "Assessment/Assignment", "Date"],
+      "availableCTAs": ["View", "View Trend"],
+      "cardShape": "Timeline card",
+      "userIntent": "How has this student's score changed over time?",
+      "contextDataSchema": {
+        "trendDirection": { "type": "string", "description": "Trend: up, down, or flat" },
+        "priorScore": { "type": "number", "description": "Previous score in series" },
+        "growthTarget": { "type": "number", "description": "Target for this period" }
+      }
+    },
+    {
+      "context": "School/District Report",
+      "value": "school-district-report",
+      "shape": "data-row",
+      "description": "Aggregated scores across a school or district with proficiency band distributions. Admins analyze performance patterns and benchmark against targets.",
+      "visibleAttributes": ["Score Value", "Score Type", "Proficiency Band", "Assessment/Assignment"],
+      "availableCTAs": ["View", "Export"],
+      "cardShape": "Data row",
+      "userIntent": "How are scores distributed across my school/district?",
+      "contextDataSchema": {
+        "classCount": { "type": "number", "description": "Number of classes included" },
+        "studentCount": { "type": "number", "description": "Number of students included" },
+        "benchmarkAbovePercent": { "type": "number", "description": "Percentage at/above benchmark" },
+        "benchmarkOnWatchPercent": { "type": "number", "description": "Percentage on watch" },
+        "benchmarkInterventionPercent": { "type": "number", "description": "Percentage needing intervention" }
+      }
+    },
+    {
+      "context": "Parent Report",
+      "value": "parent-report",
+      "shape": "card",
+      "description": "A simplified score card for parents showing their child's result, proficiency level, and how it compares to the grade average. Designed for clarity over detail.",
+      "visibleAttributes": ["Score Value", "Proficiency Band", "Assessment/Assignment", "Date"],
+      "availableCTAs": ["View"],
+      "cardShape": "Simplified card",
+      "userIntent": "How is my child doing?",
+      "contextDataSchema": {
+        "trendDirection": { "type": "string", "description": "Improvement direction" },
+        "gradeAverage": { "type": "number", "description": "Grade-level average for reference" }
+      }
+    },
+    {
+      "context": "Score Detail",
+      "value": "score-detail",
+      "shape": "profile",
+      "description": "The complete score record — raw value, proficiency band, growth percentile, skill breakdown, and item-level data. Teachers and admins analyze a score from every angle, share results, or assign follow-up.",
+      "visibleAttributes": ["Score Value", "Score Type", "Proficiency Band", "Student", "Assessment/Assignment", "Date", "Growth SGP", "Percentile Rank", "Grade Equivalent", "Duration", "Skill Breakdown", "Item-Level Data"],
+      "availableCTAs": ["View", "View Trend", "Compare", "Export", "View Skill Breakdown", "Share with Parent", "Assign Follow-Up"],
+      "cardShape": "Full page",
+      "userIntent": "What is the full detail of this score?"
+    },
+    {
+      "context": "Student Profile (embedded)",
+      "value": "student-profile-embedded",
+      "shape": "header",
+      "description": "The latest score displayed as a compact bar within a student's profile — score value, assessment name, and proficiency band at a glance.",
+      "visibleAttributes": ["Score Value", "Assessment/Assignment", "Proficiency Band"],
+      "availableCTAs": ["View"],
+      "cardShape": "Compact bar",
+      "userIntent": "What is the latest score for this student?"
+    },
+    {
+      "context": "Growth Report",
+      "value": "growth-report",
+      "shape": "row",
+      "description": "Scores plotted for growth analysis with SGP, percentile rank, and dates. Teachers and admins assess a student's growth trajectory across assessment periods.",
+      "visibleAttributes": ["Score Value", "Score Type", "Growth SGP", "Percentile Rank", "Date"],
+      "availableCTAs": ["View Trend", "Compare"],
+      "cardShape": "Data row",
+      "userIntent": "What is this student's growth trajectory?"
+    }
+  ]
+}

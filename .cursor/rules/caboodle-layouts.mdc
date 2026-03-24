@@ -1,0 +1,70 @@
+---
+description: Enforce Every Layout composition system when building Caboodle pages
+globs: "**/*.html"
+alwaysApply: false
+---
+
+# Caboodle Layout System
+
+When creating or editing HTML in Caboodle, follow these rules:
+
+## Use the layout primitives
+
+The layout system in `styles/layouts.css` provides these composition classes:
+`stack`, `box`, `center`, `cluster`, `with-sidebar`/`sidebar`/`not-sidebar`, `switcher`, `cover`/`cover-centered`, `grid`, `frame`, `reel`, `imposter`, `icon`/`with-icon`, `container`.
+
+Before writing new layout CSS, check whether an existing primitive (or a combination of primitives) solves the problem. Compose layouts by nesting: e.g. `.center .stack` for a centered, vertically-spaced column.
+
+## Configure with custom properties, not new classes
+
+Each primitive exposes CSS custom properties (`--space`, `--min`, `--threshold`, `--sidebar-width`, etc.). Set these inline or via a scoping class rather than creating one-off layout rules.
+
+```html
+<!-- Good: configure via custom property -->
+<div class="grid" style="--min: 18rem; --space: var(--s2)">
+
+<!-- Avoid: one-off class that reimplements grid behavior -->
+<div class="my-custom-grid">
+```
+
+## Common compositions
+
+| Content type | Recommended layout |
+|---|---|
+| Introductory hero | `.cover .center` → `.cover-centered .stack` |
+| Body text | `.center .stack .prose` |
+| Card collection | `.center .stack` → `.grid` (children: `.card`) |
+| Sidebar navigation | `.center .with-sidebar` |
+| Feature comparison | `.center .switcher` |
+| Tag / filter bar | `.cluster` |
+| Horizontal showcase | `.reel` |
+
+## Spacing rules
+
+- Use the modular scale tokens (`--s-5` through `--s5`) from `tokens.css` for all spacing.
+- Never use magic-number pixel values for margins, padding, or gaps.
+- Prefer logical properties (`margin-block-start`, `padding-inline`) over physical directions.
+
+## No fixed breakpoints for layout
+
+- Do not use `@media (max-width: …)` to rearrange layout. The intrinsic primitives (Sidebar, Switcher, Grid) handle responsive behavior through container-aware flex/grid math.
+- `@media` is acceptable for non-layout concerns (e.g., adjusting font size, hiding decorative elements).
+
+## Page structure
+
+Follow the page shell from `docs/requirements/caboodle-page-blueprint.md`:
+- `<body class="page">` wraps `<header class="page-header">`, `<main>`, `<footer class="page-footer">`
+- Each content block is a `<section class="section">` containing a `.center` wrapper
+- Use `.stack` for vertical rhythm inside sections
+- Use `.prose` on text-heavy containers
+
+## Migration safety
+
+- Keep class names semantic and stable — they will map to framework components later.
+- Do not tie layout rules to specific HTML element types (e.g., avoid `section.stack`; prefer `.stack`).
+- Keep all tokens in `tokens.css` so they can be extracted to a framework theme config.
+
+## Reference docs
+
+- Layout system guide: `docs/requirements/caboodle-layout-system.md`
+- Page blueprint: `docs/requirements/caboodle-page-blueprint.md`

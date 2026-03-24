@@ -1,0 +1,917 @@
+{
+  "identity": {
+    "slug": "class",
+    "name": "Class",
+    "qualifier": "(Core)",
+    "objectType": "core",
+    "category": "container",
+    "definition": "A Class is an organizational grouping of students under one or more teachers for a specific subject, grade level, or instructional period that serves as the primary unit for assigning work, administering assessments, viewing reports, and managing day-to-day instruction across Renaissance products.",
+    "synonyms": ["section", "group", "roster"],
+    "products": "All products"
+  },
+  "variations": [],
+  "representations": [
+    {
+      "layout": "card",
+      "heading": "Card layout",
+      "description": "How a Class appears in grids and dashboards",
+      "defaultShape": "card",
+      "componentTag": "ren-class-card",
+      "examples": [
+        {
+          "name": "3rd Grade ELA - Period 1",
+          "teacher": "Ms. Rodriguez",
+          "grade": "3rd Grade",
+          "subject": "ELA",
+          "studentCount": 24,
+          "assignmentCount": 8,
+          "color": "#059669",
+          "_contextData": {
+            "recentAssignment": "Vocabulary Unit 4",
+            "averageScore": 680,
+            "attendanceRate": 94,
+            "averageGrowth": 52,
+            "activeAssignmentCount": 3,
+            "benchmarkAbovePercent": 62,
+            "nextAssignment": "Reading Response 5",
+            "nextDueDate": "Oct 18",
+            "dueAssignmentCount": 2,
+            "eligibleStudentCount": 22,
+            "lastAssessmentDate": "Sep 28"
+          }
+        },
+        {
+          "name": "7th Grade Math Block A",
+          "teacher": "Mr. Chen",
+          "grade": "7th Grade",
+          "subject": "Mathematics",
+          "studentCount": 31,
+          "assignmentCount": 12,
+          "color": "#7C3AED",
+          "_contextData": {
+            "recentAssignment": "Linear Equations Quiz",
+            "averageScore": 420,
+            "averageGrowth": 48,
+            "activeAssignmentCount": 5,
+            "attendanceRate": 91,
+            "benchmarkAbovePercent": 45,
+            "nextAssignment": "Graphing Review",
+            "nextDueDate": "Oct 20",
+            "myGrade": "B+",
+            "dueAssignmentCount": 3,
+            "eligibleStudentCount": 29,
+            "lastAssessmentDate": "Oct 5"
+          }
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Class Name",
+          "dataType": "String",
+          "source": "SIS Import / Manual",
+          "description": "Primary identifier. Appears everywhere a Class is shown."
+        },
+        {
+          "name": "Teacher",
+          "dataType": "Reference → Teacher",
+          "source": "SIS Import / Manual",
+          "description": "The primary teacher assigned to the class.",
+          "isReference": true,
+          "referenceSlug": "teacher",
+          "referenceName": "Teacher"
+        },
+        {
+          "name": "Grade Level",
+          "dataType": "Enum",
+          "source": "SIS Import / Manual",
+          "description": "The grade level of the class. PreK-12, UG."
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "source": "SIS Import / Manual",
+          "description": "The subject area taught in this class."
+        },
+        {
+          "name": "Student Count",
+          "dataType": "Number",
+          "source": "Calculated",
+          "description": "Number of students currently enrolled in the class."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Create Assignment",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "assignment",
+          "crossObjectName": "Assignment",
+          "roleKeys": ["teacher"]
+        }
+      ]
+    },
+    {
+      "layout": "list",
+      "heading": "List layout",
+      "description": "How a Class appears in rosters and tables",
+      "defaultShape": "row",
+      "componentTag": "ren-class-row",
+      "examples": [
+        {
+          "name": "3rd Grade ELA - Period 1",
+          "teacher": "Ms. Rodriguez",
+          "grade": "3rd Grade",
+          "subject": "ELA",
+          "studentCount": 24,
+          "assignmentCount": 8,
+          "color": "#059669"
+        },
+        {
+          "name": "7th Grade Math Block A",
+          "teacher": "Mr. Chen",
+          "grade": "7th Grade",
+          "subject": "Mathematics",
+          "studentCount": 31,
+          "assignmentCount": 12,
+          "color": "#7C3AED"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Class Name",
+          "dataType": "String",
+          "source": "SIS Import / Manual",
+          "description": "Primary identifier. Appears everywhere a Class is shown."
+        },
+        {
+          "name": "Teacher",
+          "dataType": "Reference → Teacher",
+          "source": "SIS Import / Manual",
+          "description": "The primary teacher assigned to the class.",
+          "isReference": true,
+          "referenceSlug": "teacher",
+          "referenceName": "Teacher"
+        },
+        {
+          "name": "Grade Level",
+          "dataType": "Enum",
+          "source": "SIS Import / Manual",
+          "description": "The grade level of the class. PreK-12, UG."
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "source": "SIS Import / Manual",
+          "description": "The subject area taught in this class."
+        },
+        {
+          "name": "Student Count",
+          "dataType": "Number",
+          "source": "Calculated",
+          "description": "Number of students currently enrolled in the class."
+        },
+        {
+          "name": "Period / Block",
+          "dataType": "String",
+          "source": "SIS Import / Manual",
+          "description": "The scheduling period or block for this class."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Create Assignment",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "assignment",
+          "crossObjectName": "Assignment",
+          "roleKeys": ["teacher"]
+        }
+      ]
+    },
+    {
+      "layout": "detail",
+      "heading": "Detail page layout",
+      "description": "What users see when they open a full Class record",
+      "defaultShape": "profile",
+      "componentTag": "ren-class-profile",
+      "examples": [
+        {
+          "name": "3rd Grade ELA - Period 1",
+          "teacher": "Ms. Rodriguez",
+          "grade": "3rd Grade",
+          "subject": "ELA",
+          "studentCount": 24,
+          "assignmentCount": 8,
+          "color": "#059669",
+          "school": "Lincoln Elementary",
+          "schoolYear": "2025-2026",
+          "period": "Period 1",
+          "status": "Active",
+          "coTeachers": "Mrs. Davis",
+          "sisId": "SEC-00412",
+          "nestedObjects": [
+            { "label": "Students", "count": 24, "href": "#students" },
+            { "label": "Assignments", "count": 8, "href": "#assignments" },
+            { "label": "Assessments", "count": 5, "href": "#assessments" },
+            { "label": "Resources", "count": 14, "href": "#resources" },
+            { "label": "Scores", "count": 72, "href": "#scores" }
+          ]
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Class Name",
+          "dataType": "String",
+          "required": true,
+          "source": "SIS Import / Manual",
+          "description": "Primary identifier. Appears everywhere a Class is shown."
+        },
+        {
+          "name": "Teacher",
+          "dataType": "Reference → Teacher",
+          "required": true,
+          "source": "SIS Import / Manual",
+          "description": "The primary teacher assigned to the class.",
+          "isReference": true,
+          "referenceSlug": "teacher",
+          "referenceName": "Teacher"
+        },
+        {
+          "name": "Student Roster",
+          "dataType": "Reference → Student[]",
+          "source": "SIS Import / Manual",
+          "description": "Students currently enrolled in the class.",
+          "isReference": true,
+          "referenceSlug": "student",
+          "referenceName": "Student"
+        },
+        {
+          "name": "Grade Level",
+          "dataType": "Enum",
+          "required": true,
+          "source": "SIS Import / Manual",
+          "description": "The grade level of the class. PreK-12, UG."
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "source": "SIS Import / Manual",
+          "description": "The subject area taught in this class."
+        },
+        {
+          "name": "School",
+          "dataType": "Reference → School",
+          "required": true,
+          "source": "SIS Import",
+          "description": "The school this class belongs to.",
+          "isReference": true,
+          "referenceSlug": "school",
+          "referenceName": "School"
+        },
+        {
+          "name": "School Year",
+          "dataType": "String",
+          "required": true,
+          "source": "System",
+          "description": "The academic year this class is active for."
+        },
+        {
+          "name": "Period / Block",
+          "dataType": "String",
+          "source": "SIS Import / Manual",
+          "description": "The scheduling period or block for this class."
+        },
+        {
+          "name": "Student Count",
+          "dataType": "Number",
+          "source": "Calculated",
+          "description": "Number of students currently enrolled in the class."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "required": true,
+          "source": "System / Manual",
+          "description": "Active or Archived. Controls visibility in dashboards and reports."
+        },
+        {
+          "name": "Product Settings",
+          "dataType": "Multiple",
+          "source": "Manual",
+          "description": "Per-product configuration for this class (e.g., reading level range, practice settings)."
+        },
+        {
+          "name": "Co-Teacher(s)",
+          "dataType": "Reference → Teacher[]",
+          "source": "SIS Import / Manual",
+          "description": "Additional teachers who share responsibility for this class.",
+          "isReference": true,
+          "referenceSlug": "teacher",
+          "referenceName": "Teacher"
+        },
+        {
+          "name": "SIS Section ID",
+          "dataType": "String",
+          "source": "SIS Import",
+          "description": "External SIS identifier for cross-system matching and roster sync."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Create",
+          "roles": "Admin, System",
+          "permission": "Write",
+          "priority": "T",
+          "roleKeys": ["admin"]
+        },
+        {
+          "name": "Edit",
+          "roles": "Teacher, Admin",
+          "permission": "Write",
+          "priority": "S",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Add Students",
+          "roles": "Teacher, Admin, System",
+          "permission": "Write",
+          "priority": "T",
+          "crossObjectSlug": "student",
+          "crossObjectName": "Student",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Remove Students",
+          "roles": "Teacher, Admin, System",
+          "permission": "Write",
+          "priority": "T",
+          "crossObjectSlug": "student",
+          "crossObjectName": "Student",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Assign Teacher",
+          "roles": "Admin, System",
+          "permission": "Write",
+          "priority": "T",
+          "crossObjectSlug": "teacher",
+          "crossObjectName": "Teacher",
+          "roleKeys": ["admin"]
+        },
+        {
+          "name": "Create Assignment",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "assignment",
+          "crossObjectName": "Assignment",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Schedule Assessment",
+          "roles": "Teacher, Admin",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "assessment",
+          "crossObjectName": "Assessment",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "View Class Report",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "score",
+          "crossObjectName": "Score",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Archive",
+          "roles": "Admin, System",
+          "permission": "Write",
+          "priority": "Q",
+          "roleKeys": ["admin"]
+        },
+        {
+          "name": "Delete",
+          "roles": "Admin",
+          "permission": "Write",
+          "priority": "Q",
+          "roleKeys": ["admin"]
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "View Class Roster",
+      "icon": "groups",
+      "role": "Teacher",
+      "action": "view",
+      "object": "Class",
+      "benefit": "I can see all enrolled students, their current levels, and quickly assign work or schedule assessments for the group.",
+      "whenClause": "I open a Class from my dashboard,",
+      "thenClause": "the full student roster with key attributes, active assignments, and recent scores for the class."
+    },
+    {
+      "title": "Assign Work to Class",
+      "icon": "assignment",
+      "role": "Teacher",
+      "action": "assign",
+      "object": "Class",
+      "benefit": "all students in the class receive the work simultaneously without individual assignment.",
+      "whenClause": "I create an assignment or schedule an assessment for a class,",
+      "thenClause": "every active student in the class roster should receive the assignment and it should appear in their to-do lists.",
+      "crossObjects": [
+        { "slug": "assignment", "name": "Assignment" },
+        { "slug": "assessment", "name": "Assessment" }
+      ]
+    },
+    {
+      "title": "View Class Report",
+      "icon": "assessment",
+      "role": "Teacher",
+      "action": "view",
+      "object": "Class",
+      "benefit": "I can identify trends, compare student performance, and adjust instruction for the group.",
+      "whenClause": "I open the class report,",
+      "thenClause": "aggregated scores, growth data, and performance distributions across all students in the class.",
+      "crossObjects": [{ "slug": "score", "name": "Score" }]
+    }
+  ],
+  "businessRules": [
+    {
+      "title": "Uniqueness",
+      "description": "A Class is uniquely identified within a School by its name plus school year. The SIS Section ID provides cross-system matching."
+    },
+    {
+      "title": "Creation",
+      "description": "Classes are primarily created via SIS roster sync (OneRoster, Clever, ClassLink). Manual creation requires at minimum: Class Name, Teacher, Grade Level, School."
+    },
+    {
+      "title": "Teacher Requirement",
+      "description": "A Class must have at least one primary Teacher assigned. Co-Teachers are optional. A Teacher may be assigned to multiple Classes."
+    },
+    {
+      "title": "Enrollment Limits",
+      "description": "A Class has no hard system limit on student enrollment, but product-specific caps may apply (e.g., assessment session limits). Typical range: 15-35 students."
+    },
+    {
+      "title": "Year Binding",
+      "description": "A Class is bound to a single School Year. At year-end, classes are archived and new classes are created for the next year via SIS sync or manual rollover."
+    },
+    {
+      "title": "Data Isolation",
+      "description": "Class-level data (assignments, scores, reports) is scoped to the class. Teachers see only their assigned classes. Admins see all classes within their school."
+    },
+    {
+      "title": "Archive vs Delete",
+      "description": "Archiving a Class hides it from active views but preserves all historical data. Deletion permanently removes the class record (Admin only) and orphans associated data."
+    }
+  ],
+  "lifecycle": {
+    "states": [
+      {
+        "name": "Active",
+        "description": "Currently in use for instruction and assignments",
+        "triggers": "SIS sync import, manual creation",
+        "variant": "active"
+      },
+      {
+        "name": "Archived",
+        "description": "No longer active but data preserved for historical reporting",
+        "triggers": "End-of-year processing, admin action",
+        "variant": "default"
+      },
+      {
+        "name": "Deleted",
+        "description": "Permanently removed from the system",
+        "triggers": "Admin manual deletion",
+        "variant": "warn"
+      }
+    ],
+    "transitions": [
+      { "from": "Active", "to": ["Archived", "Deleted"] }
+    ]
+  },
+  "relationships": [
+    {
+      "targetSlug": "student",
+      "targetName": "Student",
+      "mechanics": "Students are enrolled in Classes primarily via SIS roster sync (automated). Teachers and Admins can also manually add/remove students.",
+      "cardinality": "Many-to-many. A Class contains multiple Students; a Student can belong to multiple Classes. Typical: 15-35 students per class, 1-8 classes per student.",
+      "sorts": "Students within a Class: alphabetical by last name (default), by grade level, by reading/math level.",
+      "filters": "By enrollment status (active/inactive), by proficiency level, by demographic group.",
+      "dependencies": "If a Class is archived, students remain in the system but lose their class association for that class. Historical scores and assignments persist."
+    },
+    {
+      "targetSlug": "teacher",
+      "targetName": "Teacher",
+      "mechanics": "Teachers are assigned to Classes via SIS sync or Admin action. A Class must have at least one primary Teacher; Co-Teachers are optional.",
+      "cardinality": "Many-to-many. A Class has one primary Teacher and zero or more Co-Teachers; a Teacher can teach multiple Classes.",
+      "sorts": "Classes for a Teacher: alphabetical by name (default), by grade level, by subject.",
+      "filters": "By subject, by grade level, by school year.",
+      "dependencies": "If a Teacher is deactivated, their classes must be reassigned to another Teacher before the teacher record can be fully removed."
+    },
+    {
+      "targetSlug": "assessment",
+      "targetName": "Assessment",
+      "mechanics": "Teachers and Admins schedule Assessments for a Class. All active students in the class are included in the assessment session.",
+      "cardinality": "Many-to-many. A Class can have multiple Assessments scheduled; an Assessment can target multiple Classes.",
+      "sorts": "Assessments for a Class: by date (upcoming first, default), by type, by subject.",
+      "filters": "By assessment type (Star, DnA, FastBridge), by subject, by date range, by completion status.",
+      "dependencies": "If a Class is archived, scheduled future assessments are cancelled. Completed assessment results persist."
+    }
+  ],
+  "relatedObjects": ["student", "teacher", "school", "assessment", "assignment", "resource", "score"],
+  "nestedObjects": [
+    {
+      "slug": "student",
+      "name": "Student",
+      "cardinality": "Many-to-many",
+      "description": "Students enrolled in this class via roster sync or manual enrollment"
+    },
+    {
+      "slug": "teacher",
+      "name": "Teacher",
+      "cardinality": "Many-to-many",
+      "description": "Primary teacher and co-teachers assigned to this class"
+    },
+    {
+      "slug": "assessment",
+      "name": "Assessment",
+      "cardinality": "Many-to-many",
+      "description": "Assessments scheduled for this class"
+    },
+    {
+      "slug": "assignment",
+      "name": "Assignment",
+      "cardinality": "One-to-many",
+      "description": "Assignments created for students in this class"
+    },
+    {
+      "slug": "resource",
+      "name": "Resource",
+      "cardinality": "One-to-many",
+      "description": "Learning resources assigned or recommended for this class"
+    },
+    {
+      "slug": "score",
+      "name": "Score",
+      "cardinality": "One-to-many",
+      "description": "Assessment scores generated by students in this class"
+    }
+  ],
+  "allAttributes": [
+    {
+      "name": "Class Name",
+      "dataType": "String",
+      "required": true,
+      "source": "SIS Import / Manual",
+      "description": "Primary identifier. Appears everywhere a Class is shown."
+    },
+    {
+      "name": "Teacher",
+      "dataType": "Reference → Teacher",
+      "required": true,
+      "source": "SIS Import / Manual",
+      "description": "The primary teacher assigned to the class.",
+      "isReference": true,
+      "referenceSlug": "teacher",
+      "referenceName": "Teacher"
+    },
+    {
+      "name": "Student Roster",
+      "dataType": "Reference → Student[]",
+      "source": "SIS Import / Manual",
+      "description": "Students currently enrolled in the class.",
+      "isReference": true,
+      "referenceSlug": "student",
+      "referenceName": "Student"
+    },
+    {
+      "name": "Grade Level",
+      "dataType": "Enum",
+      "required": true,
+      "source": "SIS Import / Manual",
+      "description": "The grade level of the class. PreK-12, UG."
+    },
+    {
+      "name": "Subject",
+      "dataType": "Enum",
+      "source": "SIS Import / Manual",
+      "description": "The subject area taught in this class."
+    },
+    {
+      "name": "School",
+      "dataType": "Reference → School",
+      "required": true,
+      "source": "SIS Import",
+      "description": "The school this class belongs to.",
+      "isReference": true,
+      "referenceSlug": "school",
+      "referenceName": "School"
+    },
+    {
+      "name": "School Year",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "The academic year this class is active for."
+    },
+    {
+      "name": "Period / Block",
+      "dataType": "String",
+      "source": "SIS Import / Manual",
+      "description": "The scheduling period or block for this class."
+    },
+    {
+      "name": "Student Count",
+      "dataType": "Number",
+      "source": "Calculated",
+      "description": "Number of students currently enrolled in the class."
+    },
+    {
+      "name": "Status",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System / Manual",
+      "description": "Active or Archived. Controls visibility in dashboards and reports."
+    },
+    {
+      "name": "Product Settings",
+      "dataType": "Multiple",
+      "source": "Manual",
+      "description": "Per-product configuration for this class (e.g., reading level range, practice settings)."
+    },
+    {
+      "name": "Co-Teacher(s)",
+      "dataType": "Reference → Teacher[]",
+      "source": "SIS Import / Manual",
+      "description": "Additional teachers who share responsibility for this class.",
+      "isReference": true,
+      "referenceSlug": "teacher",
+      "referenceName": "Teacher"
+    },
+    {
+      "name": "SIS Section ID",
+      "dataType": "String",
+      "source": "SIS Import",
+      "description": "External SIS identifier for cross-system matching and roster sync."
+    }
+  ],
+  "allCTAs": [
+    {
+      "name": "View",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "P",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Create",
+      "roles": "Admin, System",
+      "permission": "Write",
+      "priority": "T",
+      "roleKeys": ["admin"]
+    },
+    {
+      "name": "Edit",
+      "roles": "Teacher, Admin",
+      "permission": "Write",
+      "priority": "S",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Add Students",
+      "roles": "Teacher, Admin, System",
+      "permission": "Write",
+      "priority": "T",
+      "crossObjectSlug": "student",
+      "crossObjectName": "Student",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Remove Students",
+      "roles": "Teacher, Admin, System",
+      "permission": "Write",
+      "priority": "T",
+      "crossObjectSlug": "student",
+      "crossObjectName": "Student",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Assign Teacher",
+      "roles": "Admin, System",
+      "permission": "Write",
+      "priority": "T",
+      "crossObjectSlug": "teacher",
+      "crossObjectName": "Teacher",
+      "roleKeys": ["admin"]
+    },
+    {
+      "name": "Create Assignment",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "S",
+      "crossObjectSlug": "assignment",
+      "crossObjectName": "Assignment",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Schedule Assessment",
+      "roles": "Teacher, Admin",
+      "permission": "Write",
+      "priority": "S",
+      "crossObjectSlug": "assessment",
+      "crossObjectName": "Assessment",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "View Class Report",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "S",
+      "crossObjectSlug": "score",
+      "crossObjectName": "Score",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Archive",
+      "roles": "Admin, System",
+      "permission": "Write",
+      "priority": "Q",
+      "roleKeys": ["admin"]
+    },
+    {
+      "name": "Delete",
+      "roles": "Admin",
+      "permission": "Write",
+      "priority": "Q",
+      "roleKeys": ["admin"]
+    }
+  ],
+  "sipValidation": {
+    "structure": {
+      "pass": true,
+      "evidence": "A Class has a rich set of attributes: name, teacher, grade level, subject, school, school year, period/block, student roster, co-teachers, status, product settings, and SIS Section ID. You can design a detail page for a Class."
+    },
+    "instances": {
+      "pass": true,
+      "evidence": "3rd Grade ELA - Period 1 (Ms. Rodriguez, Lincoln Elementary), 7th Grade Math Block A (Mr. Chen, Washington Middle), AP Biology Section 2 (Dr. Patel, Jefferson High). Every school has dozens to hundreds of Class instances."
+    },
+    "purpose": {
+      "pass": true,
+      "evidence": "Classes are the primary operational container for instruction. Teachers assign work to Classes, schedule assessments for Classes, and view reports by Class. Students experience their day organized by Class."
+    },
+    "verdict": "Core system object. The primary operational container for instruction."
+  },
+  "synonyms": [
+    {
+      "term": "Section",
+      "context": "SIS systems, rostering",
+      "notes": "Standard term in OneRoster and Clever integrations"
+    },
+    {
+      "term": "Group",
+      "context": "Informal, teacher-facing",
+      "notes": "Sometimes used loosely; distinct from formal Student Groups"
+    },
+    {
+      "term": "Course Section",
+      "context": "Higher-ed, advanced scheduling",
+      "notes": "Common in secondary/higher-ed SIS platforms"
+    },
+    {
+      "term": "Roster",
+      "context": "Informal, teacher-facing",
+      "notes": "Often used interchangeably with class in casual conversation"
+    }
+  ],
+  "shapeshifterMatrix": [
+    {
+      "context": "Teachers Class List",
+      "value": "teacher-class-list",
+      "shape": "card",
+      "description": "Classes a teacher is responsible for, shown as cards with student count and active assignment status. The starting point for creating assignments, scheduling assessments, and viewing class reports.",
+      "visibleAttributes": ["Class Name", "Grade Level", "Subject", "Student Count"],
+      "availableCTAs": ["View", "Create Assignment", "Schedule Assessment", "View Class Report"],
+      "cardShape": "Medium card",
+      "userIntent": "What classes do I have, and what's their current status?",
+      "contextDataSchema": {
+        "activeAssignmentCount": { "type": "number", "description": "Number of active assignments" },
+        "recentAssessment": { "type": "string", "description": "Name of last assessment given" },
+        "averageScore": { "type": "number", "description": "Class average on recent assessment" },
+        "averageGrowth": { "type": "number", "description": "Class average SGP" }
+      }
+    },
+    {
+      "context": "School Admin Class List",
+      "value": "admin-class-list",
+      "shape": "data-row",
+      "description": "All classes across a school with teacher, enrollment, and performance metrics in a data table. Admins compare class performance, attendance, and spot patterns across the roster.",
+      "visibleAttributes": ["Class Name", "Teacher", "Grade Level", "Subject", "Student Count"],
+      "availableCTAs": ["View", "Edit"],
+      "cardShape": "Data row",
+      "userIntent": "How are all classes performing across my school?",
+      "contextDataSchema": {
+        "averageScore": { "type": "number", "description": "Class average score" },
+        "attendanceRate": { "type": "number", "description": "Class attendance percentage" },
+        "benchmarkAbovePercent": { "type": "number", "description": "Percentage of students at/above benchmark" }
+      }
+    },
+    {
+      "context": "Students Class List",
+      "value": "student-class-list",
+      "shape": "compact-card",
+      "description": "A student's enrolled classes shown as compact cards with teacher name and upcoming due dates. Students check what's due next and navigate to class content.",
+      "visibleAttributes": ["Class Name", "Teacher", "Subject"],
+      "availableCTAs": ["View"],
+      "cardShape": "Compact card",
+      "userIntent": "What classes am I in, and what's due?",
+      "contextDataSchema": {
+        "nextAssignment": { "type": "string", "description": "Next due assignment name" },
+        "nextDueDate": { "type": "string", "description": "When next assignment is due" },
+        "myGrade": { "type": "string", "description": "Current grade in the class" },
+        "dueAssignmentCount": { "type": "number", "description": "Number of assignments due" }
+      }
+    },
+    {
+      "context": "Class Detail Page",
+      "value": "class-detail",
+      "shape": "profile",
+      "description": "The complete class record — roster, schedule, product settings, and full administrative controls. Teachers and admins manage enrollment, create assignments, schedule assessments, and view reports from here.",
+      "visibleAttributes": ["Class Name", "Teacher", "Student Roster", "Grade Level", "Subject", "School", "School Year", "Period / Block", "Student Count", "Status", "Product Settings", "Co-Teacher(s)", "SIS Section ID"],
+      "availableCTAs": ["View", "Create", "Edit", "Add Students", "Remove Students", "Assign Teacher", "Create Assignment", "Schedule Assessment", "View Class Report", "Archive", "Delete"],
+      "cardShape": "Full page",
+      "userIntent": "What is the full detail of this class?"
+    },
+    {
+      "context": "Assessment Target Picker",
+      "value": "assessment-picker",
+      "shape": "mini-row",
+      "description": "A compact selection row for choosing which class to schedule an assessment for. Shows grade level, student count, and eligibility to help teachers pick the right target.",
+      "visibleAttributes": ["Class Name", "Teacher", "Grade Level", "Student Count"],
+      "availableCTAs": [],
+      "cardShape": "Mini row",
+      "userIntent": "Which class should I schedule this assessment for?",
+      "contextDataSchema": {
+        "eligibleStudentCount": { "type": "number", "description": "Students eligible to take the assessment" },
+        "lastAssessmentDate": { "type": "string", "description": "When the class was last assessed" }
+      }
+    },
+    {
+      "context": "Report Header",
+      "value": "report-header",
+      "shape": "header",
+      "description": "The class displayed as a banner at the top of a report, identifying which class the results below apply to. No interactive elements.",
+      "visibleAttributes": ["Class Name", "Teacher", "Grade Level", "Subject", "Student Count"],
+      "availableCTAs": [],
+      "cardShape": "Banner",
+      "userIntent": "What class is this report about?"
+    },
+    {
+      "context": "Teacher Class Roster",
+      "value": "teacher-class-roster",
+      "shape": "row",
+      "description": "A teacher's full class list with grade, subject, period, and student counts. Teachers check their schedule and jump into specific classes to manage assignments.",
+      "visibleAttributes": ["Class Name", "Teacher", "Grade Level", "Subject", "Student Count", "Period / Block"],
+      "availableCTAs": ["View", "Create Assignment"],
+      "cardShape": "Compact row",
+      "userIntent": "What classes do I teach and what's the student breakdown?"
+    },
+    {
+      "context": "Student Detail",
+      "value": "student-detail",
+      "shape": "nested-card",
+      "description": "Classes shown as nested cards within a student's profile, with embedded assignment and assessment info. Teachers see everything a student is enrolled in and what they're working on.",
+      "visibleAttributes": ["Class Name", "Subject", "Teacher", "Schedule", "Student Count"],
+      "availableCTAs": ["View", "View Class Report"],
+      "cardShape": "Nested card with embedded assignments and assessments",
+      "userIntent": "What classes is this student enrolled in?"
+    }
+  ]
+}

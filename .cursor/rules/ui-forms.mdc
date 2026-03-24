@@ -1,0 +1,119 @@
+---
+description: Form design — inputs, validation, error handling, labels, and multi-step flows
+globs: "**/*.html"
+alwaysApply: false
+---
+
+# Form Design
+
+Forms are where users give information to the system. They are the highest-friction interaction pattern in any interface. Every unnecessary field, unclear label, or confusing validation message directly reduces completion rates.
+
+## Core Principles
+
+- **Ask only what you need.** Every field should have a reason. If you can derive or default a value, do so
+- **Make the path obvious.** Users should understand what to fill in, in what order, and what happens when they submit
+- **Prevent errors over punishing them.** Constraints, defaults, and smart input types catch problems before they start
+- **Respect the user's effort.** Never clear a form on error. Never lose data on navigation. Never ask for information you already have (WCAG 3.3.7)
+
+## Labels
+
+- **Every input must have a visible `<label>`** — programmatically associated via `for` / `id`
+- Labels go **above the input** for most layouts (fastest scan pattern) or to the left for dense, data-entry forms
+- Never use placeholder text as a label — it disappears on focus, fails contrast requirements, and confuses screen readers
+- Placeholder text is for **format hints**: "e.g., jane@example.com" or "MM/DD/YYYY"
+- Mark optional fields (not required fields) — most fields in a well-designed form are required, so "Optional" labels are less noisy than asterisks everywhere
+
+## Input Types
+
+Use the most specific HTML input type available — it triggers the correct mobile keyboard, enables browser autofill, and provides native validation:
+
+| Data | Input type | Why |
+|---|---|---|
+| Email | `type="email"` | Shows @ keyboard, validates format |
+| Phone | `type="tel"` | Shows numeric keyboard |
+| URL | `type="url"` | Shows / and .com keyboard |
+| Number | `type="number"` or `inputmode="numeric"` | Shows number pad; use `inputmode` for numbers that aren't quantities (zip codes, IDs) |
+| Date | `type="date"` | Native date picker |
+| Search | `type="search"` | Shows search keyboard, clear button |
+| Password | `type="password"` | Masked input; add a show/hide toggle |
+
+- Use `<select>` for 4–15 fixed options; use radio buttons for 2–5 options where comparison matters
+- Use checkboxes for independent boolean choices; never for mutually exclusive options
+- Use `<textarea>` for multi-line free text with a visible resize handle
+- Autocomplete/typeahead for large option sets (hundreds of items)
+
+## Autofill & Autocomplete
+
+- Set `autocomplete` attributes on all standard fields (`name`, `email`, `tel`, `address-line1`, etc.)
+- Never disable browser autofill unless there's a security-critical reason (and even then, reconsider)
+- Allow password managers to fill credentials (WCAG 3.3.8) — never block paste in password fields
+
+## Validation & Error Handling
+
+### Timing
+- Validate **on blur** (when the user leaves a field) — not on every keystroke
+- Re-validate **on input** after an error has been shown (so the error clears as soon as the user fixes it)
+- Server-side validation on submit is always the final check — client-side validation is a convenience, not a guarantee
+
+### Error message anatomy
+1. **What's wrong:** "Email address is missing"
+2. **How to fix it:** "Enter your email address"
+3. **Example (if helpful):** "(e.g., jane@example.com)"
+
+### Error display
+- Show errors **directly below the field** they relate to
+- Use `aria-describedby` to associate the error with its input for screen readers
+- Use `aria-invalid="true"` on the input when an error is active
+- Use a consistent error color (typically red, `--color-error`) with an icon — never color alone
+- On submit with errors: focus the first invalid field and scroll it into view
+- Show a summary of errors at the top of the form for forms with many fields
+
+### What not to do
+- Don't validate while the user is still typing (it feels combative)
+- Don't clear the form on error — preserve all entered data
+- Don't show errors for fields the user hasn't interacted with yet
+- Don't use toast notifications for form errors — errors must be visible next to their fields
+- Don't use only color to indicate errors (see accessibility rule)
+
+## Layout
+
+- **One column** for most forms — it has the fastest completion time and lowest error rate
+- Two-column forms are acceptable only for short, related field pairs (First name / Last name, City / State)
+- Group related fields with `<fieldset>` and `<legend>` — screen readers announce the group context
+- Logical tab order: top-to-bottom, left-to-right. The DOM order should match the visual order
+- Visual grouping: add more space between groups than between fields within a group (Gestalt proximity)
+
+## Buttons
+
+- **Primary submit button** should be visually prominent and labeled with the specific action: "Add Student," "Save Changes," "Send Invitation"
+- Don't use "Submit" — it says nothing about what will happen
+- **Secondary button** (Cancel, Reset) should be visually subdued and positioned consistently (left of primary, or stacked below on mobile)
+- Disable the submit button while submitting and show a loading indicator
+- After successful submission: confirm the action ("Student added"), then navigate or reset appropriately
+
+## Multi-Step Forms
+
+- Show progress: step indicator ("Step 2 of 4") or progress bar
+- Allow backward navigation to review and edit previous steps
+- Persist data across steps — never lose progress if the user goes back
+- Validate each step independently before allowing forward navigation
+- Show a review/summary step before final submission for important actions
+- Keep each step focused: 3–5 fields per step maximum
+
+## Touch Considerations
+
+- Input fields should be at least 44px tall for comfortable tapping
+- Space between fields: at least 16px to prevent accidental taps on the wrong field
+- Place the primary button within easy thumb reach (lower portion of the screen)
+- Use native pickers (date, time, select) on mobile — they are optimized for touch
+- Avoid custom dropdowns that don't respond to native scroll gestures
+
+## Accessibility
+
+- All fields need visible labels (not just placeholders)
+- Required fields indicated with `aria-required="true"` and visible text
+- Error messages associated via `aria-describedby`
+- Invalid fields marked with `aria-invalid="true"`
+- Focus management: after submission error, focus the first invalid field
+- Form landmarks: wrap forms in `<form>` with a descriptive `aria-label` or heading
+- Test with keyboard only: Tab through every field, trigger validation, submit, navigate errors

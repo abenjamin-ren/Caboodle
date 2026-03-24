@@ -1,0 +1,748 @@
+{
+  "identity": {
+    "slug": "live-session",
+    "name": "Live Session",
+    "qualifier": "(Nearpod)",
+    "objectType": "domain",
+    "category": "activity",
+    "definition": "A Live Session is a time-bounded, real-time delivery instance of a Nearpod Lesson where a teacher controls the pace and students participate synchronously using a unique join code.",
+    "synonyms": ["Session", "Live Delivery", "Broadcast", "Real-Time Lesson"],
+    "products": "Nearpod"
+  },
+  "variations": [],
+  "representations": [
+    {
+      "layout": "card",
+      "heading": "Card layout",
+      "description": "How a Live Session appears in session dashboards and recent activity",
+      "defaultShape": "card",
+      "componentTag": "ren-live-session-card",
+      "examples": [
+        {
+          "joinCode": "ABCD1",
+          "sessionStatus": "active",
+          "startTime": "2026-03-17T09:00:00Z",
+          "participantCount": 24,
+          "lessonTitle": "Introduction to Ecosystems",
+          "teacherName": "Ms. Rodriguez",
+          "className": "3rd Grade - Section A",
+          "participationRate": 92,
+          "color": "#059669"
+        },
+        {
+          "joinCode": "XYZ42",
+          "sessionStatus": "ended",
+          "startTime": "2026-03-16T13:30:00Z",
+          "endTime": "2026-03-16T14:15:00Z",
+          "participantCount": 28,
+          "lessonTitle": "Fractions: Adding & Subtracting",
+          "teacherName": "Mr. Chen",
+          "className": "5th Grade - Math",
+          "participationRate": 100,
+          "color": "#7C3AED"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Join Code",
+          "dataType": "String",
+          "source": "System",
+          "description": "Unique alphanumeric code students use to join the session."
+        },
+        {
+          "name": "Session Status",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Current state: scheduled, active, paused, ended."
+        },
+        {
+          "name": "Participant Count",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Number of students currently connected or who participated."
+        },
+        {
+          "name": "Lesson Reference",
+          "dataType": "Reference → Lesson",
+          "source": "System",
+          "description": "The lesson being delivered.",
+          "isReference": true,
+          "referenceSlug": "lesson",
+          "referenceName": "Lesson"
+        }
+      ],
+      "ctas": [
+        {
+          "name": "Share Join Code",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Join Session",
+          "roles": "Student",
+          "permission": "Write",
+          "priority": "P",
+          "crossObjectSlug": "class",
+          "crossObjectName": "Class",
+          "roleKeys": ["student"]
+        }
+      ]
+    },
+    {
+      "layout": "list",
+      "heading": "List layout",
+      "description": "How a Live Session appears in session history and management tables",
+      "defaultShape": "row",
+      "componentTag": "ren-live-session-row",
+      "examples": [
+        {
+          "joinCode": "ABCD1",
+          "sessionStatus": "active",
+          "startTime": "2026-03-17T09:00:00Z",
+          "participantCount": 24,
+          "lessonTitle": "Introduction to Ecosystems",
+          "className": "3rd Grade - Section A",
+          "participationRate": 92,
+          "color": "#059669"
+        },
+        {
+          "joinCode": "XYZ42",
+          "sessionStatus": "ended",
+          "startTime": "2026-03-16T13:30:00Z",
+          "endTime": "2026-03-16T14:15:00Z",
+          "participantCount": 28,
+          "lessonTitle": "Fractions: Adding & Subtracting",
+          "className": "5th Grade - Math",
+          "participationRate": 100,
+          "color": "#7C3AED"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Join Code",
+          "dataType": "String",
+          "source": "System",
+          "description": "Unique session identifier for students."
+        },
+        {
+          "name": "Lesson Reference",
+          "dataType": "Reference → Lesson",
+          "source": "System",
+          "description": "The lesson being delivered.",
+          "isReference": true,
+          "referenceSlug": "lesson",
+          "referenceName": "Lesson"
+        },
+        {
+          "name": "Class",
+          "dataType": "Reference → Class",
+          "source": "Teacher selection",
+          "description": "The class participating in this session.",
+          "isReference": true,
+          "referenceSlug": "class",
+          "referenceName": "Class"
+        },
+        {
+          "name": "Participant Count",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Number of connected students."
+        },
+        {
+          "name": "Session Status",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Current state."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Session Report",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "report",
+          "crossObjectName": "Report",
+          "roleKeys": ["teacher"]
+        }
+      ]
+    },
+    {
+      "layout": "detail",
+      "heading": "Detail page layout",
+      "description": "Full session view during delivery or post-session review",
+      "defaultShape": "profile",
+      "componentTag": "ren-live-session-profile",
+      "examples": [
+        {
+          "joinCode": "ABCD1",
+          "sessionStatus": "active",
+          "startTime": "2026-03-17T09:00:00Z",
+          "participantCount": 24,
+          "lessonTitle": "Introduction to Ecosystems",
+          "teacherName": "Ms. Rodriguez",
+          "className": "3rd Grade - Section A",
+          "participationRate": 92,
+          "duration": 32,
+          "color": "#059669"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Session ID",
+          "dataType": "String",
+          "source": "System",
+          "description": "Unique system identifier for the session."
+        },
+        {
+          "name": "Join Code",
+          "dataType": "String",
+          "source": "System",
+          "description": "Student-facing code for joining."
+        },
+        {
+          "name": "Session Status",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Lifecycle state: scheduled, active, paused, ended."
+        },
+        {
+          "name": "Start Time",
+          "dataType": "Date",
+          "source": "System",
+          "description": "When the session began."
+        },
+        {
+          "name": "End Time",
+          "dataType": "Date",
+          "source": "System",
+          "description": "When the session ended. Null while active."
+        },
+        {
+          "name": "Duration",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Elapsed time in minutes."
+        },
+        {
+          "name": "Participant Count",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Number of connected students."
+        },
+        {
+          "name": "Participation Rate",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Percentage of enrolled students who joined."
+        },
+        {
+          "name": "Lesson Reference",
+          "dataType": "Reference → Lesson",
+          "source": "System",
+          "description": "Source lesson being delivered.",
+          "isReference": true,
+          "referenceSlug": "lesson",
+          "referenceName": "Lesson"
+        },
+        {
+          "name": "Teacher",
+          "dataType": "Reference → Teacher",
+          "source": "System",
+          "description": "The teacher conducting the session.",
+          "isReference": true,
+          "referenceSlug": "teacher",
+          "referenceName": "Teacher"
+        },
+        {
+          "name": "Class",
+          "dataType": "Reference → Class",
+          "source": "Teacher selection",
+          "description": "The class participating.",
+          "isReference": true,
+          "referenceSlug": "class",
+          "referenceName": "Class"
+        },
+        {
+          "name": "Session Link",
+          "dataType": "String",
+          "source": "System",
+          "description": "Shareable URL for joining the session."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "Share Join Code",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Advance Slide",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "P",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Pause Session",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "S",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Resume Session",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "S",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "End Session",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "report",
+          "crossObjectName": "Report",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "View Session Report",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "report",
+          "crossObjectName": "Report",
+          "roleKeys": ["teacher"]
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "Launch Live Session",
+      "icon": "cast",
+      "role": "Teacher",
+      "action": "launch",
+      "object": "Live Session",
+      "benefit": "my students can join with a code and I can pace the lesson in real time.",
+      "whenClause": "I launch a lesson as a live session,",
+      "thenClause": "a unique join code is generated, the session status becomes active, and I can begin advancing slides.",
+      "crossObjects": [{ "slug": "lesson", "name": "Lesson" }]
+    },
+    {
+      "title": "Monitor Participation",
+      "icon": "groups",
+      "role": "Teacher",
+      "action": "monitor",
+      "object": "Live Session",
+      "benefit": "I can see who has joined and ensure all students are engaged before advancing.",
+      "whenClause": "I view the session dashboard during delivery,",
+      "thenClause": "I see the participant count, participation rate, and real-time response streaming for each activity."
+    },
+    {
+      "title": "Join Live Session",
+      "icon": "login",
+      "role": "Student",
+      "action": "join",
+      "object": "Live Session",
+      "benefit": "I can participate in the lesson and respond to activities as the teacher presents them.",
+      "whenClause": "I enter the join code on my device,",
+      "thenClause": "I am connected to the session and see the current slide synchronized with the teacher's pace.",
+      "crossObjects": [{ "slug": "class", "name": "Class" }]
+    }
+  ],
+  "businessRules": [
+    {
+      "title": "Join Code Uniqueness",
+      "description": "Each Live Session receives a system-generated, unique alphanumeric join code. Codes are 5 characters and case-insensitive."
+    },
+    {
+      "title": "Single Active Session",
+      "description": "A teacher can only have one active Live Session at a time. Launching a new session requires ending the current one."
+    },
+    {
+      "title": "Lesson Requirement",
+      "description": "A Live Session must reference a published Lesson. Draft or archived Lessons cannot be launched."
+    },
+    {
+      "title": "Participant Tracking",
+      "description": "Participant Count updates in real time as students join. Students who disconnect and rejoin are counted once."
+    },
+    {
+      "title": "Pause Behavior",
+      "description": "Pausing a session freezes all student screens. Students cannot submit responses while paused. The teacher must resume to continue."
+    },
+    {
+      "title": "End Session Finality",
+      "description": "Ending a session is irreversible. All pending responses are finalized and a Report is automatically generated."
+    },
+    {
+      "title": "Session Duration",
+      "description": "Duration is calculated as the elapsed time from Start Time to End Time, excluding paused intervals."
+    },
+    {
+      "title": "Late Join",
+      "description": "Students who join after the session has started see the current slide. They cannot see or respond to previously passed activities."
+    },
+    {
+      "title": "Session Expiration",
+      "description": "Active sessions automatically end after 4 hours of inactivity (no slide advances or responses)."
+    },
+    {
+      "title": "Participation Rate Calculation",
+      "description": "Participation Rate is calculated as (Participant Count / enrolled students in Class) * 100."
+    },
+    {
+      "title": "Report Generation",
+      "description": "A Report is automatically generated when a session ends. It includes per-activity breakdowns, participation data, and aggregate scores."
+    }
+  ],
+  "lifecycle": {
+    "states": [
+      {
+        "name": "Scheduled",
+        "description": "Session is configured but not yet started",
+        "triggers": "Teacher schedules a future session launch",
+        "variant": "default"
+      },
+      {
+        "name": "Active",
+        "description": "Session is live, students can join and participate",
+        "triggers": "Teacher launches the session",
+        "variant": "active"
+      },
+      {
+        "name": "Paused",
+        "description": "Session is temporarily frozen, no responses accepted",
+        "triggers": "Teacher pauses the session",
+        "variant": "warn"
+      },
+      {
+        "name": "Ended",
+        "description": "Session is complete, report is generated",
+        "triggers": "Teacher ends session or auto-expiration",
+        "variant": "default"
+      }
+    ],
+    "transitions": [
+      { "from": "Scheduled", "to": ["Active"] },
+      { "from": "Active", "to": ["Paused", "Ended"] },
+      { "from": "Paused", "to": ["Active", "Ended"] }
+    ]
+  },
+  "relationships": [
+    {
+      "targetSlug": "lesson",
+      "targetName": "Lesson",
+      "mechanics": "A Live Session is created from a published Lesson. The Session inherits the Lesson's slide sequence and activities.",
+      "cardinality": "Many-to-one. Multiple Live Sessions can reference the same Lesson; each Session references exactly one Lesson.",
+      "sorts": "N/A (single reference).",
+      "filters": "N/A (single reference).",
+      "dependencies": "The source Lesson must exist and be in 'published' state to launch a session."
+    },
+    {
+      "targetSlug": "student",
+      "targetName": "Student",
+      "mechanics": "Students join a Live Session using the join code. Their participation and responses are tracked throughout the session.",
+      "cardinality": "One-to-many. A Live Session has many student participants; a Student can participate in many Sessions over time.",
+      "sorts": "By join time (default), by name, by response count.",
+      "filters": "By participation status (joined/not-joined), by response completion.",
+      "dependencies": "Student responses are finalized when the session ends. If a Student is removed from the class, their session data persists."
+    },
+    {
+      "targetSlug": "report",
+      "targetName": "Report",
+      "mechanics": "A Report is auto-generated when a Live Session ends. It aggregates all participant responses and activity scores.",
+      "cardinality": "One-to-one. Each Live Session produces exactly one Report.",
+      "sorts": "N/A (single reference).",
+      "filters": "N/A (single reference).",
+      "dependencies": "The Report is generated only after the session ends. It persists independently of the session state."
+    }
+  ],
+  "relatedObjects": ["lesson", "activity", "report", "teacher", "student", "class", "score"],
+  "nestedObjects": [
+    {
+      "slug": "activity",
+      "name": "Activity",
+      "cardinality": "One-to-many",
+      "description": "Interactive activities delivered during the session (inherited from Lesson)"
+    },
+    {
+      "slug": "student",
+      "name": "Student",
+      "cardinality": "One-to-many",
+      "description": "Students participating in the live session"
+    },
+    {
+      "slug": "score",
+      "name": "Score",
+      "cardinality": "One-to-many",
+      "description": "Scores generated from student responses during the session"
+    }
+  ],
+  "allAttributes": [
+    {
+      "name": "Session ID",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "Unique system identifier for the session."
+    },
+    {
+      "name": "Join Code",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "5-character alphanumeric code students use to join. Case-insensitive, unique per active session."
+    },
+    {
+      "name": "Session Status",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System",
+      "description": "Current lifecycle state. Values: scheduled, active, paused, ended."
+    },
+    {
+      "name": "Start Time",
+      "dataType": "Date",
+      "required": true,
+      "source": "System",
+      "description": "When the session was launched or scheduled to start."
+    },
+    {
+      "name": "End Time",
+      "dataType": "Date",
+      "source": "System",
+      "description": "When the session ended. Null while active or paused."
+    },
+    {
+      "name": "Duration",
+      "dataType": "Number",
+      "source": "System",
+      "description": "Elapsed time in minutes, excluding paused intervals."
+    },
+    {
+      "name": "Participant Count",
+      "dataType": "Number",
+      "required": true,
+      "source": "System",
+      "description": "Number of unique students who joined the session."
+    },
+    {
+      "name": "Lesson Reference",
+      "dataType": "Reference → Lesson",
+      "required": true,
+      "source": "System",
+      "description": "The lesson being delivered in this session.",
+      "isReference": true,
+      "referenceSlug": "lesson",
+      "referenceName": "Lesson"
+    },
+    {
+      "name": "Teacher",
+      "dataType": "Reference → Teacher",
+      "required": true,
+      "source": "System",
+      "description": "The teacher conducting the live session.",
+      "isReference": true,
+      "referenceSlug": "teacher",
+      "referenceName": "Teacher"
+    },
+    {
+      "name": "Class",
+      "dataType": "Reference → Class",
+      "required": true,
+      "source": "Teacher selection",
+      "description": "The class participating in this session.",
+      "isReference": true,
+      "referenceSlug": "class",
+      "referenceName": "Class"
+    },
+    {
+      "name": "Session Link",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "Shareable URL for joining the session."
+    },
+    {
+      "name": "Participation Rate",
+      "dataType": "Number",
+      "source": "System",
+      "description": "Percentage of enrolled class students who joined the session."
+    }
+  ],
+  "allCTAs": [
+    {
+      "name": "Launch Session",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "P",
+      "crossObjectSlug": "lesson",
+      "crossObjectName": "Lesson",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Share Join Code",
+      "roles": "Teacher",
+      "permission": "Read",
+      "priority": "P",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Advance Slide",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "P",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Launch Activity",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "P",
+      "crossObjectSlug": "activity",
+      "crossObjectName": "Activity",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Skip Activity",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "T",
+      "crossObjectSlug": "activity",
+      "crossObjectName": "Activity",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Pause Session",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "S",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Resume Session",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "S",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "End Session",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "S",
+      "crossObjectSlug": "report",
+      "crossObjectName": "Report",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Join Session",
+      "roles": "Student",
+      "permission": "Write",
+      "priority": "P",
+      "crossObjectSlug": "class",
+      "crossObjectName": "Class",
+      "roleKeys": ["student"]
+    },
+    {
+      "name": "Respond to Activity",
+      "roles": "Student",
+      "permission": "Write",
+      "priority": "P",
+      "crossObjectSlug": "activity",
+      "crossObjectName": "Activity",
+      "roleKeys": ["student"]
+    },
+    {
+      "name": "View Session Report",
+      "roles": "Teacher",
+      "permission": "Read",
+      "priority": "S",
+      "crossObjectSlug": "report",
+      "crossObjectName": "Report",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "View Session History",
+      "roles": "Teacher",
+      "permission": "Read",
+      "priority": "T",
+      "crossObjectSlug": "lesson",
+      "crossObjectName": "Lesson",
+      "roleKeys": ["teacher"]
+    }
+  ],
+  "sipValidation": {
+    "structure": {
+      "pass": true,
+      "evidence": "A Live Session has distinct attributes: session ID, join code, status, start/end times, participant count, participation rate, and references to lesson, teacher, and class. It supports a real-time dashboard view."
+    },
+    "instances": {
+      "pass": true,
+      "evidence": "Session ABCD1 (active, 24 students, 'Intro to Ecosystems', Ms. Rodriguez), Session XYZ42 (ended, 28 students, 'Fractions', Mr. Chen). A school runs dozens of sessions daily."
+    },
+    "purpose": {
+      "pass": true,
+      "evidence": "Live Sessions are the primary delivery mechanism for Nearpod's real-time instruction. Teachers launch them, students join them, and reports are generated from them. They are the bridge between static content and active learning."
+    },
+    "verdict": "Domain object representing the real-time delivery context. The runtime counterpart to the static Lesson."
+  },
+  "synonyms": [
+    {
+      "term": "Session",
+      "context": "Shorthand across all Nearpod contexts",
+      "notes": "Most common informal reference"
+    },
+    {
+      "term": "Live Delivery",
+      "context": "Product documentation, feature descriptions",
+      "notes": "Distinguishes from self-paced delivery"
+    },
+    {
+      "term": "Broadcast",
+      "context": "Internal engineering, real-time infrastructure",
+      "notes": "Reflects the one-to-many broadcast model"
+    },
+    {
+      "term": "Real-Time Lesson",
+      "context": "Marketing, onboarding materials",
+      "notes": "Emphasizes the synchronous, interactive nature"
+    }
+  ],
+  "shapeshifterMatrix": [
+    {
+      "context": "Pre-Launch",
+      "value": "pre-launch",
+      "shape": "card",
+      "description": "The session launch card with join code, class, and lesson reference. Teachers share the code with students and launch the session from here.",
+      "visibleAttributes": ["Join Code", "Lesson Reference", "Class", "Session Status"],
+      "availableCTAs": ["Launch Session", "Share Join Code"],
+      "cardShape": "Launch card"
+    },
+    {
+      "context": "During Session",
+      "value": "during-session",
+      "shape": "profile",
+      "description": "The full session dashboard — participant count, pacing controls, and real-time engagement metrics. Teachers advance slides, launch activities, and manage the session live.",
+      "visibleAttributes": ["Join Code", "Session Status", "Participant Count", "Participation Rate", "Duration", "Lesson Reference", "Teacher", "Class"],
+      "availableCTAs": ["Advance Slide", "Launch Activity", "Skip Activity", "Pause Session", "Resume Session", "End Session"],
+      "cardShape": "Full dashboard"
+    },
+    {
+      "context": "Post-Session",
+      "value": "post-session",
+      "shape": "row",
+      "description": "Completed sessions listed with participation rates, duration, and timing. Teachers review session outcomes and access detailed reports.",
+      "visibleAttributes": ["Join Code", "Lesson Reference", "Class", "Participant Count", "Participation Rate", "Duration", "Start Time", "End Time"],
+      "availableCTAs": ["View Session Report", "View Session History"],
+      "cardShape": "Summary row"
+    }
+  ]
+}

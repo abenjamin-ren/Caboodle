@@ -1,0 +1,651 @@
+{
+  "identity": {
+    "slug": "activity",
+    "name": "Activity",
+    "qualifier": "(Nearpod)",
+    "objectType": "domain",
+    "category": "content",
+    "definition": "An Activity is a discrete, interactive element embedded within a Nearpod Lesson that presents a prompt or question to students, collects their responses, and optionally produces a score.",
+    "synonyms": ["Question", "Quiz", "Interactive Element", "Engagement Check"],
+    "products": "Nearpod"
+  },
+  "variations": [],
+  "representations": [
+    {
+      "layout": "card",
+      "heading": "Card layout",
+      "description": "How an Activity appears in lesson builders and activity grids",
+      "defaultShape": "card",
+      "componentTag": "ren-activity-card",
+      "examples": [
+        {
+          "title": "Vocabulary Match",
+          "activityType": "matching-pairs",
+          "scoringMethod": "auto",
+          "pointValue": 10,
+          "responseCount": 24,
+          "averageScore": 82,
+          "color": "#7C3AED"
+        },
+        {
+          "title": "Main Idea Check",
+          "activityType": "open-ended",
+          "scoringMethod": "manual",
+          "pointValue": 20,
+          "responseCount": 18,
+          "averageScore": 71,
+          "color": "#059669"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Title/Label",
+          "dataType": "String",
+          "source": "Teacher input",
+          "description": "Display name shown in lesson editor and during delivery."
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "Enum",
+          "source": "Teacher selection",
+          "description": "Determines UI template and response collection method. Quiz, Poll, Open-Ended, Draw It, Matching Pairs, Fill in Blank, Collaborate Board, Memory Test, Time to Climb, Drag and Drop."
+        },
+        {
+          "name": "Scoring Method",
+          "dataType": "Enum",
+          "source": "System / Teacher",
+          "description": "Auto (system-graded), Manual (teacher-graded), or None (unscored)."
+        },
+        {
+          "name": "Point Value",
+          "dataType": "Number",
+          "source": "Teacher input",
+          "description": "Points awarded for correct response. Only applicable when scoring is enabled."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "Configure Activity",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "S",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Preview Activity",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "S",
+          "roleKeys": ["teacher"]
+        }
+      ]
+    },
+    {
+      "layout": "list",
+      "heading": "List layout",
+      "description": "How an Activity appears in lesson activity lists and reorder views",
+      "defaultShape": "row",
+      "componentTag": "ren-activity-row",
+      "examples": [
+        {
+          "title": "Vocabulary Match",
+          "activityType": "matching-pairs",
+          "scoringMethod": "auto",
+          "pointValue": 10,
+          "responseCount": 24,
+          "averageScore": 82,
+          "position": 3,
+          "color": "#7C3AED"
+        },
+        {
+          "title": "Main Idea Check",
+          "activityType": "open-ended",
+          "scoringMethod": "manual",
+          "pointValue": 20,
+          "responseCount": 18,
+          "averageScore": 71,
+          "position": 5,
+          "color": "#059669"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Position",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Order within the lesson. Determines sequence during delivery."
+        },
+        {
+          "name": "Title/Label",
+          "dataType": "String",
+          "source": "Teacher input",
+          "description": "Display name shown in lesson editor and during delivery."
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "Enum",
+          "source": "Teacher selection",
+          "description": "Determines UI template and response collection method."
+        },
+        {
+          "name": "Scoring Method",
+          "dataType": "Enum",
+          "source": "System / Teacher",
+          "description": "Auto, Manual, or None."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "Reorder Activity",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "T",
+          "crossObjectSlug": "lesson",
+          "crossObjectName": "Lesson",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Remove Activity from Lesson",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "T",
+          "crossObjectSlug": "lesson",
+          "crossObjectName": "Lesson",
+          "roleKeys": ["teacher"]
+        }
+      ]
+    },
+    {
+      "layout": "detail",
+      "heading": "Detail page layout",
+      "description": "Full Activity view during configuration or results review",
+      "defaultShape": "profile",
+      "componentTag": "ren-activity-profile",
+      "examples": [
+        {
+          "title": "Vocabulary Match",
+          "activityType": "matching-pairs",
+          "scoringMethod": "auto",
+          "pointValue": 10,
+          "responseCount": 24,
+          "averageScore": 82,
+          "questionPrompt": "Match each vocabulary word with its correct definition.",
+          "position": 3,
+          "color": "#7C3AED"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Title/Label",
+          "dataType": "String",
+          "source": "Teacher input",
+          "description": "Display name shown in lesson editor and during delivery."
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "Enum",
+          "source": "Teacher selection",
+          "description": "Determines UI template and response collection method."
+        },
+        {
+          "name": "Question/Prompt",
+          "dataType": "String",
+          "source": "Teacher input",
+          "description": "The question or instruction presented to students."
+        },
+        {
+          "name": "Scoring Method",
+          "dataType": "Enum",
+          "source": "System / Teacher",
+          "description": "Auto, Manual, or None."
+        },
+        {
+          "name": "Point Value",
+          "dataType": "Number",
+          "source": "Teacher input",
+          "description": "Points awarded for correct response."
+        },
+        {
+          "name": "Time Limit",
+          "dataType": "Number",
+          "source": "Teacher input",
+          "description": "Optional time constraint in seconds for timed activities."
+        },
+        {
+          "name": "Position",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Order within the lesson."
+        },
+        {
+          "name": "Response Count",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Total number of student responses collected."
+        },
+        {
+          "name": "Average Score",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Mean score across all student responses (percentage)."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "Configure Activity",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "S",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Preview Activity",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "S",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Launch Activity",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "P",
+          "crossObjectSlug": "live-session",
+          "crossObjectName": "Live Session",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "View Activity Results",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "score",
+          "crossObjectName": "Score",
+          "roleKeys": ["teacher"]
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "Add Activity to Lesson",
+      "icon": "add_circle",
+      "role": "Teacher",
+      "action": "add",
+      "object": "Activity",
+      "benefit": "I can make my lesson interactive and check for student understanding at key moments.",
+      "whenClause": "I insert an activity into my lesson,",
+      "thenClause": "it appears in the lesson timeline at the specified position and is ready for configuration.",
+      "crossObjects": [{ "slug": "lesson", "name": "Lesson" }]
+    },
+    {
+      "title": "Launch Activity During Session",
+      "icon": "play_circle",
+      "role": "Teacher",
+      "action": "launch",
+      "object": "Activity",
+      "benefit": "students see the prompt on their devices and can submit responses in real time.",
+      "whenClause": "I advance to an activity slide during a live session,",
+      "thenClause": "the activity is presented to all connected students and responses begin streaming in.",
+      "crossObjects": [{ "slug": "live-session", "name": "Live Session" }]
+    },
+    {
+      "title": "Respond to Activity",
+      "icon": "edit_note",
+      "role": "Student",
+      "action": "respond",
+      "object": "Activity",
+      "benefit": "my answer is recorded and I can see if I was correct (for auto-scored activities).",
+      "whenClause": "I submit my response to an activity,",
+      "thenClause": "my response is saved, the response count increments, and a Score is generated if scoring is enabled.",
+      "crossObjects": [{ "slug": "score", "name": "Score" }]
+    }
+  ],
+  "businessRules": [
+    {
+      "title": "Lesson Containment",
+      "description": "An Activity must belong to exactly one Lesson. It cannot exist independently outside a Lesson context."
+    },
+    {
+      "title": "Type Immutability",
+      "description": "Once an Activity is created with a specific type (e.g., Quiz, Poll), the type cannot be changed. The teacher must delete and recreate to switch types."
+    },
+    {
+      "title": "Scoring Dependency",
+      "description": "Point Value and Correct Answer fields are only editable when Scoring Method is set to 'auto' or 'manual'. They are hidden when scoring is 'none'."
+    },
+    {
+      "title": "Answer Options",
+      "description": "Answer Options are required for Quiz, Matching Pairs, and Fill in Blank types. They are not applicable to Open-Ended, Draw It, or Collaborate Board types."
+    },
+    {
+      "title": "Position Uniqueness",
+      "description": "Each Activity's Position must be unique within its parent Lesson. Reordering recalculates positions for all sibling activities."
+    },
+    {
+      "title": "Response Finality",
+      "description": "Once a student submits a response during a Live Session, it cannot be modified. Self-paced assignments may allow resubmission based on teacher configuration."
+    },
+    {
+      "title": "Auto-Scoring",
+      "description": "Activities with Scoring Method 'auto' are graded immediately upon submission. The system compares the student response against the Correct Answer."
+    },
+    {
+      "title": "Time Limit Enforcement",
+      "description": "If a Time Limit is set, the activity auto-submits when time expires. Unanswered activities receive zero points."
+    },
+    {
+      "title": "Duplication",
+      "description": "Duplicating an Activity copies all configuration (type, prompt, answers, scoring) but resets Response Count and Average Score to zero."
+    },
+    {
+      "title": "Lifecycle Inheritance",
+      "description": "An Activity inherits its lifecycle state from its parent Lesson. A draft Lesson means all its activities are in draft."
+    },
+    {
+      "title": "Average Score Calculation",
+      "description": "Average Score is recalculated each time a new response is submitted. It represents the mean percentage across all student responses."
+    },
+    {
+      "title": "Skip Behavior",
+      "description": "When a teacher skips an Activity during a Live Session, no responses are collected and the Activity does not contribute to the session report."
+    }
+  ],
+  "lifecycle": {
+    "states": [
+      {
+        "name": "Draft",
+        "description": "Activity is being configured within a draft lesson",
+        "triggers": "Created when teacher adds activity to lesson",
+        "variant": "default"
+      },
+      {
+        "name": "Published",
+        "description": "Activity is part of a published lesson, ready for delivery",
+        "triggers": "Lesson is published",
+        "variant": "active"
+      },
+      {
+        "name": "Launched",
+        "description": "Activity is currently being presented in a live session",
+        "triggers": "Teacher advances to this activity during live delivery",
+        "variant": "active"
+      },
+      {
+        "name": "Closed",
+        "description": "Activity has been completed or skipped, responses are final",
+        "triggers": "Teacher advances past activity or session ends",
+        "variant": "default"
+      }
+    ],
+    "transitions": [
+      { "from": "Draft", "to": ["Published"] },
+      { "from": "Published", "to": ["Launched", "Draft"] },
+      { "from": "Launched", "to": ["Closed"] }
+    ]
+  },
+  "relationships": [
+    {
+      "targetSlug": "lesson",
+      "targetName": "Lesson",
+      "mechanics": "Activities are created within a Lesson by the teacher using the lesson editor. Each Activity is positioned within the lesson's slide sequence.",
+      "cardinality": "Many-to-one. An Activity belongs to exactly one Lesson; a Lesson contains zero or more Activities.",
+      "sorts": "By position within lesson (default), by activity type, by scoring method.",
+      "filters": "By activity type, by scoring method (auto/manual/none), by completion status.",
+      "dependencies": "If a Lesson is deleted, all contained Activities are deleted. If a Lesson is duplicated, all Activities are duplicated with reset metrics."
+    },
+    {
+      "targetSlug": "score",
+      "targetName": "Score",
+      "mechanics": "Scores are generated when a student responds to a scored Activity. Auto-scored activities produce Scores immediately; manually-scored activities produce Scores when the teacher grades them.",
+      "cardinality": "One-to-many. An Activity generates many Scores (one per student response); each Score references exactly one Activity.",
+      "sorts": "By submission time (default), by student name, by score value.",
+      "filters": "By score range, by student, by correct/incorrect.",
+      "dependencies": "If an Activity is removed from a Lesson, associated Scores from completed sessions persist for historical reporting."
+    },
+    {
+      "targetSlug": "live-session",
+      "targetName": "Live Session",
+      "mechanics": "Activities are presented during a Live Session when the teacher advances to the activity slide. The session controls the delivery timing.",
+      "cardinality": "Many-to-many (via Lesson). An Activity can be delivered across multiple Live Sessions of the same Lesson; a Live Session delivers all Activities in its Lesson.",
+      "sorts": "By position in lesson sequence (default).",
+      "filters": "By launched/skipped status, by response count.",
+      "dependencies": "A Live Session must reference a Lesson to access its Activities. If an Activity is skipped, it is excluded from the session report."
+    }
+  ],
+  "relatedObjects": ["lesson", "live-session", "student", "score"],
+  "nestedObjects": [
+    {
+      "slug": "score",
+      "name": "Score",
+      "cardinality": "One-to-many",
+      "description": "Generated when students respond to the activity"
+    }
+  ],
+  "allAttributes": [
+    {
+      "name": "Activity Type",
+      "dataType": "Enum",
+      "required": true,
+      "source": "Teacher selection",
+      "description": "Determines UI template and response method. Values: quiz, poll, open-ended, draw-it, matching-pairs, fill-in-blank, collaborate-board, memory-test, time-to-climb, drag-and-drop."
+    },
+    {
+      "name": "Title/Label",
+      "dataType": "String",
+      "source": "Teacher input",
+      "description": "Display name shown in lesson editor and during delivery."
+    },
+    {
+      "name": "Question/Prompt",
+      "dataType": "String",
+      "required": true,
+      "source": "Teacher input",
+      "description": "The question or instruction presented to students."
+    },
+    {
+      "name": "Answer Options",
+      "dataType": "Multiple",
+      "source": "Teacher input",
+      "description": "Set of possible answers. Required for quiz, matching-pairs, and fill-in-blank types."
+    },
+    {
+      "name": "Correct Answer",
+      "dataType": "String",
+      "source": "Teacher input",
+      "description": "The expected correct response. Required when scoring method is auto."
+    },
+    {
+      "name": "Scoring Method",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System / Teacher",
+      "description": "How the activity is graded. Values: auto, manual, none."
+    },
+    {
+      "name": "Time Limit",
+      "dataType": "Number",
+      "source": "Teacher input",
+      "description": "Optional time constraint in seconds for timed activities."
+    },
+    {
+      "name": "Position",
+      "dataType": "Number",
+      "required": true,
+      "source": "System",
+      "description": "Order within the parent lesson. Unique per lesson."
+    },
+    {
+      "name": "Point Value",
+      "dataType": "Number",
+      "source": "Teacher input",
+      "description": "Points awarded for correct response. Only applicable when scoring is enabled."
+    },
+    {
+      "name": "Response Count",
+      "dataType": "Number",
+      "source": "System",
+      "description": "Total number of student responses collected across all sessions."
+    },
+    {
+      "name": "Average Score",
+      "dataType": "Number",
+      "source": "System",
+      "description": "Mean score percentage across all student responses."
+    }
+  ],
+  "allCTAs": [
+    {
+      "name": "Add Activity to Lesson",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "P",
+      "crossObjectSlug": "lesson",
+      "crossObjectName": "Lesson",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Remove Activity from Lesson",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "T",
+      "crossObjectSlug": "lesson",
+      "crossObjectName": "Lesson",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Configure Activity",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "S",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Preview Activity",
+      "roles": "Teacher",
+      "permission": "Read",
+      "priority": "S",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Reorder Activity",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "T",
+      "crossObjectSlug": "lesson",
+      "crossObjectName": "Lesson",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Duplicate Activity",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "T",
+      "crossObjectSlug": "lesson",
+      "crossObjectName": "Lesson",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Launch Activity",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "P",
+      "crossObjectSlug": "live-session",
+      "crossObjectName": "Live Session",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Skip Activity",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "T",
+      "crossObjectSlug": "live-session",
+      "crossObjectName": "Live Session",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Respond to Activity",
+      "roles": "Student",
+      "permission": "Write",
+      "priority": "P",
+      "crossObjectSlug": "score",
+      "crossObjectName": "Score",
+      "roleKeys": ["student"]
+    },
+    {
+      "name": "View Activity Results",
+      "roles": "Teacher",
+      "permission": "Read",
+      "priority": "S",
+      "crossObjectSlug": "score",
+      "crossObjectName": "Score",
+      "roleKeys": ["teacher"]
+    }
+  ],
+  "sipValidation": {
+    "structure": {
+      "pass": true,
+      "evidence": "An Activity has a rich attribute set: type, title, question/prompt, answer options, scoring method, point value, time limit, and position. It supports a full configuration page."
+    },
+    "instances": {
+      "pass": true,
+      "evidence": "A single Nearpod lesson typically contains 5-15 activities. 'Vocabulary Match' (matching-pairs, auto-scored), 'Exit Ticket: Main Idea' (open-ended, manually-scored), 'Quick Poll: How confident are you?' (poll, unscored)."
+    },
+    "purpose": {
+      "pass": true,
+      "evidence": "Activities are the core engagement mechanism in Nearpod. Teachers configure them, students respond to them, and reports aggregate their results. They drive the interactive nature of every Nearpod lesson."
+    },
+    "verdict": "Domain object within the Nearpod content ecosystem. The atomic unit of interactivity within a Lesson."
+  },
+  "synonyms": [
+    {
+      "term": "Question",
+      "context": "Student-facing UI, during live delivery",
+      "notes": "Students see activities as questions or prompts"
+    },
+    {
+      "term": "Quiz",
+      "context": "Teacher-facing, specific activity type",
+      "notes": "Often used as a shorthand for auto-scored activities"
+    },
+    {
+      "term": "Interactive Element",
+      "context": "Product documentation, marketing",
+      "notes": "Emphasizes the interactive nature vs. static slides"
+    },
+    {
+      "term": "Engagement Check",
+      "context": "Pedagogical discussions, training materials",
+      "notes": "Frames activities as formative assessment checkpoints"
+    }
+  ],
+  "shapeshifterMatrix": [
+    {
+      "context": "In Lesson Editor",
+      "value": "in-lesson-editor",
+      "shape": "card",
+      "description": "Activities within a lesson being authored, shown as draggable cards with scoring and point settings. Authors configure, preview, reorder, or duplicate activities while building a lesson.",
+      "visibleAttributes": ["Title/Label", "Activity Type", "Scoring Method", "Point Value"],
+      "availableCTAs": ["Configure Activity", "Preview Activity", "Reorder Activity", "Duplicate Activity", "Remove Activity from Lesson"],
+      "cardShape": "Medium card"
+    },
+    {
+      "context": "During Live Session",
+      "value": "during-live-session",
+      "shape": "profile",
+      "description": "The active activity during a live session, displayed full-screen with real-time response counts. Teachers launch activities, monitor participation, and control pacing.",
+      "visibleAttributes": ["Title/Label", "Activity Type", "Question/Prompt", "Time Limit", "Response Count"],
+      "availableCTAs": ["Launch Activity", "Skip Activity"],
+      "cardShape": "Full screen"
+    },
+    {
+      "context": "In Report",
+      "value": "in-report",
+      "shape": "row",
+      "description": "Activities listed with response counts and average scores in a lesson report. Teachers review which activities students struggled with or excelled at.",
+      "visibleAttributes": ["Title/Label", "Activity Type", "Response Count", "Average Score", "Point Value"],
+      "availableCTAs": ["View Activity Results"],
+      "cardShape": "Data row"
+    }
+  ]
+}

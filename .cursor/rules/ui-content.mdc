@@ -1,0 +1,108 @@
+---
+description: Content design principles — Grice's Maxims, microcopy, content prioritization, and documentation
+globs: "**/*.html"
+alwaysApply: false
+---
+
+# Content Design
+
+Content is the interface. Users come for information, not for layout primitives. Every word, label, heading, and description must earn its place.
+
+## Grice's Maxims (The Cooperative Principle)
+
+All interface text should follow Grice's four maxims of cooperative communication:
+
+### Quantity — Say enough, but not more
+
+- Provide exactly the information the user needs at this moment — no more, no less
+- Short labels and descriptions are not goals in themselves; *appropriate length* is the goal
+- A 3-word tooltip that leaves users confused is worse than a 15-word one that answers their question
+- Omit information the user already knows or can see from context
+- **Anti-pattern:** A settings page that explains what "Dark Mode" is to an audience that already chose to find it
+
+### Quality — Be truthful and evidence-based
+
+- Never use vague claims ("blazing fast," "industry leading") — state specifics or say nothing
+- Loading states should be honest: "Loading..." not "Almost there!" when you don't know how long it will take
+- Error messages must describe the actual problem, not a euphemism
+- Empty states should acknowledge the emptiness honestly, then offer a path forward
+- **Anti-pattern:** A progress bar that reaches 90% instantly then stalls — it erodes trust
+
+### Relation — Stay relevant to the user's current task
+
+- Every piece of text should answer the question "why does the user need this right now?"
+- Help text should appear in context, not on a separate page the user has to find
+- Promotional content, tips, and onboarding should be dismissible and never block the primary task
+- **Anti-pattern:** A checkout flow that surfaces a blog post recommendation mid-purchase
+
+### Manner — Be clear, orderly, and unambiguous
+
+- Use plain language: prefer "Remove" over "Disassociate," "Save" over "Persist"
+- Front-load the important word in every label: "Student name" scans faster than "Name of the student"
+- Use sentence case for UI text — it's faster to read than Title Case and feels less formal
+- Avoid jargon unless the audience is specialist and the jargon is faster than the plain alternative (e.g., "MCSFD" is fine for OOUX practitioners, not for a general audience)
+- Positive framing: "Save changes?" is better than "Discard unsaved changes?"
+- **Anti-pattern:** A button labeled "Submit" on a form where the action is actually "Send invitation"
+
+## Content Prioritization
+
+Not all content has equal value. Prioritize ruthlessly:
+
+1. **What does the user need most?** Lead with that. On an Object Guide, the definition and key attributes matter more than the framework code examples
+2. **What supports the primary content?** Secondary information (synonyms, product associations) appears nearby but visually subordinate
+3. **What is rarely needed?** Tertiary content (business rules, full MCSFD specs) goes behind tabs, accordions, or linked pages
+4. **What is never needed by most users?** Either remove it or bury it deep
+
+Apply the **inverted pyramid**: the most important information first, supporting details second, background third. Users who leave early still get the key message.
+
+## Headings & Scanability
+
+- Users scan before they read. Headings are the interface's table of contents
+- Every heading should be meaningful out of context — someone scanning only headings should understand the page structure
+- Use headings to break content every 3–5 paragraphs or whenever the topic shifts
+- Heading levels must follow logical nesting (`h1` → `h2` → `h3`), never chosen for visual size
+- Use descriptive headings ("Student Attributes by Priority") over generic ones ("Details")
+
+## Microcopy
+
+Small text with outsized impact — labels, placeholders, tooltips, button text, empty states:
+
+- **Button labels:** use verb + noun ("Add Student," "Export CSV") — not just the verb ("Submit") or just the noun ("Student")
+- **Placeholder text:** never use it as a substitute for labels (it disappears on focus). Use it for format hints ("e.g., jane@example.com")
+- **Tooltips:** answer "what is this?" in one sentence. If the answer is longer, use an inline description instead
+- **Empty states:** acknowledge the absence, explain why it might be empty, and provide a clear action ("No students yet. Add a student to get started.")
+- **Confirmation dialogs:** state the action and its consequences. "Delete this student? This cannot be undone." — never "Are you sure?"
+
+## Error Messages
+
+Effective error messages have three parts:
+
+1. **What happened** — describe the problem specifically ("Email address is missing")
+2. **Why it happened** — if useful and brief ("This field is required for account creation")
+3. **How to fix it** — actionable guidance ("Enter your email address in the field above")
+
+Never blame the user: "Invalid input" → "Enter a valid email address (e.g., name@example.com)"
+
+## Loading & Progress States
+
+- Show a loading indicator within 1 second of initiating an action
+- Use skeleton screens for content-heavy pages — they feel faster than spinners
+- For operations longer than 5 seconds, show a progress indicator (determinate if possible)
+- Communicate completion: brief confirmation ("Saved") visible for 2–3 seconds
+
+## Documentation & Help
+
+- Help text should be **contextual** — next to the element it explains, not on a separate page
+- Use progressive disclosure for complex help: one-line hint visible, "Learn more" expandable
+- Glossary terms should be tooltipped inline where they appear (Caboodle's planned inline tooltip system)
+- Documentation pages should follow the same visual design system as the product — they are part of the experience
+
+## Content Audit Questions
+
+Before publishing any page, ask:
+
+- Can every heading stand alone and still make sense?
+- Is any text explaining something the design should make obvious?
+- Is any important information hidden behind a click, scroll, or hover?
+- Would a first-time visitor understand the purpose of this page in 5 seconds?
+- Is there text that could be replaced by a better visual design?

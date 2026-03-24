@@ -1,0 +1,1411 @@
+{
+  "identity": {
+    "slug": "student",
+    "name": "Student",
+    "qualifier": "(Core)",
+    "objectType": "core",
+    "category": "people",
+    "definition": "A Student is an individual learner enrolled in one or more educational organizations who engages in instructional activities, completes assessments and assignments, and serves as the primary anchor for all learning-related data, progress tracking, and outcomes across Renaissance products.",
+    "synonyms": [
+      "learner",
+      "pupil",
+      "child",
+      "kid"
+    ],
+    "products": "All products"
+  },
+  "variations": [],
+  "representations": [
+    {
+      "layout": "card",
+      "heading": "Card layout",
+      "description": "How a Student appears in grids and dashboards",
+      "defaultShape": "card",
+      "componentTag": "ren-student-card",
+      "examples": [
+        {
+          "name": "Harry Potter",
+          "initials": "HP",
+          "color": "#398b26",
+          "grade": "3rd Grade",
+          "school": "Hogwarts",
+          "readingLevel": "3.2 GE",
+          "readingStatus": "On watch",
+          "mathLevel": "320 SS",
+          "classCount": 3,
+          "scoreCount": 12,
+          "assignmentCount": 6,
+          "assessmentCount": 6,
+          "skillCount": 8,
+          "_contextData": {
+            "assignmentName": "Chapter 5 Quiz",
+            "assignmentCompletion": 65,
+            "assignmentStatus": "In Progress",
+            "assignmentDueDate": "Oct 15",
+            "assignmentScore": null,
+            "latestScore": 285,
+            "scoreBand": "On Watch",
+            "scoreDate": "Mar 8, 2026",
+            "scoreGrowth": 38,
+            "scorePercentile": 22,
+            "groupName": "Intervention Group A",
+            "groupRole": "Participant",
+            "recentActivity": "Completed AR Quiz",
+            "lastLogin": "2 hours ago",
+            "classNames": [
+              "3rd Grade ELA",
+              "3rd Grade Math",
+              "Art"
+            ],
+            "activityCount": 7,
+            "lastActivityTime": "2 hours ago"
+          }
+        },
+        {
+          "name": "Hermione Granger",
+          "initials": "HG",
+          "color": "#0076b3",
+          "grade": "3rd Grade",
+          "school": "Hogwarts",
+          "readingLevel": "920L",
+          "readingStatus": "At/Above",
+          "mathLevel": "740 SS",
+          "classCount": 5,
+          "scoreCount": 25,
+          "assignmentCount": 8,
+          "assessmentCount": 4,
+          "skillCount": 10,
+          "_contextData": {
+            "assignmentName": "Chapter 5 Quiz",
+            "assignmentCompletion": 100,
+            "assignmentStatus": "Completed",
+            "assignmentDueDate": "Oct 15",
+            "assignmentScore": 95,
+            "latestScore": 520,
+            "scoreBand": "At/Above",
+            "scoreDate": "Mar 10, 2026",
+            "scoreGrowth": 72,
+            "scorePercentile": 88,
+            "groupName": "Enrichment: Advanced Readers",
+            "recentActivity": "Finished Star Reading",
+            "lastLogin": "30 min ago",
+            "classNames": [
+              "3rd Grade ELA",
+              "3rd Grade Math",
+              "Science",
+              "Music",
+              "Art"
+            ],
+            "activityCount": 12,
+            "lastActivityTime": "30 min ago"
+          }
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Full Name",
+          "dataType": "String",
+          "source": "SIS Import / Manual",
+          "description": "Primary identifier. Appears everywhere a Student is shown."
+        },
+        {
+          "name": "Grade Level",
+          "dataType": "Enum",
+          "source": "SIS Import / Manual",
+          "description": "Determines age-appropriate content, benchmarks, and assessments. PreK-12, UG."
+        },
+        {
+          "name": "School",
+          "dataType": "Reference → School",
+          "source": "SIS Import",
+          "description": "Which school the student is enrolled at.",
+          "isReference": true,
+          "referenceSlug": "school",
+          "referenceName": "School"
+        },
+        {
+          "name": "Class(es)",
+          "dataType": "Reference → Class[]",
+          "source": "Roster sync / Admin",
+          "description": "Which classes the student belongs to.",
+          "isReference": true,
+          "referenceSlug": "class",
+          "referenceName": "Class"
+        },
+        {
+          "name": "Reading Level",
+          "dataType": "Number",
+          "source": "Star Reading, AR",
+          "description": "Key metric for AR, myON, Star Reading. Updated on assessment completion."
+        },
+        {
+          "name": "Math Level",
+          "dataType": "Number",
+          "source": "Star Math, Freckle",
+          "description": "Key metric for Freckle, Star Math. Updated on assessment/practice."
+        },
+        {
+          "name": "Enrollment Status",
+          "dataType": "Enum",
+          "source": "SIS Import / Admin",
+          "description": "Active, Inactive, or Transferred. Controls visibility and roster membership."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Profile",
+          "roles": "Teacher, Admin, Student (self)",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": [
+            "teacher",
+            "admin",
+            "student"
+          ]
+        },
+        {
+          "name": "Search / Filter",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "S",
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
+        },
+        {
+          "name": "View Scores",
+          "roles": "Teacher, Admin, Student (self)",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "score",
+          "crossObjectName": "Score",
+          "roleKeys": [
+            "teacher",
+            "admin",
+            "student"
+          ]
+        }
+      ]
+    },
+    {
+      "layout": "list",
+      "heading": "List layout",
+      "description": "How a Student appears in rosters and tables",
+      "defaultShape": "row",
+      "componentTag": "ren-student-row",
+      "examples": [
+        {
+          "name": "Harry Potter",
+          "initials": "HP",
+          "color": "#398b26",
+          "grade": "3rd Grade",
+          "school": "Hogwarts",
+          "readingLevel": "680L",
+          "readingStatus": "On watch",
+          "mathLevel": "Q520",
+          "classCount": 3,
+          "scoreCount": 12
+        },
+        {
+          "name": "Hermione Granger",
+          "initials": "HG",
+          "color": "#0076b3",
+          "grade": "3rd Grade",
+          "school": "Hogwarts",
+          "readingLevel": "920L",
+          "readingStatus": "At/Above",
+          "mathLevel": "Q740",
+          "classCount": 5,
+          "scoreCount": 25
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Full Name",
+          "dataType": "String",
+          "source": "SIS Import / Manual",
+          "description": "Primary identifier. Appears everywhere a Student is shown."
+        },
+        {
+          "name": "Grade Level",
+          "dataType": "Enum",
+          "source": "SIS Import / Manual",
+          "description": "Determines age-appropriate content, benchmarks, and assessments. PreK-12, UG."
+        },
+        {
+          "name": "School",
+          "dataType": "Reference → School",
+          "source": "SIS Import",
+          "description": "Which school the student is enrolled at.",
+          "isReference": true,
+          "referenceSlug": "school",
+          "referenceName": "School"
+        },
+        {
+          "name": "Reading Level",
+          "dataType": "Number",
+          "source": "Star Reading, AR",
+          "description": "Key metric for AR, myON, Star Reading. Updated on assessment completion."
+        },
+        {
+          "name": "Math Level",
+          "dataType": "Number",
+          "source": "Star Math, Freckle",
+          "description": "Key metric for Freckle, Star Math. Updated on assessment/practice."
+        },
+        {
+          "name": "Enrollment Status",
+          "dataType": "Enum",
+          "source": "SIS Import / Admin",
+          "description": "Active, Inactive, or Transferred. Controls visibility and roster membership."
+        },
+        {
+          "name": "Student Avatar",
+          "dataType": "String",
+          "source": "Generated from Student Initials",
+          "description": "Primary identifier. Appears everywhere a Student is shown."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Profile",
+          "roles": "Teacher, Admin, Student (self)",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": [
+            "teacher",
+            "admin",
+            "student"
+          ]
+        },
+        {
+          "name": "View Scores",
+          "roles": "Teacher, Admin, Student (self)",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "score",
+          "crossObjectName": "Score",
+          "roleKeys": [
+            "teacher",
+            "admin",
+            "student"
+          ]
+        }
+      ]
+    },
+    {
+      "layout": "detail",
+      "heading": "Detail page layout",
+      "description": "What users see when they open a full Student record",
+      "defaultShape": "profile",
+      "componentTag": "ren-student-profile",
+      "examples": [
+        {
+          "name": "Harry Potter",
+          "initials": "HP",
+          "color": "#398b26",
+          "grade": "3rd Grade",
+          "school": "Hogwarts School of Witchcraft and Wizardry",
+          "readingLevel": "3.2 GE",
+          "readingStatus": "On watch",
+          "mathLevel": "320 SS",
+          "mathStatus": "On watch",
+          "classCount": 3,
+          "scoreCount": 12,
+          "assignmentCount": 6,
+          "assessmentCount": 6,
+          "skillCount": 8
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Full Name",
+          "dataType": "String",
+          "source": "SIS Import / Manual",
+          "description": "Primary identifier. Appears everywhere a Student is shown."
+        },
+        {
+          "name": "Grade Level",
+          "dataType": "Enum",
+          "source": "SIS Import / Manual",
+          "description": "Determines age-appropriate content, benchmarks, and assessments. PreK-12, UG."
+        },
+        {
+          "name": "Student ID",
+          "dataType": "String",
+          "source": "System",
+          "description": "Unique system identifier. Used for rostering, data matching, and SIS sync."
+        },
+        {
+          "name": "School",
+          "dataType": "Reference → School",
+          "source": "SIS Import",
+          "description": "Which school the student is enrolled at.",
+          "isReference": true,
+          "referenceSlug": "school",
+          "referenceName": "School"
+        },
+        {
+          "name": "Class(es)",
+          "dataType": "Reference → Class[]",
+          "source": "Roster sync / Admin",
+          "description": "Which classes the student belongs to.",
+          "isReference": true,
+          "referenceSlug": "class",
+          "referenceName": "Class"
+        },
+        {
+          "name": "Reading Level",
+          "dataType": "Number",
+          "source": "Star Reading, AR",
+          "description": "Key metric for AR, myON, Star Reading. Updated on assessment completion."
+        },
+        {
+          "name": "Math Level",
+          "dataType": "Number",
+          "source": "Star Math, Freckle",
+          "description": "Key metric for Freckle, Star Math. Updated on assessment/practice."
+        },
+        {
+          "name": "Date of Birth",
+          "dataType": "Date",
+          "source": "SIS Import",
+          "description": "Used for age calculations, COPPA compliance. Visible to Admin only.",
+          "roles": [
+            "admin"
+          ]
+        },
+        {
+          "name": "Username / Login",
+          "dataType": "String",
+          "source": "Manual / SSO",
+          "description": "How the student authenticates. Unique within org."
+        },
+        {
+          "name": "Enrollment Status",
+          "dataType": "Enum",
+          "source": "SIS Import / Manual",
+          "description": "Active, Inactive, Transferred. Controls visibility. Default: Active."
+        },
+        {
+          "name": "Demographic Data",
+          "dataType": "Multiple",
+          "source": "SIS Import",
+          "description": "Ethnicity, gender, ELL status, IEP status. For disaggregated reporting.",
+          "roles": [
+            "admin"
+          ]
+        },
+        {
+          "name": "Guardian/Parent Contact",
+          "dataType": "String",
+          "source": "SIS Import / Manual",
+          "description": "Email, phone. For parent-facing features.",
+          "roles": [
+            "admin"
+          ]
+        },
+        {
+          "name": "State/District Student ID",
+          "dataType": "String",
+          "source": "SIS Import",
+          "description": "External identifier for state reporting and cross-system matching.",
+          "roles": [
+            "admin"
+          ]
+        },
+        {
+          "name": "Student Avatar",
+          "dataType": "String",
+          "source": "Generated from Student Initials",
+          "description": "Primary identifier. Appears everywhere a Student is shown."
+        },
+        {
+          "name": "Language Preference",
+          "dataType": "Enum",
+          "source": "SIS Import",
+          "description": "Primary language. Relevant for Lalilo, ELL accommodations. Default: English."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Profile",
+          "roles": "Teacher, Admin, Student (self)",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": [
+            "teacher",
+            "admin",
+            "student"
+          ]
+        },
+        {
+          "name": "Search / Filter",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "S",
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
+        },
+        {
+          "name": "Enroll in Class",
+          "roles": "Admin, System",
+          "permission": "Write",
+          "priority": "T",
+          "crossObjectSlug": "class",
+          "crossObjectName": "Class",
+          "roleKeys": [
+            "admin"
+          ]
+        },
+        {
+          "name": "Remove from Class",
+          "roles": "Admin, System",
+          "permission": "Write",
+          "priority": "T",
+          "crossObjectSlug": "class",
+          "crossObjectName": "Class",
+          "roleKeys": [
+            "admin"
+          ]
+        },
+        {
+          "name": "Transfer (School)",
+          "roles": "District Admin, System",
+          "permission": "Write",
+          "priority": "Q",
+          "crossObjectSlug": "school",
+          "crossObjectName": "School",
+          "roleKeys": [
+            "admin"
+          ]
+        },
+        {
+          "name": "View Scores",
+          "roles": "Teacher, Admin, Student (self)",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "score",
+          "crossObjectName": "Score",
+          "roleKeys": [
+            "teacher",
+            "admin",
+            "student"
+          ]
+        },
+        {
+          "name": "View Skill Proficiency",
+          "roles": "Teacher, Admin, Student (self)",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "skill",
+          "crossObjectName": "Skill",
+          "roleKeys": [
+            "teacher",
+            "admin",
+            "student"
+          ]
+        },
+        {
+          "name": "Add to Student Group",
+          "roles": "Teacher, System",
+          "permission": "Write",
+          "priority": "T",
+          "roleKeys": [
+            "teacher"
+          ]
+        },
+        {
+          "name": "Export Data",
+          "roles": "Admin",
+          "permission": "Read",
+          "priority": "T",
+          "roleKeys": [
+            "admin"
+          ]
+        },
+        {
+          "name": "Deactivate",
+          "roles": "Admin",
+          "permission": "Write",
+          "priority": "Q",
+          "roleKeys": [
+            "admin"
+          ]
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "View Student Profile",
+      "icon": "person",
+      "role": "Teacher",
+      "action": "view",
+      "object": "Student",
+      "benefit": "I can understand their current reading and math levels, recent assessment scores, and assigned work.",
+      "whenClause": "I navigate to a Student from my class roster,",
+      "thenClause": "their key attributes, recent Scores, current Assignments, and Skill proficiency at a glance."
+    },
+    {
+      "title": "Enroll Student in Class",
+      "icon": "group_add",
+      "role": "School Admin",
+      "action": "enroll",
+      "object": "Student",
+      "benefit": "the student appears on the teacher's roster and can receive class-level assignments and assessments.",
+      "whenClause": "I add a student to a class,",
+      "thenClause": "the student should immediately appear in the class roster and inherit any active class-level assignments.",
+      "crossObjects": [
+        {
+          "slug": "class",
+          "name": "Class"
+        }
+      ]
+    },
+    {
+      "title": "Transfer Student",
+      "icon": "swap_horiz",
+      "role": "District Admin",
+      "action": "transfer",
+      "object": "Student",
+      "benefit": "their historical data follows them and they appear in the correct school's reports.",
+      "whenClause": "I transfer a student,",
+      "thenClause": "all historical scores and progress data move with them, and they are removed from their previous school's active roster.",
+      "crossObjects": [
+        {
+          "slug": "school",
+          "name": "School"
+        }
+      ]
+    }
+  ],
+  "businessRules": [
+    {
+      "title": "Uniqueness",
+      "description": "A Student is uniquely identified within a District by their Student ID. State Student IDs provide cross-district matching."
+    },
+    {
+      "title": "Creation",
+      "description": "Students are primarily created via SIS roster sync (OneRoster, Clever, ClassLink). Manual creation requires at minimum: First Name, Last Name, Grade Level."
+    },
+    {
+      "title": "Enrollment",
+      "description": "A Student must be enrolled in at least one School to be active. They may belong to zero or more Classes."
+    },
+    {
+      "title": "Data Privacy",
+      "description": "Student PII (date of birth, demographics) is restricted to Admin roles. Teachers see name, grade, and academic data. FERPA and COPPA compliance required."
+    },
+    {
+      "title": "Transfer",
+      "description": "When a Student transfers schools, historical Scores and progress data travel with them. The student is removed from their previous school's active roster but historical records persist."
+    },
+    {
+      "title": "Deactivation",
+      "description": "Deactivated students are hidden from active rosters and reports but their data is retained for historical reporting and can be reactivated."
+    },
+    {
+      "title": "Score Accumulation",
+      "description": "Scores are append-only. Once generated, a Score cannot be deleted (only excluded from certain reports by Admins)."
+    }
+  ],
+  "lifecycle": {
+    "states": [
+      {
+        "name": "Created",
+        "description": "Initial state upon import or manual creation",
+        "triggers": "SIS sync import, manual creation",
+        "variant": "default"
+      },
+      {
+        "name": "Active",
+        "description": "Currently enrolled and participating",
+        "triggers": "SIS sync enrollment, manual creation",
+        "variant": "active"
+      },
+      {
+        "name": "Transferred",
+        "description": "Moving between schools within district",
+        "triggers": "SIS sync or admin action; temporary state",
+        "variant": "warn"
+      },
+      {
+        "name": "Inactive",
+        "description": "No longer participating but data retained",
+        "triggers": "SIS sync removal, admin deactivation",
+        "variant": "default"
+      },
+      {
+        "name": "Graduated",
+        "description": "Completed program/grade band",
+        "triggers": "End-of-year processing, admin action",
+        "variant": "default"
+      }
+    ],
+    "transitions": [
+      {
+        "from": "Created",
+        "to": [
+          "Active"
+        ]
+      },
+      {
+        "from": "Active",
+        "to": [
+          "Transferred",
+          "Inactive",
+          "Graduated"
+        ]
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "targetSlug": "class",
+      "targetName": "Class",
+      "mechanics": "Students are enrolled in Classes primarily via SIS roster sync (automated). Admins can also manually add/remove students.",
+      "cardinality": "Many-to-many. A Student can belong to multiple Classes; a Class has multiple Students. Typical: 1-8 classes per student, 15-35 students per class.",
+      "sorts": "Students within a Class: alphabetical by last name (default), by grade level, by reading/math level.",
+      "filters": "By grade level, by enrollment status (active/inactive), by demographic group, by proficiency level.",
+      "dependencies": "If a Class is archived, students remain in the system but lose their class association for that class. Historical data persists."
+    },
+    {
+      "targetSlug": "score",
+      "targetName": "Score",
+      "mechanics": "Scores are system-generated when a Student completes an Assessment. Auto-calculated by the assessment engine.",
+      "cardinality": "One-to-many. A Student accumulates many Scores over time; each Score belongs to exactly one Student.",
+      "sorts": "By date (most recent first, default), by assessment type, by subject area, by score value.",
+      "filters": "By assessment type (Star, DnA, FastBridge), by subject (Reading, Math, SEL), by date range, by benchmark category.",
+      "dependencies": "If a Student is deactivated, Scores persist for historical reporting but are excluded from active aggregations."
+    },
+    {
+      "targetSlug": "school",
+      "targetName": "School",
+      "mechanics": "Students are assigned to a School via SIS roster sync. Transfer is handled by District Admins or system sync.",
+      "cardinality": "Many-to-one (at a given time). A Student belongs to one School; a School contains many Students.",
+      "sorts": "Students within a School: alphabetical (default), by grade level.",
+      "filters": "By grade, by class, by enrollment status, by teacher.",
+      "dependencies": "If a School is deactivated, students must be transferred to another School or deactivated."
+    }
+  ],
+  "relatedObjects": [
+    "class",
+    "school",
+    "assessment",
+    "assignment",
+    "score",
+    "teacher",
+    "district",
+    "skill",
+    "resource",
+    "student-group",
+    "learning-path"
+  ],
+  "nestedObjects": [
+    {
+      "slug": "score",
+      "name": "Score",
+      "cardinality": "One-to-many",
+      "description": "System-generated on assessment completion"
+    },
+    {
+      "slug": "class",
+      "name": "Class",
+      "cardinality": "Many-to-many",
+      "description": "Roster sync or admin enrollment"
+    },
+    {
+      "slug": "assessment",
+      "name": "Assessment",
+      "cardinality": "Many-to-many",
+      "description": "Teacher/admin schedules for student or class"
+    },
+    {
+      "slug": "assignment",
+      "name": "Assignment",
+      "cardinality": "Many-to-many (via Class)",
+      "description": "Teacher assigns to student directly or via class"
+    },
+    {
+      "slug": "skill",
+      "name": "Skill",
+      "cardinality": "One-to-many",
+      "description": "System-calculated from assessment and practice data"
+    },
+    {
+      "slug": "resource",
+      "name": "Resource",
+      "cardinality": "One-to-many",
+      "description": "Student saves/bookmarks resources"
+    },
+    {
+      "slug": "learning-path",
+      "name": "Learning Path",
+      "cardinality": "One-to-one",
+      "description": "System-generated adaptive path (Freckle, Lalilo)"
+    }
+  ],
+  "allAttributes": [
+    {
+      "name": "Full Name",
+      "dataType": "String",
+      "required": true,
+      "source": "SIS Import / Manual",
+      "description": "Primary identifier. Appears everywhere a Student is shown.",
+      "example": "Hermione Granger"
+    },
+    {
+      "name": "Grade Level",
+      "dataType": "Enum",
+      "required": true,
+      "source": "SIS Import / Manual",
+      "description": "Determines age-appropriate content, benchmarks, and assessments. PreK-12, UG.",
+      "enumOptions": [
+        "K",
+        "1st Grade",
+        "2nd Grade",
+        "3rd Grade",
+        "4th Grade",
+        "5th Grade",
+        "6th Grade",
+        "7th Grade",
+        "8th Grade",
+        "9th Grade",
+        "10th Grade",
+        "11th Grade",
+        "12th Grade"
+      ]
+    },
+    {
+      "name": "Student ID",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "Unique system identifier. Used for rostering, data matching, and SIS sync.",
+      "example": "S00234"
+    },
+    {
+      "name": "School",
+      "dataType": "Reference → School",
+      "required": true,
+      "source": "SIS Import",
+      "description": "Which school the student is enrolled at.",
+      "isReference": true,
+      "referenceSlug": "school",
+      "referenceName": "School"
+    },
+    {
+      "name": "Class(es)",
+      "dataType": "Reference → Class[]",
+      "source": "Roster sync / Admin",
+      "description": "Which classes the student belongs to.",
+      "isReference": true,
+      "referenceSlug": "class",
+      "referenceName": "Class"
+    },
+    {
+      "name": "Reading Level",
+      "dataType": "Number",
+      "source": "Star Reading, AR",
+      "description": "Key metric for AR, myON, Star Reading. Updated on assessment completion.",
+      "isReference": true,
+      "referenceSlug": "score",
+      "referenceName": "Score",
+      "example": "820"
+    },
+    {
+      "name": "Math Level",
+      "dataType": "Number",
+      "source": "Star Math, Freckle",
+      "description": "Key metric for Freckle, Star Math. Updated on assessment/practice.",
+      "isReference": true,
+      "referenceSlug": "score",
+      "referenceName": "Score",
+      "example": "4.2"
+    },
+    {
+      "name": "Reading Proficiency",
+      "dataType": "Enum",
+      "source": "Star Reading, AR",
+      "description": "Current proficiency band for reading, derived from the student's most recent Star Reading score. Bands are configured at the district level.",
+      "isReference": true,
+      "referenceSlug": "score",
+      "referenceName": "Score",
+      "enumOptions": [
+        "At/Above",
+        "On Watch",
+        "Intervention",
+        "Urgent"
+      ]
+    },
+    {
+      "name": "Math Proficiency",
+      "dataType": "Enum",
+      "source": "Star Math, Freckle",
+      "description": "Current proficiency band for math, derived from the student's most recent Star Math score. Bands are configured at the district level.",
+      "isReference": true,
+      "referenceSlug": "score",
+      "referenceName": "Score",
+      "enumOptions": [
+        "At/Above",
+        "On Watch",
+        "Intervention",
+        "Urgent"
+      ]
+    },
+    {
+      "name": "Number of Assignments",
+      "dataType": "Number",
+      "source": "System",
+      "description": "Count of active assignments currently assigned to this student. Includes all statuses except Deleted.",
+      "isReference": true,
+      "referenceSlug": "assignment",
+      "referenceName": "Assignment"
+    },
+    {
+      "name": "Enrollment Status",
+      "dataType": "Enum",
+      "required": true,
+      "source": "SIS Import / Admin",
+      "description": "Active, Inactive, Transferred, Graduated. Controls visibility and roster membership.",
+      "enumOptions": [
+        "Active",
+        "Inactive",
+        "Transferred",
+        "Graduated"
+      ]
+    },
+    {
+      "name": "Date of Birth",
+      "dataType": "Date",
+      "source": "SIS Import",
+      "description": "Used for age calculations, COPPA compliance. Visible to Admin only.",
+      "example": "2012-09-01",
+      "roles": [
+        "admin"
+      ]
+    },
+    {
+      "name": "Username / Login",
+      "dataType": "String",
+      "required": true,
+      "source": "Manual / SSO",
+      "description": "How the student authenticates. Unique within org.",
+      "example": "hermione.g"
+    },
+    {
+      "name": "Demographic Data",
+      "dataType": "Multiple",
+      "source": "SIS Import",
+      "description": "Ethnicity, gender, ELL status, IEP status. For disaggregated reporting.",
+      "example": "Hispanic, ELL, IEP",
+      "roles": [
+        "admin"
+      ]
+    },
+    {
+      "name": "Guardian/Parent Contact",
+      "dataType": "String",
+      "source": "SIS Import / Manual",
+      "description": "Email, phone. For parent-facing features.",
+      "example": "jane.granger@owl.com",
+      "roles": [
+        "admin"
+      ]
+    },
+    {
+      "name": "State/District Student ID",
+      "dataType": "String",
+      "source": "SIS Import",
+      "description": "External identifier for state reporting and cross-system matching.",
+      "example": "A1234567",
+      "roles": [
+        "admin"
+      ]
+    },
+    {
+      "name": "Student Avatar",
+      "dataType": "String",
+      "source": "Generated from Student Initials",
+      "description": "Primary identifier. Appears everywhere a Student is shown.",
+      "example": "HG"
+    },
+    {
+      "name": "Language Preference",
+      "dataType": "Enum",
+      "source": "SIS Import",
+      "description": "Primary language. Relevant for Lalilo, ELL accommodations. Default: English.",
+      "enumOptions": [
+        "English",
+        "Spanish",
+        "French",
+        "Mandarin",
+        "Arabic",
+        "Portuguese",
+        "Other"
+      ]
+    }
+  ],
+  "allCTAs": [
+    {
+      "name": "View Profile",
+      "roles": "Teacher, Admin, Student (self)",
+      "permission": "Read",
+      "priority": "P",
+      "description": "Opens the full student record showing identity, enrollment, academic levels, and performance history.",
+      "roleKeys": [
+        "teacher",
+        "admin",
+        "student"
+      ]
+    },
+    {
+      "name": "Search / Filter",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "S",
+      "description": "Find students within a list by name, grade, proficiency level, or enrollment status.",
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
+    },
+    {
+      "name": "View Scores",
+      "roles": "Teacher, Admin, Student (self)",
+      "permission": "Read",
+      "priority": "S",
+      "description": "Navigate to the student's score history across Star, DnA, and other assessments.",
+      "crossObjectSlug": "score",
+      "crossObjectName": "Score",
+      "roleKeys": [
+        "teacher",
+        "admin",
+        "student"
+      ]
+    },
+    {
+      "name": "View Skill Proficiency",
+      "roles": "Teacher, Admin, Student (self)",
+      "permission": "Read",
+      "priority": "S",
+      "description": "See which skills the student has mastered, is developing, or needs support with.",
+      "crossObjectSlug": "skill",
+      "crossObjectName": "Skill",
+      "roleKeys": [
+        "teacher",
+        "admin",
+        "student"
+      ]
+    },
+    {
+      "name": "Enroll in Class",
+      "roles": "Admin, System",
+      "permission": "Write",
+      "priority": "T",
+      "description": "Add the student to a class roster so they receive class-level assignments and assessments.",
+      "crossObjectSlug": "class",
+      "crossObjectName": "Class",
+      "roleKeys": [
+        "admin"
+      ]
+    },
+    {
+      "name": "Remove from Class",
+      "roles": "Admin, System",
+      "permission": "Write",
+      "priority": "T",
+      "description": "Remove the student from a class roster, ending their access to class-level content.",
+      "crossObjectSlug": "class",
+      "crossObjectName": "Class",
+      "roleKeys": [
+        "admin"
+      ]
+    },
+    {
+      "name": "Add to Student Group",
+      "roles": "Teacher, System",
+      "permission": "Write",
+      "priority": "T",
+      "description": "Add the student to an intervention or enrichment group for targeted instruction.",
+      "roleKeys": [
+        "teacher"
+      ]
+    },
+    {
+      "name": "Export Data",
+      "roles": "Admin",
+      "permission": "Read",
+      "priority": "T",
+      "description": "Download the student's data as a file for compliance reporting or external analysis.",
+      "roleKeys": [
+        "admin"
+      ]
+    },
+    {
+      "name": "Transfer (School)",
+      "roles": "District Admin, System",
+      "permission": "Write",
+      "priority": "Q",
+      "description": "Move the student to a different school within the district, preserving all historical data.",
+      "crossObjectSlug": "school",
+      "crossObjectName": "School",
+      "roleKeys": [
+        "admin"
+      ]
+    },
+    {
+      "name": "Deactivate",
+      "roles": "Admin",
+      "permission": "Write",
+      "priority": "Q",
+      "description": "Mark the student as inactive, removing them from active rosters while retaining historical data.",
+      "roleKeys": [
+        "admin"
+      ]
+    }
+  ],
+  "sipValidation": {
+    "structure": {
+      "pass": true,
+      "evidence": "A Student has a rich set of attributes: name, grade level, student ID, date of birth, enrollment date, demographic data, reading level, math level, and more. You can design a detail page for a Student."
+    },
+    "instances": {
+      "pass": true,
+      "evidence": "Jane Doe (3rd grader at Lincoln Elementary), Marcus Johnson (7th grader at Washington Middle School), Priya Patel (Kindergartener at Sunset Academy). Every school has hundreds or thousands of Student instances."
+    },
+    "purpose": {
+      "pass": true,
+      "evidence": "Students are the reason Renaissance products exist. Teachers view Student profiles, track Student progress, assign Student work, and analyze Student scores. Students themselves log in to complete assignments, take assessments, and read books."
+    },
+    "verdict": "Core system object. The universal anchor across all Renaissance products."
+  },
+  "synonyms": [
+    {
+      "term": "Learner",
+      "context": "Renaissance Intelligence, AI/ML teams",
+      "notes": "Used in \"Learner Engine\" and \"Learning Path\" contexts"
+    },
+    {
+      "term": "Pupil",
+      "context": "UK/international markets",
+      "notes": "Less common in US-focused products"
+    },
+    {
+      "term": "Child",
+      "context": "Parent-facing communications",
+      "notes": "Used when the audience is parents/guardians"
+    },
+    {
+      "term": "Kid",
+      "context": "Informal/internal",
+      "notes": "Not used in product UI"
+    }
+  ],
+  "shapeshifterMatrix": [
+    {
+      "context": "Roster",
+      "value": "class-roster",
+      "shape": "row",
+      "description": "A scannable list of every student in a class with at-a-glance performance levels. Teachers use this to spot who needs attention and jump to individual profiles or scores.",
+      "visibleAttributes": [
+        "Full Name",
+        "Grade Level",
+        "Enrollment Status",
+        "Reading Level",
+        "Reading Proficiency",
+        "Math Level",
+        "Math Proficiency",
+        "Number of Assignments"
+      ],
+      "availableCTAs": [
+        "View Profile",
+        "View Scores",
+        "Add to Student Group",
+        "Enroll in Class",
+        "Remove from Class"
+      ],
+      "cardShape": "Compact row",
+      "userIntent": "Who is in my class and how are they performing?"
+    },
+    {
+      "context": "Class Activity",
+      "value": "class-activity",
+      "shape": "card",
+      "description": "Students participating in a live class activity, shown as cards for quick visual identification. Teachers tap through to see what each student has been working on.",
+      "visibleAttributes": [
+        "Full Name",
+        "Grade Level",
+        "Student Avatar"
+      ],
+      "availableCTAs": [
+        "View Profile",
+        "View Student Activity"
+      ],
+      "cardShape": "Medium card",
+      "userIntent": "Which students are engaged in this class activity?"
+    },
+    {
+      "context": "Student Detail",
+      "value": "student-detail",
+      "shape": "detail",
+      "description": "The complete student profile — identity, enrollment, demographics, and academic performance in one place. Teachers and admins come here to check standing, manage enrollment, or drill into scores and skill proficiency.",
+      "visibleAttributes": [
+        "Full Name",
+        "Grade Level",
+        "Student Avatar",
+        "Reading Level",
+        "Reading Proficiency",
+        "Math Level",
+        "Math Proficiency",
+        "Number of Assignments",
+        "Student ID",
+        "School",
+        "Class(es)",
+        "Date of Birth",
+        "Username / Login",
+        "Enrollment Status",
+        "Demographic Data",
+        "Guardian/Parent Contact",
+        "State/District Student ID",
+        "Language Preference"
+      ],
+      "availableCTAs": [
+        "View Profile",
+        "Search / Filter",
+        "Enroll in Class",
+        "Remove from Class",
+        "Transfer (School)",
+        "View Scores",
+        "View Skill Proficiency",
+        "Add to Student Group",
+        "Export Data",
+        "Deactivate"
+      ],
+      "cardShape": "Full page",
+      "userIntent": "What is the complete picture of this student?"
+    },
+    {
+      "context": "Assignment Picker",
+      "value": "assignment-picker",
+      "shape": "mini-row",
+      "description": "A minimal selection list for choosing which students receive an assignment. Shows just enough to identify each student — name, grade, and photo.",
+      "visibleAttributes": [
+        "Full Name",
+        "Grade Level",
+        "Student Avatar"
+      ],
+      "availableCTAs": [],
+      "cardShape": "Mini row",
+      "userIntent": "Which students should I assign this to?"
+    },
+    {
+      "context": "School Roster",
+      "value": "school-roster",
+      "shape": "row",
+      "description": "All students at a school listed with name, grade, and school affiliation. Principals and admins browse enrollment and jump to profiles or score summaries.",
+      "visibleAttributes": [
+        "Full Name",
+        "Grade Level",
+        "Student Avatar",
+        "School"
+      ],
+      "availableCTAs": [
+        "View Profile",
+        "View Scores"
+      ],
+      "cardShape": "Compact row",
+      "userIntent": "Who are the students at this school?"
+    },
+    {
+      "context": "Search Results",
+      "value": "search-results",
+      "shape": "compact-card",
+      "description": "Students matching a search query, displayed as compact cards with school affiliation. The goal is fast identification — confirm the right student and open their profile.",
+      "visibleAttributes": [
+        "Full Name",
+        "Grade Level",
+        "Student Avatar",
+        "School"
+      ],
+      "availableCTAs": [
+        "View Profile"
+      ],
+      "cardShape": "Compact card",
+      "userIntent": "Is this the student I'm looking for?"
+    },
+    {
+      "context": "Score Report",
+      "value": "score-report",
+      "shape": "data-row",
+      "description": "Students listed alongside their scores for a specific assessment. Teachers scan the data rows to compare performance, spot proficiency bands, and identify who needs follow-up.",
+      "visibleAttributes": [
+        "Full Name",
+        "Grade Level"
+      ],
+      "availableCTAs": [
+        "View Profile",
+        "View Scores"
+      ],
+      "cardShape": "Data row",
+      "userIntent": "How did each student score on this assessment?",
+      "contextDataSchema": {
+        "latestScore": {
+          "type": "number",
+          "description": "The student's score value"
+        },
+        "scoreBand": {
+          "type": "string",
+          "description": "Proficiency band (At/Above, On Watch, Intervention)"
+        },
+        "scoreDate": {
+          "type": "string",
+          "description": "When the score was recorded"
+        },
+        "scoreGrowth": {
+          "type": "number",
+          "description": "Student Growth Percentile value"
+        },
+        "scorePercentile": {
+          "type": "number",
+          "description": "Percentile rank"
+        }
+      }
+    },
+    {
+      "context": "Student Group",
+      "value": "student-group",
+      "shape": "compact-card",
+      "description": "Members of an intervention or enrichment group with reading and math levels visible. Teachers check group composition and performance to decide on next steps.",
+      "visibleAttributes": [
+        "Full Name",
+        "Grade Level",
+        "Student Avatar",
+        "Reading Level",
+        "Reading Proficiency",
+        "Math Level",
+        "Math Proficiency"
+      ],
+      "availableCTAs": [
+        "View Profile",
+        "Add to Student Group"
+      ],
+      "cardShape": "Compact card",
+      "userIntent": "Who is in this intervention/enrichment group?",
+      "contextDataSchema": {
+        "groupName": {
+          "type": "string",
+          "description": "Name of the student group"
+        },
+        "groupRole": {
+          "type": "string",
+          "description": "Student's role within the group"
+        }
+      }
+    },
+    {
+      "context": "Parent Dashboard",
+      "value": "parent-dashboard",
+      "shape": "compact-card",
+      "description": "A parent's view of their child — a summary card showing grade level, reading and math performance, and recent activity. Designed for quick reassurance or to flag concerns.",
+      "visibleAttributes": [
+        "Full Name",
+        "Grade Level",
+        "Student Avatar",
+        "Reading Level",
+        "Reading Proficiency",
+        "Math Level",
+        "Math Proficiency"
+      ],
+      "availableCTAs": [
+        "View Profile"
+      ],
+      "cardShape": "Summary card",
+      "userIntent": "How is my child doing overall?",
+      "contextDataSchema": {
+        "recentActivity": {
+          "type": "string",
+          "description": "Description of the last activity"
+        },
+        "lastLogin": {
+          "type": "string",
+          "description": "When the student last logged in"
+        },
+        "classNames": {
+          "type": "string[]",
+          "description": "List of enrolled class names"
+        }
+      }
+    },
+    {
+      "context": "Activity Feed",
+      "value": "activity-feed",
+      "shape": "header",
+      "description": "A header identifying which student's activity stream is being viewed, with recent activity count and last-active timestamp to contextualize the feed below.",
+      "visibleAttributes": [
+        "Full Name",
+        "Grade Level",
+        "Student Avatar"
+      ],
+      "availableCTAs": [
+        "View Profile",
+        "View Student Activity"
+      ],
+      "cardShape": "Section header",
+      "userIntent": "What has this student been working on recently?",
+      "contextDataSchema": {
+        "activityCount": {
+          "type": "number",
+          "description": "Number of activities this week"
+        },
+        "lastActivityTime": {
+          "type": "string",
+          "description": "Relative timestamp of last activity"
+        }
+      }
+    },
+    {
+      "context": "Assignment Management",
+      "value": "assignment-management",
+      "shape": "row",
+      "description": "Students listed against a specific assignment with individual progress, completion status, and scores. Teachers track who's finished, who's behind, and who needs help.",
+      "visibleAttributes": [
+        "Full Name",
+        "Grade Level",
+        "Student Avatar"
+      ],
+      "availableCTAs": [
+        "View Profile",
+        "View Scores"
+      ],
+      "cardShape": "Compact row",
+      "userIntent": "How is each student progressing on this assignment?",
+      "contextDataSchema": {
+        "assignmentName": {
+          "type": "string",
+          "description": "Name of the assignment"
+        },
+        "assignmentCompletion": {
+          "type": "number",
+          "description": "Progress percentage (0-100)"
+        },
+        "assignmentStatus": {
+          "type": "string",
+          "description": "Status: Not Started, In Progress, Completed"
+        },
+        "assignmentDueDate": {
+          "type": "string",
+          "description": "Assignment deadline"
+        },
+        "assignmentScore": {
+          "type": "number",
+          "description": "Score if completed"
+        }
+      }
+    }
+  ]
+}

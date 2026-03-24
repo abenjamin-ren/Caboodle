@@ -1,0 +1,738 @@
+{
+  "identity": {
+    "slug": "resource",
+    "name": "Resource",
+    "qualifier": "(Core)",
+    "objectType": "core",
+    "category": "knowledge",
+    "definition": "A Resource is a piece of instructional content — such as a digital book, article, video, interactive lesson, or practice set — available within Renaissance products that is aligned to specific skills/standards and used by students to learn, practice, and build mastery.",
+    "synonyms": ["book", "article", "lesson", "content", "material", "activity"],
+    "products": "myON, AR, Freckle, Nearpod, Lalilo"
+  },
+  "variations": [],
+  "representations": [
+    {
+      "layout": "card",
+      "heading": "Card layout",
+      "description": "How a Resource appears in browsing grids and recommendation feeds",
+      "defaultShape": "card",
+      "componentTag": "ren-resource-card",
+      "examples": [
+        {
+          "title": "Charlotte's Web",
+          "type": "Book",
+          "subject": "ELA",
+          "readingLevel": "680L",
+          "product": "myON",
+          "format": "Text",
+          "duration": "184 pages",
+          "author": "E.B. White",
+          "topic": "Fiction",
+          "skillCount": 8,
+          "color": "#2563EB"
+        },
+        {
+          "title": "Volcanoes: Earth's Fiery Power",
+          "type": "Article",
+          "subject": "Science",
+          "readingLevel": "820L",
+          "product": "myON",
+          "format": "Text",
+          "duration": "12 min read",
+          "author": "National Geographic Kids",
+          "topic": "Nonfiction",
+          "skillCount": 5,
+          "color": "#059669"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Title",
+          "dataType": "String",
+          "source": "Content Import / Publisher Feed",
+          "description": "Primary identifier. Appears on every card, search result, and assignment reference."
+        },
+        {
+          "name": "Resource Type",
+          "dataType": "Enum",
+          "source": "Content Import",
+          "description": "Book, Article, Video, Lesson, or Practice Set. Determines the icon and interaction model."
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "source": "Content Import / Catalog",
+          "description": "Subject area — ELA, Math, Science, Social Studies, SEL. Used for filtering and skill alignment."
+        },
+        {
+          "name": "Reading/Difficulty Level",
+          "dataType": "String",
+          "source": "System / Publisher",
+          "description": "Lexile, grade equivalent, or difficulty rating. Used for matching resources to student ability."
+        },
+        {
+          "name": "Product",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Which Renaissance product hosts this resource — myON, Freckle, Nearpod, or Lalilo."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View / Read / Play",
+          "roles": "Student",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["student"]
+        },
+        {
+          "name": "Search / Browse",
+          "roles": "Student, Teacher",
+          "permission": "Read",
+          "priority": "S",
+          "roleKeys": ["student", "teacher"]
+        },
+        {
+          "name": "Add to Favorites",
+          "roles": "Student, Teacher",
+          "permission": "Write",
+          "priority": "T",
+          "roleKeys": ["student", "teacher"]
+        }
+      ]
+    },
+    {
+      "layout": "list",
+      "heading": "List layout",
+      "description": "How a Resource appears in search results and assignment builders",
+      "defaultShape": "row",
+      "componentTag": "ren-resource-row",
+      "examples": [
+        {
+          "title": "Charlotte's Web",
+          "type": "Book",
+          "subject": "ELA",
+          "readingLevel": "680L",
+          "product": "myON",
+          "format": "Text",
+          "duration": "184 pages",
+          "author": "E.B. White",
+          "topic": "Fiction",
+          "skillCount": 8,
+          "color": "#2563EB"
+        },
+        {
+          "title": "Fraction Foundations",
+          "type": "Practice Set",
+          "subject": "Math",
+          "readingLevel": "Grade 4",
+          "product": "Freckle",
+          "format": "Interactive",
+          "duration": "15 min",
+          "author": "Renaissance Content Team",
+          "topic": "Number & Operations",
+          "skillCount": 12,
+          "color": "#7C3AED"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Title",
+          "dataType": "String",
+          "source": "Content Import / Publisher Feed",
+          "description": "Primary identifier. Appears on every card, search result, and assignment reference."
+        },
+        {
+          "name": "Resource Type",
+          "dataType": "Enum",
+          "source": "Content Import",
+          "description": "Book, Article, Video, Lesson, or Practice Set. Determines the icon and interaction model."
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "source": "Content Import / Catalog",
+          "description": "Subject area — ELA, Math, Science, Social Studies, SEL."
+        },
+        {
+          "name": "Reading/Difficulty Level",
+          "dataType": "String",
+          "source": "System / Publisher",
+          "description": "Lexile, grade equivalent, or difficulty rating."
+        },
+        {
+          "name": "Product",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Which Renaissance product hosts this resource."
+        },
+        {
+          "name": "Format",
+          "dataType": "Enum",
+          "source": "Content Import",
+          "description": "Text, Interactive, Video, or Audio. Determines playback/rendering approach."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "Preview",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "S",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Assign",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "assignment",
+          "crossObjectName": "Assignment",
+          "roleKeys": ["teacher"]
+        }
+      ]
+    },
+    {
+      "layout": "detail",
+      "heading": "Detail page layout",
+      "description": "What users see when they open a full Resource record",
+      "defaultShape": "profile",
+      "componentTag": "ren-resource-profile",
+      "examples": [
+        {
+          "title": "Charlotte's Web",
+          "type": "Book",
+          "subject": "ELA",
+          "readingLevel": "680L",
+          "product": "myON",
+          "format": "Text",
+          "duration": "184 pages",
+          "author": "E.B. White",
+          "topic": "Fiction",
+          "skillCount": 8,
+          "language": "English",
+          "color": "#2563EB"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Title",
+          "dataType": "String",
+          "source": "Content Import / Publisher Feed",
+          "description": "Primary identifier. Appears on every card, search result, and assignment reference."
+        },
+        {
+          "name": "Resource Type",
+          "dataType": "Enum",
+          "source": "Content Import",
+          "description": "Book, Article, Video, Lesson, or Practice Set."
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "source": "Content Import / Catalog",
+          "description": "Subject area — ELA, Math, Science, Social Studies, SEL."
+        },
+        {
+          "name": "Reading/Difficulty Level",
+          "dataType": "String",
+          "source": "System / Publisher",
+          "description": "Lexile, grade equivalent, or difficulty rating."
+        },
+        {
+          "name": "Skill Alignment",
+          "dataType": "Reference → Skill[]",
+          "source": "Content Import / Catalog",
+          "description": "Which Skills and Standards this resource is aligned to.",
+          "isReference": true,
+          "referenceSlug": "skill",
+          "referenceName": "Skill"
+        },
+        {
+          "name": "Product",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Which Renaissance product hosts this resource."
+        },
+        {
+          "name": "Format",
+          "dataType": "Enum",
+          "source": "Content Import",
+          "description": "Text, Interactive, Video, or Audio."
+        },
+        {
+          "name": "Duration/Length",
+          "dataType": "String",
+          "source": "Content Import / System",
+          "description": "Page count, estimated reading time, or video length."
+        },
+        {
+          "name": "Publisher/Author",
+          "dataType": "String",
+          "source": "Publisher Feed",
+          "description": "Content creator or publishing entity."
+        },
+        {
+          "name": "Topic/Genre",
+          "dataType": "Enum",
+          "source": "Content Import / Catalog",
+          "description": "Genre or topic category — Fiction, Nonfiction, Science, Biography, etc. Multi-select."
+        },
+        {
+          "name": "Language",
+          "dataType": "Enum",
+          "source": "Content Import",
+          "description": "Content language — English, Spanish, French, etc."
+        },
+        {
+          "name": "Availability",
+          "dataType": "Enum",
+          "source": "System / Licensing",
+          "description": "Free, Licensed, Premium. Controls student access based on school/district subscription."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System / Admin",
+          "description": "Active or Archived. Archived resources are hidden from browse/search but retained for historical data."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View / Read / Play",
+          "roles": "Student",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["student"]
+        },
+        {
+          "name": "Preview",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "S",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Assign",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "assignment",
+          "crossObjectName": "Assignment",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Add to Favorites",
+          "roles": "Student, Teacher",
+          "permission": "Write",
+          "priority": "T",
+          "roleKeys": ["student", "teacher"]
+        },
+        {
+          "name": "Search / Browse",
+          "roles": "Student, Teacher",
+          "permission": "Read",
+          "priority": "S",
+          "roleKeys": ["student", "teacher"]
+        },
+        {
+          "name": "View Usage Report",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "T",
+          "crossObjectSlug": "student",
+          "crossObjectName": "Student",
+          "roleKeys": ["teacher", "admin"]
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "Browse and Read a Resource",
+      "icon": "menu_book",
+      "role": "Student",
+      "action": "browse and read",
+      "object": "Resource",
+      "benefit": "I can find content matched to my reading level and interests to build comprehension and vocabulary.",
+      "whenClause": "I search or browse the library,",
+      "thenClause": "I see resources filtered by my reading level, subject, and interests, and I can open any available resource to read, watch, or complete."
+    },
+    {
+      "title": "Preview and Assign a Resource",
+      "icon": "assignment",
+      "role": "Teacher",
+      "action": "preview and assign",
+      "object": "Resource",
+      "benefit": "I can evaluate whether the content is appropriate and aligned to my learning objectives before students see it.",
+      "whenClause": "I preview a resource and choose to assign it,",
+      "thenClause": "I can select target classes or individual students, set a due date, and the assignment appears in each student's task list.",
+      "crossObjects": [
+        { "slug": "assignment", "name": "Assignment" },
+        { "slug": "class", "name": "Class" }
+      ]
+    },
+    {
+      "title": "Review Resource Usage",
+      "icon": "bar_chart",
+      "role": "Teacher",
+      "action": "review usage of",
+      "object": "Resource",
+      "benefit": "I can understand which resources are engaging students and driving learning outcomes.",
+      "whenClause": "I view a resource's usage report,",
+      "thenClause": "I see which students have accessed it, completion rates, time spent, and any associated quiz or practice scores.",
+      "crossObjects": [
+        { "slug": "student", "name": "Student" },
+        { "slug": "score", "name": "Score" }
+      ]
+    }
+  ],
+  "businessRules": [
+    {
+      "title": "Uniqueness",
+      "description": "A Resource is uniquely identified by its internal content ID within a product. The same content may exist as separate Resource instances across products (e.g., a book in myON and a lesson in Nearpod)."
+    },
+    {
+      "title": "Creation",
+      "description": "Resources are ingested via publisher feeds, content import pipelines, or internal authoring tools. Manual creation is limited to admin and content team roles."
+    },
+    {
+      "title": "Skill Alignment",
+      "description": "Every Resource should be aligned to at least one Skill or Standard. Alignment is set during content import and can be refined by curriculum specialists."
+    },
+    {
+      "title": "Level Matching",
+      "description": "When a Student browses resources, results are filtered or ranked by the student's current reading/difficulty level. Teachers can override level restrictions for specific assignments."
+    },
+    {
+      "title": "Availability",
+      "description": "Resource availability is governed by the school or district license. Free resources are universally accessible; Licensed and Premium resources require an active subscription."
+    },
+    {
+      "title": "Archival",
+      "description": "When a Resource is archived, it is hidden from browse and search results but remains accessible in historical assignment and score records. Archived resources cannot be newly assigned."
+    },
+    {
+      "title": "Usage Tracking",
+      "description": "Every student interaction with a Resource (open, read/play, complete, bookmark) generates a usage event. These events feed into usage reports and inform adaptive recommendations."
+    }
+  ],
+  "lifecycle": {
+    "states": [
+      {
+        "name": "Active",
+        "description": "Available for browsing, searching, and assignment",
+        "triggers": "Content import, admin activation",
+        "variant": "active"
+      },
+      {
+        "name": "Archived",
+        "description": "Hidden from discovery but retained for historical data",
+        "triggers": "Admin action, license expiration, publisher withdrawal",
+        "variant": "default"
+      }
+    ],
+    "transitions": [
+      { "from": "Active", "to": ["Archived"] },
+      { "from": "Archived", "to": ["Active"] }
+    ]
+  },
+  "relationships": [
+    {
+      "targetSlug": "student",
+      "targetName": "Student",
+      "mechanics": "Students access Resources through browsing, search, or teacher-assigned work. Usage events (open, read, complete) are tracked per student per resource.",
+      "cardinality": "Many-to-many. A Resource can be accessed by many Students; a Student interacts with many Resources. Typical: hundreds of students per popular resource.",
+      "sorts": "Resources for a Student: by reading level match (default), by recently accessed, by subject, alphabetically by title.",
+      "filters": "By subject, by resource type, by reading level range, by product, by completion status (not started, in progress, completed).",
+      "dependencies": "If a Student is deactivated, their usage history for the Resource persists for reporting but the student no longer appears in active usage lists."
+    },
+    {
+      "targetSlug": "skill",
+      "targetName": "Skill",
+      "mechanics": "Resources are aligned to Skills during content import. A resource may target multiple skills; completion contributes to skill proficiency tracking.",
+      "cardinality": "Many-to-many. A Resource aligns to multiple Skills; a Skill is practiced through multiple Resources.",
+      "sorts": "Skills for a Resource: by alignment strength (primary/secondary), alphabetically.",
+      "filters": "By standard framework (Common Core, state standards), by subject domain, by grade band.",
+      "dependencies": "If a Skill is deprecated or remapped, resource alignments are updated in bulk by curriculum team."
+    },
+    {
+      "targetSlug": "assignment",
+      "targetName": "Assignment",
+      "mechanics": "Teachers assign Resources to students or classes, creating Assignment instances. A resource can be assigned multiple times to different groups.",
+      "cardinality": "One-to-many. A Resource can be referenced by many Assignments; each Assignment references one Resource (or a set in a playlist).",
+      "sorts": "Assignments for a Resource: by creation date (newest first), by due date, by class.",
+      "filters": "By class, by assignment status (active, completed, overdue), by teacher.",
+      "dependencies": "If a Resource is archived, existing assignments remain accessible for completion but no new assignments can reference the archived resource."
+    }
+  ],
+  "relatedObjects": ["student", "skill", "assignment", "score", "class", "teacher"],
+  "nestedObjects": [
+    {
+      "slug": "skill",
+      "name": "Skill / Standard",
+      "cardinality": "Many-to-many",
+      "description": "Skills and standards this resource is aligned to"
+    },
+    {
+      "slug": "assignment",
+      "name": "Assignment",
+      "cardinality": "One-to-many",
+      "description": "Assignments that reference this resource"
+    },
+    {
+      "slug": "score",
+      "name": "Score",
+      "cardinality": "One-to-many",
+      "description": "Quiz/practice scores generated from this resource"
+    },
+    {
+      "slug": "quiz",
+      "name": "Quiz",
+      "cardinality": "One-to-many",
+      "description": "Embedded quizzes or comprehension checks within the resource"
+    }
+  ],
+  "allAttributes": [
+    {
+      "name": "Title",
+      "dataType": "String",
+      "required": true,
+      "source": "Content Import / Publisher Feed",
+      "description": "Primary identifier. Appears on every card, search result, and assignment reference."
+    },
+    {
+      "name": "Resource Type",
+      "dataType": "Enum",
+      "required": true,
+      "source": "Content Import",
+      "description": "Book, Article, Video, Lesson, or Practice Set. Determines the icon, interaction model, and default viewer."
+    },
+    {
+      "name": "Subject",
+      "dataType": "Enum",
+      "required": true,
+      "source": "Content Import / Catalog",
+      "description": "Subject area — ELA, Math, Science, Social Studies, SEL. Used for filtering and skill alignment."
+    },
+    {
+      "name": "Reading/Difficulty Level",
+      "dataType": "String",
+      "source": "System / Publisher",
+      "description": "Lexile measure, grade equivalent, or difficulty rating. Used for matching resources to student ability."
+    },
+    {
+      "name": "Skill Alignment",
+      "dataType": "Reference → Skill[]",
+      "source": "Content Import / Catalog",
+      "description": "Which Skills and Standards this resource is aligned to. Drives adaptive recommendations.",
+      "isReference": true,
+      "referenceSlug": "skill",
+      "referenceName": "Skill"
+    },
+    {
+      "name": "Product",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System",
+      "description": "Which Renaissance product hosts this resource — myON, AR, Freckle, Nearpod, or Lalilo."
+    },
+    {
+      "name": "Format",
+      "dataType": "Enum",
+      "required": true,
+      "source": "Content Import",
+      "description": "Text, Interactive, Video, or Audio. Determines the rendering/playback approach."
+    },
+    {
+      "name": "Duration/Length",
+      "dataType": "String",
+      "source": "Content Import / System",
+      "description": "Page count for books, estimated time for articles/videos, question count for practice sets."
+    },
+    {
+      "name": "Publisher/Author",
+      "dataType": "String",
+      "source": "Publisher Feed",
+      "description": "Content creator or publishing entity. Shown on detail views and in catalog metadata."
+    },
+    {
+      "name": "Topic/Genre",
+      "dataType": "Enum",
+      "source": "Content Import / Catalog",
+      "description": "Genre or topic category — Fiction, Nonfiction, Science, Biography, Poetry, etc. Multi-select for cross-genre content."
+    },
+    {
+      "name": "Language",
+      "dataType": "Enum",
+      "required": true,
+      "source": "Content Import",
+      "description": "Content language — English, Spanish, French, etc. Used for language-specific browsing and Lalilo content."
+    },
+    {
+      "name": "Availability",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System / Licensing",
+      "description": "Free, Licensed, or Premium. Controls student access based on school/district subscription tier."
+    },
+    {
+      "name": "Status",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System / Admin",
+      "description": "Active or Archived. Archived resources are hidden from browse/search but retained for historical data."
+    }
+  ],
+  "allCTAs": [
+    {
+      "name": "View / Read / Play",
+      "roles": "Student",
+      "permission": "Read",
+      "priority": "P",
+      "roleKeys": ["student"]
+    },
+    {
+      "name": "Preview",
+      "roles": "Teacher",
+      "permission": "Read",
+      "priority": "S",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Assign",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "S",
+      "crossObjectSlug": "assignment",
+      "crossObjectName": "Assignment",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Add to Favorites",
+      "roles": "Student, Teacher",
+      "permission": "Write",
+      "priority": "T",
+      "roleKeys": ["student", "teacher"]
+    },
+    {
+      "name": "Search / Browse",
+      "roles": "Student, Teacher",
+      "permission": "Read",
+      "priority": "S",
+      "roleKeys": ["student", "teacher"]
+    },
+    {
+      "name": "View Usage Report",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "T",
+      "crossObjectSlug": "student",
+      "crossObjectName": "Student",
+      "roleKeys": ["teacher", "admin"]
+    }
+  ],
+  "sipValidation": {
+    "structure": {
+      "pass": true,
+      "evidence": "A Resource has rich attributes: title, type, subject, reading level, skill alignment, product, format, duration, publisher, topic/genre, language, availability, and status. You can design a full detail page."
+    },
+    "instances": {
+      "pass": true,
+      "evidence": "Charlotte's Web (680L Book on myON), Fraction Foundations (Grade 4 Practice Set on Freckle), Volcanoes: Earth's Fiery Power (820L Article on myON). Libraries contain thousands of Resource instances."
+    },
+    "purpose": {
+      "pass": true,
+      "evidence": "Resources are the core content students consume. Students browse and read them, teachers preview and assign them, and the system tracks usage to inform adaptive learning paths. Without Resources, there is nothing for students to learn from."
+    },
+    "verdict": "Core knowledge object. The foundational content unit across all learning products."
+  },
+  "synonyms": [
+    {
+      "term": "Book",
+      "context": "myON, Accelerated Reader",
+      "notes": "Specifically refers to digital or physical book resources"
+    },
+    {
+      "term": "Article",
+      "context": "myON, Nearpod",
+      "notes": "Short-form text content — news articles, informational passages"
+    },
+    {
+      "term": "Lesson",
+      "context": "Nearpod, Freckle",
+      "notes": "Structured instructional sequence with multiple activities"
+    },
+    {
+      "term": "Content",
+      "context": "Internal / Cross-product",
+      "notes": "Generic term used in platform architecture and APIs"
+    },
+    {
+      "term": "Material",
+      "context": "Teacher-facing documentation",
+      "notes": "Used in professional development and curriculum planning contexts"
+    },
+    {
+      "term": "Activity",
+      "context": "Freckle, Lalilo",
+      "notes": "Interactive practice exercises and skill-building tasks"
+    }
+  ],
+  "shapeshifterMatrix": [
+    {
+      "context": "Library Browse",
+      "value": "library-browse",
+      "shape": "card",
+      "description": "A browsable grid of resources filtered by subject and level. Teachers scan covers and titles to find content for upcoming lessons, with quick access to preview or favorite.",
+      "visibleAttributes": ["Title", "Resource Type", "Subject", "Reading/Difficulty Level", "Product"],
+      "availableCTAs": ["View / Read / Play", "Add to Favorites"],
+      "cardShape": "Cover card"
+    },
+    {
+      "context": "Search Results",
+      "value": "search-results",
+      "shape": "row",
+      "description": "Resources matching a search query with type, subject, level, and format. Teachers narrow down options and preview content before selecting.",
+      "visibleAttributes": ["Title", "Resource Type", "Subject", "Reading/Difficulty Level", "Product", "Format"],
+      "availableCTAs": ["View / Read / Play", "Preview"],
+      "cardShape": "Compact row"
+    },
+    {
+      "context": "Assignment Builder",
+      "value": "assignment-builder",
+      "shape": "row",
+      "description": "Resources listed for selection when building an assignment. Teachers preview content and assign it to students directly from here.",
+      "visibleAttributes": ["Title", "Resource Type", "Subject", "Reading/Difficulty Level", "Format"],
+      "availableCTAs": ["Preview", "Assign"],
+      "cardShape": "Compact row"
+    },
+    {
+      "context": "Resource Detail",
+      "value": "resource-detail",
+      "shape": "profile",
+      "description": "The complete resource record — metadata, skill alignment, publisher, availability, and all actions. Teachers review a resource fully before assigning, favoriting, or checking usage.",
+      "visibleAttributes": ["Title", "Resource Type", "Subject", "Reading/Difficulty Level", "Skill Alignment", "Product", "Format", "Duration/Length", "Publisher/Author", "Topic/Genre", "Language", "Availability", "Status"],
+      "availableCTAs": ["View / Read / Play", "Preview", "Assign", "Add to Favorites", "View Usage Report"],
+      "cardShape": "Full page"
+    },
+    {
+      "context": "Student Reading Log",
+      "value": "student-reading-log",
+      "shape": "row",
+      "description": "Resources a student has read or interacted with, listed with difficulty level and duration. Teachers track reading volume and level progression over time.",
+      "visibleAttributes": ["Title", "Resource Type", "Reading/Difficulty Level", "Duration/Length"],
+      "availableCTAs": ["View / Read / Play"],
+      "cardShape": "Compact row"
+    },
+    {
+      "context": "Recommendation Feed",
+      "value": "recommendation-feed",
+      "shape": "card",
+      "description": "Recommended resources shown as cover cards based on student level and interests. Teachers browse personalized suggestions to find the right content for their students.",
+      "visibleAttributes": ["Title", "Resource Type", "Subject", "Reading/Difficulty Level", "Topic/Genre"],
+      "availableCTAs": ["View / Read / Play", "Add to Favorites"],
+      "cardShape": "Cover card"
+    }
+  ]
+}

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Object Library — Caboodle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/main.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class="page">
+  <header class="page-header">
+    <nav class="main-nav" aria-label="Primary">
+
+      <div class="nav-start">
+        <a class="logo-link" href="/" aria-label="Caboodle home">
+          <img src="../caboodle-logo.svg" alt="Caboodle" height="40">
+        </a>
+        <button class="nav-search-trigger" type="button" aria-label="Search Caboodle">
+          <span class="nav-search-label">
+            <span class="material-icons" aria-hidden="true">search</span>
+            <span>Search</span>
+          </span>
+          <kbd class="nav-hotkey">
+            <span aria-hidden="true">⌘</span><span>K</span>
+          </kbd>
+        </button>
+      </div>
+
+      <div class="nav-end">
+        <ul class="nav-tabs">
+          <li><a href="/" class="nav-tab">Home</a></li>
+          <li><a href="/objects" class="nav-tab" aria-current="page">Object Library</a></li>
+          <li><a href="/resources" class="nav-tab">Resources</a></li>
+          <li><a href="/process" class="nav-tab">Process</a></li>
+          <li><a href="/glossary" class="nav-tab">Glossary</a></li>
+        </ul>
+        <button class="nav-profile-btn" type="button" aria-label="User profile">AB</button>
+      </div>
+
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Page headline -->
+    <div class="page-headline">
+      <h1>Object Library</h1>
+      <p>The Object Library is the single source of truth for the core objects shared across Renaissance products. Each Object Guide below documents the object's definition, attributes, relationships, CTAs, and business rules following the <a href="/process">ORCA process</a>.</p>
+    </div>
+
+    <!-- Secondary filter tabs -->
+    <nav class="secondary-tabs" aria-label="Object categories">
+      <button class="secondary-tab" aria-selected="true">All Objects</button>
+      <button class="secondary-tab" aria-selected="false">People</button>
+      <button class="secondary-tab" aria-selected="false">Organizations</button>
+      <button class="secondary-tab" aria-selected="false">Activities</button>
+      <button class="secondary-tab" aria-selected="false">Curriculum</button>
+      <button class="secondary-tab" aria-selected="false">Insights</button>
+    </nav>
+
+    <!-- Card grid content area -->
+    <div class="content-area">
+
+      <!-- Common Objects -->
+      <div class="section-group">
+        <h2 class="section-group-heading">Common Objects</h2>
+        <p class="section-group-desc">Objects used across Renaissance products.</p>
+
+        <div class="section-group-grid">
+
+          <!-- Student -->
+          <article class="obj-card">
+            <div class="obj-card-body">
+              <div class="obj-card-header">
+                <div class="obj-card-avatar" style="background-color: #2563EB"><img src="../img/object_icon.svg" alt="" width="24" height="24"></div>
+                <div>
+                  <div class="obj-card-name">Student <span>(Core)</span></div>
+                  <div class="obj-card-used-in">Used in: All products</div>
+                </div>
+              </div>
+              <p class="obj-card-definition">A learner enrolled in an educational institution who takes assessments and builds skills.</p>
+            </div>
+            <div class="obj-card-stats">
+              <div class="obj-card-stat"><span class="obj-card-stat-value">14</span><span class="obj-card-stat-label">Attributes</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">8</span><span class="obj-card-stat-label">CTAs</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">5</span><span class="obj-card-stat-label">Relationships</span></div>
+            </div>
+            <div class="obj-card-actions"><a href="/objects/student" class="obj-card-link">View details</a></div>
+          </article>
+
+          <!-- Teacher -->
+          <article class="obj-card">
+            <div class="obj-card-body">
+              <div class="obj-card-header">
+                <div class="obj-card-avatar" style="background-color: #059669"><img src="../img/object_icon.svg" alt="" width="24" height="24"></div>
+                <div>
+                  <div class="obj-card-name">Teacher <span>(Core)</span></div>
+                  <div class="obj-card-used-in">Used in: All products</div>
+                </div>
+              </div>
+              <p class="obj-card-definition">An educator who creates assignments, administers assessments, and monitors student progress.</p>
+            </div>
+            <div class="obj-card-stats">
+              <div class="obj-card-stat"><span class="obj-card-stat-value">12</span><span class="obj-card-stat-label">Attributes</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">10</span><span class="obj-card-stat-label">CTAs</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">4</span><span class="obj-card-stat-label">Relationships</span></div>
+            </div>
+            <div class="obj-card-actions"><a href="/objects/teacher" class="obj-card-link">View details</a></div>
+          </article>
+
+          <!-- Class -->
+          <article class="obj-card">
+            <div class="obj-card-body">
+              <div class="obj-card-header">
+                <div class="obj-card-avatar" style="background-color: #7C3AED"><img src="../img/object_icon.svg" alt="" width="24" height="24"></div>
+                <div>
+                  <div class="obj-card-name">Class <span>(Core)</span></div>
+                  <div class="obj-card-used-in">Used in: All products</div>
+                </div>
+              </div>
+              <p class="obj-card-definition">A group of students assigned to a teacher for instruction, assessment, and progress tracking.</p>
+            </div>
+            <div class="obj-card-stats">
+              <div class="obj-card-stat"><span class="obj-card-stat-value">10</span><span class="obj-card-stat-label">Attributes</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">7</span><span class="obj-card-stat-label">CTAs</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">5</span><span class="obj-card-stat-label">Relationships</span></div>
+            </div>
+            <div class="obj-card-actions"><a href="/objects/class" class="obj-card-link">View details</a></div>
+          </article>
+
+          <!-- School -->
+          <article class="obj-card">
+            <div class="obj-card-body">
+              <div class="obj-card-header">
+                <div class="obj-card-avatar" style="background-color: #D97706"><img src="../img/object_icon.svg" alt="" width="24" height="24"></div>
+                <div>
+                  <div class="obj-card-name">School <span>(Core)</span></div>
+                  <div class="obj-card-used-in">Used in: All products</div>
+                </div>
+              </div>
+              <p class="obj-card-definition">An educational institution that contains classes, teachers, and students within a district.</p>
+            </div>
+            <div class="obj-card-stats">
+              <div class="obj-card-stat"><span class="obj-card-stat-value">8</span><span class="obj-card-stat-label">Attributes</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">5</span><span class="obj-card-stat-label">CTAs</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">3</span><span class="obj-card-stat-label">Relationships</span></div>
+            </div>
+            <div class="obj-card-actions"><a href="/objects/school" class="obj-card-link">View details</a></div>
+          </article>
+
+          <!-- District -->
+          <article class="obj-card">
+            <div class="obj-card-body">
+              <div class="obj-card-header">
+                <div class="obj-card-avatar" style="background-color: #0D9488"><img src="../img/object_icon.svg" alt="" width="24" height="24"></div>
+                <div>
+                  <div class="obj-card-name">District <span>(Core)</span></div>
+                  <div class="obj-card-used-in">Used in: All products</div>
+                </div>
+              </div>
+              <p class="obj-card-definition">An administrative region that governs multiple schools, managing licensing and policy.</p>
+            </div>
+            <div class="obj-card-stats">
+              <div class="obj-card-stat"><span class="obj-card-stat-value">7</span><span class="obj-card-stat-label">Attributes</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">4</span><span class="obj-card-stat-label">CTAs</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">2</span><span class="obj-card-stat-label">Relationships</span></div>
+            </div>
+            <div class="obj-card-actions"><a href="/objects/district" class="obj-card-link">View details</a></div>
+          </article>
+
+          <!-- Assessment -->
+          <article class="obj-card">
+            <div class="obj-card-body">
+              <div class="obj-card-header">
+                <div class="obj-card-avatar" style="background-color: #EA580C"><img src="../img/object_icon.svg" alt="" width="24" height="24"></div>
+                <div>
+                  <div class="obj-card-name">Assessment <span>(Core)</span></div>
+                  <div class="obj-card-used-in">Used in: Star, AR, myON</div>
+                </div>
+              </div>
+              <p class="obj-card-definition">A structured evaluation that measures student proficiency in one or more skills or standards.</p>
+            </div>
+            <div class="obj-card-stats">
+              <div class="obj-card-stat"><span class="obj-card-stat-value">11</span><span class="obj-card-stat-label">Attributes</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">6</span><span class="obj-card-stat-label">CTAs</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">5</span><span class="obj-card-stat-label">Relationships</span></div>
+            </div>
+            <div class="obj-card-actions"><a href="/objects/assessment" class="obj-card-link">View details</a></div>
+          </article>
+
+          <!-- Assignment -->
+          <article class="obj-card">
+            <div class="obj-card-body">
+              <div class="obj-card-header">
+                <div class="obj-card-avatar" style="background-color: #2563EB"><img src="../img/object_icon.svg" alt="" width="24" height="24"></div>
+                <div>
+                  <div class="obj-card-name">Assignment <span>(Core)</span></div>
+                  <div class="obj-card-used-in">Used in: Freckle, Lalilo</div>
+                </div>
+              </div>
+              <p class="obj-card-definition">A teacher-created task that targets specific skills and is assigned to students or classes.</p>
+            </div>
+            <div class="obj-card-stats">
+              <div class="obj-card-stat"><span class="obj-card-stat-value">10</span><span class="obj-card-stat-label">Attributes</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">7</span><span class="obj-card-stat-label">CTAs</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">4</span><span class="obj-card-stat-label">Relationships</span></div>
+            </div>
+            <div class="obj-card-actions"><a href="/objects/assignment" class="obj-card-link">View details</a></div>
+          </article>
+
+          <!-- Skill -->
+          <article class="obj-card">
+            <div class="obj-card-body">
+              <div class="obj-card-header">
+                <div class="obj-card-avatar" style="background-color: #059669"><img src="../img/object_icon.svg" alt="" width="24" height="24"></div>
+                <div>
+                  <div class="obj-card-name">Skill <span>(Core)</span></div>
+                  <div class="obj-card-used-in">Used in: Freckle, Lalilo</div>
+                </div>
+              </div>
+              <p class="obj-card-definition">A discrete, measurable learning competency that a student develops through practice and assessment.</p>
+            </div>
+            <div class="obj-card-stats">
+              <div class="obj-card-stat"><span class="obj-card-stat-value">9</span><span class="obj-card-stat-label">Attributes</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">4</span><span class="obj-card-stat-label">CTAs</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">4</span><span class="obj-card-stat-label">Relationships</span></div>
+            </div>
+            <div class="obj-card-actions"><a href="/objects/skill" class="obj-card-link">View details</a></div>
+          </article>
+
+          <!-- Resource -->
+          <article class="obj-card">
+            <div class="obj-card-body">
+              <div class="obj-card-header">
+                <div class="obj-card-avatar" style="background-color: #D97706"><img src="../img/object_icon.svg" alt="" width="24" height="24"></div>
+                <div>
+                  <div class="obj-card-name">Resource <span>(Core)</span></div>
+                  <div class="obj-card-used-in">Used in: myON, AR, Freckle</div>
+                </div>
+              </div>
+              <p class="obj-card-definition">A learning material — book, article, video, or activity — that supports skill development.</p>
+            </div>
+            <div class="obj-card-stats">
+              <div class="obj-card-stat"><span class="obj-card-stat-value">10</span><span class="obj-card-stat-label">Attributes</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">5</span><span class="obj-card-stat-label">CTAs</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">3</span><span class="obj-card-stat-label">Relationships</span></div>
+            </div>
+            <div class="obj-card-actions"><a href="/objects/resource" class="obj-card-link">View details</a></div>
+          </article>
+
+          <!-- Score -->
+          <article class="obj-card">
+            <div class="obj-card-body">
+              <div class="obj-card-header">
+                <div class="obj-card-avatar" style="background-color: #7C3AED"><img src="../img/object_icon.svg" alt="" width="24" height="24"></div>
+                <div>
+                  <div class="obj-card-name">Score <span>(Core)</span></div>
+                  <div class="obj-card-used-in">Used in: Star, AR, Freckle</div>
+                </div>
+              </div>
+              <p class="obj-card-definition">A numeric or categorical result from an assessment that quantifies student performance.</p>
+            </div>
+            <div class="obj-card-stats">
+              <div class="obj-card-stat"><span class="obj-card-stat-value">8</span><span class="obj-card-stat-label">Attributes</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">3</span><span class="obj-card-stat-label">CTAs</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">3</span><span class="obj-card-stat-label">Relationships</span></div>
+            </div>
+            <div class="obj-card-actions"><a href="/objects/score" class="obj-card-link">View details</a></div>
+          </article>
+
+          <!-- Standard -->
+          <article class="obj-card">
+            <div class="obj-card-body">
+              <div class="obj-card-header">
+                <div class="obj-card-avatar" style="background-color: #0D9488"><img src="../img/object_icon.svg" alt="" width="24" height="24"></div>
+                <div>
+                  <div class="obj-card-name">Standard <span>(Core)</span></div>
+                  <div class="obj-card-used-in">Used in: All products</div>
+                </div>
+              </div>
+              <p class="obj-card-definition">A state or national learning expectation that defines what students should know at each grade level.</p>
+            </div>
+            <div class="obj-card-stats">
+              <div class="obj-card-stat"><span class="obj-card-stat-value">7</span><span class="obj-card-stat-label">Attributes</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">3</span><span class="obj-card-stat-label">CTAs</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">3</span><span class="obj-card-stat-label">Relationships</span></div>
+            </div>
+            <div class="obj-card-actions"><a href="/objects/standard" class="obj-card-link">View details</a></div>
+          </article>
+
+          <!-- Proficiency Prediction -->
+          <article class="obj-card">
+            <div class="obj-card-body">
+              <div class="obj-card-header">
+                <div class="obj-card-avatar" style="background-color: #EA580C"><img src="../img/object_icon.svg" alt="" width="24" height="24"></div>
+                <div>
+                  <div class="obj-card-name">Proficiency Prediction <span>(Core)</span></div>
+                  <div class="obj-card-used-in">Used in: Star</div>
+                </div>
+              </div>
+              <p class="obj-card-definition">An AI-generated forecast of whether a student will meet proficiency on a state assessment.</p>
+            </div>
+            <div class="obj-card-stats">
+              <div class="obj-card-stat"><span class="obj-card-stat-value">6</span><span class="obj-card-stat-label">Attributes</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">2</span><span class="obj-card-stat-label">CTAs</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">3</span><span class="obj-card-stat-label">Relationships</span></div>
+            </div>
+            <div class="obj-card-actions"><a href="/objects/proficiency-prediction" class="obj-card-link">View details</a></div>
+          </article>
+
+          <!-- Insight -->
+          <article class="obj-card">
+            <div class="obj-card-body">
+              <div class="obj-card-header">
+                <div class="obj-card-avatar" style="background-color: #2563EB"><img src="../img/object_icon.svg" alt="" width="24" height="24"></div>
+                <div>
+                  <div class="obj-card-name">Insight <span>(Core)</span></div>
+                  <div class="obj-card-used-in">Used in: All products</div>
+                </div>
+              </div>
+              <p class="obj-card-definition">An actionable observation derived from data — surfacing trends, risks, or opportunities for intervention.</p>
+            </div>
+            <div class="obj-card-stats">
+              <div class="obj-card-stat"><span class="obj-card-stat-value">7</span><span class="obj-card-stat-label">Attributes</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">4</span><span class="obj-card-stat-label">CTAs</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">3</span><span class="obj-card-stat-label">Relationships</span></div>
+            </div>
+            <div class="obj-card-actions"><a href="/objects/insight" class="obj-card-link">View details</a></div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Domain Objects -->
+      <div class="section-group">
+        <h2 class="section-group-heading">Domain Objects</h2>
+        <p class="section-group-desc">Objects used in specific domains across Renaissance products.</p>
+
+        <div class="section-group-grid">
+
+          <!-- Student (Lesson Participant) — Nearpod domain variant -->
+          <article class="obj-card">
+            <div class="obj-card-body">
+              <div class="obj-card-header">
+                <div class="obj-card-avatar" style="background-color: #2563EB"><img src="../img/object_icon.svg" alt="" width="24" height="24"></div>
+                <div>
+                  <div class="obj-card-name">Student <span>(Lesson Participant)</span></div>
+                  <div class="obj-card-used-in">Used in: Nearpod</div>
+                </div>
+              </div>
+              <p class="obj-card-definition">A learner who joins and participates in live or self-paced interactive lessons within Nearpod.</p>
+            </div>
+            <div class="obj-card-stats">
+              <div class="obj-card-stat"><span class="obj-card-stat-value">14</span><span class="obj-card-stat-label">Attributes</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">8</span><span class="obj-card-stat-label">CTAs</span></div>
+              <div class="obj-card-stat"><span class="obj-card-stat-value">5</span><span class="obj-card-stat-label">Relationships</span></div>
+            </div>
+            <div class="obj-card-actions"><a href="/objects/student-lesson-participant" class="obj-card-link">View details</a></div>
+          </article>
+
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="page-footer">
+    <div class="center cluster" style="--justify: space-between">
+      <span>&copy; 2026 Caboodle</span>
+      <span>An OOUX resource site</span>
+    </div>
+  </footer>
+</body>
+</html>

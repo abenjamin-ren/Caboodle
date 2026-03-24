@@ -1,0 +1,424 @@
+{
+  "identity": {
+    "slug": "solution",
+    "name": "Solution",
+    "qualifier": "(Domain)",
+    "objectType": "domain",
+    "category": "container",
+    "definition": "A Solution is a bundle of Renaissance products sold as a unit, serving as the primary commercial offering under Renaissance Intelligence.",
+    "synonyms": ["bundle", "package", "suite"],
+    "products": "Renaissance Intelligence"
+  },
+  "variations": [],
+  "representations": [
+    {
+      "layout": "card",
+      "heading": "Card layout",
+      "description": "How a Solution appears in product management dashboards and catalog grids",
+      "defaultShape": "card",
+      "componentTag": "ren-solution-card",
+      "examples": [
+        {
+          "name": "Renaissance Star 360",
+          "productCount": 5,
+          "status": "active",
+          "color": "#7C3AED"
+        },
+        {
+          "name": "myON + Accelerated Reader",
+          "productCount": 2,
+          "status": "active",
+          "color": "#2563EB"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Name",
+          "dataType": "String",
+          "source": "Admin",
+          "description": "Display name of the Solution bundle."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System / Admin",
+          "description": "Current lifecycle state: active, inactive, or deprecated."
+        },
+        {
+          "name": "Included Products",
+          "dataType": "Reference → Product[]",
+          "source": "Admin",
+          "description": "Products bundled in this Solution.",
+          "isReference": true,
+          "referenceSlug": "product",
+          "referenceName": "Product"
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Details",
+          "roles": "Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["admin"]
+        }
+      ]
+    },
+    {
+      "layout": "list",
+      "heading": "List layout",
+      "description": "How a Solution appears in management tables and assignment workflows",
+      "defaultShape": "row",
+      "componentTag": "ren-solution-row",
+      "examples": [
+        {
+          "name": "Renaissance Star 360",
+          "productCount": 5,
+          "status": "active",
+          "color": "#7C3AED"
+        },
+        {
+          "name": "Freckle + Lalilo",
+          "productCount": 2,
+          "status": "deprecated",
+          "color": "#999"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Name",
+          "dataType": "String",
+          "source": "Admin",
+          "description": "Display name of the Solution bundle."
+        },
+        {
+          "name": "Included Products",
+          "dataType": "Reference → Product[]",
+          "source": "Admin",
+          "description": "Products bundled in this Solution.",
+          "isReference": true,
+          "referenceSlug": "product",
+          "referenceName": "Product"
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System / Admin",
+          "description": "Current lifecycle state: active, inactive, or deprecated."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Details",
+          "roles": "Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["admin"]
+        }
+      ]
+    },
+    {
+      "layout": "detail",
+      "heading": "Detail page layout",
+      "description": "What users see when they open a full Solution record",
+      "defaultShape": "profile",
+      "componentTag": "ren-solution-profile",
+      "examples": [
+        {
+          "name": "Renaissance Star 360",
+          "productCount": 5,
+          "status": "active",
+          "color": "#7C3AED"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Solution ID",
+          "dataType": "String",
+          "source": "System",
+          "description": "Unique system identifier for this Solution."
+        },
+        {
+          "name": "Name",
+          "dataType": "String",
+          "source": "Admin",
+          "description": "Display name of the Solution bundle."
+        },
+        {
+          "name": "Apps Tag",
+          "dataType": "String",
+          "source": "System",
+          "description": "Machine-readable tag used in the apps platform for routing and identification."
+        },
+        {
+          "name": "Included Products",
+          "dataType": "Reference → Product[]",
+          "source": "Admin",
+          "description": "Products bundled in this Solution.",
+          "isReference": true,
+          "referenceSlug": "product",
+          "referenceName": "Product"
+        },
+        {
+          "name": "Activation Logic",
+          "dataType": "Multiple",
+          "source": "System",
+          "description": "Rules that determine how the Solution is activated for a school or district."
+        },
+        {
+          "name": "Override Rules",
+          "dataType": "Multiple",
+          "source": "Admin",
+          "description": "Exceptions to standard activation logic for specific populations."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System / Admin",
+          "description": "Current lifecycle state: active, inactive, or deprecated."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Details",
+          "roles": "Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["admin"]
+        },
+        {
+          "name": "View Included Products",
+          "roles": "Admin",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "product",
+          "crossObjectName": "Product",
+          "roleKeys": ["admin"]
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "View Solution Catalog",
+      "icon": "inventory_2",
+      "role": "Admin",
+      "action": "browse",
+      "object": "Solution",
+      "benefit": "I can understand which product bundles are available and what each includes.",
+      "whenClause": "I navigate to the Solution catalog,",
+      "thenClause": "I see a list of all Solutions with their included product counts and current status."
+    },
+    {
+      "title": "Review Included Products",
+      "icon": "apps",
+      "role": "Admin",
+      "action": "view",
+      "object": "Solution",
+      "benefit": "I can verify the correct products are bundled before assigning the Solution to a school.",
+      "whenClause": "I open a Solution's detail page,",
+      "thenClause": "I see the full list of included Products with their tiers and availability.",
+      "crossObjects": [{ "slug": "product", "name": "Product" }]
+    }
+  ],
+  "businessRules": [
+    {
+      "title": "Uniqueness",
+      "description": "A Solution is uniquely identified by its Solution ID. The Apps Tag must also be unique across all Solutions."
+    },
+    {
+      "title": "Product Membership",
+      "description": "A Solution must include at least one Product. Products can belong to multiple Solutions simultaneously."
+    },
+    {
+      "title": "Status Transitions",
+      "description": "Active Solutions can be set to inactive (temporarily unavailable) or deprecated (permanently retired). Deprecated Solutions cannot be reactivated."
+    },
+    {
+      "title": "Assignment Impact",
+      "description": "Changing a Solution's included Products does not retroactively affect existing Product Assignments. Only new assignments pick up the updated bundle."
+    },
+    {
+      "title": "Deprecation Cascade",
+      "description": "Deprecating a Solution does not deprecate its included Products. Products remain independently available for direct assignment."
+    }
+  ],
+  "lifecycle": {
+    "states": [
+      {
+        "name": "Active",
+        "description": "Available for assignment to schools and districts",
+        "triggers": "Admin creates or activates the Solution",
+        "variant": "active"
+      },
+      {
+        "name": "Inactive",
+        "description": "Temporarily unavailable for new assignments",
+        "triggers": "Admin sets to inactive; existing assignments unaffected",
+        "variant": "default"
+      },
+      {
+        "name": "Deprecated",
+        "description": "Permanently retired from the catalog",
+        "triggers": "Admin deprecates; no new assignments allowed",
+        "variant": "warn"
+      }
+    ],
+    "transitions": [
+      { "from": "Active", "to": ["Inactive", "Deprecated"] },
+      { "from": "Inactive", "to": ["Active", "Deprecated"] }
+    ]
+  },
+  "relationships": [
+    {
+      "targetSlug": "product",
+      "targetName": "Product",
+      "mechanics": "Products are added to a Solution by an Admin during bundle configuration. A Solution defines which Products are included.",
+      "cardinality": "Many-to-many. A Solution includes one or more Products; a Product can belong to multiple Solutions.",
+      "sorts": "Products within a Solution: alphabetical by name (default), by tier, by product type.",
+      "filters": "By tier, by availability status, by subject area, by product type.",
+      "dependencies": "Removing a Product from a Solution does not affect existing Product Assignments that were created from the Solution."
+    }
+  ],
+  "relatedObjects": ["product", "product-assignment"],
+  "nestedObjects": [
+    {
+      "slug": "product",
+      "name": "Product",
+      "cardinality": "One-to-many",
+      "description": "Products bundled in this Solution"
+    }
+  ],
+  "allAttributes": [
+    {
+      "name": "Solution ID",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "Unique system identifier for this Solution."
+    },
+    {
+      "name": "Name",
+      "dataType": "String",
+      "required": true,
+      "source": "Admin",
+      "description": "Display name of the Solution bundle. Must be unique across active Solutions."
+    },
+    {
+      "name": "Apps Tag",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "Machine-readable tag used in the apps platform for routing and identification."
+    },
+    {
+      "name": "Included Products",
+      "dataType": "Reference → Product[]",
+      "source": "Admin",
+      "description": "Products bundled in this Solution. At least one required.",
+      "isReference": true,
+      "referenceSlug": "product",
+      "referenceName": "Product"
+    },
+    {
+      "name": "Activation Logic",
+      "dataType": "Multiple",
+      "required": true,
+      "source": "System",
+      "description": "Rules that determine how the Solution is activated for a school or district. Includes entitlement checks and license validation."
+    },
+    {
+      "name": "Override Rules",
+      "dataType": "Multiple",
+      "required": true,
+      "source": "Admin",
+      "description": "Exceptions to standard activation logic for specific populations, pilot programs, or promotional access."
+    },
+    {
+      "name": "Status",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System / Admin",
+      "description": "Current lifecycle state: active, inactive, or deprecated."
+    }
+  ],
+  "allCTAs": [
+    {
+      "name": "View Details",
+      "roles": "Admin",
+      "permission": "Read",
+      "priority": "P",
+      "roleKeys": ["admin"]
+    },
+    {
+      "name": "View Included Products",
+      "roles": "Admin",
+      "permission": "Read",
+      "priority": "S",
+      "crossObjectSlug": "product",
+      "crossObjectName": "Product",
+      "roleKeys": ["admin"]
+    }
+  ],
+  "sipValidation": {
+    "structure": {
+      "pass": true,
+      "evidence": "A Solution has meaningful attributes: name, apps tag, included products, activation logic, override rules, and status. A detail page can be designed around these."
+    },
+    "instances": {
+      "pass": true,
+      "evidence": "Renaissance Star 360 (5 products), myON + Accelerated Reader (2 products), Freckle + Lalilo (2 products). Each represents a distinct commercial bundle."
+    },
+    "purpose": {
+      "pass": true,
+      "evidence": "Solutions are the primary unit of sale for Renaissance Intelligence. Admins browse Solutions to understand what is available, and Product Assignments reference Solutions to provision access."
+    },
+    "verdict": "Domain object. The commercial packaging layer that groups Products into assignable bundles."
+  },
+  "synonyms": [
+    {
+      "term": "Bundle",
+      "context": "Sales and licensing teams",
+      "notes": "Common in commercial conversations about product packaging"
+    },
+    {
+      "term": "Package",
+      "context": "Customer-facing communications",
+      "notes": "Used in proposals and order forms"
+    },
+    {
+      "term": "Suite",
+      "context": "Marketing materials",
+      "notes": "Used to describe comprehensive product collections"
+    }
+  ],
+  "shapeshifterMatrix": [
+    {
+      "context": "Solution Catalog",
+      "value": "solution-catalog",
+      "shape": "card",
+      "description": "Solutions shown as cards with included products and status. Admins browse the catalog to understand product bundles and their availability.",
+      "visibleAttributes": ["Name", "Included Products", "Status"],
+      "availableCTAs": ["View Details"],
+      "cardShape": "Medium card"
+    },
+    {
+      "context": "Assignment Workflow",
+      "value": "assignment-workflow",
+      "shape": "row",
+      "description": "Solutions listed during the provisioning workflow, showing included products and status. Admins select which solution to assign to a school or district.",
+      "visibleAttributes": ["Name", "Included Products", "Status"],
+      "availableCTAs": ["View Details", "View Included Products"],
+      "cardShape": "Compact row"
+    },
+    {
+      "context": "Solution Detail",
+      "value": "solution-detail",
+      "shape": "profile",
+      "description": "The complete solution record — ID, included products, activation logic, and override rules. Admins review how a solution is configured and what products it enables.",
+      "visibleAttributes": ["Solution ID", "Name", "Apps Tag", "Included Products", "Activation Logic", "Override Rules", "Status"],
+      "availableCTAs": ["View Details", "View Included Products"],
+      "cardShape": "Full page"
+    }
+  ]
+}

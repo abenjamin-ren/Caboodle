@@ -1,0 +1,823 @@
+{
+  "identity": {
+    "slug": "lesson",
+    "name": "Lesson",
+    "qualifier": "(Nearpod)",
+    "objectType": "domain",
+    "category": "content",
+    "definition": "A Lesson is a structured, interactive instructional content unit from Nearpod containing slides, activities, and assessments that a teacher can deliver live or assign self-paced.",
+    "synonyms": ["Content", "Presentation", "Module", "Slide Deck"],
+    "products": "Nearpod"
+  },
+  "variations": [],
+  "representations": [
+    {
+      "layout": "card",
+      "heading": "Card layout",
+      "description": "How a Lesson appears in the library browser and search results",
+      "defaultShape": "card",
+      "componentTag": "ren-lesson-card",
+      "examples": [
+        {
+          "title": "Introduction to Ecosystems",
+          "subject": "science",
+          "gradeBand": "3-5",
+          "lessonType": "live",
+          "slideCount": 18,
+          "duration": 45,
+          "source": "nearpod-library",
+          "status": "published",
+          "usageCount": 34,
+          "averageScore": 78,
+          "color": "#7C3AED"
+        },
+        {
+          "title": "Fractions: Adding & Subtracting",
+          "subject": "math",
+          "gradeBand": "3-5",
+          "lessonType": "both",
+          "slideCount": 24,
+          "duration": 60,
+          "source": "teacher-created",
+          "status": "published",
+          "usageCount": 12,
+          "averageScore": 65,
+          "color": "#059669"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Lesson Title",
+          "dataType": "String",
+          "source": "Teacher / Nearpod Library",
+          "description": "Primary identifier displayed in library and during delivery."
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "source": "Teacher / Nearpod Library",
+          "description": "Subject area: science, ela, math, social-studies."
+        },
+        {
+          "name": "Grade Band",
+          "dataType": "Enum",
+          "source": "Teacher / Nearpod Library",
+          "description": "Target grade range: K-2, 3-5, 6-8, 9-12."
+        },
+        {
+          "name": "Lesson Type",
+          "dataType": "Enum",
+          "source": "Teacher / System",
+          "description": "Delivery mode: live, self-paced, or both."
+        },
+        {
+          "name": "Slide Count",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Total number of slides including content slides and activities."
+        },
+        {
+          "name": "Duration",
+          "dataType": "Number",
+          "source": "Teacher estimate / System",
+          "description": "Estimated delivery time in minutes."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "Preview Lesson",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "S",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Launch Live Lesson",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "P",
+          "crossObjectSlug": "live-session",
+          "crossObjectName": "Live Session",
+          "roleKeys": ["teacher"]
+        }
+      ]
+    },
+    {
+      "layout": "list",
+      "heading": "List layout",
+      "description": "How a Lesson appears in tables, search results, and management views",
+      "defaultShape": "row",
+      "componentTag": "ren-lesson-row",
+      "examples": [
+        {
+          "title": "Introduction to Ecosystems",
+          "subject": "science",
+          "gradeBand": "3-5",
+          "lessonType": "live",
+          "slideCount": 18,
+          "duration": 45,
+          "source": "nearpod-library",
+          "status": "published",
+          "usageCount": 34,
+          "averageScore": 78,
+          "color": "#7C3AED"
+        },
+        {
+          "title": "Fractions: Adding & Subtracting",
+          "subject": "math",
+          "gradeBand": "3-5",
+          "lessonType": "both",
+          "slideCount": 24,
+          "duration": 60,
+          "source": "teacher-created",
+          "status": "draft",
+          "usageCount": 0,
+          "averageScore": null,
+          "color": "#059669"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Lesson Title",
+          "dataType": "String",
+          "source": "Teacher / Nearpod Library",
+          "description": "Primary identifier."
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "source": "Teacher / Nearpod Library",
+          "description": "Subject area."
+        },
+        {
+          "name": "Grade Band",
+          "dataType": "Enum",
+          "source": "Teacher / Nearpod Library",
+          "description": "Target grade range."
+        },
+        {
+          "name": "Lesson Type",
+          "dataType": "Enum",
+          "source": "Teacher / System",
+          "description": "Delivery mode."
+        },
+        {
+          "name": "Slide Count",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Total slide count."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Current lifecycle state: draft, published, archived."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "Preview Lesson",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "S",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Edit Lesson",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "S",
+          "roleKeys": ["teacher"]
+        }
+      ]
+    },
+    {
+      "layout": "detail",
+      "heading": "Detail page layout",
+      "description": "Full Lesson view in the editor or preview mode",
+      "defaultShape": "profile",
+      "componentTag": "ren-lesson-profile",
+      "examples": [
+        {
+          "title": "Introduction to Ecosystems",
+          "subject": "science",
+          "gradeBand": "3-5",
+          "lessonType": "live",
+          "slideCount": 18,
+          "duration": 45,
+          "source": "nearpod-library",
+          "status": "published",
+          "usageCount": 34,
+          "averageScore": 78,
+          "author": "Nearpod Content Team",
+          "color": "#7C3AED"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Lesson Title",
+          "dataType": "String",
+          "source": "Teacher / Nearpod Library",
+          "description": "Primary identifier."
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "source": "Teacher / Nearpod Library",
+          "description": "Subject area."
+        },
+        {
+          "name": "Grade Band",
+          "dataType": "Enum",
+          "source": "Teacher / Nearpod Library",
+          "description": "Target grade range."
+        },
+        {
+          "name": "Lesson Type",
+          "dataType": "Enum",
+          "source": "Teacher / System",
+          "description": "Delivery mode."
+        },
+        {
+          "name": "Slide Count",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Total slide count."
+        },
+        {
+          "name": "Duration",
+          "dataType": "Number",
+          "source": "Teacher estimate / System",
+          "description": "Estimated delivery time in minutes."
+        },
+        {
+          "name": "Author",
+          "dataType": "String",
+          "source": "System",
+          "description": "Creator of the lesson."
+        },
+        {
+          "name": "Source",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Origin: nearpod-library, teacher-created, shared."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Lifecycle state: draft, published, archived."
+        },
+        {
+          "name": "Usage Count",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Number of times the lesson has been delivered."
+        },
+        {
+          "name": "Average Score",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Mean score across all deliveries."
+        },
+        {
+          "name": "Interactive Elements",
+          "dataType": "Reference → Activity[]",
+          "source": "System",
+          "description": "Activities contained within this lesson.",
+          "isReference": true,
+          "referenceSlug": "activity",
+          "referenceName": "Activity"
+        },
+        {
+          "name": "Skills/Standards",
+          "dataType": "Reference → Skill[]",
+          "source": "Teacher / Nearpod Library",
+          "description": "Aligned skills and standards.",
+          "isReference": true,
+          "referenceSlug": "skill",
+          "referenceName": "Skill"
+        }
+      ],
+      "ctas": [
+        {
+          "name": "Preview Lesson",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "S",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Launch Live Lesson",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "P",
+          "crossObjectSlug": "live-session",
+          "crossObjectName": "Live Session",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Assign Self-Paced",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "P",
+          "crossObjectSlug": "assignment",
+          "crossObjectName": "Assignment",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Edit Lesson",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "S",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Duplicate Lesson",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "S",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Share Lesson",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "T",
+          "crossObjectSlug": "teacher",
+          "crossObjectName": "Teacher",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "View Lesson Report",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "report",
+          "crossObjectName": "Report",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Delete Lesson",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "Q",
+          "roleKeys": ["teacher"]
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "Browse and Launch Lesson",
+      "icon": "search",
+      "role": "Teacher",
+      "action": "browse and launch",
+      "object": "Lesson",
+      "benefit": "I can find standards-aligned content and deliver it live to my class immediately.",
+      "whenClause": "I search the Nearpod library and select a lesson,",
+      "thenClause": "I can preview its slides and activities, then launch it as a live session with a single click.",
+      "crossObjects": [{ "slug": "live-session", "name": "Live Session" }]
+    },
+    {
+      "title": "Create Custom Lesson",
+      "icon": "create",
+      "role": "Teacher",
+      "action": "create",
+      "object": "Lesson",
+      "benefit": "I can build interactive content tailored to my students' specific needs and curriculum.",
+      "whenClause": "I create a new lesson from scratch,",
+      "thenClause": "I can add slides, embed activities, set scoring, and publish it to my library for repeated use."
+    },
+    {
+      "title": "Join and Complete Lesson",
+      "icon": "login",
+      "role": "Student",
+      "action": "join",
+      "object": "Lesson",
+      "benefit": "I can participate in interactive activities and demonstrate my understanding.",
+      "whenClause": "I join a lesson using the session code,",
+      "thenClause": "I see the teacher's slides, respond to activities in real time, and receive immediate feedback on scored items.",
+      "crossObjects": [{ "slug": "live-session", "name": "Live Session" }, { "slug": "score", "name": "Score" }]
+    }
+  ],
+  "businessRules": [
+    {
+      "title": "Minimum Content",
+      "description": "A Lesson must contain at least one slide to be published. An empty Lesson remains in draft."
+    },
+    {
+      "title": "Subject and Grade Required",
+      "description": "Subject and Grade Band are required fields. They drive library filtering and standards alignment."
+    },
+    {
+      "title": "Lesson Type Determines Delivery",
+      "description": "A 'live' lesson can only be launched as a Live Session. A 'self-paced' lesson can only be assigned. A 'both' lesson supports either delivery mode."
+    },
+    {
+      "title": "Publishing Rules",
+      "description": "Publishing a Lesson locks its content for delivery. To modify a published Lesson, the teacher must create a new version or revert to draft."
+    },
+    {
+      "title": "Duplication",
+      "description": "Duplicating a Lesson copies all slides, activities, and configuration. Usage metrics, scores, and reports are not copied."
+    },
+    {
+      "title": "Sharing Scope",
+      "description": "A teacher can share Lessons with other teachers in their school. District-wide sharing requires admin approval."
+    },
+    {
+      "title": "Library Source Tracking",
+      "description": "Lessons from the Nearpod Library are tagged with source 'nearpod-library'. Teacher-created lessons are 'teacher-created'. Shared lessons from colleagues are 'shared'."
+    },
+    {
+      "title": "Archival",
+      "description": "Archived lessons are hidden from the active library but their historical reports and scores remain accessible."
+    },
+    {
+      "title": "Slide Count Calculation",
+      "description": "Slide Count includes both content slides and activity slides. It is recalculated whenever slides are added or removed."
+    },
+    {
+      "title": "Duration Estimation",
+      "description": "Duration is estimated by the teacher or calculated from Nearpod library metadata. It is advisory and not enforced during delivery."
+    },
+    {
+      "title": "Standards Alignment",
+      "description": "Skills/Standards references are optional but recommended. They power standards-based filtering in the library and reporting."
+    }
+  ],
+  "lifecycle": {
+    "states": [
+      {
+        "name": "Draft",
+        "description": "Lesson is being authored or edited",
+        "triggers": "Created by teacher or reverted from published",
+        "variant": "default"
+      },
+      {
+        "name": "Published",
+        "description": "Lesson is finalized and available for delivery",
+        "triggers": "Teacher publishes the lesson",
+        "variant": "active"
+      },
+      {
+        "name": "Archived",
+        "description": "Lesson is retired from active use but data retained",
+        "triggers": "Teacher or admin archives the lesson",
+        "variant": "default"
+      }
+    ],
+    "transitions": [
+      { "from": "Draft", "to": ["Published"] },
+      { "from": "Published", "to": ["Draft", "Archived"] },
+      { "from": "Archived", "to": ["Published"] }
+    ]
+  },
+  "relationships": [
+    {
+      "targetSlug": "activity",
+      "targetName": "Activity",
+      "mechanics": "Activities are created within a Lesson using the lesson editor. The teacher selects an activity type and configures it inline.",
+      "cardinality": "One-to-many. A Lesson contains zero or more Activities; each Activity belongs to exactly one Lesson.",
+      "sorts": "By position within lesson (default), by activity type.",
+      "filters": "By activity type, by scoring method.",
+      "dependencies": "Deleting a Lesson deletes all contained Activities. Duplicating a Lesson duplicates all Activities with reset metrics."
+    },
+    {
+      "targetSlug": "live-session",
+      "targetName": "Live Session",
+      "mechanics": "A Live Session is created when a teacher launches a Lesson for live delivery. The Session references the source Lesson.",
+      "cardinality": "One-to-many. A Lesson can be launched as many Live Sessions over time; each Live Session references exactly one Lesson.",
+      "sorts": "By start time (most recent first), by class.",
+      "filters": "By session status (active/ended), by class, by date range.",
+      "dependencies": "A Live Session requires its source Lesson to exist. If the Lesson is archived, existing session data persists but new sessions cannot be launched."
+    },
+    {
+      "targetSlug": "report",
+      "targetName": "Report",
+      "mechanics": "Reports are auto-generated after a Lesson delivery (live session or self-paced assignment) completes.",
+      "cardinality": "One-to-many. Each delivery of a Lesson produces one Report; a Report references exactly one Lesson.",
+      "sorts": "By generated date (most recent first), by report type.",
+      "filters": "By report type (live/self-paced/combined), by class, by date range.",
+      "dependencies": "Reports persist even if the source Lesson is archived or deleted."
+    }
+  ],
+  "relatedObjects": ["activity", "live-session", "report", "teacher", "student", "class", "skill", "score", "assignment", "resource"],
+  "nestedObjects": [
+    {
+      "slug": "activity",
+      "name": "Activity",
+      "cardinality": "One-to-many",
+      "description": "Interactive elements embedded within the lesson"
+    },
+    {
+      "slug": "live-session",
+      "name": "Live Session",
+      "cardinality": "One-to-many",
+      "description": "Real-time delivery instances of this lesson"
+    },
+    {
+      "slug": "score",
+      "name": "Score",
+      "cardinality": "One-to-many",
+      "description": "Student performance data from lesson deliveries"
+    }
+  ],
+  "allAttributes": [
+    {
+      "name": "Lesson Title",
+      "dataType": "String",
+      "required": true,
+      "source": "Teacher / Nearpod Library",
+      "description": "Primary identifier displayed in library and during delivery."
+    },
+    {
+      "name": "Subject",
+      "dataType": "Enum",
+      "required": true,
+      "source": "Teacher / Nearpod Library",
+      "description": "Subject area. Values: science, ela, math, social-studies."
+    },
+    {
+      "name": "Grade Band",
+      "dataType": "Enum",
+      "required": true,
+      "source": "Teacher / Nearpod Library",
+      "description": "Target grade range. Values: K-2, 3-5, 6-8, 9-12."
+    },
+    {
+      "name": "Skills/Standards",
+      "dataType": "Reference → Skill[]",
+      "source": "Teacher / Nearpod Library",
+      "description": "Aligned skills and standards for filtering and reporting.",
+      "isReference": true,
+      "referenceSlug": "skill",
+      "referenceName": "Skill"
+    },
+    {
+      "name": "Lesson Type",
+      "dataType": "Enum",
+      "required": true,
+      "source": "Teacher / System",
+      "description": "Delivery mode. Values: live, self-paced, both."
+    },
+    {
+      "name": "Slide Count",
+      "dataType": "Number",
+      "required": true,
+      "source": "System",
+      "description": "Total number of slides including content and activity slides."
+    },
+    {
+      "name": "Duration",
+      "dataType": "Number",
+      "required": true,
+      "source": "Teacher estimate / System",
+      "description": "Estimated delivery time in minutes."
+    },
+    {
+      "name": "Interactive Elements",
+      "dataType": "Reference → Activity[]",
+      "source": "System",
+      "description": "Activities contained within this lesson.",
+      "isReference": true,
+      "referenceSlug": "activity",
+      "referenceName": "Activity"
+    },
+    {
+      "name": "Author",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "Creator of the lesson: teacher name or 'Nearpod Content Team'."
+    },
+    {
+      "name": "Source",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System",
+      "description": "Origin of the lesson. Values: nearpod-library, teacher-created, shared."
+    },
+    {
+      "name": "Thumbnail",
+      "dataType": "String",
+      "source": "System / Teacher upload",
+      "description": "Cover image URL for library display."
+    },
+    {
+      "name": "Status",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System",
+      "description": "Lifecycle state. Values: draft, published, archived."
+    },
+    {
+      "name": "Usage Count",
+      "dataType": "Number",
+      "source": "System",
+      "description": "Number of times the lesson has been delivered (live or self-paced)."
+    },
+    {
+      "name": "Average Score",
+      "dataType": "Number",
+      "source": "System",
+      "description": "Mean score percentage across all deliveries."
+    },
+    {
+      "name": "Created Date",
+      "dataType": "Date",
+      "required": true,
+      "source": "System",
+      "description": "When the lesson was first created."
+    },
+    {
+      "name": "Last Used Date",
+      "dataType": "Date",
+      "source": "System",
+      "description": "When the lesson was most recently delivered."
+    }
+  ],
+  "allCTAs": [
+    {
+      "name": "Browse Lessons",
+      "roles": "Teacher",
+      "permission": "Read",
+      "priority": "P",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Preview Lesson",
+      "roles": "Teacher",
+      "permission": "Read",
+      "priority": "S",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Launch Live Lesson",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "P",
+      "crossObjectSlug": "live-session",
+      "crossObjectName": "Live Session",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Assign Self-Paced",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "P",
+      "crossObjectSlug": "assignment",
+      "crossObjectName": "Assignment",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Favorite Lesson",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "T",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Duplicate Lesson",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "S",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Create Lesson",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "S",
+      "crossObjectSlug": "resource",
+      "crossObjectName": "Resource",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Edit Lesson",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "S",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Delete Lesson",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "Q",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Share Lesson",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "T",
+      "crossObjectSlug": "teacher",
+      "crossObjectName": "Teacher",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Join Lesson",
+      "roles": "Student",
+      "permission": "Write",
+      "priority": "P",
+      "crossObjectSlug": "live-session",
+      "crossObjectName": "Live Session",
+      "roleKeys": ["student"]
+    },
+    {
+      "name": "Complete Lesson",
+      "roles": "Student",
+      "permission": "Write",
+      "priority": "P",
+      "crossObjectSlug": "score",
+      "crossObjectName": "Score",
+      "roleKeys": ["student"]
+    },
+    {
+      "name": "View Lesson Report",
+      "roles": "Teacher",
+      "permission": "Read",
+      "priority": "S",
+      "crossObjectSlug": "report",
+      "crossObjectName": "Report",
+      "roleKeys": ["teacher"]
+    }
+  ],
+  "sipValidation": {
+    "structure": {
+      "pass": true,
+      "evidence": "A Lesson has extensive attributes: title, subject, grade band, type, slide count, duration, author, source, status, standards alignment, and usage metrics. It fully supports a detail page."
+    },
+    "instances": {
+      "pass": true,
+      "evidence": "'Introduction to Ecosystems' (science, 3-5, live, 18 slides), 'Fractions: Adding & Subtracting' (math, 3-5, self-paced, 24 slides), 'Civil Rights Movement' (social-studies, 6-8, both, 30 slides). Nearpod's library contains thousands of lessons."
+    },
+    "purpose": {
+      "pass": true,
+      "evidence": "Lessons are the primary content container in Nearpod. Teachers browse, create, and deliver them. Students join and complete them. Reports aggregate their outcomes. Every Nearpod workflow starts with a Lesson."
+    },
+    "verdict": "Domain object and the central content unit of the Nearpod ecosystem. All delivery and reporting flows through Lessons."
+  },
+  "synonyms": [
+    {
+      "term": "Content",
+      "context": "Internal engineering, API documentation",
+      "notes": "Used in data models and API endpoints"
+    },
+    {
+      "term": "Presentation",
+      "context": "Teacher-facing, onboarding materials",
+      "notes": "Emphasizes the slide-based delivery format"
+    },
+    {
+      "term": "Module",
+      "context": "Curriculum planning, admin dashboards",
+      "notes": "Used when lessons are grouped into larger units"
+    },
+    {
+      "term": "Slide Deck",
+      "context": "Informal teacher usage",
+      "notes": "Reflects the visual similarity to presentation software"
+    }
+  ],
+  "shapeshifterMatrix": [
+    {
+      "context": "Browse Library",
+      "value": "browse-library",
+      "shape": "card",
+      "description": "Lessons shown as cards with thumbnails, subject, grade band, and duration. Teachers browse the library to find lessons to preview, launch live, or save as favorites.",
+      "visibleAttributes": ["Lesson Title", "Subject", "Grade Band", "Lesson Type", "Slide Count", "Duration", "Source"],
+      "availableCTAs": ["Preview Lesson", "Launch Live Lesson", "Favorite Lesson"],
+      "cardShape": "Medium card with thumbnail"
+    },
+    {
+      "context": "Lesson Editor",
+      "value": "lesson-editor",
+      "shape": "profile",
+      "description": "The full lesson authoring view — slides, activities, standards alignment, and editing controls. Authors build and refine lesson content from this page.",
+      "visibleAttributes": ["Lesson Title", "Subject", "Grade Band", "Lesson Type", "Slide Count", "Duration", "Author", "Status", "Interactive Elements", "Skills/Standards"],
+      "availableCTAs": ["Edit Lesson", "Preview Lesson", "Duplicate Lesson", "Delete Lesson"],
+      "cardShape": "Full page editor"
+    },
+    {
+      "context": "Live Delivery",
+      "value": "live-delivery",
+      "shape": "header",
+      "description": "The lesson displayed as a minimal header during live delivery — just the title and slide count, staying out of the way of the content.",
+      "visibleAttributes": ["Lesson Title", "Slide Count"],
+      "availableCTAs": ["Launch Live Lesson"],
+      "cardShape": "Minimal header"
+    },
+    {
+      "context": "Lesson Report",
+      "value": "lesson-report",
+      "shape": "row",
+      "description": "Lessons listed with usage counts, average scores, and status. Teachers review which lessons landed well and which need revision.",
+      "visibleAttributes": ["Lesson Title", "Subject", "Grade Band", "Usage Count", "Average Score", "Status"],
+      "availableCTAs": ["View Lesson Report"],
+      "cardShape": "Data row"
+    }
+  ]
+}

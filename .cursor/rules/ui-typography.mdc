@@ -1,0 +1,86 @@
+---
+description: Typography principles for readable, hierarchical, well-crafted text
+globs: "**/*.html,styles/**/*.css"
+alwaysApply: false
+---
+
+# Typography
+
+Good typography is invisible — readers notice the content, not the type. Bad typography is immediately felt as strain, confusion, or distrust.
+
+## Type Scale
+
+Use a **modular scale** to define font sizes. Caboodle uses a 1.5 ratio (perfect fifth) centered on `--s0: 1rem`. This creates natural visual harmony between sizes.
+
+- Define all sizes as tokens — never use arbitrary pixel values
+- Limit the scale to 6–9 active sizes to avoid visual noise
+- Use `rem` for font sizes so the scale respects user browser settings
+- Body text minimum: 1rem (16px equivalent) — prefer slightly larger for long-form reading
+
+## Measure (Line Length)
+
+- Optimal line length: **45–75 characters** per line; target 60–65ch for body text
+- Caboodle uses `--measure: 60ch`
+- Lines that are too wide cause eye-tracking fatigue; lines too narrow break reading flow
+- Use the `.prose` class or `max-inline-size: var(--measure)` to constrain text containers
+- Code blocks and data tables may exceed measure — wrap them in a scrollable container
+
+## Line Height (Leading)
+
+- Body text: **1.4–1.6** (Caboodle uses `--line-height: 1.5`)
+- Headings: **1.1–1.3** (Caboodle uses `--line-height-tight: 1.2`)
+- Longer lines need more leading; shorter lines can use less
+- Line height should create a comfortable rhythm — text should feel airy, not cramped or floating
+
+## Hierarchy
+
+Visual hierarchy in type is established through **size, weight, and space** — not decoration:
+
+1. **Size difference** between heading levels should be noticeable at a glance (a modular scale achieves this naturally)
+2. **Weight contrast** between headings (600–700) and body (400–500) creates instant scannability
+3. **Spacing above headings** should be greater than spacing below them, visually binding the heading to its content (proximity principle)
+4. **Color and opacity** can create subtle hierarchy (e.g., `--color-mid` for secondary text) but avoid more than 2–3 distinct text colors
+
+Avoid relying on italic, underline, CAPS, or color alone for emphasis — use `<strong>` for importance and `<em>` for stress, as screen readers communicate these semantically.
+
+## Font Pairing
+
+Caboodle pairs:
+- `--font-display` (Georgia, serif) — for headings and display text that needs warmth and authority
+- `--font-plain` (Roboto, sans-serif) — for body text, UI labels, and data that needs clarity
+- `--font-mono` (system monospace stack) — for code, technical values, and tabular data
+
+**Rules for pairing:**
+- Two typefaces is enough for most interfaces — a third signals visual complexity
+- Pair faces with contrasting structures (serif + sans, or geometric + humanist) but similar x-heights
+- Never pair two faces from the same classification (two sans-serifs, two slabs)
+
+## Readability
+
+- Justify text left (or start) — never fully justify on the web (uneven word spacing harms readability)
+- Use sentence case for UI labels and headings — Title Case is harder to scan
+- Avoid all-caps for more than 2–3 words — it reduces word-shape recognition by 10–20%
+- Minimum body text size is 16px equivalent (1rem) — smaller is acceptable only for captions, footnotes, or legal text
+- Ensure sufficient contrast between text color and background (see accessibility rule)
+
+## Responsive Typography
+
+- Use fluid type with `clamp()` where appropriate: `font-size: clamp(1rem, 0.5rem + 1.5vw, 1.5rem)`
+- Headings should scale more aggressively than body text — large headings at desktop can be proportionally smaller on mobile without losing hierarchy
+- Never use viewport-only units (`font-size: 3vw`) — they break zoom and user font size preferences
+- At minimum, combine viewport units with `rem` in a `clamp()` or `calc()`
+
+## Whitespace & Rhythm
+
+- Vertical rhythm between elements should feel consistent — use the `.stack` primitive with `--space` tokens
+- Paragraph spacing (between `<p>` elements) should be roughly the line height
+- Section breaks should use noticeably more space than paragraph breaks
+- Horizontal whitespace (padding, gutters) should use the same modular scale as vertical spacing
+
+## Font Loading
+
+- Use `font-display: swap` to prevent invisible text during load
+- Preconnect to font CDNs: `<link rel="preconnect" href="https://fonts.googleapis.com">`
+- Load only the weights and styles actually used — each adds HTTP weight
+- System font stacks (`system-ui`, `-apple-system`) make excellent fallbacks
+- Variable fonts reduce requests when multiple weights are needed (future consideration)

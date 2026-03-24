@@ -1,38 +1,13 @@
 {
   "name": "caboodle",
-  "version": "1.0.1",
-  "description": "Caboodle - OOUX Agent Skills that turn any AI coding assistant into an Object-Oriented UX facilitator. Source-driven, file-based, no external dependencies.",
-  "license": "MIT",
-  "type": "module",
-  "bin": {
-    "caboodle": "bin/cli.js"
-  },
-  "files": [
-    "bin/",
-    "lib/",
-    "skills/",
-    "templates/"
+  "private": true,
+  "workspaces": [
+    "packages/*"
   ],
   "scripts": {
-    "site:dev": "cd site && npx docusaurus start",
-    "site:build": "cd site && npx docusaurus build",
-    "site:init": "node bin/cli.js init-site"
-  },
-  "keywords": [
-    "ooux",
-    "orca",
-    "agent-skills",
-    "cursor",
-    "ux-design",
-    "object-oriented-ux",
-    "caboodle",
-    "docusaurus"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/abenjamin-ren/Caboodle.git"
-  },
-  "engines": {
-    "node": ">=18.0.0"
+    "dev": "npm run dev --workspace=packages/caboodle-site",
+    "build": "npm run build --workspace=packages/object-components && npm run build --workspace=packages/caboodle-site",
+    "build:components": "npm run build --workspace=packages/object-components",
+    "build:site": "npm run build --workspace=packages/caboodle-site"
   }
 }

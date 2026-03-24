@@ -1,0 +1,763 @@
+{
+  "identity": {
+    "slug": "report",
+    "name": "Report",
+    "qualifier": "(Nearpod)",
+    "objectType": "domain",
+    "category": "analytics",
+    "definition": "A Report is a system-generated analytics artifact that aggregates student performance data, participation metrics, and per-activity breakdowns from a completed Nearpod lesson delivery.",
+    "synonyms": ["Analytics", "Results", "Performance Summary", "Session Results"],
+    "products": "Nearpod"
+  },
+  "variations": [],
+  "representations": [
+    {
+      "layout": "card",
+      "heading": "Card layout",
+      "description": "How a Report appears in dashboards and recent reports lists",
+      "defaultShape": "card",
+      "componentTag": "ren-report-card",
+      "examples": [
+        {
+          "reportType": "live-session-report",
+          "lessonTitle": "Introduction to Ecosystems",
+          "className": "3rd Grade - Section A",
+          "generatedDate": "2026-03-17T10:15:00Z",
+          "studentCount": 24,
+          "participationRate": 92,
+          "averageScore": 78,
+          "status": "available",
+          "color": "#7C3AED"
+        },
+        {
+          "reportType": "self-paced-report",
+          "lessonTitle": "Fractions: Adding & Subtracting",
+          "className": "5th Grade - Math",
+          "generatedDate": "2026-03-16T23:59:00Z",
+          "studentCount": 28,
+          "participationRate": 85,
+          "averageScore": 65,
+          "status": "available",
+          "color": "#059669"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Report Type",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Type of delivery: live-session-report, self-paced-report, combined-report."
+        },
+        {
+          "name": "Lesson Reference",
+          "dataType": "Reference → Lesson",
+          "source": "System",
+          "description": "The lesson this report covers.",
+          "isReference": true,
+          "referenceSlug": "lesson",
+          "referenceName": "Lesson"
+        },
+        {
+          "name": "Class",
+          "dataType": "Reference → Class",
+          "source": "System",
+          "description": "The class that participated.",
+          "isReference": true,
+          "referenceSlug": "class",
+          "referenceName": "Class"
+        },
+        {
+          "name": "Participation Rate",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Percentage of enrolled students who participated."
+        },
+        {
+          "name": "Average Score",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Mean score across all students and activities."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Report",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "P",
+          "crossObjectSlug": "lesson",
+          "crossObjectName": "Lesson",
+          "roleKeys": ["teacher"]
+        }
+      ]
+    },
+    {
+      "layout": "list",
+      "heading": "List layout",
+      "description": "How a Report appears in report tables and history views",
+      "defaultShape": "row",
+      "componentTag": "ren-report-row",
+      "examples": [
+        {
+          "reportType": "live-session-report",
+          "lessonTitle": "Introduction to Ecosystems",
+          "className": "3rd Grade - Section A",
+          "generatedDate": "2026-03-17T10:15:00Z",
+          "studentCount": 24,
+          "participationRate": 92,
+          "averageScore": 78,
+          "status": "available",
+          "color": "#7C3AED"
+        },
+        {
+          "reportType": "combined-report",
+          "lessonTitle": "Civil Rights Movement",
+          "className": "8th Grade - History",
+          "generatedDate": "2026-03-15T16:00:00Z",
+          "studentCount": 31,
+          "participationRate": 100,
+          "averageScore": 72,
+          "status": "archived",
+          "color": "#D97706"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Lesson Reference",
+          "dataType": "Reference → Lesson",
+          "source": "System",
+          "description": "The lesson covered.",
+          "isReference": true,
+          "referenceSlug": "lesson",
+          "referenceName": "Lesson"
+        },
+        {
+          "name": "Class",
+          "dataType": "Reference → Class",
+          "source": "System",
+          "description": "The participating class.",
+          "isReference": true,
+          "referenceSlug": "class",
+          "referenceName": "Class"
+        },
+        {
+          "name": "Generated Date",
+          "dataType": "Date",
+          "source": "System",
+          "description": "When the report was created."
+        },
+        {
+          "name": "Participation Rate",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Participation percentage."
+        },
+        {
+          "name": "Average Score",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Mean score."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Report state: processing, available, archived."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Report",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "P",
+          "crossObjectSlug": "lesson",
+          "crossObjectName": "Lesson",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Export Report",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "S",
+          "roleKeys": ["teacher"]
+        }
+      ]
+    },
+    {
+      "layout": "detail",
+      "heading": "Detail page layout",
+      "description": "Full report view with activity breakdowns and student details",
+      "defaultShape": "profile",
+      "componentTag": "ren-report-profile",
+      "examples": [
+        {
+          "reportType": "live-session-report",
+          "lessonTitle": "Introduction to Ecosystems",
+          "className": "3rd Grade - Section A",
+          "generatedDate": "2026-03-17T10:15:00Z",
+          "studentCount": 24,
+          "participationRate": 92,
+          "averageScore": 78,
+          "status": "available",
+          "activityCount": 6,
+          "color": "#7C3AED"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Report ID",
+          "dataType": "String",
+          "source": "System",
+          "description": "Unique system identifier."
+        },
+        {
+          "name": "Report Type",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Delivery type: live-session-report, self-paced-report, combined-report."
+        },
+        {
+          "name": "Lesson Reference",
+          "dataType": "Reference → Lesson",
+          "source": "System",
+          "description": "The lesson this report covers.",
+          "isReference": true,
+          "referenceSlug": "lesson",
+          "referenceName": "Lesson"
+        },
+        {
+          "name": "Class",
+          "dataType": "Reference → Class",
+          "source": "System",
+          "description": "The class that participated.",
+          "isReference": true,
+          "referenceSlug": "class",
+          "referenceName": "Class"
+        },
+        {
+          "name": "Teacher",
+          "dataType": "Reference → Teacher",
+          "source": "System",
+          "description": "The teacher who conducted the delivery.",
+          "isReference": true,
+          "referenceSlug": "teacher",
+          "referenceName": "Teacher"
+        },
+        {
+          "name": "Generated Date",
+          "dataType": "Date",
+          "source": "System",
+          "description": "When the report was auto-generated."
+        },
+        {
+          "name": "Student Count",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Number of students included in the report."
+        },
+        {
+          "name": "Participation Rate",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Percentage of enrolled students who participated."
+        },
+        {
+          "name": "Average Score",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Mean score across all students and scored activities."
+        },
+        {
+          "name": "Activity Breakdown",
+          "dataType": "Multiple",
+          "source": "System",
+          "description": "Per-activity results including response counts, averages, and distributions."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Report lifecycle: processing, available, archived."
+        },
+        {
+          "name": "Export Format",
+          "dataType": "Enum",
+          "source": "Teacher selection",
+          "description": "Download format: pdf, csv."
+        },
+        {
+          "name": "Time Period",
+          "dataType": "String",
+          "source": "System",
+          "description": "Date range covered by the report."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Report",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "P",
+          "crossObjectSlug": "lesson",
+          "crossObjectName": "Lesson",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "View Activity Breakdown",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "P",
+          "crossObjectSlug": "activity",
+          "crossObjectName": "Activity",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "View Student Detail",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "student",
+          "crossObjectName": "Student",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Export Report",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "S",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Share Report",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "T",
+          "crossObjectSlug": "teacher",
+          "crossObjectName": "Teacher",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Compare Reports",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "T",
+          "crossObjectSlug": "lesson",
+          "crossObjectName": "Lesson",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Archive Report",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "T",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Delete Report",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "Q",
+          "roleKeys": ["teacher"]
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "Review Session Results",
+      "icon": "assessment",
+      "role": "Teacher",
+      "action": "review",
+      "object": "Report",
+      "benefit": "I can understand how my class performed and identify students who need additional support.",
+      "whenClause": "I open a report after a live session ends,",
+      "thenClause": "I see aggregate participation rates, average scores, per-activity breakdowns, and individual student results.",
+      "crossObjects": [{ "slug": "live-session", "name": "Live Session" }]
+    },
+    {
+      "title": "Export Report Data",
+      "icon": "download",
+      "role": "Teacher",
+      "action": "export",
+      "object": "Report",
+      "benefit": "I can share results with parents, administrators, or use them for grade book entry.",
+      "whenClause": "I export a report,",
+      "thenClause": "a PDF or CSV file is generated containing all student scores, participation data, and activity breakdowns."
+    },
+    {
+      "title": "Compare Lesson Performance",
+      "icon": "compare",
+      "role": "Teacher",
+      "action": "compare",
+      "object": "Report",
+      "benefit": "I can see how different classes or deliveries of the same lesson compare.",
+      "whenClause": "I select multiple reports for the same lesson,",
+      "thenClause": "I see side-by-side comparisons of participation, scores, and per-activity performance across classes.",
+      "crossObjects": [{ "slug": "lesson", "name": "Lesson" }]
+    }
+  ],
+  "businessRules": [
+    {
+      "title": "Auto-Generation",
+      "description": "Reports are automatically generated by the system when a Live Session ends or a self-paced assignment's due date passes. Teachers cannot manually create reports."
+    },
+    {
+      "title": "Processing State",
+      "description": "Reports enter 'processing' state while aggregation is computed. Large classes may take up to 2 minutes. Reports transition to 'available' when complete."
+    },
+    {
+      "title": "Data Immutability",
+      "description": "Once generated, report data is immutable. Late submissions on self-paced assignments may trigger a report regeneration."
+    },
+    {
+      "title": "Participation Calculation",
+      "description": "Participation Rate is (students who submitted at least one response / total enrolled students) * 100."
+    },
+    {
+      "title": "Score Aggregation",
+      "description": "Average Score is calculated across all scored activities only. Unscored activities (polls, open-ended with scoring=none) are excluded from the average."
+    },
+    {
+      "title": "Activity Breakdown",
+      "description": "Each scored activity in the report includes: activity title, type, response count, average score, and correct/incorrect distribution."
+    },
+    {
+      "title": "Student Detail Access",
+      "description": "Teachers can drill down into individual student responses within a report. Each student's per-activity responses are viewable."
+    },
+    {
+      "title": "Export Formats",
+      "description": "Reports can be exported as PDF (formatted summary) or CSV (raw data for spreadsheet analysis). Export includes all student-level detail."
+    },
+    {
+      "title": "Archival",
+      "description": "Archived reports are hidden from the default report list but remain accessible via filters. Data is never deleted."
+    },
+    {
+      "title": "Combined Reports",
+      "description": "A combined report merges live session and self-paced delivery data for the same lesson and class into a single view."
+    },
+    {
+      "title": "Report Retention",
+      "description": "Reports are retained indefinitely. They persist even if the source Lesson, Session, or Assignment is deleted or archived."
+    }
+  ],
+  "lifecycle": {
+    "states": [
+      {
+        "name": "Processing",
+        "description": "Report is being generated and data is being aggregated",
+        "triggers": "Session ends or assignment due date passes",
+        "variant": "warn"
+      },
+      {
+        "name": "Available",
+        "description": "Report is complete and viewable by the teacher",
+        "triggers": "Aggregation completes successfully",
+        "variant": "active"
+      },
+      {
+        "name": "Archived",
+        "description": "Report is hidden from default views but data retained",
+        "triggers": "Teacher archives the report",
+        "variant": "default"
+      }
+    ],
+    "transitions": [
+      { "from": "Processing", "to": ["Available"] },
+      { "from": "Available", "to": ["Archived"] },
+      { "from": "Archived", "to": ["Available"] }
+    ]
+  },
+  "relationships": [
+    {
+      "targetSlug": "lesson",
+      "targetName": "Lesson",
+      "mechanics": "A Report is generated for a specific Lesson delivery. It references the source Lesson for context (title, activities, standards).",
+      "cardinality": "Many-to-one. A Lesson can have many Reports (one per delivery); each Report references exactly one Lesson.",
+      "sorts": "By generated date (most recent first), by class.",
+      "filters": "By lesson title, by date range, by report type.",
+      "dependencies": "The Lesson reference provides context. If the Lesson is deleted, the Report retains a snapshot of the lesson title and activity list."
+    },
+    {
+      "targetSlug": "student",
+      "targetName": "Student",
+      "mechanics": "Reports contain per-student performance data. Teachers can drill into individual student responses.",
+      "cardinality": "One-to-many. A Report contains data for many Students; a Student appears in many Reports over time.",
+      "sorts": "By student name (default), by score (highest/lowest), by participation.",
+      "filters": "By score range, by completion status, by individual student.",
+      "dependencies": "Student data in the report is a snapshot. If a student transfers or is deactivated, their historical report data persists."
+    },
+    {
+      "targetSlug": "activity",
+      "targetName": "Activity",
+      "mechanics": "Reports include per-activity breakdowns showing response distributions and aggregate scores for each Activity in the Lesson.",
+      "cardinality": "One-to-many. A Report breaks down results for each Activity; an Activity appears in many Reports (one per delivery).",
+      "sorts": "By position in lesson (default), by average score, by response count.",
+      "filters": "By activity type, by scoring method, by score range.",
+      "dependencies": "Activity breakdowns reference the Lesson's activity configuration at the time of delivery."
+    }
+  ],
+  "relatedObjects": ["lesson", "live-session", "activity", "teacher", "student", "class", "score", "assignment"],
+  "nestedObjects": [
+    {
+      "slug": "activity",
+      "name": "Activity",
+      "cardinality": "One-to-many",
+      "description": "Per-activity breakdown data within the report"
+    },
+    {
+      "slug": "student",
+      "name": "Student",
+      "cardinality": "One-to-many",
+      "description": "Individual student results within the report"
+    },
+    {
+      "slug": "score",
+      "name": "Score",
+      "cardinality": "One-to-many",
+      "description": "Individual scores aggregated in the report"
+    }
+  ],
+  "allAttributes": [
+    {
+      "name": "Report ID",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "Unique system identifier for the report."
+    },
+    {
+      "name": "Report Type",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System",
+      "description": "Type of delivery covered. Values: live-session-report, self-paced-report, combined-report."
+    },
+    {
+      "name": "Lesson Reference",
+      "dataType": "Reference → Lesson",
+      "required": true,
+      "source": "System",
+      "description": "The lesson this report covers.",
+      "isReference": true,
+      "referenceSlug": "lesson",
+      "referenceName": "Lesson"
+    },
+    {
+      "name": "Session/Assignment Reference",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "Reference to the specific delivery instance (Live Session ID or Assignment ID)."
+    },
+    {
+      "name": "Class",
+      "dataType": "Reference → Class",
+      "required": true,
+      "source": "System",
+      "description": "The class that participated in the delivery.",
+      "isReference": true,
+      "referenceSlug": "class",
+      "referenceName": "Class"
+    },
+    {
+      "name": "Teacher",
+      "dataType": "Reference → Teacher",
+      "required": true,
+      "source": "System",
+      "description": "The teacher who conducted the delivery.",
+      "isReference": true,
+      "referenceSlug": "teacher",
+      "referenceName": "Teacher"
+    },
+    {
+      "name": "Generated Date",
+      "dataType": "Date",
+      "required": true,
+      "source": "System",
+      "description": "When the report was auto-generated."
+    },
+    {
+      "name": "Student Count",
+      "dataType": "Number",
+      "required": true,
+      "source": "System",
+      "description": "Number of students with data in this report."
+    },
+    {
+      "name": "Participation Rate",
+      "dataType": "Number",
+      "required": true,
+      "source": "System",
+      "description": "Percentage of enrolled students who submitted at least one response."
+    },
+    {
+      "name": "Average Score",
+      "dataType": "Number",
+      "source": "System",
+      "description": "Mean score percentage across all students and scored activities."
+    },
+    {
+      "name": "Activity Breakdown",
+      "dataType": "Multiple",
+      "required": true,
+      "source": "System",
+      "description": "Per-activity results including response counts, averages, and distributions."
+    },
+    {
+      "name": "Export Format",
+      "dataType": "Enum",
+      "source": "Teacher selection",
+      "description": "Download format when exporting. Values: pdf, csv."
+    },
+    {
+      "name": "Status",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System",
+      "description": "Report lifecycle state. Values: processing, available, archived."
+    },
+    {
+      "name": "Time Period",
+      "dataType": "String",
+      "source": "System",
+      "description": "Date range covered by the report (e.g., session start to end, assignment window)."
+    }
+  ],
+  "allCTAs": [
+    {
+      "name": "View Report",
+      "roles": "Teacher",
+      "permission": "Read",
+      "priority": "P",
+      "crossObjectSlug": "lesson",
+      "crossObjectName": "Lesson",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "View Activity Breakdown",
+      "roles": "Teacher",
+      "permission": "Read",
+      "priority": "P",
+      "crossObjectSlug": "activity",
+      "crossObjectName": "Activity",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "View Student Detail",
+      "roles": "Teacher",
+      "permission": "Read",
+      "priority": "S",
+      "crossObjectSlug": "student",
+      "crossObjectName": "Student",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Export Report",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "S",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Share Report",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "T",
+      "crossObjectSlug": "teacher",
+      "crossObjectName": "Teacher",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Compare Reports",
+      "roles": "Teacher",
+      "permission": "Read",
+      "priority": "T",
+      "crossObjectSlug": "lesson",
+      "crossObjectName": "Lesson",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Archive Report",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "T",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Delete Report",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "Q",
+      "roleKeys": ["teacher"]
+    }
+  ],
+  "sipValidation": {
+    "structure": {
+      "pass": true,
+      "evidence": "A Report has comprehensive attributes: ID, type, lesson/session references, class, teacher, generated date, student count, participation rate, average score, activity breakdowns, and export options. It supports a full analytics detail page."
+    },
+    "instances": {
+      "pass": true,
+      "evidence": "Report for 'Intro to Ecosystems' (live, 3rd Grade-A, 92% participation, 78% avg), Report for 'Fractions' (self-paced, 5th Grade-Math, 85% participation, 65% avg). Every lesson delivery generates a report."
+    },
+    "purpose": {
+      "pass": true,
+      "evidence": "Reports close the teaching loop. Teachers use them to assess understanding, identify struggling students, inform reteaching decisions, and communicate results to stakeholders. They are the primary analytics output of every Nearpod delivery."
+    },
+    "verdict": "Domain object serving as the analytics output of the Nearpod delivery cycle. The feedback mechanism that connects instruction to outcomes."
+  },
+  "synonyms": [
+    {
+      "term": "Analytics",
+      "context": "Admin dashboards, district-level views",
+      "notes": "Used for aggregated cross-report views"
+    },
+    {
+      "term": "Results",
+      "context": "Teacher-facing, post-session context",
+      "notes": "Most common informal reference after a session"
+    },
+    {
+      "term": "Performance Summary",
+      "context": "Parent communications, progress reports",
+      "notes": "Used when sharing with non-teacher audiences"
+    },
+    {
+      "term": "Session Results",
+      "context": "Specifically for live session reports",
+      "notes": "Distinguishes from self-paced report data"
+    }
+  ],
+  "shapeshifterMatrix": [
+    {
+      "context": "Report Dashboard",
+      "value": "report-dashboard",
+      "shape": "card",
+      "description": "Available reports shown as summary cards with participation rates, scores, and dates. Teachers browse recent reports and open the ones they need.",
+      "visibleAttributes": ["Report Type", "Lesson Reference", "Class", "Generated Date", "Participation Rate", "Average Score", "Status"],
+      "availableCTAs": ["View Report"],
+      "cardShape": "Summary card"
+    },
+    {
+      "context": "Full Report",
+      "value": "full-report",
+      "shape": "profile",
+      "description": "The complete report — participation, scores, activity breakdowns, and student-level detail. Teachers analyze results, export data, share with colleagues, or compare across periods.",
+      "visibleAttributes": ["Report ID", "Report Type", "Lesson Reference", "Class", "Teacher", "Generated Date", "Student Count", "Participation Rate", "Average Score", "Activity Breakdown", "Status", "Time Period"],
+      "availableCTAs": ["View Report", "View Activity Breakdown", "View Student Detail", "Export Report", "Share Report", "Compare Reports", "Archive Report"],
+      "cardShape": "Full analytics page"
+    },
+    {
+      "context": "Export View",
+      "value": "export-view",
+      "shape": "row",
+      "description": "Reports listed as compact rows with key metrics for batch selection and export. Teachers pick the reports they need and download the data.",
+      "visibleAttributes": ["Lesson Reference", "Class", "Generated Date", "Student Count", "Participation Rate", "Average Score"],
+      "availableCTAs": ["Export Report"],
+      "cardShape": "Compact row"
+    }
+  ]
+}

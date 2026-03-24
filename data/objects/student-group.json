@@ -1,0 +1,771 @@
+{
+  "identity": {
+    "slug": "student-group",
+    "name": "Student Group",
+    "qualifier": "(Domain)",
+    "objectType": "domain",
+    "category": "container",
+    "definition": "A Student Group is a named collection of students from a class, organized by skill level, assessment performance, or teacher selection, used to target instruction and differentiate assignments.",
+    "synonyms": ["Group", "Cluster", "Cohort", "Differentiation Group"],
+    "products": "Renaissance Intelligence"
+  },
+  "variations": [],
+  "representations": [
+    {
+      "layout": "card",
+      "heading": "Card layout",
+      "description": "How a Student Group appears in the class grouping view",
+      "defaultShape": "card",
+      "componentTag": "ren-student-group-card",
+      "examples": [
+        {
+          "name": "Below Grade Level — Number Sense",
+          "className": "3rd Grade Math — Ms. Johnson",
+          "studentCount": 6,
+          "groupingCriteria": "Star Math score below 40th percentile in Number Sense",
+          "source": "system-suggested",
+          "associatedSkill": "Number Sense & Operations",
+          "status": "active",
+          "color": "#2563EB"
+        },
+        {
+          "name": "Advanced Readers",
+          "className": "5th Grade ELA — Mr. Park",
+          "studentCount": 4,
+          "groupingCriteria": "Star Reading GE > 6.0",
+          "source": "teacher-created",
+          "associatedSkill": "Reading Comprehension",
+          "status": "active",
+          "color": "#059669"
+        },
+        {
+          "name": "Geometry Review Group",
+          "className": "4th Grade Math — Ms. Rivera",
+          "studentCount": 8,
+          "groupingCriteria": "Freckle adaptive level below 3.5 in Geometry",
+          "source": "system-suggested",
+          "associatedSkill": "Geometry & Measurement",
+          "status": "stale",
+          "color": "#e6a817"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Group Name",
+          "dataType": "String",
+          "source": "System / Teacher",
+          "description": "Display name of the student group."
+        },
+        {
+          "name": "Class",
+          "dataType": "Reference → Class",
+          "source": "System",
+          "description": "The class this group belongs to.",
+          "isReference": true,
+          "referenceSlug": "class",
+          "referenceName": "Class"
+        },
+        {
+          "name": "Student Count",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Number of students currently in this group."
+        },
+        {
+          "name": "Grouping Criteria",
+          "dataType": "String",
+          "source": "System / Teacher",
+          "description": "Description of how students were selected for this group."
+        },
+        {
+          "name": "Source",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Whether the group was system-suggested or teacher-created."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "Current state: active, stale, or archived."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Group",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "P",
+          "crossObjectSlug": "student",
+          "crossObjectName": "Student",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Assign to Group",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "P",
+          "crossObjectSlug": "assignment",
+          "crossObjectName": "Assignment",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Edit Group",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "student",
+          "crossObjectName": "Student",
+          "roleKeys": ["teacher"]
+        }
+      ]
+    },
+    {
+      "layout": "list",
+      "heading": "List layout",
+      "description": "How a Student Group appears in group management lists",
+      "defaultShape": "row",
+      "componentTag": "ren-student-group-row",
+      "examples": [
+        {
+          "name": "Below Grade Level — Number Sense",
+          "className": "3rd Grade Math — Ms. Johnson",
+          "studentCount": 6,
+          "groupingCriteria": "Star Math score below 40th percentile",
+          "source": "system-suggested",
+          "associatedSkill": "Number Sense & Operations",
+          "status": "active",
+          "color": "#2563EB"
+        },
+        {
+          "name": "Advanced Readers",
+          "className": "5th Grade ELA — Mr. Park",
+          "studentCount": 4,
+          "groupingCriteria": "Star Reading GE > 6.0",
+          "source": "teacher-created",
+          "associatedSkill": "Reading Comprehension",
+          "status": "active",
+          "color": "#059669"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Group Name",
+          "dataType": "String",
+          "source": "System / Teacher",
+          "description": "Display name of the group."
+        },
+        {
+          "name": "Student Count",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Number of students in this group."
+        },
+        {
+          "name": "Source",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "system-suggested or teacher-created."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "active, stale, or archived."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Group",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "P",
+          "crossObjectSlug": "student",
+          "crossObjectName": "Student",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Assign to Group",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "P",
+          "crossObjectSlug": "assignment",
+          "crossObjectName": "Assignment",
+          "roleKeys": ["teacher"]
+        }
+      ]
+    },
+    {
+      "layout": "detail",
+      "heading": "Detail layout",
+      "description": "Full Student Group view with member list",
+      "defaultShape": "profile",
+      "componentTag": "ren-student-group-profile",
+      "examples": [
+        {
+          "name": "Below Grade Level — Number Sense",
+          "className": "3rd Grade Math — Ms. Johnson",
+          "teacherName": "Ms. Johnson",
+          "studentCount": 6,
+          "groupingCriteria": "Star Math score below 40th percentile in Number Sense",
+          "source": "system-suggested",
+          "associatedSkill": "Number Sense & Operations",
+          "status": "active",
+          "color": "#2563EB"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Group Name",
+          "dataType": "String",
+          "source": "System / Teacher",
+          "description": "Display name of the student group."
+        },
+        {
+          "name": "Teacher",
+          "dataType": "Reference → Teacher",
+          "source": "System",
+          "description": "The teacher who owns this group.",
+          "isReference": true,
+          "referenceSlug": "teacher",
+          "referenceName": "Teacher"
+        },
+        {
+          "name": "Class",
+          "dataType": "Reference → Class",
+          "source": "System",
+          "description": "The class this group belongs to.",
+          "isReference": true,
+          "referenceSlug": "class",
+          "referenceName": "Class"
+        },
+        {
+          "name": "Students",
+          "dataType": "Reference → Student[]",
+          "source": "System / Teacher",
+          "description": "The students in this group.",
+          "isReference": true,
+          "referenceSlug": "student",
+          "referenceName": "Student"
+        },
+        {
+          "name": "Student Count",
+          "dataType": "Number",
+          "source": "System",
+          "description": "Number of students currently in this group."
+        },
+        {
+          "name": "Grouping Criteria",
+          "dataType": "String",
+          "source": "System / Teacher",
+          "description": "How students were selected."
+        },
+        {
+          "name": "Source",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "system-suggested or teacher-created."
+        },
+        {
+          "name": "Associated Skill/Metric",
+          "dataType": "Reference → Skill",
+          "source": "System",
+          "description": "The skill or metric the group is organized around.",
+          "isReference": true,
+          "referenceSlug": "skill",
+          "referenceName": "Skill"
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "active, stale, or archived."
+        },
+        {
+          "name": "Created Date",
+          "dataType": "Date",
+          "source": "System",
+          "description": "When the group was created."
+        },
+        {
+          "name": "Last Refreshed",
+          "dataType": "Date",
+          "source": "System",
+          "description": "When group membership was last re-evaluated (system-suggested groups only)."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Group",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "P",
+          "crossObjectSlug": "student",
+          "crossObjectName": "Student",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Create Group",
+          "roles": "Teacher, System",
+          "permission": "Write",
+          "priority": "P",
+          "crossObjectSlug": "student",
+          "crossObjectName": "Student",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Edit Group",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "student",
+          "crossObjectName": "Student",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Delete Group",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "Q",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Assign to Group",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "P",
+          "crossObjectSlug": "assignment",
+          "crossObjectName": "Assignment",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Accept Suggested Group",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "insight",
+          "crossObjectName": "Insight",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "View Group Report",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "score",
+          "crossObjectName": "Score",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Refresh Group",
+          "roles": "System",
+          "permission": "Write",
+          "priority": "T",
+          "roleKeys": ["system"]
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "Create Differentiation Group",
+      "icon": "group_work",
+      "role": "Teacher",
+      "action": "create",
+      "object": "Student Group",
+      "benefit": "I can target instruction to students with similar needs and assign differentiated work efficiently.",
+      "whenClause": "I create a student group based on assessment data or my own selection,",
+      "thenClause": "the group appears in my class view, I can assign work to the entire group at once, and I can track their collective progress.",
+      "crossObjects": [{ "slug": "student", "name": "Student" }, { "slug": "assignment", "name": "Assignment" }]
+    },
+    {
+      "title": "Accept System-Suggested Group",
+      "icon": "auto_awesome",
+      "role": "Teacher",
+      "action": "accept",
+      "object": "Student Group",
+      "benefit": "I save time by leveraging AI-identified clusters of students with similar proficiency gaps.",
+      "whenClause": "I review a system-suggested student group from an Insight,",
+      "thenClause": "I can accept the suggestion to create the group, modify the membership, or dismiss the suggestion.",
+      "crossObjects": [{ "slug": "insight", "name": "Insight" }]
+    }
+  ],
+  "businessRules": [
+    {
+      "title": "Class Scoping",
+      "description": "A Student Group belongs to exactly one Class. All students in the group must be enrolled in that class."
+    },
+    {
+      "title": "Creation Sources",
+      "description": "Groups can be created by teachers (manual selection) or by the system (from Insight-based suggestions). Source is tracked for analytics."
+    },
+    {
+      "title": "Membership Flexibility",
+      "description": "Teachers can add or remove students from any group at any time, regardless of the original grouping criteria."
+    },
+    {
+      "title": "Staleness Detection",
+      "description": "System-suggested groups become 'stale' when underlying assessment data has changed significantly since group creation. A refresh re-evaluates membership."
+    },
+    {
+      "title": "No Overlapping Restriction",
+      "description": "Students can belong to multiple groups within the same class. Groups are not mutually exclusive."
+    },
+    {
+      "title": "Assignment Targeting",
+      "description": "Groups serve as assignment targets. When a teacher assigns work to a group, all current members receive the assignment."
+    },
+    {
+      "title": "Archival",
+      "description": "Archived groups are hidden from active views but retained for historical reporting. Archival does not affect existing assignments."
+    },
+    {
+      "title": "Minimum Size",
+      "description": "A group must contain at least 1 student. Empty groups are automatically archived."
+    },
+    {
+      "title": "Name Uniqueness",
+      "description": "Group names must be unique within a class. The system auto-generates names for system-suggested groups."
+    }
+  ],
+  "lifecycle": {
+    "states": [
+      {
+        "name": "Active",
+        "description": "Group is current and available for assignment targeting",
+        "triggers": "Created by teacher or accepted from system suggestion",
+        "variant": "active"
+      },
+      {
+        "name": "Stale",
+        "description": "Underlying data has changed; membership may no longer reflect current proficiency",
+        "triggers": "New assessment data significantly changes student proficiency relative to grouping criteria",
+        "variant": "warn"
+      },
+      {
+        "name": "Archived",
+        "description": "Group is no longer active but data is retained",
+        "triggers": "Teacher archives, or group becomes empty due to student transfers",
+        "variant": "default"
+      }
+    ],
+    "transitions": [
+      { "from": "Active", "to": ["Stale", "Archived"] },
+      { "from": "Stale", "to": ["Active", "Archived"] }
+    ]
+  },
+  "relationships": [
+    {
+      "targetSlug": "student",
+      "targetName": "Student",
+      "mechanics": "Students are added to groups by teacher selection or system suggestion. Teachers can freely modify membership at any time.",
+      "cardinality": "Many-to-many. A Group contains multiple Students; a Student can belong to multiple Groups within the same or different classes.",
+      "sorts": "Students within a group: alphabetical by last name (default), by proficiency level in the associated skill.",
+      "filters": "By proficiency level, by enrollment status.",
+      "dependencies": "If a Student is removed from the parent Class, they are automatically removed from all groups in that class."
+    },
+    {
+      "targetSlug": "class",
+      "targetName": "Class",
+      "mechanics": "Each group is scoped to exactly one class. The group's student pool is limited to students enrolled in that class.",
+      "cardinality": "Many-to-one. A Class can have multiple Groups; each Group belongs to one Class.",
+      "sorts": "Groups within a class: by creation date, by student count, by status.",
+      "filters": "By source (system-suggested vs. teacher-created), by status, by associated skill.",
+      "dependencies": "If a Class is archived, all its groups are automatically archived."
+    },
+    {
+      "targetSlug": "assignment",
+      "targetName": "Assignment",
+      "mechanics": "Groups serve as assignment targets. When work is assigned to a group, all current members receive the assignment.",
+      "cardinality": "Many-to-many. A Group can have multiple Assignments targeted to it; an Assignment can target multiple Groups.",
+      "sorts": "Assignments for a group: by due date, by assignment type.",
+      "filters": "By assignment type, by completion status.",
+      "dependencies": "If a group is archived after an assignment is created, the assignment persists for existing members."
+    },
+    {
+      "targetSlug": "skill",
+      "targetName": "Skill",
+      "mechanics": "Groups may be organized around a specific skill or metric. This association drives staleness detection and group report content.",
+      "cardinality": "Many-to-one. A Group references at most one Skill; a Skill can be referenced by many Groups.",
+      "sorts": "N/A — single reference.",
+      "filters": "By skill domain, by subject area.",
+      "dependencies": "If the associated Skill is retired, the group continues to function but staleness detection may be affected."
+    },
+    {
+      "targetSlug": "insight",
+      "targetName": "Insight",
+      "mechanics": "System-suggested groups originate from Insight recommendations. Accepting a grouping suggestion Insight creates the group.",
+      "cardinality": "One-to-one (origin). A system-suggested Group originates from one Insight; teacher-created groups have no Insight origin.",
+      "sorts": "N/A — origin link.",
+      "filters": "By whether the group originated from an Insight.",
+      "dependencies": "If the originating Insight is dismissed after group creation, the group is unaffected."
+    },
+    {
+      "targetSlug": "teacher",
+      "targetName": "Teacher",
+      "mechanics": "The teacher who created or accepted the group. Teachers can only manage groups in their own classes.",
+      "cardinality": "Many-to-one. A Teacher can have many Groups; each Group has one owning Teacher.",
+      "sorts": "N/A.",
+      "filters": "By teacher.",
+      "dependencies": "If the teacher is reassigned to a different class, group ownership may transfer."
+    },
+    {
+      "targetSlug": "score",
+      "targetName": "Score",
+      "mechanics": "Group reports aggregate Scores for all students in the group. Used for tracking collective progress.",
+      "cardinality": "Many-to-many (indirect through students). Group reports pull Scores for all member Students.",
+      "sorts": "Scores within a group report: by date, by assessment type.",
+      "filters": "By assessment type, by date range, by subject.",
+      "dependencies": "Score availability depends on student assessment activity."
+    },
+    {
+      "targetSlug": "resource",
+      "targetName": "Resource",
+      "mechanics": "Teachers may associate recommended resources with a group for targeted practice.",
+      "cardinality": "Many-to-many. A Group can have multiple recommended Resources; a Resource can be recommended to multiple Groups.",
+      "sorts": "By relevance to the associated skill, by resource type.",
+      "filters": "By resource type, by subject.",
+      "dependencies": "Resource recommendations are informational and do not create assignment obligations."
+    }
+  ],
+  "relatedObjects": ["student", "teacher", "class", "skill", "insight", "score", "assignment", "resource"],
+  "nestedObjects": [
+    {
+      "slug": "student",
+      "name": "Student",
+      "cardinality": "One-to-many",
+      "description": "Students included in this differentiation group"
+    },
+    {
+      "slug": "score",
+      "name": "Score",
+      "cardinality": "One-to-many",
+      "description": "Aggregated scores for group members, used in group reports"
+    }
+  ],
+  "allAttributes": [
+    {
+      "name": "Group Name",
+      "dataType": "String",
+      "required": true,
+      "source": "System / Teacher",
+      "description": "Display name of the student group. Auto-generated for system-suggested groups, user-defined for teacher-created groups."
+    },
+    {
+      "name": "Teacher",
+      "dataType": "Reference → Teacher",
+      "required": true,
+      "source": "System",
+      "description": "The teacher who owns and manages this group.",
+      "isReference": true,
+      "referenceSlug": "teacher",
+      "referenceName": "Teacher"
+    },
+    {
+      "name": "Class",
+      "dataType": "Reference → Class",
+      "required": true,
+      "source": "System",
+      "description": "The class this group is scoped to. All group members must be enrolled in this class.",
+      "isReference": true,
+      "referenceSlug": "class",
+      "referenceName": "Class"
+    },
+    {
+      "name": "Students",
+      "dataType": "Reference → Student[]",
+      "required": true,
+      "source": "System / Teacher",
+      "description": "The students currently in this group.",
+      "isReference": true,
+      "referenceSlug": "student",
+      "referenceName": "Student"
+    },
+    {
+      "name": "Student Count",
+      "dataType": "Number",
+      "required": true,
+      "source": "System",
+      "description": "Derived count of students currently in the group."
+    },
+    {
+      "name": "Grouping Criteria",
+      "dataType": "String",
+      "required": true,
+      "source": "System / Teacher",
+      "description": "Description of how students were selected: assessment threshold, skill level, or teacher's rationale."
+    },
+    {
+      "name": "Source",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System",
+      "description": "Origin of the group: system-suggested (from Insight) or teacher-created (manual selection)."
+    },
+    {
+      "name": "Associated Skill/Metric",
+      "dataType": "Reference → Skill",
+      "source": "System",
+      "description": "The skill or metric the group is organized around. Optional for teacher-created groups.",
+      "isReference": true,
+      "referenceSlug": "skill",
+      "referenceName": "Skill"
+    },
+    {
+      "name": "Status",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System",
+      "description": "Current state: active (usable), stale (data has changed), or archived (hidden from active views)."
+    },
+    {
+      "name": "Created Date",
+      "dataType": "Date",
+      "required": true,
+      "source": "System",
+      "description": "When the group was created."
+    },
+    {
+      "name": "Last Refreshed",
+      "dataType": "Date",
+      "source": "System",
+      "description": "When group membership was last re-evaluated against current data. Applicable to system-suggested groups."
+    }
+  ],
+  "allCTAs": [
+    {
+      "name": "View Group",
+      "roles": "Teacher",
+      "permission": "Read",
+      "priority": "P",
+      "crossObjectSlug": "student",
+      "crossObjectName": "Student",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Create Group",
+      "roles": "Teacher, System",
+      "permission": "Write",
+      "priority": "P",
+      "crossObjectSlug": "student",
+      "crossObjectName": "Student",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Edit Group",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "S",
+      "crossObjectSlug": "student",
+      "crossObjectName": "Student",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Delete Group",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "Q",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Assign to Group",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "P",
+      "crossObjectSlug": "assignment",
+      "crossObjectName": "Assignment",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Accept Suggested Group",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "S",
+      "crossObjectSlug": "insight",
+      "crossObjectName": "Insight",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "View Group Report",
+      "roles": "Teacher",
+      "permission": "Read",
+      "priority": "S",
+      "crossObjectSlug": "score",
+      "crossObjectName": "Score",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Refresh Group",
+      "roles": "System",
+      "permission": "Write",
+      "priority": "T",
+      "roleKeys": ["system"]
+    }
+  ],
+  "sipValidation": {
+    "structure": {
+      "pass": true,
+      "evidence": "A Student Group has rich attributes: name, teacher, class, student list, count, grouping criteria, source, associated skill, status, created date, and last refreshed. You can design a detail page for a Group."
+    },
+    "instances": {
+      "pass": true,
+      "evidence": "'Below Grade Level — Number Sense' (6 students, system-suggested, 3rd Grade Math), 'Advanced Readers' (4 students, teacher-created, 5th Grade ELA), 'Geometry Review Group' (8 students, system-suggested, stale). Each class can have multiple Group instances."
+    },
+    "purpose": {
+      "pass": true,
+      "evidence": "Student Groups enable differentiated instruction. Teachers create or accept groups to target assignments, track progress by subgroup, and respond to AI-identified patterns. Groups bridge Insights and Assignments by providing a named target for instructional actions."
+    },
+    "verdict": "Domain container object. Named student subsets within a class that enable targeted instruction and differentiated assignment delivery."
+  },
+  "synonyms": [
+    {
+      "term": "Group",
+      "context": "In-product UI, teacher-facing language",
+      "notes": "Shortened form used in most UI surfaces"
+    },
+    {
+      "term": "Cluster",
+      "context": "AI/ML teams, data science",
+      "notes": "Technical term for system-identified student groupings"
+    },
+    {
+      "term": "Cohort",
+      "context": "District administrators, longitudinal reporting",
+      "notes": "Implies a longer-lived grouping; Student Group is more fluid"
+    },
+    {
+      "term": "Differentiation Group",
+      "context": "Instructional design, professional development",
+      "notes": "Emphasizes the pedagogical purpose of the grouping"
+    }
+  ],
+  "shapeshifterMatrix": [
+    {
+      "context": "Class View",
+      "value": "class-view",
+      "shape": "card",
+      "description": "Student groups within a class shown as cards with member count, criteria, and source. Teachers review existing groups, edit membership, or create new ones.",
+      "visibleAttributes": ["Group Name", "Student Count", "Grouping Criteria", "Source", "Status"],
+      "availableCTAs": ["View Group", "Assign to Group", "Edit Group"],
+      "cardShape": "Group card"
+    },
+    {
+      "context": "Group Detail",
+      "value": "group-detail",
+      "shape": "profile",
+      "description": "The complete group record — members, criteria, associated skill data, and all management controls. Teachers analyze group performance, refresh data-driven groups, or adjust membership.",
+      "visibleAttributes": ["Group Name", "Teacher", "Class", "Students", "Student Count", "Grouping Criteria", "Source", "Associated Skill/Metric", "Status", "Created Date", "Last Refreshed"],
+      "availableCTAs": ["View Group", "Create Group", "Edit Group", "Delete Group", "Assign to Group", "Accept Suggested Group", "View Group Report", "Refresh Group"],
+      "cardShape": "Full page"
+    },
+    {
+      "context": "Assignment Target",
+      "value": "assignment-target",
+      "shape": "row",
+      "description": "Student groups listed as compact rows for selecting assignment targets. Teachers pick a group to assign work to instead of selecting individual students.",
+      "visibleAttributes": ["Group Name", "Student Count", "Source"],
+      "availableCTAs": ["Assign to Group"],
+      "cardShape": "Compact picker row"
+    }
+  ]
+}

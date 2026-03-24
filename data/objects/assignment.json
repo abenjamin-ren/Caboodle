@@ -1,0 +1,850 @@
+{
+  "identity": {
+    "slug": "assignment",
+    "name": "Assignment",
+    "qualifier": "(Core)",
+    "objectType": "core",
+    "category": "activity",
+    "definition": "An Assignment is a unit of instructional work — such as a practice set, reading task, activity, or project — created by a teacher and given to students within a class to practice, reinforce, or extend learning on specific skills, typically leveraging resources from the Renaissance content library.",
+    "synonyms": ["task", "practice", "activity", "lesson", "goal"],
+    "products": "Freckle, Lalilo, myON, Nearpod"
+  },
+  "variations": [],
+  "representations": [
+    {
+      "layout": "card",
+      "heading": "Card layout",
+      "description": "How an Assignment appears in teacher dashboards and class activity feeds",
+      "defaultShape": "card",
+      "componentTag": "ren-assignment-card",
+      "examples": [
+        {
+          "name": "Fraction Fundamentals Practice",
+          "subject": "Math",
+          "skillCount": 3,
+          "dueDate": "2026-03-21",
+          "status": "assigned",
+          "completionPercent": 0,
+          "studentCount": 24,
+          "product": "Freckle",
+          "color": "#2B87FF"
+        },
+        {
+          "name": "Charlotte's Web Reading Log",
+          "subject": "ELA",
+          "skillCount": 2,
+          "dueDate": "2026-03-28",
+          "status": "in-progress",
+          "completionPercent": 42,
+          "studentCount": 28,
+          "product": "myON",
+          "color": "#7C3AED"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Assignment Name/Title",
+          "dataType": "String",
+          "required": true,
+          "source": "Teacher Input",
+          "description": "Primary identifier. Appears in dashboards, class feeds, and student task lists."
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "required": true,
+          "source": "Teacher Input",
+          "description": "Academic subject area: ELA, Math, Science, Social Studies, SEL."
+        },
+        {
+          "name": "Assignment Type",
+          "dataType": "Enum",
+          "required": true,
+          "source": "Teacher Input",
+          "description": "Practice, Reading, Activity, or Project. Determines UI treatment and completion flow."
+        },
+        {
+          "name": "Due Date",
+          "dataType": "Date",
+          "source": "Teacher Input",
+          "description": "Optional deadline. Drives overdue status transitions and calendar views."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "required": true,
+          "source": "System / Student Action",
+          "description": "Assigned, In Progress, Completed, Overdue, or Deleted. System-managed lifecycle state."
+        },
+        {
+          "name": "Product",
+          "dataType": "Enum",
+          "required": true,
+          "source": "System",
+          "description": "Freckle, myON, Lalilo, or Nearpod. Determines content source and completion criteria."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "Teacher, Student",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "student"]
+        },
+        {
+          "name": "Start",
+          "roles": "Student",
+          "permission": "Write",
+          "priority": "P",
+          "roleKeys": ["student"]
+        },
+        {
+          "name": "View Progress",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "student",
+          "crossObjectName": "Student",
+          "roleKeys": ["teacher"]
+        }
+      ]
+    },
+    {
+      "layout": "list",
+      "heading": "List layout",
+      "description": "How an Assignment appears in class assignment lists and student task queues",
+      "defaultShape": "row",
+      "componentTag": "ren-assignment-row",
+      "examples": [
+        {
+          "name": "Fraction Fundamentals Practice",
+          "subject": "Math",
+          "skillCount": 3,
+          "dueDate": "2026-03-21",
+          "status": "assigned",
+          "completionPercent": 0,
+          "studentCount": 24,
+          "product": "Freckle",
+          "color": "#2B87FF"
+        },
+        {
+          "name": "Charlotte's Web Reading Log",
+          "subject": "ELA",
+          "skillCount": 2,
+          "dueDate": "2026-03-28",
+          "status": "in-progress",
+          "completionPercent": 42,
+          "studentCount": 28,
+          "product": "myON",
+          "color": "#7C3AED"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Assignment Name/Title",
+          "dataType": "String",
+          "required": true,
+          "source": "Teacher Input",
+          "description": "Primary identifier. Appears in dashboards, class feeds, and student task lists."
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "required": true,
+          "source": "Teacher Input",
+          "description": "Academic subject area: ELA, Math, Science, Social Studies, SEL."
+        },
+        {
+          "name": "Due Date",
+          "dataType": "Date",
+          "source": "Teacher Input",
+          "description": "Optional deadline. Drives overdue status transitions and calendar views."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "required": true,
+          "source": "System / Student Action",
+          "description": "Assigned, In Progress, Completed, Overdue, or Deleted. System-managed lifecycle state."
+        },
+        {
+          "name": "Product",
+          "dataType": "Enum",
+          "required": true,
+          "source": "System",
+          "description": "Freckle, myON, Lalilo, or Nearpod. Determines content source and completion criteria."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "Teacher, Student",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "student"]
+        },
+        {
+          "name": "Start",
+          "roles": "Student",
+          "permission": "Write",
+          "priority": "P",
+          "roleKeys": ["student"]
+        }
+      ]
+    },
+    {
+      "layout": "detail",
+      "heading": "Detail page layout",
+      "description": "What users see when they open a full Assignment record",
+      "defaultShape": "profile",
+      "componentTag": "ren-assignment-profile",
+      "examples": [
+        {
+          "name": "Fraction Fundamentals Practice",
+          "subject": "Math",
+          "skillCount": 3,
+          "dueDate": "2026-03-21",
+          "status": "in-progress",
+          "completionPercent": 58,
+          "studentCount": 24,
+          "product": "Freckle",
+          "type": "Practice",
+          "createdBy": "Ms. Johnson",
+          "color": "#2B87FF",
+          "nestedObjects": [
+            { "label": "Students", "count": 24 },
+            { "label": "Skills", "count": 3 },
+            { "label": "Resources", "count": 1 },
+            { "label": "Scores", "count": 14 }
+          ]
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Assignment Name/Title",
+          "dataType": "String",
+          "required": true,
+          "source": "Teacher Input",
+          "description": "Primary identifier. Appears in dashboards, class feeds, and student task lists."
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "required": true,
+          "source": "Teacher Input",
+          "description": "Academic subject area: ELA, Math, Science, Social Studies, SEL."
+        },
+        {
+          "name": "Assignment Type",
+          "dataType": "Enum",
+          "required": true,
+          "source": "Teacher Input",
+          "description": "Practice, Reading, Activity, or Project. Determines UI treatment and completion flow."
+        },
+        {
+          "name": "Due Date",
+          "dataType": "Date",
+          "source": "Teacher Input",
+          "description": "Optional deadline. Drives overdue status transitions and calendar views."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "required": true,
+          "source": "System / Student Action",
+          "description": "Assigned, In Progress, Completed, Overdue, or Deleted. System-managed lifecycle state."
+        },
+        {
+          "name": "Product",
+          "dataType": "Enum",
+          "required": true,
+          "source": "System",
+          "description": "Freckle, myON, Lalilo, or Nearpod. Determines content source and completion criteria."
+        },
+        {
+          "name": "Skill Targets",
+          "dataType": "Reference → Skill[]",
+          "source": "Teacher Input / System",
+          "description": "Skills this assignment is designed to practice or reinforce.",
+          "isReference": true,
+          "referenceSlug": "skill",
+          "referenceName": "Skill"
+        },
+        {
+          "name": "Class",
+          "dataType": "Reference → Class",
+          "required": true,
+          "source": "Teacher Input",
+          "description": "The class this assignment is given to.",
+          "isReference": true,
+          "referenceSlug": "class",
+          "referenceName": "Class"
+        },
+        {
+          "name": "Resource(s)",
+          "dataType": "Reference → Resource[]",
+          "source": "Teacher Input / System",
+          "description": "Content items from the Renaissance library attached to this assignment.",
+          "isReference": true,
+          "referenceSlug": "resource",
+          "referenceName": "Resource"
+        },
+        {
+          "name": "Completion Criteria",
+          "dataType": "String",
+          "source": "System / Teacher Input",
+          "description": "Defines what constitutes completion: score threshold, time-on-task, items answered, pages read."
+        },
+        {
+          "name": "Created By",
+          "dataType": "Reference → Teacher",
+          "source": "System",
+          "description": "The teacher who created this assignment.",
+          "isReference": true,
+          "referenceSlug": "teacher",
+          "referenceName": "Teacher"
+        },
+        {
+          "name": "Created Date",
+          "dataType": "Date",
+          "required": true,
+          "source": "System",
+          "description": "Timestamp of assignment creation. System-generated, immutable."
+        },
+        {
+          "name": "Differentiation",
+          "dataType": "Boolean",
+          "source": "Teacher Input / System",
+          "description": "Whether content is differentiated per student based on proficiency levels."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "Teacher, Student",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "student"]
+        },
+        {
+          "name": "Create",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "class",
+          "crossObjectName": "Class",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Assign to Class",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "class",
+          "crossObjectName": "Class",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Edit",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "T",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Start",
+          "roles": "Student",
+          "permission": "Write",
+          "priority": "P",
+          "roleKeys": ["student"]
+        },
+        {
+          "name": "Submit/Complete",
+          "roles": "Student",
+          "permission": "Write",
+          "priority": "S",
+          "crossObjectSlug": "score",
+          "crossObjectName": "Score",
+          "roleKeys": ["student"]
+        },
+        {
+          "name": "View Progress",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "student",
+          "crossObjectName": "Student",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Delete",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "Q",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Duplicate",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "T",
+          "roleKeys": ["teacher"]
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "Create and Assign Practice",
+      "icon": "assignment_add",
+      "role": "Teacher",
+      "action": "create",
+      "object": "Assignment",
+      "benefit": "my students receive targeted practice on skills they need to develop, using content matched to their proficiency levels.",
+      "whenClause": "I create a new practice assignment and assign it to my class,",
+      "thenClause": "each student receives the assignment in their task list, optionally differentiated by proficiency level, with a clear due date and completion criteria.",
+      "crossObjects": [
+        { "slug": "class", "name": "Class" },
+        { "slug": "skill", "name": "Skill" }
+      ]
+    },
+    {
+      "title": "Complete Assignment",
+      "icon": "task_alt",
+      "role": "Student",
+      "action": "complete",
+      "object": "Assignment",
+      "benefit": "my progress is recorded and my teacher can see how I performed on the targeted skills.",
+      "whenClause": "I finish all required items in an assignment and submit it,",
+      "thenClause": "a Score is generated, my skill proficiency is updated, and the assignment status changes to Completed.",
+      "crossObjects": [
+        { "slug": "score", "name": "Score" }
+      ]
+    },
+    {
+      "title": "Monitor Assignment Progress",
+      "icon": "monitoring",
+      "role": "Teacher",
+      "action": "view progress for",
+      "object": "Assignment",
+      "benefit": "I can identify students who are struggling and intervene before the due date.",
+      "whenClause": "I open an assignment's progress view,",
+      "thenClause": "I see each student's completion percentage, time spent, score (if completed), and can identify who hasn't started, who is in progress, and who is done.",
+      "crossObjects": [
+        { "slug": "student", "name": "Student" },
+        { "slug": "score", "name": "Score" }
+      ]
+    }
+  ],
+  "businessRules": [
+    {
+      "title": "Ownership",
+      "description": "An Assignment is owned by the Teacher who created it. Only the creating teacher (or an Admin) can edit or delete it."
+    },
+    {
+      "title": "Class Binding",
+      "description": "An Assignment must be associated with exactly one Class. All students enrolled in that class at the time of assignment receive it."
+    },
+    {
+      "title": "Status Transitions",
+      "description": "Status follows the lifecycle: Assigned → In Progress (on first student action) → Completed (when completion criteria met) or → Overdue (when due date passes without completion). Any state can transition to Deleted by the teacher."
+    },
+    {
+      "title": "Differentiation",
+      "description": "When differentiation is enabled, the system adjusts content difficulty per student based on their most recent proficiency data for the targeted skills."
+    },
+    {
+      "title": "Score Generation",
+      "description": "A Score is generated for each student upon assignment completion. The score reflects performance on the targeted skills and feeds into the student's proficiency profile."
+    },
+    {
+      "title": "Late Submission",
+      "description": "Students can submit overdue assignments. The assignment moves to Completed but retains the Overdue timestamp for teacher reporting."
+    },
+    {
+      "title": "Duplication",
+      "description": "Duplicating an assignment creates a new instance with the same skill targets, resources, and completion criteria but a fresh status (Assigned), no scores, and a new created date."
+    }
+  ],
+  "lifecycle": {
+    "states": [
+      {
+        "name": "Assigned",
+        "description": "Created by teacher and distributed to class",
+        "triggers": "Teacher creates and assigns to class",
+        "variant": "default"
+      },
+      {
+        "name": "In Progress",
+        "description": "At least one student has started working",
+        "triggers": "First student action (open, begin, answer)",
+        "variant": "active"
+      },
+      {
+        "name": "Completed",
+        "description": "All students have met completion criteria or teacher marks complete",
+        "triggers": "All students submit, or teacher force-completes",
+        "variant": "active"
+      },
+      {
+        "name": "Overdue",
+        "description": "Due date has passed with incomplete submissions",
+        "triggers": "System clock passes due date while status is Assigned or In Progress",
+        "variant": "warn"
+      },
+      {
+        "name": "Deleted",
+        "description": "Removed by teacher; hidden from student views",
+        "triggers": "Teacher deletes assignment",
+        "variant": "default"
+      }
+    ],
+    "transitions": [
+      { "from": "Assigned", "to": ["In Progress", "Overdue", "Deleted"] },
+      { "from": "In Progress", "to": ["Completed", "Overdue", "Deleted"] },
+      { "from": "Overdue", "to": ["Completed", "Deleted"] }
+    ]
+  },
+  "relationships": [
+    {
+      "targetSlug": "class",
+      "targetName": "Class",
+      "mechanics": "A teacher creates an Assignment and binds it to a Class. All students enrolled in the class receive the assignment.",
+      "cardinality": "Many-to-one. An Assignment belongs to exactly one Class; a Class can have many Assignments. Typical: 5-20 active assignments per class.",
+      "sorts": "Assignments within a Class: by due date (default), by status, by subject, by creation date.",
+      "filters": "By status (Assigned, In Progress, Completed, Overdue), by subject, by assignment type, by product.",
+      "dependencies": "If a Class is archived, its Assignments are also archived. Students enrolled after assignment creation receive the assignment if still active."
+    },
+    {
+      "targetSlug": "student",
+      "targetName": "Student",
+      "mechanics": "Students receive Assignments through their Class enrollment. Each student has an independent status and score per assignment.",
+      "cardinality": "Many-to-many (via Class). An Assignment reaches many Students; a Student has many Assignments. Typical: 15-35 students per assignment, 3-15 active assignments per student.",
+      "sorts": "Students within an Assignment: by completion status (default), alphabetical, by score.",
+      "filters": "By completion status (Not Started, In Progress, Completed), by score range, by time spent.",
+      "dependencies": "If a Student is removed from a Class, their in-progress work on that class's Assignments is preserved but marked inactive."
+    },
+    {
+      "targetSlug": "score",
+      "targetName": "Score",
+      "mechanics": "A Score is system-generated when a Student completes an Assignment. The score captures performance on the assignment's targeted skills.",
+      "cardinality": "One-to-many. An Assignment generates one Score per Student upon completion. A Score belongs to exactly one Assignment and one Student.",
+      "sorts": "Scores within an Assignment: by score value (default), by completion date, alphabetical by student.",
+      "filters": "By score range, by proficiency level achieved, by completion date.",
+      "dependencies": "If an Assignment is deleted, associated Scores persist for historical reporting but are no longer linked to an active assignment."
+    }
+  ],
+  "relatedObjects": ["class", "student", "teacher", "skill", "resource", "score"],
+  "nestedObjects": [
+    {
+      "slug": "student",
+      "name": "Student",
+      "cardinality": "Many-to-many (via Class)",
+      "description": "Students who received this assignment through class enrollment"
+    },
+    {
+      "slug": "skill",
+      "name": "Skill",
+      "cardinality": "One-to-many",
+      "description": "Skills this assignment targets for practice or reinforcement"
+    },
+    {
+      "slug": "resource",
+      "name": "Resource",
+      "cardinality": "One-to-many",
+      "description": "Content items from the Renaissance library attached to this assignment"
+    },
+    {
+      "slug": "score",
+      "name": "Score",
+      "cardinality": "One-to-many",
+      "description": "System-generated when each student completes the assignment"
+    }
+  ],
+  "allAttributes": [
+    {
+      "name": "Assignment Name/Title",
+      "dataType": "String",
+      "required": true,
+      "source": "Teacher Input",
+      "description": "Primary identifier. Appears in dashboards, class feeds, and student task lists."
+    },
+    {
+      "name": "Skill Targets",
+      "dataType": "Reference → Skill[]",
+      "source": "Teacher Input / System",
+      "description": "Skills this assignment is designed to practice or reinforce. Drives differentiation and score attribution.",
+      "isReference": true,
+      "referenceSlug": "skill",
+      "referenceName": "Skill"
+    },
+    {
+      "name": "Class",
+      "dataType": "Reference → Class",
+      "required": true,
+      "source": "Teacher Input",
+      "description": "The class this assignment is given to. Determines which students receive the assignment.",
+      "isReference": true,
+      "referenceSlug": "class",
+      "referenceName": "Class"
+    },
+    {
+      "name": "Due Date",
+      "dataType": "Date",
+      "source": "Teacher Input",
+      "description": "Optional deadline. Drives overdue status transitions, calendar views, and student prioritization."
+    },
+    {
+      "name": "Status",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System / Student Action",
+      "description": "Assigned, In Progress, Completed, Overdue, or Deleted. System-managed lifecycle state."
+    },
+    {
+      "name": "Assignment Type",
+      "dataType": "Enum",
+      "required": true,
+      "source": "Teacher Input",
+      "description": "Practice, Reading, Activity, or Project. Determines UI treatment, completion flow, and scoring model."
+    },
+    {
+      "name": "Subject",
+      "dataType": "Enum",
+      "required": true,
+      "source": "Teacher Input",
+      "description": "Academic subject area: ELA, Math, Science, Social Studies, SEL."
+    },
+    {
+      "name": "Product",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System",
+      "description": "Freckle, myON, Lalilo, or Nearpod. Determines content source, completion criteria, and scoring engine."
+    },
+    {
+      "name": "Resource(s)",
+      "dataType": "Reference → Resource[]",
+      "source": "Teacher Input / System",
+      "description": "Content items from the Renaissance library attached to this assignment.",
+      "isReference": true,
+      "referenceSlug": "resource",
+      "referenceName": "Resource"
+    },
+    {
+      "name": "Completion Criteria",
+      "dataType": "String",
+      "source": "System / Teacher Input",
+      "description": "Defines what constitutes completion: score threshold, time-on-task, items answered, or pages read."
+    },
+    {
+      "name": "Created By",
+      "dataType": "Reference → Teacher",
+      "source": "System",
+      "description": "The teacher who created this assignment. System-captured at creation time.",
+      "isReference": true,
+      "referenceSlug": "teacher",
+      "referenceName": "Teacher"
+    },
+    {
+      "name": "Created Date",
+      "dataType": "Date",
+      "required": true,
+      "source": "System",
+      "description": "Timestamp of assignment creation. System-generated, immutable."
+    },
+    {
+      "name": "Differentiation",
+      "dataType": "Boolean",
+      "source": "Teacher Input / System",
+      "description": "Whether content is differentiated per student based on their most recent proficiency data."
+    }
+  ],
+  "allCTAs": [
+    {
+      "name": "View",
+      "roles": "Teacher, Student",
+      "permission": "Read",
+      "priority": "P",
+      "roleKeys": ["teacher", "student"]
+    },
+    {
+      "name": "Create",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "S",
+      "crossObjectSlug": "class",
+      "crossObjectName": "Class",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Assign to Class",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "S",
+      "crossObjectSlug": "class",
+      "crossObjectName": "Class",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Edit",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "T",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Start",
+      "roles": "Student",
+      "permission": "Write",
+      "priority": "P",
+      "roleKeys": ["student"]
+    },
+    {
+      "name": "Submit/Complete",
+      "roles": "Student",
+      "permission": "Write",
+      "priority": "S",
+      "crossObjectSlug": "score",
+      "crossObjectName": "Score",
+      "roleKeys": ["student"]
+    },
+    {
+      "name": "View Progress",
+      "roles": "Teacher",
+      "permission": "Read",
+      "priority": "S",
+      "crossObjectSlug": "student",
+      "crossObjectName": "Student",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Delete",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "Q",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Duplicate",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "T",
+      "roleKeys": ["teacher"]
+    }
+  ],
+  "sipValidation": {
+    "structure": {
+      "pass": true,
+      "evidence": "An Assignment has a rich attribute set: name, type, subject, due date, status, skill targets, completion criteria, differentiation flag, product, and more. You can design a detail page for an Assignment."
+    },
+    "instances": {
+      "pass": true,
+      "evidence": "Fraction Fundamentals Practice (Math, Freckle, due March 21), Charlotte's Web Reading Log (ELA, myON, due March 28), Phonics Blending Activity (ELA, Lalilo, no due date). Every class generates dozens of Assignment instances per grading period."
+    },
+    "purpose": {
+      "pass": true,
+      "evidence": "Assignments are the primary mechanism through which teachers deliver instructional practice to students. Teachers create them, students complete them, and the resulting Scores drive skill proficiency tracking and progress reporting."
+    },
+    "verdict": "Core activity object. The bridge between teacher instruction and student practice across all Renaissance content products."
+  },
+  "synonyms": [
+    {
+      "term": "Task",
+      "context": "Student-facing UI, Freckle",
+      "notes": "Used in student task lists and completion screens"
+    },
+    {
+      "term": "Practice",
+      "context": "Freckle, adaptive learning contexts",
+      "notes": "Specifically refers to the Practice assignment type in Freckle"
+    },
+    {
+      "term": "Activity",
+      "context": "Nearpod, interactive lesson contexts",
+      "notes": "Used when the assignment involves interactive or collaborative work"
+    },
+    {
+      "term": "Lesson",
+      "context": "Nearpod, Lalilo",
+      "notes": "Overlaps with Assignment when teacher-directed content is delivered via the product"
+    },
+    {
+      "term": "Goal",
+      "context": "AR (Accelerated Reader)",
+      "notes": "In AR, reading goals function as assignments with book-count or point targets"
+    },
+    {
+      "term": "Work",
+      "context": "Parent-facing communications",
+      "notes": "Generic term used in parent reports and notifications"
+    }
+  ],
+  "shapeshifterMatrix": [
+    {
+      "context": "Class Dashboard",
+      "value": "class-dashboard",
+      "shape": "card",
+      "description": "Active assignments for a class shown as cards with due dates, status, and progress. Teachers manage their class workload and check completion from here.",
+      "visibleAttributes": ["Assignment Name/Title", "Subject", "Assignment Type", "Due Date", "Status", "Product"],
+      "availableCTAs": ["View", "View Progress", "Edit"],
+      "cardShape": "Medium card"
+    },
+    {
+      "context": "Student Task List",
+      "value": "student-task-list",
+      "shape": "row",
+      "description": "A student's assignments listed with due dates and completion status. Students see what's due and start or continue their work.",
+      "visibleAttributes": ["Assignment Name/Title", "Subject", "Due Date", "Status"],
+      "availableCTAs": ["Start", "View"],
+      "cardShape": "Compact row"
+    },
+    {
+      "context": "Assignment Detail",
+      "value": "assignment-detail",
+      "shape": "profile",
+      "description": "The complete assignment record — resources, skill targets, class, differentiation settings, and all management controls. Teachers create, edit, and track assignments from this page.",
+      "visibleAttributes": ["Assignment Name/Title", "Subject", "Assignment Type", "Due Date", "Status", "Product", "Skill Targets", "Class", "Resource(s)", "Completion Criteria", "Created By", "Created Date", "Differentiation"],
+      "availableCTAs": ["View", "Create", "Assign to Class", "Edit", "Start", "Submit/Complete", "View Progress", "Delete", "Duplicate"],
+      "cardShape": "Full page"
+    },
+    {
+      "context": "Teacher Calendar",
+      "value": "teacher-calendar",
+      "shape": "header",
+      "description": "Assignments displayed as compact bars on a calendar view, showing due dates and status. Teachers scan their schedule to spot conflicts and plan ahead.",
+      "visibleAttributes": ["Assignment Name/Title", "Subject", "Due Date", "Status"],
+      "availableCTAs": ["View"],
+      "cardShape": "Compact bar"
+    },
+    {
+      "context": "Progress Report",
+      "value": "progress-report",
+      "shape": "row",
+      "description": "Assignments listed with status and due dates in a progress report. Teachers review completion patterns across students and identify overdue work.",
+      "visibleAttributes": ["Assignment Name/Title", "Subject", "Status", "Due Date"],
+      "availableCTAs": ["View Progress"],
+      "cardShape": "Data row"
+    },
+    {
+      "context": "Class Activity Feed",
+      "value": "class-activity-feed",
+      "shape": "header",
+      "description": "The assignment shown as a section header within a class activity feed, grouping related student activity below it.",
+      "visibleAttributes": ["Assignment Name/Title", "Subject", "Product"],
+      "availableCTAs": ["View"],
+      "cardShape": "Section header"
+    },
+    {
+      "context": "Student Detail",
+      "value": "student-detail",
+      "shape": "row",
+      "description": "Assignments within a student's profile as a sortable table with status and progress. Teachers review what a student has been assigned and take action on individual items.",
+      "visibleAttributes": ["Assignment Name/Title", "Assignment Type", "Assigned Date", "Status", "Progress", "Created By"],
+      "availableCTAs": ["Start", "Continue", "Delete"],
+      "cardShape": "Table row in sortable list",
+      "userIntent": "What assignments has this student been given?"
+    }
+  ]
+}

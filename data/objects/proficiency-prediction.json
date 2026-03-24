@@ -1,0 +1,567 @@
+{
+  "identity": {
+    "slug": "proficiency-prediction",
+    "name": "Proficiency Prediction",
+    "qualifier": "(Core)",
+    "objectType": "core",
+    "category": "data-ai",
+    "definition": "A Proficiency Prediction is an SPS-generated, model-based estimate of how proficient a specific student is on a specific skill, categorized into an instructional group that tells teachers whether the student needs enrichment, core instruction, or approaching-level support.",
+    "synonyms": ["prediction", "proficiency level", "mastery estimate"],
+    "products": "Star"
+  },
+  "variations": [],
+  "representations": [
+    {
+      "layout": "card",
+      "heading": "Card layout",
+      "description": "How a Proficiency Prediction appears in skill proficiency grids and dashboards",
+      "defaultShape": "card",
+      "componentTag": "ren-proficiency-prediction-card",
+      "examples": [
+        {
+          "studentName": "Harry Potter",
+          "skillName": "Determine Meaning of Words",
+          "proficiency": 82,
+          "predictedPctCorrect": 78,
+          "instructionalGroup": "ENRICHMENT",
+          "predictionType": "has_star",
+          "isPracticed": true,
+          "color": "#398b26"
+        },
+        {
+          "studentName": "Hermione Granger",
+          "skillName": "Analyze Text Structure",
+          "proficiency": 54,
+          "predictedPctCorrect": 51,
+          "instructionalGroup": "INSTRUCTIONAL",
+          "predictionType": "has_star",
+          "isPracticed": true,
+          "color": "#e6a817"
+        },
+        {
+          "studentName": "Ron Weasley",
+          "skillName": "Use Context Clues",
+          "proficiency": 31,
+          "predictedPctCorrect": 28,
+          "instructionalGroup": "APPROACHING",
+          "predictionType": "practice_only",
+          "isPracticed": false,
+          "color": "#cf3a4e"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Proficiency %",
+          "dataType": "Number",
+          "source": "SPS Model",
+          "description": "Model-estimated proficiency on the linked Skill. 0–100 scale."
+        },
+        {
+          "name": "Instructional Group",
+          "dataType": "Enum",
+          "source": "SPS Model",
+          "description": "Categorical grouping derived from proficiency: ENRICHMENT, INSTRUCTIONAL, or APPROACHING."
+        },
+        {
+          "name": "Student ID",
+          "dataType": "Reference → Student",
+          "source": "System",
+          "description": "The student this prediction applies to.",
+          "isReference": true,
+          "referenceSlug": "student",
+          "referenceName": "Student"
+        },
+        {
+          "name": "Skill ID",
+          "dataType": "Reference → Skill",
+          "source": "System",
+          "description": "The skill being predicted.",
+          "isReference": true,
+          "referenceSlug": "skill",
+          "referenceName": "Skill"
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Prediction",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin"]
+        }
+      ]
+    },
+    {
+      "layout": "list",
+      "heading": "List layout",
+      "description": "How a Proficiency Prediction appears in student skill rows and reports",
+      "defaultShape": "row",
+      "componentTag": "ren-proficiency-prediction-row",
+      "examples": [
+        {
+          "studentName": "Harry Potter",
+          "skillName": "Determine Meaning of Words",
+          "proficiency": 82,
+          "predictedPctCorrect": 78,
+          "instructionalGroup": "ENRICHMENT",
+          "predictionType": "has_star",
+          "isPracticed": true,
+          "color": "#398b26"
+        },
+        {
+          "studentName": "Hermione Granger",
+          "skillName": "Analyze Text Structure",
+          "proficiency": 54,
+          "predictedPctCorrect": 51,
+          "instructionalGroup": "INSTRUCTIONAL",
+          "predictionType": "has_star",
+          "isPracticed": true,
+          "color": "#e6a817"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Student ID",
+          "dataType": "Reference → Student",
+          "source": "System",
+          "description": "The student this prediction applies to.",
+          "isReference": true,
+          "referenceSlug": "student",
+          "referenceName": "Student"
+        },
+        {
+          "name": "Skill ID",
+          "dataType": "Reference → Skill",
+          "source": "System",
+          "description": "The skill being predicted.",
+          "isReference": true,
+          "referenceSlug": "skill",
+          "referenceName": "Skill"
+        },
+        {
+          "name": "Proficiency %",
+          "dataType": "Number",
+          "source": "SPS Model",
+          "description": "Model-estimated proficiency on the linked Skill. 0–100 scale."
+        },
+        {
+          "name": "Instructional Group",
+          "dataType": "Enum",
+          "source": "SPS Model",
+          "description": "Categorical grouping derived from proficiency: ENRICHMENT, INSTRUCTIONAL, or APPROACHING."
+        },
+        {
+          "name": "Prediction Type",
+          "dataType": "Enum",
+          "source": "SPS Model",
+          "description": "Whether the student has Star assessment data (has_star) or only practice data (practice_only)."
+        },
+        {
+          "name": "Skill Is Practiced",
+          "dataType": "Boolean",
+          "source": "System",
+          "description": "Whether the student has practiced this skill in Freckle or other practice tools."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Prediction",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin"]
+        }
+      ]
+    },
+    {
+      "layout": "detail",
+      "heading": "Detail layout",
+      "description": "Full detail view of a single Proficiency Prediction with all model data",
+      "defaultShape": "profile",
+      "componentTag": "ren-proficiency-prediction-profile",
+      "examples": [
+        {
+          "studentName": "Harry Potter",
+          "skillName": "Determine Meaning of Words",
+          "proficiency": 82,
+          "predictedPctCorrect": 78,
+          "instructionalGroup": "ENRICHMENT",
+          "predictionType": "has_star",
+          "isPracticed": true,
+          "color": "#398b26",
+          "predictionModel": "SPS v3.2",
+          "predictionTimestamp": "2025-09-15T14:30:00Z"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Student ID",
+          "dataType": "Reference → Student",
+          "source": "System",
+          "description": "The student this prediction applies to.",
+          "isReference": true,
+          "referenceSlug": "student",
+          "referenceName": "Student"
+        },
+        {
+          "name": "Skill ID",
+          "dataType": "Reference → Skill",
+          "source": "System",
+          "description": "The skill being predicted.",
+          "isReference": true,
+          "referenceSlug": "skill",
+          "referenceName": "Skill"
+        },
+        {
+          "name": "Proficiency %",
+          "dataType": "Number",
+          "source": "SPS Model",
+          "description": "Model-estimated proficiency on the linked Skill. 0–100 scale."
+        },
+        {
+          "name": "Predicted % Correct",
+          "dataType": "Number",
+          "source": "SPS Model",
+          "description": "The model's estimate of what percentage of items this student would answer correctly on this skill."
+        },
+        {
+          "name": "Instructional Group",
+          "dataType": "Enum",
+          "source": "SPS Model",
+          "description": "Categorical grouping derived from proficiency: ENRICHMENT, INSTRUCTIONAL, or APPROACHING."
+        },
+        {
+          "name": "Prediction Type",
+          "dataType": "Enum",
+          "source": "SPS Model",
+          "description": "Whether the student has Star assessment data (has_star) or only practice data (practice_only)."
+        },
+        {
+          "name": "Prediction Model",
+          "dataType": "String",
+          "source": "System",
+          "description": "Identifier for the SPS model version used to generate this prediction."
+        },
+        {
+          "name": "Prediction Timestamp",
+          "dataType": "Date",
+          "source": "System",
+          "description": "When this prediction was generated or last updated."
+        },
+        {
+          "name": "Skill Is Practiced",
+          "dataType": "Boolean",
+          "source": "System",
+          "description": "Whether the student has practiced this skill in Freckle or other practice tools."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View Prediction",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "View Prediction Detail",
+          "roles": "Teacher, Admin",
+          "permission": "Read",
+          "priority": "S",
+          "roleKeys": ["teacher", "admin"]
+        },
+        {
+          "name": "Generate Prediction",
+          "roles": "System",
+          "permission": "System",
+          "priority": "T",
+          "roleKeys": ["system"]
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "View Grid Cell",
+      "icon": "grid_view",
+      "role": "Teacher",
+      "action": "view",
+      "object": "Proficiency Prediction",
+      "benefit": "I can quickly see at a glance whether each student needs enrichment, core instruction, or approaching-level support for a given skill.",
+      "whenClause": "I open the SPS proficiency grid for my class,",
+      "thenClause": "each cell shows the student's proficiency percentage color-coded by instructional group so I can identify intervention needs instantly."
+    },
+    {
+      "title": "Analyze Class Proficiency",
+      "icon": "insights",
+      "role": "Teacher",
+      "action": "analyze",
+      "object": "Proficiency Prediction",
+      "benefit": "I can plan targeted instruction by identifying which skills have the most students in each instructional group.",
+      "whenClause": "I view the class-level proficiency summary,",
+      "thenClause": "predictions are aggregated by skill and instructional group so I can see distribution patterns across my class.",
+      "crossObjects": [{ "slug": "skill", "name": "Skill" }, { "slug": "student", "name": "Student" }]
+    },
+    {
+      "title": "Compare Student Skills",
+      "icon": "compare_arrows",
+      "role": "Teacher",
+      "action": "compare",
+      "object": "Proficiency Prediction",
+      "benefit": "I can identify relative strengths and weaknesses to personalize instruction.",
+      "whenClause": "I view a single student's skill proficiency profile,",
+      "thenClause": "all predictions for that student are displayed across skills so I can see which skills need the most attention.",
+      "crossObjects": [{ "slug": "student", "name": "Student" }]
+    }
+  ],
+  "businessRules": [
+    {
+      "title": "Uniqueness",
+      "description": "A Proficiency Prediction is uniquely identified by the combination of Student ID + Skill ID. Only one current prediction exists per student-skill pair."
+    },
+    {
+      "title": "Generation",
+      "description": "Predictions are system-generated by the SPS model. They cannot be manually created, edited, or deleted by any user role."
+    },
+    {
+      "title": "Supersession",
+      "description": "When a new prediction is generated for a student-skill pair, the previous prediction is moved to 'Superseded' state. Only the most recent prediction is shown in the UI by default."
+    },
+    {
+      "title": "Instructional Group Assignment",
+      "description": "The instructional group (ENRICHMENT, INSTRUCTIONAL, APPROACHING) is determined by the model based on proficiency thresholds. These thresholds are configurable at the district level."
+    },
+    {
+      "title": "Prediction Type",
+      "description": "Predictions with prediction_type 'has_star' incorporate Star assessment data and are considered higher confidence. Predictions with 'practice_only' rely solely on Freckle practice data."
+    },
+    {
+      "title": "Skill Practice Flag",
+      "description": "The 'Skill Is Practiced' flag indicates whether the student has engaged with practice items for this skill. Unpracticed skills may have lower confidence predictions."
+    },
+    {
+      "title": "Refresh Frequency",
+      "description": "Predictions are regenerated after each Star assessment completion and periodically based on accumulated practice data. The refresh cadence is determined by the SPS model schedule."
+    },
+    {
+      "title": "Data Dependencies",
+      "description": "A valid prediction requires at least one data source: a Star assessment score or practice activity data for the student on the linked skill."
+    },
+    {
+      "title": "Visibility",
+      "description": "Proficiency Predictions are visible to Teachers and Admins only. Students and parents do not see raw prediction data. Predictions are surfaced through the SPS proficiency grid UI."
+    },
+    {
+      "title": "Aggregation",
+      "description": "Predictions can be aggregated at the class, school, or district level to show instructional group distributions across students for a given skill or standard."
+    },
+    {
+      "title": "Standard Mapping",
+      "description": "Skills referenced by predictions are mapped to state standards. Predictions can be rolled up to the standard level for standards-based reporting."
+    }
+  ],
+  "lifecycle": {
+    "states": [
+      {
+        "name": "Current",
+        "description": "The most recent prediction for this student-skill pair, actively displayed in the proficiency grid",
+        "triggers": "SPS model generates or refreshes a prediction",
+        "variant": "active"
+      },
+      {
+        "name": "Superseded",
+        "description": "A previous prediction replaced by a newer one; retained for historical analysis",
+        "triggers": "A new prediction is generated for the same student-skill pair",
+        "variant": "default"
+      }
+    ],
+    "transitions": [
+      { "from": "Current", "to": ["Superseded"] }
+    ]
+  },
+  "relationships": [
+    {
+      "targetSlug": "student",
+      "targetName": "Student",
+      "mechanics": "Each prediction is linked to exactly one Student. The prediction is system-generated based on the student's assessment and practice data.",
+      "cardinality": "Many-to-one. A Student has many Proficiency Predictions (one per skill); each Prediction belongs to exactly one Student.",
+      "sorts": "Predictions for a student: by proficiency % (ascending/descending), by skill name alphabetically, by instructional group.",
+      "filters": "By instructional group (ENRICHMENT/INSTRUCTIONAL/APPROACHING), by prediction type (has_star/practice_only), by practiced status.",
+      "dependencies": "If a Student is deactivated, their predictions remain for historical analysis but are excluded from active class-level aggregations."
+    },
+    {
+      "targetSlug": "skill",
+      "targetName": "Skill",
+      "mechanics": "Each prediction is linked to exactly one Skill. The prediction estimates the student's proficiency on that specific skill.",
+      "cardinality": "Many-to-one. A Skill has many Proficiency Predictions (one per student); each Prediction targets exactly one Skill.",
+      "sorts": "Predictions for a skill: by student name alphabetically, by proficiency % (ascending/descending), by instructional group.",
+      "filters": "By instructional group, by prediction type, by student demographics (via Student relationship).",
+      "dependencies": "If a Skill is deprecated or remapped, associated predictions may be superseded or recalculated against the replacement skill."
+    }
+  ],
+  "relatedObjects": ["student", "skill", "score", "standard", "class", "insight"],
+  "nestedObjects": [],
+  "allAttributes": [
+    {
+      "name": "Student ID",
+      "dataType": "Reference → Student",
+      "required": true,
+      "source": "System",
+      "description": "The student this prediction applies to.",
+      "isReference": true,
+      "referenceSlug": "student",
+      "referenceName": "Student"
+    },
+    {
+      "name": "Skill ID",
+      "dataType": "Reference → Skill",
+      "required": true,
+      "source": "System",
+      "description": "The skill being predicted.",
+      "isReference": true,
+      "referenceSlug": "skill",
+      "referenceName": "Skill"
+    },
+    {
+      "name": "Proficiency %",
+      "dataType": "Number",
+      "required": true,
+      "source": "SPS Model",
+      "description": "Model-estimated proficiency on the linked Skill. 0–100 scale."
+    },
+    {
+      "name": "Predicted % Correct",
+      "dataType": "Number",
+      "required": true,
+      "source": "SPS Model",
+      "description": "The model's estimate of what percentage of items this student would answer correctly on this skill."
+    },
+    {
+      "name": "Instructional Group",
+      "dataType": "Enum",
+      "required": true,
+      "source": "SPS Model",
+      "description": "Categorical grouping: ENRICHMENT (above grade-level proficiency), INSTRUCTIONAL (at grade-level, core instruction), or APPROACHING (below grade-level, needs support)."
+    },
+    {
+      "name": "Prediction Type",
+      "dataType": "Enum",
+      "required": true,
+      "source": "SPS Model",
+      "description": "Data source indicator: has_star (Star assessment + practice data) or practice_only (Freckle practice data only)."
+    },
+    {
+      "name": "Prediction Model",
+      "dataType": "String",
+      "source": "System",
+      "description": "Identifier for the SPS model version used to generate this prediction (e.g., 'SPS v3.2')."
+    },
+    {
+      "name": "Prediction Timestamp",
+      "dataType": "Date",
+      "required": true,
+      "source": "System",
+      "description": "When this prediction was generated or last refreshed by the SPS model."
+    },
+    {
+      "name": "Skill Is Practiced",
+      "dataType": "Boolean",
+      "required": true,
+      "source": "System",
+      "description": "Whether the student has engaged with practice items for this skill in Freckle or other practice tools."
+    }
+  ],
+  "allCTAs": [
+    {
+      "name": "View Prediction",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "P",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "View Prediction Detail",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "S",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Generate Prediction",
+      "roles": "System",
+      "permission": "System",
+      "priority": "T",
+      "roleKeys": ["system"]
+    }
+  ],
+  "sipValidation": {
+    "structure": {
+      "pass": true,
+      "evidence": "A Proficiency Prediction has clear attributes: proficiency percentage, predicted percent correct, instructional group, prediction type, model version, timestamp, and practiced status. It can be displayed in grid cells, rows, and detail panels."
+    },
+    "instances": {
+      "pass": true,
+      "evidence": "Harry Potter — 82% proficiency on 'Determine Meaning of Words' (ENRICHMENT). Hermione Granger — 54% on 'Analyze Text Structure' (INSTRUCTIONAL). Ron Weasley — 31% on 'Use Context Clues' (APPROACHING). A class of 25 students across 30 skills produces 750 prediction instances."
+    },
+    "purpose": {
+      "pass": true,
+      "evidence": "Teachers use Proficiency Predictions to identify which students need enrichment, core instruction, or intervention for each skill. Predictions drive the SPS proficiency grid, inform instructional grouping decisions, and connect Star assessment data to actionable classroom guidance."
+    },
+    "verdict": "Core data/AI object. The bridge between Star assessments and actionable instructional grouping for teachers."
+  },
+  "synonyms": [
+    {
+      "term": "Prediction",
+      "context": "SPS UI, internal engineering",
+      "notes": "Short form used in code and internal references"
+    },
+    {
+      "term": "Proficiency Level",
+      "context": "Teacher-facing documentation",
+      "notes": "Sometimes used interchangeably when referring to the proficiency percentage"
+    },
+    {
+      "term": "Mastery Estimate",
+      "context": "Assessment science, psychometrics team",
+      "notes": "More precise term used in model documentation and research papers"
+    }
+  ],
+  "shapeshifterMatrix": [
+    {
+      "context": "Grid Cell",
+      "value": "grid-cell",
+      "shape": "card",
+      "description": "A single cell in the skills proficiency grid, color-coded by instructional group. Teachers scan the grid to spot patterns across students and skills.",
+      "visibleAttributes": ["Proficiency %", "Instructional Group"],
+      "availableCTAs": ["View Prediction"],
+      "cardShape": "Colored cell"
+    },
+    {
+      "context": "Tooltip",
+      "value": "tooltip",
+      "shape": "header",
+      "description": "Prediction details shown on hover — proficiency percentage, predicted accuracy, and whether the skill has been practiced. Provides context without leaving the grid.",
+      "visibleAttributes": ["Proficiency %", "Instructional Group", "Predicted % Correct", "Prediction Type", "Skill Is Practiced"],
+      "availableCTAs": ["View Prediction Detail"],
+      "cardShape": "Tooltip overlay"
+    },
+    {
+      "context": "Standard Aggregate",
+      "value": "standard-aggregate",
+      "shape": "card",
+      "description": "Aggregated proficiency predictions rolled up to the standard level. Teachers see how students are predicted to perform across a full standard, not just individual skills.",
+      "visibleAttributes": ["Proficiency %", "Instructional Group"],
+      "availableCTAs": ["View Prediction"],
+      "cardShape": "Aggregate summary"
+    },
+    {
+      "context": "Student Row",
+      "value": "student-row",
+      "shape": "row",
+      "description": "A student's proficiency predictions listed as data rows with prediction type and practice status. Teachers review predicted performance across skills for an individual student.",
+      "visibleAttributes": ["Proficiency %", "Instructional Group", "Skill Is Practiced", "Prediction Type"],
+      "availableCTAs": ["View Prediction", "View Prediction Detail"],
+      "cardShape": "Data row"
+    }
+  ]
+}

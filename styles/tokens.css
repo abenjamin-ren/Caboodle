@@ -1,0 +1,48 @@
+/* ============================================
+   Caboodle Design Tokens
+   Modular scale & custom properties
+   ============================================ */
+
+:root {
+  /* --- Modular scale (ratio 1.5 — "perfect fifth") --- */
+  --ratio: 1.5;
+  --s-5: calc(var(--s-4) / var(--ratio));
+  --s-4: calc(var(--s-3) / var(--ratio));
+  --s-3: calc(var(--s-2) / var(--ratio));
+  --s-2: calc(var(--s-1) / var(--ratio));
+  --s-1: calc(var(--s0)  / var(--ratio));
+  --s0:  1rem;
+  --s1:  calc(var(--s0)  * var(--ratio));
+  --s2:  calc(var(--s1)  * var(--ratio));
+  --s3:  calc(var(--s2)  * var(--ratio));
+  --s4:  calc(var(--s3)  * var(--ratio));
+  --s5:  calc(var(--s4)  * var(--ratio));
+
+  /* --- Measure (max line length) --- */
+  --measure: 60ch;
+
+  /* --- Border --- */
+  --border-thin: 1px;
+  --border-thick: 3px;
+
+  /* --- Colors (neutral starter palette) --- */
+  --color-dark:    #1a1a2e;
+  --color-mid:     #4a4a68;
+  --color-light:   #f0f0f5;
+  --color-lightest: #fafafa;
+  --color-border:  #ccc;
+  --color-brand:   #cf3a4e;
+  --color-accent:  #2B87FF;
+  --color-accent-light: #6b82f7;
+  --color-focus:   #2B87FF;
+  --color-link:    var(--color-accent);
+
+  /* --- Typography --- */
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-plain: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo,
+    Consolas, 'DejaVu Sans Mono', monospace;
+  --line-height: 1.5;
+  --line-height-tight: 1.2;
+}

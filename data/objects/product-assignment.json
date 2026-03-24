@@ -1,0 +1,621 @@
+{
+  "identity": {
+    "slug": "product-assignment",
+    "name": "Product Assignment",
+    "qualifier": "(Domain)",
+    "objectType": "domain",
+    "category": "container",
+    "definition": "A Product Assignment is a scoped provisioning record that declares a Solution or Product available to a defined population within a school or district.",
+    "synonyms": ["provisioning record", "license assignment", "access grant"],
+    "products": "Renaissance Intelligence"
+  },
+  "variations": [],
+  "representations": [
+    {
+      "layout": "card",
+      "heading": "Card layout",
+      "description": "How a Product Assignment appears in provisioning dashboards",
+      "defaultShape": "card",
+      "componentTag": "ren-product-assignment-card",
+      "examples": [
+        {
+          "scopeLevel": "school",
+          "scopeValue": "Lincoln Elementary",
+          "solutionName": "Renaissance Star 360",
+          "state": "active",
+          "createdBy": "J. Admin",
+          "color": "#7C3AED"
+        },
+        {
+          "scopeLevel": "grade",
+          "scopeValue": "3rd Grade",
+          "solutionName": "Freckle + Lalilo",
+          "state": "active",
+          "createdBy": "M. District",
+          "color": "#2563EB"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Scope Level",
+          "dataType": "Enum",
+          "source": "Admin",
+          "description": "Granularity of assignment: school, grade, or class."
+        },
+        {
+          "name": "Scope Value",
+          "dataType": "String",
+          "source": "Admin",
+          "description": "The specific school, grade, or class this assignment targets."
+        },
+        {
+          "name": "Solution ID",
+          "dataType": "Reference → Solution",
+          "source": "Admin",
+          "description": "The Solution being assigned.",
+          "isReference": true,
+          "referenceSlug": "solution",
+          "referenceName": "Solution"
+        },
+        {
+          "name": "State",
+          "dataType": "Enum",
+          "source": "System / Admin",
+          "description": "Active or inactive."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["admin"]
+        },
+        {
+          "name": "Edit",
+          "roles": "Admin",
+          "permission": "Write",
+          "priority": "S",
+          "roleKeys": ["admin"]
+        }
+      ]
+    },
+    {
+      "layout": "list",
+      "heading": "List layout",
+      "description": "How a Product Assignment appears in assignment management tables",
+      "defaultShape": "row",
+      "componentTag": "ren-product-assignment-row",
+      "examples": [
+        {
+          "scopeLevel": "school",
+          "scopeValue": "Lincoln Elementary",
+          "solutionName": "Renaissance Star 360",
+          "state": "active",
+          "createdBy": "J. Admin",
+          "color": "#7C3AED"
+        },
+        {
+          "scopeLevel": "class",
+          "scopeValue": "Mrs. Smith's 5th Grade",
+          "solutionName": "myON + Accelerated Reader",
+          "state": "inactive",
+          "createdBy": "K. Principal",
+          "color": "#999"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Scope Level",
+          "dataType": "Enum",
+          "source": "Admin",
+          "description": "Granularity of assignment: school, grade, or class."
+        },
+        {
+          "name": "Scope Value",
+          "dataType": "String",
+          "source": "Admin",
+          "description": "The specific school, grade, or class this assignment targets."
+        },
+        {
+          "name": "Solution ID",
+          "dataType": "Reference → Solution",
+          "source": "Admin",
+          "description": "The Solution being assigned.",
+          "isReference": true,
+          "referenceSlug": "solution",
+          "referenceName": "Solution"
+        },
+        {
+          "name": "State",
+          "dataType": "Enum",
+          "source": "System / Admin",
+          "description": "Active or inactive."
+        },
+        {
+          "name": "Created By",
+          "dataType": "String",
+          "source": "System",
+          "description": "Admin who created this assignment."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["admin"]
+        },
+        {
+          "name": "Deactivate",
+          "roles": "Admin",
+          "permission": "Write",
+          "priority": "T",
+          "roleKeys": ["admin"]
+        }
+      ]
+    },
+    {
+      "layout": "detail",
+      "heading": "Detail page layout",
+      "description": "What users see when they open a full Product Assignment record",
+      "defaultShape": "profile",
+      "componentTag": "ren-product-assignment-profile",
+      "examples": [
+        {
+          "scopeLevel": "school",
+          "scopeValue": "Lincoln Elementary",
+          "solutionName": "Renaissance Star 360",
+          "state": "active",
+          "createdBy": "J. Admin",
+          "createdAt": "2025-08-15",
+          "effectiveDate": "2025-09-01",
+          "schoolName": "Lincoln Elementary",
+          "color": "#7C3AED"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Assignment ID",
+          "dataType": "String",
+          "source": "System",
+          "description": "Unique system identifier for this assignment."
+        },
+        {
+          "name": "Scope Level",
+          "dataType": "Enum",
+          "source": "Admin",
+          "description": "Granularity of assignment: school, grade, or class."
+        },
+        {
+          "name": "Scope Value",
+          "dataType": "String",
+          "source": "Admin",
+          "description": "The specific school, grade, or class this assignment targets."
+        },
+        {
+          "name": "Solution ID",
+          "dataType": "Reference → Solution",
+          "source": "Admin",
+          "description": "The Solution being assigned.",
+          "isReference": true,
+          "referenceSlug": "solution",
+          "referenceName": "Solution"
+        },
+        {
+          "name": "Product ID",
+          "dataType": "Reference → Product",
+          "source": "Admin",
+          "description": "Individual Product being assigned (if not via Solution).",
+          "isReference": true,
+          "referenceSlug": "product",
+          "referenceName": "Product"
+        },
+        {
+          "name": "State",
+          "dataType": "Enum",
+          "source": "System / Admin",
+          "description": "Active or inactive."
+        },
+        {
+          "name": "Created By",
+          "dataType": "String",
+          "source": "System",
+          "description": "Admin who created this assignment."
+        },
+        {
+          "name": "Created At",
+          "dataType": "Date",
+          "source": "System",
+          "description": "When this assignment was created."
+        },
+        {
+          "name": "Effective Date",
+          "dataType": "Date",
+          "source": "Admin",
+          "description": "When this assignment takes effect. Can be future-dated."
+        },
+        {
+          "name": "School ID",
+          "dataType": "Reference → School",
+          "source": "Admin",
+          "description": "The school this assignment applies to.",
+          "isReference": true,
+          "referenceSlug": "school",
+          "referenceName": "School"
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "Admin",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["admin"]
+        },
+        {
+          "name": "Edit",
+          "roles": "Admin",
+          "permission": "Write",
+          "priority": "S",
+          "roleKeys": ["admin"]
+        },
+        {
+          "name": "Deactivate",
+          "roles": "Admin",
+          "permission": "Write",
+          "priority": "T",
+          "roleKeys": ["admin"]
+        },
+        {
+          "name": "Reactivate",
+          "roles": "Admin",
+          "permission": "Write",
+          "priority": "T",
+          "roleKeys": ["admin"]
+        },
+        {
+          "name": "Delete",
+          "roles": "Admin",
+          "permission": "Write",
+          "priority": "Q",
+          "roleKeys": ["admin"]
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "Assign Solution to School",
+      "icon": "assignment",
+      "role": "District Admin",
+      "action": "create",
+      "object": "Product Assignment",
+      "benefit": "all teachers and students at that school gain access to the included Products.",
+      "whenClause": "I assign a Solution to a school,",
+      "thenClause": "a Product Assignment record is created and all users at the school can access the Solution's products.",
+      "crossObjects": [{ "slug": "solution", "name": "Solution" }, { "slug": "school", "name": "School" }]
+    },
+    {
+      "title": "Review Assignment Coverage",
+      "icon": "checklist",
+      "role": "Admin",
+      "action": "browse",
+      "object": "Product Assignment",
+      "benefit": "I can verify which schools, grades, or classes have access to which Solutions.",
+      "whenClause": "I view the Product Assignment list,",
+      "thenClause": "I see all assignments with their scope, Solution, state, and creation details."
+    },
+    {
+      "title": "Rollover Assignments",
+      "icon": "autorenew",
+      "role": "District Admin",
+      "action": "rollover",
+      "object": "Product Assignment",
+      "benefit": "schools retain access to their Solutions without manual re-creation each year.",
+      "whenClause": "I initiate a year-end rollover,",
+      "thenClause": "active assignments are duplicated for the new school year with updated effective dates."
+    }
+  ],
+  "businessRules": [
+    {
+      "title": "Uniqueness",
+      "description": "A Product Assignment is uniquely identified by its Assignment ID. A given scope (school + grade + class) can have only one active assignment per Solution."
+    },
+    {
+      "title": "Scope Hierarchy",
+      "description": "School-level assignments cascade to all grades and classes within. Grade-level assignments override school-level for that grade. Class-level is the most specific."
+    },
+    {
+      "title": "Solution or Product",
+      "description": "An assignment references either a Solution ID or a Product ID, but not both. Solution assignments implicitly grant access to all Products within."
+    },
+    {
+      "title": "Effective Dating",
+      "description": "Assignments with a future effective date are visible but not active until that date. Past effective dates activate immediately."
+    },
+    {
+      "title": "Deactivation",
+      "description": "Deactivating an assignment immediately revokes access for the target population. Historical data from usage during the active period is retained."
+    },
+    {
+      "title": "Deletion",
+      "description": "Only inactive assignments can be deleted. Active assignments must be deactivated first. Deletion removes the record permanently."
+    },
+    {
+      "title": "Audit Trail",
+      "description": "All assignment changes (creation, edits, deactivation, reactivation, deletion) are logged with the acting admin's identity and timestamp."
+    }
+  ],
+  "lifecycle": {
+    "states": [
+      {
+        "name": "Active",
+        "description": "Assignment is in effect and granting access to the target population",
+        "triggers": "Admin creates assignment or reactivates an inactive one",
+        "variant": "active"
+      },
+      {
+        "name": "Inactive",
+        "description": "Assignment is suspended; access revoked but record retained",
+        "triggers": "Admin deactivates the assignment",
+        "variant": "default"
+      }
+    ],
+    "transitions": [
+      { "from": "Active", "to": ["Inactive"] },
+      { "from": "Inactive", "to": ["Active"] }
+    ]
+  },
+  "relationships": [
+    {
+      "targetSlug": "solution",
+      "targetName": "Solution",
+      "mechanics": "A Product Assignment references a Solution to grant access to all of its included Products. The admin selects a Solution during assignment creation.",
+      "cardinality": "Many-to-one. Many Product Assignments can reference the same Solution; each assignment references at most one Solution.",
+      "sorts": "Assignments for a Solution: by scope level, by school name, by creation date.",
+      "filters": "By state (active/inactive), by scope level, by effective date range.",
+      "dependencies": "If a Solution is deprecated, existing active assignments remain in effect but no new assignments can be created."
+    },
+    {
+      "targetSlug": "school",
+      "targetName": "School",
+      "mechanics": "A Product Assignment targets a School (directly or via the scope value). The school is the organizational unit that receives access.",
+      "cardinality": "Many-to-one. A School can have many Product Assignments; each assignment belongs to one School.",
+      "sorts": "Assignments for a School: by Solution name, by scope level, by state.",
+      "filters": "By state, by Solution, by effective date.",
+      "dependencies": "If a School is deactivated, its Product Assignments are automatically deactivated."
+    }
+  ],
+  "relatedObjects": ["solution", "product", "school", "class", "district"],
+  "nestedObjects": [
+    {
+      "slug": "solution",
+      "name": "Solution",
+      "cardinality": "Many-to-one",
+      "description": "The Solution being provisioned by this assignment"
+    }
+  ],
+  "allAttributes": [
+    {
+      "name": "Assignment ID",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "Unique system identifier for this Product Assignment."
+    },
+    {
+      "name": "Scope Level",
+      "dataType": "Enum",
+      "required": true,
+      "source": "Admin",
+      "description": "Granularity of assignment: school, grade, or class."
+    },
+    {
+      "name": "Scope Value",
+      "dataType": "String",
+      "required": true,
+      "source": "Admin",
+      "description": "The specific school, grade, or class this assignment targets."
+    },
+    {
+      "name": "Solution ID",
+      "dataType": "Reference → Solution",
+      "source": "Admin",
+      "description": "The Solution being assigned. Mutually exclusive with Product ID.",
+      "isReference": true,
+      "referenceSlug": "solution",
+      "referenceName": "Solution"
+    },
+    {
+      "name": "Product ID",
+      "dataType": "Reference → Product",
+      "source": "Admin",
+      "description": "Individual Product being assigned. Mutually exclusive with Solution ID.",
+      "isReference": true,
+      "referenceSlug": "product",
+      "referenceName": "Product"
+    },
+    {
+      "name": "State",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System / Admin",
+      "description": "Active or inactive. Controls whether the assignment grants access."
+    },
+    {
+      "name": "Created By",
+      "dataType": "String",
+      "required": true,
+      "source": "System",
+      "description": "Identity of the admin who created this assignment."
+    },
+    {
+      "name": "Created At",
+      "dataType": "Date",
+      "required": true,
+      "source": "System",
+      "description": "Timestamp of when this assignment was created."
+    },
+    {
+      "name": "Effective Date",
+      "dataType": "Date",
+      "source": "Admin",
+      "description": "When this assignment takes effect. Defaults to creation date if not specified."
+    },
+    {
+      "name": "School ID",
+      "dataType": "Reference → School",
+      "required": true,
+      "source": "Admin",
+      "description": "The school this assignment applies to.",
+      "isReference": true,
+      "referenceSlug": "school",
+      "referenceName": "School"
+    }
+  ],
+  "allCTAs": [
+    {
+      "name": "Create",
+      "roles": "Admin",
+      "permission": "Write",
+      "priority": "P",
+      "roleKeys": ["admin"]
+    },
+    {
+      "name": "View",
+      "roles": "Admin",
+      "permission": "Read",
+      "priority": "P",
+      "roleKeys": ["admin"]
+    },
+    {
+      "name": "Browse",
+      "roles": "Admin",
+      "permission": "Read",
+      "priority": "P",
+      "roleKeys": ["admin"]
+    },
+    {
+      "name": "Edit",
+      "roles": "Admin",
+      "permission": "Write",
+      "priority": "S",
+      "roleKeys": ["admin"]
+    },
+    {
+      "name": "Deactivate",
+      "roles": "Admin",
+      "permission": "Write",
+      "priority": "T",
+      "roleKeys": ["admin"]
+    },
+    {
+      "name": "Reactivate",
+      "roles": "Admin",
+      "permission": "Write",
+      "priority": "T",
+      "roleKeys": ["admin"]
+    },
+    {
+      "name": "Delete",
+      "roles": "Admin",
+      "permission": "Write",
+      "priority": "Q",
+      "roleKeys": ["admin"]
+    },
+    {
+      "name": "Bulk Create",
+      "roles": "District Admin",
+      "permission": "Write",
+      "priority": "T",
+      "roleKeys": ["admin"]
+    },
+    {
+      "name": "Rollover",
+      "roles": "Admin",
+      "permission": "Write",
+      "priority": "T",
+      "roleKeys": ["admin"]
+    },
+    {
+      "name": "Audit",
+      "roles": "Admin",
+      "permission": "Read",
+      "priority": "T",
+      "roleKeys": ["admin"]
+    }
+  ],
+  "sipValidation": {
+    "structure": {
+      "pass": true,
+      "evidence": "A Product Assignment has rich attributes: scope level, scope value, Solution/Product reference, state, creation metadata, effective date, and school reference. A detail page can be designed."
+    },
+    "instances": {
+      "pass": true,
+      "evidence": "Lincoln Elementary → Star 360 (school-wide), 3rd Grade → Freckle + Lalilo (grade-level), Mrs. Smith's class → myON (class-level). Every district has dozens of assignment instances."
+    },
+    "purpose": {
+      "pass": true,
+      "evidence": "Product Assignments are the mechanism by which schools and districts gain access to Renaissance products. Admins create, manage, and audit assignments to control provisioning."
+    },
+    "verdict": "Domain object. The provisioning bridge between Solutions/Products and the organizational hierarchy."
+  },
+  "synonyms": [
+    {
+      "term": "Provisioning Record",
+      "context": "Engineering and platform teams",
+      "notes": "Technical term for the entitlement record"
+    },
+    {
+      "term": "License Assignment",
+      "context": "Sales and customer success",
+      "notes": "Used when discussing seat counts and licensing"
+    },
+    {
+      "term": "Access Grant",
+      "context": "Support and troubleshooting",
+      "notes": "Used when diagnosing why a user can or cannot access a product"
+    }
+  ],
+  "shapeshifterMatrix": [
+    {
+      "context": "Provisioning Dashboard",
+      "value": "provisioning-dashboard",
+      "shape": "card",
+      "description": "Product assignments shown as cards with scope, solution, and status. Admins manage which products are provisioned to which schools or districts.",
+      "visibleAttributes": ["Scope Level", "Scope Value", "Solution ID", "State"],
+      "availableCTAs": ["View", "Edit"],
+      "cardShape": "Medium card"
+    },
+    {
+      "context": "Assignment List",
+      "value": "assignment-list",
+      "shape": "row",
+      "description": "Product assignments listed in a compact table with state and ownership. Admins activate, deactivate, or review provisioning records.",
+      "visibleAttributes": ["Scope Level", "Scope Value", "Solution ID", "State", "Created By"],
+      "availableCTAs": ["View", "Deactivate", "Reactivate"],
+      "cardShape": "Compact row"
+    },
+    {
+      "context": "Assignment Detail",
+      "value": "assignment-detail",
+      "shape": "profile",
+      "description": "The complete product assignment record — scope, solution, effective date, and all management controls. Admins configure and adjust provisioning from this page.",
+      "visibleAttributes": ["Assignment ID", "Scope Level", "Scope Value", "Solution ID", "Product ID", "State", "Created By", "Created At", "Effective Date", "School ID"],
+      "availableCTAs": ["View", "Edit", "Deactivate", "Reactivate", "Delete"],
+      "cardShape": "Full page"
+    },
+    {
+      "context": "School Overview",
+      "value": "school-overview",
+      "shape": "row",
+      "description": "Product assignments shown as compact rows within a school's overview, listing which solutions are active at that school.",
+      "visibleAttributes": ["Solution ID", "Scope Level", "State"],
+      "availableCTAs": ["View"],
+      "cardShape": "Compact row"
+    }
+  ]
+}
