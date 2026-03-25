@@ -1,0 +1,1151 @@
+{
+  "identity": {
+    "slug": "student-assignment",
+    "name": "Student Assignment",
+    "qualifier": "(Domain)",
+    "objectType": "domain",
+    "category": "activity",
+    "definition": "A Student Assignment is a consolidated, cross-product unit of instructional work surfaced through Renaissance Intelligence. It aggregates assignments originating in Freckle, Lalilo, myON, and Nearpod into a single unified view, giving teachers a product-agnostic dashboard and students a single task list across all Renaissance products.",
+    "synonyms": [
+      "task"
+    ],
+    "products": "Renaissance Intelligence"
+  },
+  "variations": [],
+  "representations": [
+    {
+      "layout": "card",
+      "heading": "Card layout",
+      "description": "How a Student Assignment appears in unified dashboards and student task feeds",
+      "defaultShape": "list",
+      "componentTag": "ren-student-assignment-card",
+      "examples": [
+        {
+          "name": "Fraction Fundamentals Practice",
+          "subject": "Math",
+          "assignmentType": "Practice",
+          "sourceProduct": "Freckle",
+          "dueDate": "2026-03-28",
+          "status": "assigned",
+          "completionProgress": 0,
+          "priority": "high",
+          "color": "#2B87FF"
+        },
+        {
+          "name": "Charlotte's Web Ch. 4-6",
+          "subject": "ELA",
+          "assignmentType": "Reading",
+          "sourceProduct": "myON",
+          "dueDate": "2026-04-02",
+          "status": "in-progress",
+          "completionProgress": 42,
+          "priority": "medium",
+          "color": "#7C3AED"
+        },
+        {
+          "name": "Short Vowel Blending",
+          "subject": "ELA",
+          "assignmentType": "Activity",
+          "sourceProduct": "Lalilo",
+          "dueDate": null,
+          "status": "assigned",
+          "completionProgress": 0,
+          "priority": "high",
+          "color": "#059669"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Assignment Name",
+          "dataType": "String",
+          "required": true,
+          "source": "Source Product",
+          "description": "Display name pulled from the originating product assignment."
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "required": true,
+          "source": "Source Product / System",
+          "description": "Normalized subject: ELA, Math, Science, Social Studies, SEL."
+        },
+        {
+          "name": "Source Product",
+          "dataType": "Enum",
+          "required": true,
+          "source": "System",
+          "description": "The Renaissance product this assignment originated in: Freckle, myON, Lalilo, or Nearpod."
+        },
+        {
+          "name": "Due Date",
+          "dataType": "Date",
+          "source": "Source Product / Teacher Input",
+          "description": "Deadline synced from the source product or set by teacher in RI."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "required": true,
+          "source": "System",
+          "description": "Consolidated status: Assigned, In Progress, Completed, or Overdue. Normalized from product-specific states."
+        },
+        {
+          "name": "Priority",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "RI-computed urgency: High, Medium, or Low. Based on due date proximity, proficiency gaps, and learning path position."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "Teacher, Student",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "student"]
+        },
+        {
+          "name": "Start",
+          "roles": "Student",
+          "permission": "Write",
+          "priority": "P",
+          "roleKeys": ["student"]
+        },
+        {
+          "name": "View Progress",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "student",
+          "crossObjectName": "Student",
+          "roleKeys": ["teacher"]
+        }
+      ]
+    },
+    {
+      "layout": "list",
+      "heading": "List layout",
+      "description": "How a Student Assignment appears in unified task lists and class assignment tables",
+      "defaultShape": "list",
+      "componentTag": "ren-student-assignment-row",
+      "examples": [
+        {
+          "name": "Fraction Fundamentals Practice",
+          "subject": "Math",
+          "assignmentType": "Practice",
+          "sourceProduct": "Freckle",
+          "dueDate": "2026-03-28",
+          "status": "assigned",
+          "completionProgress": 0,
+          "priority": "high",
+          "color": "#2B87FF"
+        },
+        {
+          "name": "Water Cycle Interactive Lesson",
+          "subject": "Science",
+          "assignmentType": "Activity",
+          "sourceProduct": "Nearpod",
+          "dueDate": "2026-03-30",
+          "status": "in-progress",
+          "completionProgress": 65,
+          "priority": "medium",
+          "color": "#F59E0B"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Assignment Name",
+          "dataType": "String",
+          "required": true,
+          "source": "Source Product",
+          "description": "Display name from the originating product."
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "required": true,
+          "source": "Source Product / System",
+          "description": "Normalized subject area."
+        },
+        {
+          "name": "Source Product",
+          "dataType": "Enum",
+          "required": true,
+          "source": "System",
+          "description": "Originating Renaissance product."
+        },
+        {
+          "name": "Due Date",
+          "dataType": "Date",
+          "source": "Source Product / Teacher Input",
+          "description": "Assignment deadline."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "required": true,
+          "source": "System",
+          "description": "Consolidated lifecycle status."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "Teacher, Student",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "student"]
+        },
+        {
+          "name": "Start",
+          "roles": "Student",
+          "permission": "Write",
+          "priority": "P",
+          "roleKeys": ["student"]
+        }
+      ]
+    },
+    {
+      "layout": "detail",
+      "heading": "Detail page layout",
+      "description": "Full Student Assignment record with source product context, skill targets, and cross-product management controls",
+      "defaultShape": "details",
+      "componentTag": "ren-student-assignment-profile",
+      "examples": [
+        {
+          "name": "Fraction Fundamentals Practice",
+          "subject": "Math",
+          "assignmentType": "Practice",
+          "sourceProduct": "Freckle",
+          "dueDate": "2026-03-28",
+          "status": "in-progress",
+          "completionProgress": 58,
+          "priority": "high",
+          "createdBy": "Ms. Johnson",
+          "createdDate": "2026-03-14",
+          "learningPathStep": "Step 3 of 8",
+          "color": "#2B87FF",
+          "nestedObjects": [
+            { "label": "Skills", "count": 3 },
+            { "label": "Resources", "count": 1 },
+            { "label": "Scores", "count": 14 }
+          ]
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Assignment Name",
+          "dataType": "String",
+          "required": true,
+          "source": "Source Product",
+          "description": "Display name from the originating product."
+        },
+        {
+          "name": "Subject",
+          "dataType": "Enum",
+          "required": true,
+          "source": "Source Product / System",
+          "description": "Normalized subject: ELA, Math, Science, Social Studies, SEL."
+        },
+        {
+          "name": "Assignment Type",
+          "dataType": "Enum",
+          "required": true,
+          "source": "Source Product",
+          "description": "Practice, Reading, Activity, or Project. Mapped from the source product's native type."
+        },
+        {
+          "name": "Source Product",
+          "dataType": "Enum",
+          "required": true,
+          "source": "System",
+          "description": "Freckle, myON, Lalilo, or Nearpod."
+        },
+        {
+          "name": "Source Assignment",
+          "dataType": "Reference → Assignment",
+          "required": true,
+          "source": "System",
+          "description": "The originating product-level assignment this record aggregates.",
+          "isReference": true,
+          "referenceSlug": "assignment",
+          "referenceName": "Assignment"
+        },
+        {
+          "name": "Due Date",
+          "dataType": "Date",
+          "source": "Source Product / Teacher Input",
+          "description": "Deadline synced from source or set in RI."
+        },
+        {
+          "name": "Status",
+          "dataType": "Enum",
+          "required": true,
+          "source": "System",
+          "description": "Consolidated status normalized from product-specific states."
+        },
+        {
+          "name": "Completion Progress",
+          "dataType": "String",
+          "source": "System",
+          "description": "The number of students who have completed the assignment out of the total number of students it was assigned to (e.g. 11/16). Synced from the source product."
+        },
+        {
+          "name": "Priority",
+          "dataType": "Enum",
+          "source": "System",
+          "description": "RI-computed urgency: High, Medium, Low."
+        },
+        {
+          "name": "Learning Path Step",
+          "dataType": "Reference → Learning Path",
+          "source": "System",
+          "description": "If this assignment is part of a Learning Path, which path and step position.",
+          "isReference": true,
+          "referenceSlug": "learning-path",
+          "referenceName": "Learning Path"
+        },
+        {
+          "name": "Skill Targets",
+          "dataType": "Reference → Skill[]",
+          "source": "Source Product / System",
+          "description": "Skills this assignment targets, normalized across products.",
+          "isReference": true,
+          "referenceSlug": "skill",
+          "referenceName": "Skill"
+        },
+        {
+          "name": "Class",
+          "dataType": "Reference → Class",
+          "required": true,
+          "source": "Source Product",
+          "description": "The class this assignment belongs to.",
+          "isReference": true,
+          "referenceSlug": "class",
+          "referenceName": "Class"
+        },
+        {
+          "name": "Resource(s)",
+          "dataType": "Reference → Resource[]",
+          "source": "Source Product / System",
+          "description": "Content items attached to this assignment in the source product.",
+          "isReference": true,
+          "referenceSlug": "resource",
+          "referenceName": "Resource"
+        },
+        {
+          "name": "Completion Evidence",
+          "dataType": "String",
+          "source": "System",
+          "description": "What the student produced: score, reading log, response set, etc. Varies by source product."
+        },
+        {
+          "name": "Created By",
+          "dataType": "String",
+          "source": "Source Product",
+          "description": "Inherited from Teacher → Teacher Name. The name of the teacher who created and assigned this assignment in the source product.",
+          "isReference": true,
+          "referenceSlug": "teacher",
+          "referenceName": "Teacher"
+        },
+        {
+          "name": "Created Date",
+          "dataType": "Date",
+          "required": true,
+          "source": "Source Product",
+          "description": "When the assignment was created in the source product."
+        },
+        {
+          "name": "Last Synced",
+          "dataType": "Date",
+          "required": true,
+          "source": "System",
+          "description": "When RI last synced this record from the source product."
+        }
+      ],
+      "ctas": [
+        {
+          "name": "View",
+          "roles": "Teacher, Student",
+          "permission": "Read",
+          "priority": "P",
+          "roleKeys": ["teacher", "student"]
+        },
+        {
+          "name": "Start",
+          "roles": "Student",
+          "permission": "Write",
+          "priority": "P",
+          "roleKeys": ["student"]
+        },
+        {
+          "name": "Continue",
+          "roles": "Student",
+          "permission": "Write",
+          "priority": "P",
+          "roleKeys": ["student"]
+        },
+        {
+          "name": "Open in Product",
+          "roles": "Teacher, Student",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "assignment",
+          "crossObjectName": "Assignment",
+          "roleKeys": ["teacher", "student"]
+        },
+        {
+          "name": "View Progress",
+          "roles": "Teacher",
+          "permission": "Read",
+          "priority": "S",
+          "crossObjectSlug": "student",
+          "crossObjectName": "Student",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Mark Complete",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "T",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Reassign",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "T",
+          "crossObjectSlug": "class",
+          "crossObjectName": "Class",
+          "roleKeys": ["teacher"]
+        },
+        {
+          "name": "Remove",
+          "roles": "Teacher",
+          "permission": "Write",
+          "priority": "Q",
+          "roleKeys": ["teacher"]
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "Review Unified Task List",
+      "icon": "checklist",
+      "role": "Student",
+      "action": "view",
+      "object": "Student Assignment",
+      "benefit": "I can see all my assignments across Freckle, myON, Lalilo, and Nearpod in one place, prioritized by urgency, so I know what to work on next.",
+      "whenClause": "I open my unified task list in Renaissance Intelligence,",
+      "thenClause": "I see all active assignments from every Renaissance product sorted by priority, with due dates, progress, and a single Start or Continue action for each.",
+      "crossObjects": [
+        { "slug": "assignment", "name": "Assignment" }
+      ]
+    },
+    {
+      "title": "Monitor Cross-Product Assignments",
+      "icon": "dashboard",
+      "role": "Teacher",
+      "action": "view progress for",
+      "object": "Student Assignment",
+      "benefit": "I can see every assignment I've given across products in one consolidated dashboard, so I can identify struggling students without switching between apps.",
+      "whenClause": "I open the consolidated assignment dashboard for my class,",
+      "thenClause": "I see all assignments across Freckle, myON, Lalilo, and Nearpod with per-student completion status, filterable by product, subject, and status.",
+      "crossObjects": [
+        { "slug": "student", "name": "Student" },
+        { "slug": "class", "name": "Class" }
+      ]
+    },
+    {
+      "title": "Launch Assignment in Source Product",
+      "icon": "open_in_new",
+      "role": "Student",
+      "action": "start",
+      "object": "Student Assignment",
+      "benefit": "I can begin my work directly from the unified list without having to find the assignment in the original product.",
+      "whenClause": "I click Start on an assignment in my unified task list,",
+      "thenClause": "I'm taken to the assignment in its source product (Freckle, myON, etc.), and when I return, my progress is synced back to the unified view.",
+      "crossObjects": [
+        { "slug": "assignment", "name": "Assignment" },
+        { "slug": "score", "name": "Score" }
+      ]
+    },
+    {
+      "title": "Track AI-Recommended Assignments",
+      "icon": "auto_awesome",
+      "role": "Teacher",
+      "action": "view",
+      "object": "Student Assignment",
+      "benefit": "I can see which assignments RI's adaptive engine has recommended for my students based on proficiency data, and approve or remove them.",
+      "whenClause": "I filter the dashboard to show AI-recommended assignments,",
+      "thenClause": "I see assignments the system generated from learning path data or proficiency predictions, with the reasoning behind each recommendation.",
+      "crossObjects": [
+        { "slug": "learning-path", "name": "Learning Path" },
+        { "slug": "skill", "name": "Skill" }
+      ]
+    }
+  ],
+  "businessRules": [
+    {
+      "title": "Sync from Source",
+      "description": "Student Assignments are automatically created and updated by syncing from source product assignments. RI does not originate assignments — it aggregates them."
+    },
+    {
+      "title": "Status Normalization",
+      "description": "Product-specific statuses are mapped to a common set: Assigned, In Progress, Completed, Overdue. Products may have additional states (e.g., Freckle's 'Paused') that map to the closest consolidated equivalent."
+    },
+    {
+      "title": "Priority Calculation",
+      "description": "Priority is computed by RI based on: (1) due date proximity, (2) proficiency gap severity for targeted skills, (3) learning path position, and (4) teacher-set importance. It updates as conditions change."
+    },
+    {
+      "title": "Deep-Link Integrity",
+      "description": "The Open in Product CTA must resolve to the correct assignment in the source product. If the source assignment is deleted, the Student Assignment is marked as removed with an explanation."
+    },
+    {
+      "title": "Read-Only Aggregation",
+      "description": "RI does not modify source product assignments. Editing (due dates, skill targets, content) happens in the source product and syncs back. RI-only fields (Priority, AI Recommended) are managed within RI."
+    },
+    {
+      "title": "AI Recommendation Visibility",
+      "description": "Assignments recommended by RI's adaptive engine are flagged with AI Recommended = true. Teachers can review the recommendation rationale and remove the assignment if it's not appropriate."
+    },
+    {
+      "title": "Learning Path Integration",
+      "description": "When an assignment is part of a Learning Path, the Learning Path Step attribute links to the path. Completing the assignment advances the path's progress."
+    },
+    {
+      "title": "Cross-Product Deduplication",
+      "description": "If the same underlying content is assigned through multiple products, RI deduplicates by source assignment ID. Students see one entry per unique assignment."
+    },
+    {
+      "title": "Sync Frequency",
+      "description": "Assignment data syncs from source products on a near-real-time basis. The Last Synced attribute tracks recency. If sync is stale (>15 minutes), the UI indicates the data may not reflect the latest state."
+    }
+  ],
+  "lifecycle": {
+    "states": [
+      {
+        "name": "Assigned",
+        "description": "Synced from source product; student has not started",
+        "triggers": "Source product assignment is created and synced to RI",
+        "variant": "default"
+      },
+      {
+        "name": "In Progress",
+        "description": "Student has begun working in the source product",
+        "triggers": "Source product reports first student interaction",
+        "variant": "active"
+      },
+      {
+        "name": "Completed",
+        "description": "Student has met the source product's completion criteria",
+        "triggers": "Source product reports assignment completion",
+        "variant": "active"
+      },
+      {
+        "name": "Overdue",
+        "description": "Due date has passed without completion",
+        "triggers": "System clock passes due date while status is Assigned or In Progress",
+        "variant": "warn"
+      },
+      {
+        "name": "Removed",
+        "description": "Assignment was deleted in the source product or removed by teacher in RI",
+        "triggers": "Source assignment deleted or teacher removes from RI view",
+        "variant": "default"
+      }
+    ],
+    "transitions": [
+      { "from": "Assigned", "to": ["In Progress", "Overdue", "Removed"] },
+      { "from": "In Progress", "to": ["Completed", "Overdue", "Removed"] },
+      { "from": "Overdue", "to": ["Completed", "Removed"] }
+    ]
+  },
+  "relationships": [
+    {
+      "targetSlug": "assignment",
+      "targetName": "Assignment",
+      "mechanics": "Each Student Assignment wraps exactly one product-level Assignment. Data flows from the source Assignment into the Student Assignment via sync. RI reads; the source product writes.",
+      "cardinality": "One-to-one. Each Student Assignment maps to one source Assignment. A source Assignment produces one Student Assignment in RI.",
+      "sorts": "N/A — direct mapping.",
+      "filters": "By source product.",
+      "dependencies": "If the source Assignment is deleted, the Student Assignment transitions to Removed."
+    },
+    {
+      "targetSlug": "student",
+      "targetName": "Student",
+      "mechanics": "Students receive Student Assignments through their class enrollment, mirroring the source product's distribution. Each student has independent status and progress.",
+      "cardinality": "Many-to-many (via Class). A Student Assignment reaches many Students; a Student has many Student Assignments across products. Typical: 5-20 active assignments per student.",
+      "sorts": "By priority (default), by due date, by source product, alphabetical.",
+      "filters": "By status, by source product, by subject, by AI recommended.",
+      "dependencies": "If a Student is deactivated, their Student Assignments are preserved but hidden from active views."
+    },
+    {
+      "targetSlug": "class",
+      "targetName": "Class",
+      "mechanics": "Student Assignments belong to a Class, inherited from the source product assignment. The class determines which students see the assignment.",
+      "cardinality": "Many-to-one. A Student Assignment belongs to one Class; a Class has many Student Assignments across products. Typical: 10-40 active assignments per class.",
+      "sorts": "By due date (default), by source product, by subject.",
+      "filters": "By source product, by status, by subject, by assignment type.",
+      "dependencies": "If a Class is archived, its Student Assignments are also archived."
+    },
+    {
+      "targetSlug": "score",
+      "targetName": "Score",
+      "mechanics": "When a student completes a Student Assignment, the resulting Score is synced from the source product and associated with the RI record.",
+      "cardinality": "One-to-many. A Student Assignment generates one Score per Student. Scores belong to one Student Assignment and one Student.",
+      "sorts": "By score value, by completion date.",
+      "filters": "By score range, by proficiency level.",
+      "dependencies": "Scores persist even if the Student Assignment is removed, for historical reporting."
+    },
+    {
+      "targetSlug": "skill",
+      "targetName": "Skill",
+      "mechanics": "Student Assignments target specific Skills, synced from the source product and normalized to RI's common skill taxonomy.",
+      "cardinality": "Many-to-many. A Student Assignment targets 1-5 Skills; a Skill is targeted by many Student Assignments.",
+      "sorts": "Skills within an assignment: by priority.",
+      "filters": "By skill domain, by proficiency level.",
+      "dependencies": "Skill mappings depend on the source product's skill taxonomy aligning with RI's normalized taxonomy."
+    },
+    {
+      "targetSlug": "resource",
+      "targetName": "Resource",
+      "mechanics": "Content items attached to the source assignment are referenced by the Student Assignment for display in the unified view.",
+      "cardinality": "One-to-many. A Student Assignment references the Resources from its source Assignment.",
+      "sorts": "By resource type.",
+      "filters": "By resource type, by subject.",
+      "dependencies": "Resource availability depends on the source product's content library."
+    },
+    {
+      "targetSlug": "learning-path",
+      "targetName": "Learning Path",
+      "mechanics": "A Student Assignment may be a step in a Learning Path. Completing it advances the path's progress and may trigger adaptive sequencing.",
+      "cardinality": "Many-to-one (optional). A Student Assignment may belong to one Learning Path; a Learning Path contains many Student Assignments as steps.",
+      "sorts": "By sequence position within the path.",
+      "filters": "By learning path membership (yes/no).",
+      "dependencies": "If a Learning Path is reset, associated Student Assignments remain but lose their step position."
+    },
+    {
+      "targetSlug": "teacher",
+      "targetName": "Teacher",
+      "mechanics": "The teacher who created the source assignment is recorded. Teachers monitor and manage Student Assignments in the consolidated dashboard.",
+      "cardinality": "Many-to-one. A Teacher creates many source Assignments that become Student Assignments; each Student Assignment traces to one creating Teacher.",
+      "sorts": "By teacher name.",
+      "filters": "By creating teacher.",
+      "dependencies": "If a Teacher is reassigned, the new teacher inherits visibility of existing Student Assignments for their classes."
+    }
+  ],
+  "relatedObjects": [
+    "assignment",
+    "student",
+    "class",
+    "teacher",
+    "skill",
+    "resource",
+    "score",
+    "learning-path"
+  ],
+  "nestedObjects": [
+    {
+      "slug": "score",
+      "name": "Score",
+      "cardinality": "One-to-many",
+      "description": "Scores generated when students complete the assignment, synced from the source product"
+    },
+    {
+      "slug": "skill",
+      "name": "Skill",
+      "cardinality": "One-to-many",
+      "description": "Skills this assignment targets, normalized from the source product's skill mappings"
+    },
+    {
+      "slug": "resource",
+      "name": "Resource",
+      "cardinality": "One-to-many",
+      "description": "Content items attached to this assignment in the source product"
+    }
+  ],
+  "allAttributes": [
+    {
+      "name": "Assignment Name",
+      "dataType": "String",
+      "required": true,
+      "source": "Source Product",
+      "description": "Display name synced from the originating product assignment."
+    },
+    {
+      "name": "Subject",
+      "dataType": "Enum",
+      "required": true,
+      "source": "Source Product / System",
+      "description": "Normalized subject area: ELA, Math, Science, Social Studies, SEL. Mapped from product-specific labels."
+    },
+    {
+      "name": "Assignment Type",
+      "dataType": "Enum",
+      "required": true,
+      "source": "Source Product",
+      "description": "Practice, Reading, Activity, or Project. Mapped from the source product's native assignment type."
+    },
+    {
+      "name": "Source Product",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System",
+      "description": "The Renaissance product this assignment originated in: Freckle, myON, Lalilo, or Nearpod.",
+      "enumOptions": ["Freckle", "myON", "Lalilo", "Nearpod"]
+    },
+    {
+      "name": "Source Assignment",
+      "dataType": "Reference → Assignment",
+      "required": true,
+      "source": "System",
+      "description": "The originating product-level assignment. Used for deep-linking and sync.",
+      "isReference": true,
+      "referenceSlug": "assignment",
+      "referenceName": "Assignment"
+    },
+    {
+      "name": "Due Date",
+      "dataType": "Date",
+      "source": "Source Product / Teacher Input",
+      "description": "Deadline synced from source product. Can be overridden by teacher in RI."
+    },
+    {
+      "name": "Status",
+      "dataType": "Enum",
+      "required": true,
+      "source": "System",
+      "description": "Consolidated lifecycle status: Assigned, In Progress, Completed, Overdue, Removed. Normalized from product-specific states.",
+      "enumOptions": ["Assigned", "In Progress", "Completed", "Overdue", "Removed"]
+    },
+    {
+      "name": "Completion Progress",
+      "dataType": "String",
+      "source": "System",
+      "description": "The number of students who have completed the assignment out of the total number of students it was assigned to (e.g. 11/16). Synced from the source product."
+    },
+    {
+      "name": "Priority",
+      "dataType": "Enum",
+      "source": "System",
+      "description": "RI-computed urgency based on due date proximity, proficiency gaps, and learning path position.",
+      "enumOptions": ["High", "Medium", "Low"]
+    },
+    {
+      "name": "Learning Path Step",
+      "dataType": "Reference → Learning Path",
+      "source": "System",
+      "description": "If this assignment is a step in a Learning Path, which path and position. Null if standalone.",
+      "isReference": true,
+      "referenceSlug": "learning-path",
+      "referenceName": "Learning Path"
+    },
+    {
+      "name": "Skill Targets",
+      "dataType": "Reference → Skill[]",
+      "source": "Source Product / System",
+      "description": "Skills this assignment is designed to practice, normalized to RI's common skill taxonomy.",
+      "isReference": true,
+      "referenceSlug": "skill",
+      "referenceName": "Skill"
+    },
+    {
+      "name": "Class",
+      "dataType": "Reference → Class",
+      "required": true,
+      "source": "Source Product",
+      "description": "The class this assignment was distributed to in the source product.",
+      "isReference": true,
+      "referenceSlug": "class",
+      "referenceName": "Class"
+    },
+    {
+      "name": "Resource(s)",
+      "dataType": "Reference → Resource[]",
+      "source": "Source Product",
+      "description": "Content items attached to this assignment in the source product.",
+      "isReference": true,
+      "referenceSlug": "resource",
+      "referenceName": "Resource"
+    },
+    {
+      "name": "Completion Evidence",
+      "dataType": "String",
+      "source": "System",
+      "description": "Summary of what the student produced: score, reading log, response set, etc. Format varies by source product."
+    },
+    {
+      "name": "Created By",
+      "dataType": "String",
+      "source": "Source Product",
+      "description": "Inherited from Teacher → Teacher Name. The name of the teacher who created and assigned this assignment in the source product.",
+      "isReference": true,
+      "referenceSlug": "teacher",
+      "referenceName": "Teacher"
+    },
+    {
+      "name": "Assigned Date",
+      "dataType": "Date",
+      "required": true,
+      "source": "Source Product",
+      "description": "The date the assignment was distributed to students in the source product. Distinct from Created Date — an assignment may be created in advance and assigned later."
+    },
+    {
+      "name": "Created Date",
+      "dataType": "Date",
+      "required": true,
+      "source": "Source Product",
+      "description": "When the assignment was originally created in the source product."
+    },
+    {
+      "name": "Last Synced",
+      "dataType": "Date",
+      "required": true,
+      "source": "System",
+      "description": "When RI last synced this record from the source product. Used to detect stale data."
+    }
+  ],
+  "allCTAs": [
+    {
+      "name": "View Assignment Report",
+      "roles": "Teacher, Admin",
+      "permission": "Read",
+      "priority": "P",
+      "description": "Opens the Assignment Details: Class View for this assignment. Triggered by clicking the assignment name. (Assignment Details: Class View not yet created.)",
+      "roleKeys": ["teacher", "admin"]
+    },
+    {
+      "name": "Start",
+      "roles": "Student",
+      "permission": "Write",
+      "priority": "P",
+      "roleKeys": ["student"]
+    },
+    {
+      "name": "Continue",
+      "roles": "Student",
+      "permission": "Write",
+      "priority": "P",
+      "roleKeys": ["student"]
+    },
+    {
+      "name": "Open in Product",
+      "roles": "Teacher, Student",
+      "permission": "Read",
+      "priority": "S",
+      "description": "Deep-link to the assignment in its source product for editing or full interaction.",
+      "crossObjectSlug": "assignment",
+      "crossObjectName": "Assignment",
+      "roleKeys": ["teacher", "student"]
+    },
+    {
+      "name": "View Progress",
+      "roles": "Teacher",
+      "permission": "Read",
+      "priority": "S",
+      "crossObjectSlug": "student",
+      "crossObjectName": "Student",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Mark Complete",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "T",
+      "description": "Manually mark the assignment as completed in RI, overriding the source product status.",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Reassign",
+      "roles": "Teacher",
+      "permission": "Write",
+      "priority": "T",
+      "description": "Reassign to a different class or student group within RI.",
+      "crossObjectSlug": "class",
+      "crossObjectName": "Class",
+      "roleKeys": ["teacher"]
+    },
+    {
+      "name": "Delete",
+      "roles": "Teacher, Admin",
+      "permission": "Write",
+      "priority": "Q",
+      "description": "Soft-deletes the assignment from RI. Triggered by the trash can icon. Teachers may only delete assignments they created that are in 'Assigned' status. Admins may delete any assignment regardless of creator or status.",
+      "roleKeys": ["teacher", "admin"]
+    }
+  ],
+  "sipValidation": {
+    "structure": {
+      "pass": true,
+      "evidence": "A Student Assignment has rich attributes beyond the source assignment: Source Product, Priority, AI Recommended, Learning Path Step, Completion Progress, Completion Evidence, Last Synced. It warrants its own detail page showing cross-product context."
+    },
+    "instances": {
+      "pass": true,
+      "evidence": "'Fraction Fundamentals Practice' (Freckle, Math, high priority), 'Charlotte's Web Ch. 4-6' (myON, ELA, in progress), 'Short Vowel Blending' (Lalilo, ELA, AI-recommended), 'Water Cycle Interactive Lesson' (Nearpod, Science). Each student generates 5-20 active instances spanning multiple products."
+    },
+    "purpose": {
+      "pass": true,
+      "evidence": "Student Assignment enables the core RI value proposition: a unified cross-product experience. Students see one task list instead of four. Teachers monitor all assignments from one dashboard. The adaptive engine recommends assignments across product boundaries based on proficiency data."
+    },
+    "verdict": "Domain activity object. The cross-product aggregation layer for instructional assignments, enabling RI's unified student and teacher experience."
+  },
+  "synonyms": [
+    {
+      "term": "Task",
+      "context": "Student-facing UI across Renaissance products",
+      "notes": "The common student-facing label used across Freckle, myON, Lalilo, and Nearpod"
+    }
+  ],
+  "objectViews": [
+    {
+      "viewType": "list",
+      "context": "Student Task List",
+      "value": "student-task-list",
+      "description": "All active assignments across Renaissance products in a single prioritized list. Students see what to work on next and launch assignments directly.",
+      "userIntent": "What do I need to work on?",
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Assignment Name",
+            "Subject",
+            "Source Product",
+            "Due Date",
+            "Status",
+            "Priority"
+          ],
+          "availableCTAs": ["Start", "Continue", "View"]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Assignment Name",
+            "Subject",
+            "Source Product",
+            "Due Date",
+            "Status",
+            "Priority"
+          ],
+          "availableCTAs": ["Start", "Continue", "View"]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Assignment Name",
+            "Subject",
+            "Source Product",
+            "Due Date",
+            "Status",
+            "Completion Progress",
+            "Priority"
+          ],
+          "availableCTAs": ["Start", "Continue", "View"]
+        }
+      }
+    },
+    {
+      "viewType": "list",
+      "context": "Teacher Dashboard",
+      "value": "teacher-dashboard",
+      "description": "Consolidated assignment view for a teacher's class, spanning all products. Teachers monitor progress, spot overdue work, and compare across products.",
+      "userIntent": "How are my students doing on their assignments across products?",
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Assignment Name",
+            "Subject",
+            "Assignment Type",
+            "Source Product",
+            "Due Date",
+            "Status",
+            "Completion Progress"
+          ],
+          "availableCTAs": ["View Assignment Report", "View Progress", "Open in Product"]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Assignment Name",
+            "Subject",
+            "Source Product",
+            "Due Date",
+            "Status",
+            "Completion Progress"
+          ],
+          "availableCTAs": ["View Assignment Report", "View Progress"]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Assignment Name",
+            "Subject",
+            "Assignment Type",
+            "Source Product",
+            "Due Date",
+            "Status",
+            "Completion Progress",
+            "Created By"
+          ],
+          "availableCTAs": ["View Assignment Report", "View Progress", "Open in Product", "Mark Complete"]
+        }
+      }
+    },
+    {
+      "viewType": "detail",
+      "context": "Assignment Detail",
+      "value": "assignment-detail",
+      "description": "Full cross-product assignment record with source context, skill targets, learning path integration, and management controls.",
+      "visibleAttributes": [
+        "Assignment Name",
+        "Subject",
+        "Assignment Type",
+        "Source Product",
+        "Source Assignment",
+        "Due Date",
+        "Status",
+        "Completion Progress",
+        "Priority",
+        "Learning Path Step",
+        "Skill Targets",
+        "Class",
+        "Resource(s)",
+        "Completion Evidence",
+        "Created By",
+        "Created Date",
+        "Last Synced"
+      ],
+      "availableCTAs": [
+        "Start",
+        "Continue",
+        "Open in Product",
+        "View Progress",
+        "Mark Complete",
+        "Reassign",
+        "Delete"
+      ]
+    },
+    {
+      "viewType": "list",
+      "context": "Learning Path Activity",
+      "value": "learning-path-activity",
+      "description": "A Student Assignment shown as a step within a Learning Path sequence. Compact view with status and position context.",
+      "userIntent": "What's the next step in my learning path?",
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Assignment Name",
+            "Assignment Type",
+            "Source Product",
+            "Status",
+            "Completion Progress"
+          ],
+          "availableCTAs": ["Start", "Continue", "View"]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Assignment Name",
+            "Assignment Type",
+            "Source Product",
+            "Status"
+          ],
+          "availableCTAs": ["Start", "Continue"]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Assignment Name",
+            "Assignment Type",
+            "Source Product",
+            "Status",
+            "Completion Progress",
+            "Due Date"
+          ],
+          "availableCTAs": ["Start", "Continue", "View"]
+        }
+      }
+    },
+    {
+      "viewType": "list",
+      "context": "Class Assignments",
+      "value": "class-assignments",
+      "description": "All assignments for a specific class across Renaissance products, managed from the class page. Teachers create, organize, and track the full assignment workload for their class in one place.",
+      "userIntent": "What assignments have I given this class, and what do I still need to do?",
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Assignment Name",
+            "Subject",
+            "Source Product",
+            "Due Date",
+            "Status",
+            "Completion Progress"
+          ],
+          "availableCTAs": ["View Assignment Report", "View Progress", "Open in Product", "Mark Complete", "Delete"]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Assignment Name",
+            "Subject",
+            "Source Product",
+            "Due Date",
+            "Status",
+            "Completion Progress"
+          ],
+          "availableCTAs": ["View Assignment Report", "View Progress", "Delete"]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Assignment Name",
+            "Subject",
+            "Assignment Type",
+            "Assigned Date",
+            "Status",
+            "Completion Progress",
+            "Created By"
+          ],
+          "availableCTAs": ["View Assignment Report", "View Progress", "Open in Product", "Mark Complete", "Reassign", "Delete"]
+        }
+      }
+    },
+    {
+      "viewType": "list",
+      "context": "Student Detail",
+      "value": "student-detail",
+      "description": "All assignments for a specific student across products, shown in their profile. Teachers review workload and completion patterns.",
+      "userIntent": "What has this student been assigned across all products?",
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Assignment Name",
+            "Subject",
+            "Source Product",
+            "Due Date",
+            "Status",
+            "Completion Progress"
+          ],
+          "availableCTAs": ["View Assignment Report", "Open in Product"]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Assignment Name",
+            "Subject",
+            "Source Product",
+            "Status",
+            "Completion Progress"
+          ],
+          "availableCTAs": ["View Assignment Report"]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Assignment Name",
+            "Subject",
+            "Assignment Type",
+            "Source Product",
+            "Due Date",
+            "Status",
+            "Completion Progress",
+            "Created By"
+          ],
+          "availableCTAs": ["View Assignment Report", "Open in Product", "Mark Complete"]
+        }
+      }
+    }
+  ]
+}

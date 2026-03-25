@@ -43,7 +43,7 @@ export function RosterScoreColumn({
     </>
   );
 
-  const className = `roster-score-col${selected ? ' selected' : ''}`;
+  const className = `roster-score-col${selected ? ' highlighted' : ''}`;
 
   if (href) {
     return (

@@ -249,41 +249,41 @@ export function StudentRosterPreview({
 
               return (
                 <tr key={s.id ?? i} className={`roster-table-row${!active ? ' roster-table-row--inactive' : ''}`}>
-                  <td className={`roster-td${nameSelected ? ' selected' : ''}`}>
+                  <td className="roster-td">
                     {viewProfileAvailable ? (
-                      <a href={profileHref} className={`roster-td-name${nameSelected ? ' selected' : ''}`}>{s.name}</a>
+                      <a href={profileHref} className={`roster-td-name${nameSelected ? ' highlighted' : ''}`}>{s.name}</a>
                     ) : (
-                      <span className={`roster-td-name roster-td-name--plain${nameSelected ? ' selected' : ''}`}>{s.name}</span>
+                      <span className={`roster-td-name roster-td-name--plain${nameSelected ? ' highlighted' : ''}`}>{s.name}</span>
                     )}
                   </td>
-                  <td className={`roster-td${gradeSelected ? ' selected' : ''}`}>{active ? s.grade : ''}</td>
+                  <td className={`roster-td${gradeSelected ? ' highlighted' : ''}`}>{active ? s.grade : ''}</td>
                   <td className="roster-td roster-td--center">{active ? s.assignmentCount : ''}</td>
-                  <td className={`roster-td${readingSelected ? ' selected' : ''}`}>
+                  <td className="roster-td">
                     {active && viewScoresAvailable && (
-                      <a href={scoresHref} className={`roster-score-pill roster-score-pill--reading${readingSelected ? ' selected' : ''}`}>
+                      <a href={scoresHref} className={`roster-score-pill roster-score-pill--reading${readingSelected ? ' highlighted' : ''}`}>
                         {readingPill}
                       </a>
                     )}
                     {active && !viewScoresAvailable && (
-                      <span className={`roster-score-pill roster-score-pill--reading${readingSelected ? ' selected' : ''}`}>
+                      <span className={`roster-score-pill roster-score-pill--reading${readingSelected ? ' highlighted' : ''}`}>
                         {readingPill}
                       </span>
                     )}
                     {!active && <span className="roster-meta--italic">{s.enrollmentStatus}</span>}
                   </td>
-                  <td className={`roster-td${mathSelected ? ' selected' : ''}`}>
+                  <td className="roster-td">
                     {active && viewScoresAvailable && (
-                      <a href={scoresHref} className={`roster-score-pill roster-score-pill--math${mathSelected ? ' selected' : ''}`}>
+                      <a href={scoresHref} className={`roster-score-pill roster-score-pill--math${mathSelected ? ' highlighted' : ''}`}>
                         {mathPill}
                       </a>
                     )}
                     {active && !viewScoresAvailable && (
-                      <span className={`roster-score-pill roster-score-pill--math${mathSelected ? ' selected' : ''}`}>
+                      <span className={`roster-score-pill roster-score-pill--math${mathSelected ? ' highlighted' : ''}`}>
                         {mathPill}
                       </span>
                     )}
                   </td>
-                  <td className={`roster-td${menuSelected ? ' selected' : ''}`}>
+                  <td className="roster-td">
                     {tableMenuItems.length > 0 && (
                       <div className="roster-menu-zone" ref={openMenuIndex === i ? menuRef : null} style={{ padding: 0 }}>
                         <RosterOverflowMenu
@@ -335,25 +335,25 @@ export function StudentRosterPreview({
                 />
                 <div className="roster-card-name-block">
                   {s.href && !embedded ? (
-                    <a href={s.href} className={`roster-card-name${nameSelected ? ' selected' : ''}`}>{s.name}</a>
+                    <a href={s.href} className={`roster-card-name${nameSelected ? ' highlighted' : ''}`}>{s.name}</a>
                   ) : (
-                    <div className={`roster-card-name${nameSelected ? ' selected' : ''}`}>{s.name}</div>
+                    <div className={`roster-card-name${nameSelected ? ' highlighted' : ''}`}>{s.name}</div>
                   )}
                   {active ? (
                     <div className="roster-card-meta">
-                      <span className={gradeSelected ? 'selected' : ''}>{s.grade}</span>
+                      <span className={gradeSelected ? 'highlighted' : ''}>{s.grade}</span>
                       <span className="roster-meta-dot" />
                       <span>{s.assignmentCount} Assignments</span>
                     </div>
                   ) : (
-                    <div className={`roster-card-meta roster-card-meta--italic${enrollmentSelected ? ' selected' : ''}`}>{s.enrollmentStatus}</div>
+                    <div className={`roster-card-meta roster-card-meta--italic${enrollmentSelected ? ' highlighted' : ''}`}>{s.enrollmentStatus}</div>
                   )}
                 </div>
               </div>
 
               {active && (
                 <div className="roster-card-scores">
-                  <div className={`roster-card-score-col${readingSelected ? ' selected' : ''}`}>
+                  <div className={`roster-card-score-col${readingSelected ? ' highlighted' : ''}`}>
                     <span className="roster-card-score-value roster-card-score-value--reading">{s.readingLevel}</span>
                     <span className="roster-card-score-label">Reading</span>
                     <span className={`roster-card-score-band${rAlert ? ' roster-card-score-band--alert' : ''}`}>
@@ -363,7 +363,7 @@ export function StudentRosterPreview({
                       {s.readingStatus}
                     </span>
                   </div>
-                  <div className={`roster-card-score-col${mathSelected ? ' selected' : ''}`}>
+                  <div className={`roster-card-score-col${mathSelected ? ' highlighted' : ''}`}>
                     <span className="roster-card-score-value roster-card-score-value--math">{s.mathLevel}</span>
                     <span className="roster-card-score-label">Math</span>
                     <span className={`roster-card-score-band${mAlert ? ' roster-card-score-band--alert' : ''}`}>
@@ -397,18 +397,18 @@ export function StudentRosterPreview({
               />
               <div className="roster-name-block">
                 {s.href && !embedded ? (
-                  <a href={s.href} className={`roster-name${nameSelected ? ' selected' : ''}`}>{s.name}</a>
+                  <a href={s.href} className={`roster-name${nameSelected ? ' highlighted' : ''}`}>{s.name}</a>
                 ) : (
-                  <span className={`roster-name${nameSelected ? ' selected' : ''}`}>{s.name}</span>
+                  <span className={`roster-name${nameSelected ? ' highlighted' : ''}`}>{s.name}</span>
                 )}
                 {active ? (
                   <div className="roster-meta">
-                    <span className={gradeSelected ? 'selected' : ''}>{s.grade}</span>
+                    <span className={gradeSelected ? 'highlighted' : ''}>{s.grade}</span>
                     <span className="roster-meta-dot" />
                     <span>{s.assignmentCount} Assignments</span>
                   </div>
                 ) : (
-                  <div className={`roster-meta roster-meta--italic${enrollmentSelected ? ' selected' : ''}`}>{s.enrollmentStatus}</div>
+                  <div className={`roster-meta roster-meta--italic${enrollmentSelected ? ' highlighted' : ''}`}>{s.enrollmentStatus}</div>
                 )}
               </div>
             </div>

@@ -86,7 +86,7 @@ export function RosterOverflowMenu({
     <div className="roster-menu-container" ref={containerRef}>
       <button
         ref={triggerRef}
-        className={`roster-menu-trigger${open ? ' roster-menu-trigger--active' : ''}${selected ? ' selected' : ''}`}
+        className={`roster-menu-trigger${open ? ' roster-menu-trigger--active' : ''}${selected ? ' highlighted' : ''}`}
         type="button"
         aria-label="More actions"
         aria-haspopup="menu"
