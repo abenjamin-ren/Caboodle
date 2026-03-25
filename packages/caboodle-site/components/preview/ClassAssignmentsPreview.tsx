@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useState, useMemo, useCallback, useRef, useEffect } from 'react';
 import { ObjectTable, type ObjectTableColumn } from '@/components/ui/ObjectTable';
 import type { PreviewInspectionProps } from '@/lib/preview-types';
 
@@ -146,11 +146,82 @@ const MOCK_ASSIGNMENTS: MockAssignment[] = [
   },
 ];
 
+function DeleteConfirmOverlay({
+  assignmentName,
+  isExiting,
+  onConfirm,
+  onCancel,
+}: {
+  assignmentName: string;
+  isExiting: boolean;
+  onConfirm: () => void;
+  onCancel: () => void;
+}) {
+  const deleteRef = useRef<HTMLButtonElement>(null);
+  const [entered, setEntered] = useState(false);
+
+  // Delay one frame so the browser sees the starting transform before transitioning in
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => {
+      setEntered(true);
+      deleteRef.current?.focus();
+
+      // #region agent log
+      const contentEl = deleteRef.current?.closest('.obj-confirm-content') as HTMLElement | null;
+      const xBtnEl = contentEl?.closest('td')?.querySelector('.obj-icon-btn') as HTMLElement | null;
+      const contentRect = contentEl?.getBoundingClientRect();
+      const xBtnRect = xBtnEl?.getBoundingClientRect();
+      const contentWidth = contentRect?.width ?? 0;
+      const contentRight = contentRect?.right ?? 0;
+      const xBtnCenterX = xBtnRect ? xBtnRect.left + xBtnRect.width / 2 : 0;
+      const offsetFromContentRight = xBtnCenterX - contentRight;
+      const neededOriginPct = contentWidth > 0 ? ((contentWidth + offsetFromContentRight) / contentWidth) * 100 : 0;
+      fetch('http://127.0.0.1:7496/ingest/c23544f3-6e9f-4254-a652-6ac74ff2d03c',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'647866'},body:JSON.stringify({sessionId:'647866',location:'ClassAssignmentsPreview.tsx:enter-raf',message:'Pivot measurement — content vs X icon',hypothesisId:'PIVOT',data:{contentWidth:Math.round(contentWidth),contentRight:Math.round(contentRight),xBtnCenterX:Math.round(xBtnCenterX),offsetFromContentRight:Math.round(offsetFromContentRight),neededOriginPct:Math.round(neededOriginPct),neededOriginPx:Math.round(contentWidth + offsetFromContentRight)},timestamp:Date.now()})}).catch(()=>{});
+      // #endregion
+    });
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onCancel();
+    };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [onCancel]);
+
+  const state = isExiting ? 'exiting' : entered ? 'entered' : 'entering';
+
+  return (
+    <div
+      className="obj-confirm-overlay"
+      role="alertdialog"
+      aria-label={`Delete ${assignmentName}?`}
+    >
+      <div className="obj-confirm-content" data-state={state}>
+        <span className="obj-confirm-msg">This action can&apos;t be undone.</span>
+        <button
+          ref={deleteRef}
+          type="button"
+          className="obj-confirm-delete"
+          onClick={onConfirm}
+        >
+          Delete assignment
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export function ClassAssignmentsPreview({
   selectedItem,
   isActionAvailable,
   viewCTAs,
 }: Partial<PreviewInspectionProps>) {
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [exitingId, setExitingId] = useState<string | null>(null);
+  const [deletedIds, setDeletedIds] = useState<Set<string>>(new Set());
+
   const isAttr = (name: string) =>
     selectedItem?.type === 'attribute' && selectedItem.name === name;
   const isCTA = (name: string) =>
@@ -169,6 +240,31 @@ export function ClassAssignmentsPreview({
     const cta = viewCTAs.find(c => c.name === 'Delete');
     return cta ? isActionAvailable(cta) : false;
   }, [viewCTAs, isActionAvailable]);
+
+  const visibleRows = useMemo(
+    () => MOCK_ASSIGNMENTS.filter(r => !deletedIds.has(r.id)),
+    [deletedIds],
+  );
+
+  const exitTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => { if (exitTimerRef.current) clearTimeout(exitTimerRef.current); };
+  }, []);
+
+  const handleDeleteConfirm = useCallback((id: string) => {
+    setDeletedIds(prev => new Set(prev).add(id));
+    setDeletingId(null);
+    setExitingId(null);
+  }, []);
+
+  const handleDeleteCancel = useCallback(() => {
+    setExitingId(deletingId);
+    exitTimerRef.current = setTimeout(() => {
+      setDeletingId(null);
+      setExitingId(null);
+    }, 280);
+  }, [deletingId]);
 
   const columns = useMemo((): ObjectTableColumn<MockAssignment>[] => [
     {
@@ -234,12 +330,43 @@ export function ClassAssignmentsPreview({
       label: '',
       width: '61px',
       render: r => {
+        const isConfirming = r.id === deletingId || r.id === exitingId;
+        const isExiting = r.id === exitingId;
         const canDeleteRow = canDelete && r.assignedBy === 'Me (Jane Doe)' && r.status === 'assigned';
+
+        // #region agent log
+        if (isConfirming && !isExiting) {
+          fetch('http://127.0.0.1:7496/ingest/c23544f3-6e9f-4254-a652-6ac74ff2d03c',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'647866'},body:JSON.stringify({sessionId:'647866',location:'ClassAssignmentsPreview.tsx:actions-render',message:'Confirming row rendered',hypothesisId:'D-E',data:{rowId:r.id,rowName:r.name,totalVisibleRows:visibleRows.length,rowIndexInVisible:visibleRows.findIndex(v=>v.id===r.id)},timestamp:Date.now()})}).catch(()=>{});
+        }
+        // #endregion
+
+        if (isConfirming) {
+          return (
+            <>
+              <DeleteConfirmOverlay
+                assignmentName={r.name}
+                isExiting={isExiting}
+                onConfirm={() => handleDeleteConfirm(r.id)}
+                onCancel={handleDeleteCancel}
+              />
+              <button
+                type="button"
+                className="obj-icon-btn"
+                aria-label="Cancel delete"
+                onClick={handleDeleteCancel}
+              >
+                <i className="fa-solid fa-xmark" aria-hidden="true" />
+              </button>
+            </>
+          );
+        }
+
         return canDeleteRow ? (
           <button
             type="button"
             className={`obj-icon-btn${deleteSelected ? ' highlighted' : ''}`}
-            aria-label="Delete assignment"
+            aria-label={`Delete ${r.name}`}
+            onClick={() => setDeletingId(r.id)}
           >
             <i className="fa-regular fa-trash-can" aria-hidden="true" />
           </button>
@@ -248,16 +375,25 @@ export function ClassAssignmentsPreview({
     },
   ], [
     nameSelected, typeSelected, assignedDateSelected,
-    statusSelected, progressSelected, assignedBySelected, deleteSelected, canDelete,
+    statusSelected, progressSelected, assignedBySelected,
+    deleteSelected, canDelete, deletingId, exitingId, handleDeleteConfirm, handleDeleteCancel,
   ]);
+
+  const rowClassName = useCallback(
+    (row: MockAssignment) => (row.id === deletingId || row.id === exitingId)
+      ? 'obj-table-row--confirming'
+      : '',
+    [deletingId, exitingId],
+  );
 
   return (
     <ObjectTable
       columns={columns}
-      rows={MOCK_ASSIGNMENTS}
+      rows={visibleRows}
       caption="Class assignments"
       getRowKey={r => r.id}
       defaultSortKey="name"
+      rowClassName={rowClassName}
     />
   );
 }

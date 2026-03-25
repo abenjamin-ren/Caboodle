@@ -19,6 +19,7 @@ interface ObjectTableProps<T> {
   getRowKey: (row: T, index: number) => string | number;
   defaultSortKey?: string;
   defaultSortDir?: 'asc' | 'desc';
+  rowClassName?: (row: T, index: number) => string;
 }
 
 export function ObjectTable<T>({
@@ -28,6 +29,7 @@ export function ObjectTable<T>({
   getRowKey,
   defaultSortKey,
   defaultSortDir = 'asc',
+  rowClassName,
 }: ObjectTableProps<T>) {
   const [sortKey, setSortKey] = useState<string | null>(defaultSortKey ?? null);
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>(defaultSortDir);
@@ -102,7 +104,7 @@ export function ObjectTable<T>({
           {sortedRows.map((row, i) => (
             <tr
               key={getRowKey(row, i)}
-              className="obj-table-row"
+              className={['obj-table-row', rowClassName?.(row, i) ?? ''].filter(Boolean).join(' ')}
             >
               {columns.map(col => (
                 <td

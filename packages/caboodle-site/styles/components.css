@@ -4683,20 +4683,97 @@ div.section-group-desc > p + p {
   flex-shrink: 0;
 }
 
-/* AI recommended spark badge */
+/* ----- Delete confirmation overlay ----- */
 
-.assign-ai-badge {
-  display: inline-flex;
+.obj-table-row--confirming {
+  position: relative;
+  clip-path: inset(0);
+}
+
+.obj-td {
+  transition: opacity 0.25s ease, filter 0.25s ease;
+}
+
+.obj-table-row--confirming > .obj-td:not(:last-child) {
+  opacity: 0.1;
+  filter: blur(3px);
+}
+
+.obj-confirm-overlay {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  inset-inline-end: 61px;
+  overflow: hidden;
+  pointer-events: auto;
+  z-index: 1;
+}
+
+.obj-confirm-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
   align-items: center;
-  color: var(--color-accent);
-  font-size: 11px;
-  opacity: 0.7;
+  justify-content: flex-end;
+  gap: var(--s0);
+  padding-inline: var(--s0);
+  transform-origin: right center;
+  transform: rotate(-80deg);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease-in;
+}
+
+.obj-confirm-content[data-state='entered'] {
+  transform: rotate(0deg);
+}
+
+.obj-confirm-content[data-state='exiting'] {
+  transform: translateX(-40px);
+  opacity: 0;
+  transition-property: transform, opacity;
+  transition-timing-function: ease-in;
+  transition-duration: 0.25s;
+}
+
+.obj-confirm-msg {
+  font-size: var(--text-sm);
+  color: var(--gray-800);
+}
+
+.obj-confirm-delete {
+  font-family: inherit;
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  line-height: 1;
+  background: var(--color-brand);
+  color: var(--white);
+  border: 1px solid var(--color-brand);
+}
+
+.obj-confirm-delete:hover {
+  opacity: 0.9;
+}
+
+.obj-confirm-delete:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .obj-table-row,
   .obj-sort-icon,
   .obj-icon-btn {
+    transition: none;
+  }
+
+  .obj-confirm-content {
+    transition: none;
+  }
+
+  .obj-table-row--confirming > .obj-td:not(:last-child) {
     transition: none;
   }
 }
