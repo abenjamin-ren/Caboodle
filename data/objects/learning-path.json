@@ -6,7 +6,12 @@
     "objectType": "domain",
     "category": "activity",
     "definition": "A Learning Path is a personalized, adaptive sequence of instructional activities and practice resources generated from assessment data and aligned to specific skills.",
-    "synonyms": ["Path", "Pathway", "Personalized Plan", "Adaptive Sequence"],
+    "synonyms": [
+      "Path",
+      "Pathway",
+      "Personalized Plan",
+      "Adaptive Sequence"
+    ],
     "products": "Renaissance Intelligence"
   },
   "variations": [],
@@ -15,14 +20,17 @@
       "layout": "card",
       "heading": "Card layout",
       "description": "How a Learning Path appears in student dashboards and teacher views",
-      "defaultShape": "card",
+      "defaultShape": "list",
       "componentTag": "ren-learning-path-card",
       "examples": [
         {
           "name": "Math Foundations — Number Sense",
           "studentName": "Harry Potter",
           "subject": "math",
-          "focusSkills": ["Number Sense", "Place Value"],
+          "focusSkills": [
+            "Number Sense",
+            "Place Value"
+          ],
           "currentLevel": "2.8 GE",
           "targetLevel": "3.5 GE",
           "progress": 35,
@@ -34,7 +42,10 @@
           "name": "Reading Comprehension Boost",
           "studentName": "Hermione Granger",
           "subject": "ela",
-          "focusSkills": ["Inference", "Main Idea"],
+          "focusSkills": [
+            "Inference",
+            "Main Idea"
+          ],
           "currentLevel": "920L",
           "targetLevel": "980L",
           "progress": 80,
@@ -46,7 +57,10 @@
           "name": "Geometry Mastery",
           "studentName": "Ron Weasley",
           "subject": "math",
-          "focusSkills": ["Angles", "Area & Perimeter"],
+          "focusSkills": [
+            "Angles",
+            "Area & Perimeter"
+          ],
           "currentLevel": "3.0 GE",
           "targetLevel": "3.5 GE",
           "progress": 100,
@@ -107,7 +121,10 @@
           "priority": "P",
           "crossObjectSlug": "skill",
           "crossObjectName": "Skill",
-          "roleKeys": ["teacher", "student"]
+          "roleKeys": [
+            "teacher",
+            "student"
+          ]
         },
         {
           "name": "Start Next Activity",
@@ -116,7 +133,9 @@
           "priority": "P",
           "crossObjectSlug": "assignment",
           "crossObjectName": "Assignment",
-          "roleKeys": ["student"]
+          "roleKeys": [
+            "student"
+          ]
         }
       ]
     },
@@ -124,14 +143,17 @@
       "layout": "list",
       "heading": "List layout",
       "description": "How a Learning Path appears in teacher class views",
-      "defaultShape": "row",
+      "defaultShape": "list",
       "componentTag": "ren-learning-path-row",
       "examples": [
         {
           "name": "Math Foundations — Number Sense",
           "studentName": "Harry Potter",
           "subject": "math",
-          "focusSkills": ["Number Sense", "Place Value"],
+          "focusSkills": [
+            "Number Sense",
+            "Place Value"
+          ],
           "currentLevel": "2.8 GE",
           "targetLevel": "3.5 GE",
           "progress": 35,
@@ -143,7 +165,10 @@
           "name": "Reading Comprehension Boost",
           "studentName": "Hermione Granger",
           "subject": "ela",
-          "focusSkills": ["Inference", "Main Idea"],
+          "focusSkills": [
+            "Inference",
+            "Main Idea"
+          ],
           "currentLevel": "920L",
           "targetLevel": "980L",
           "progress": 80,
@@ -195,7 +220,10 @@
           "priority": "P",
           "crossObjectSlug": "skill",
           "crossObjectName": "Skill",
-          "roleKeys": ["teacher", "student"]
+          "roleKeys": [
+            "teacher",
+            "student"
+          ]
         },
         {
           "name": "Customize Path",
@@ -204,7 +232,9 @@
           "priority": "S",
           "crossObjectSlug": "student",
           "crossObjectName": "Student",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         }
       ]
     },
@@ -212,14 +242,17 @@
       "layout": "detail",
       "heading": "Detail layout",
       "description": "Full Learning Path view with activity sequence",
-      "defaultShape": "profile",
+      "defaultShape": "details",
       "componentTag": "ren-learning-path-profile",
       "examples": [
         {
           "name": "Math Foundations — Number Sense",
           "studentName": "Harry Potter",
           "subject": "math",
-          "focusSkills": ["Number Sense", "Place Value"],
+          "focusSkills": [
+            "Number Sense",
+            "Place Value"
+          ],
           "currentLevel": "2.8 GE",
           "targetLevel": "3.5 GE",
           "progress": 35,
@@ -323,7 +356,10 @@
           "priority": "P",
           "crossObjectSlug": "skill",
           "crossObjectName": "Skill",
-          "roleKeys": ["teacher", "student"]
+          "roleKeys": [
+            "teacher",
+            "student"
+          ]
         },
         {
           "name": "Start Next Activity",
@@ -332,7 +368,9 @@
           "priority": "P",
           "crossObjectSlug": "assignment",
           "crossObjectName": "Assignment",
-          "roleKeys": ["student"]
+          "roleKeys": [
+            "student"
+          ]
         },
         {
           "name": "Customize Path",
@@ -341,7 +379,9 @@
           "priority": "S",
           "crossObjectSlug": "student",
           "crossObjectName": "Student",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Accept Recommendation",
@@ -350,14 +390,18 @@
           "priority": "P",
           "crossObjectSlug": "assignment",
           "crossObjectName": "Assignment",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Reject Recommendation",
           "roles": "Teacher",
           "permission": "Write",
           "priority": "T",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "View Path Progress",
@@ -366,7 +410,9 @@
           "priority": "S",
           "crossObjectSlug": "score",
           "crossObjectName": "Score",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Reset Path",
@@ -375,7 +421,9 @@
           "priority": "T",
           "crossObjectSlug": "student",
           "crossObjectName": "Student",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Generate Path",
@@ -384,7 +432,9 @@
           "priority": "P",
           "crossObjectSlug": "student",
           "crossObjectName": "Student",
-          "roleKeys": ["system"]
+          "roleKeys": [
+            "system"
+          ]
         },
         {
           "name": "Update Path",
@@ -393,7 +443,9 @@
           "priority": "T",
           "crossObjectSlug": "score",
           "crossObjectName": "Score",
-          "roleKeys": ["system"]
+          "roleKeys": [
+            "system"
+          ]
         }
       ]
     }
@@ -408,7 +460,16 @@
       "benefit": "I can see the personalized sequence of activities the system has generated and understand how the student is progressing toward their skill targets.",
       "whenClause": "I navigate to a student's Learning Path,",
       "thenClause": "I see the path name, focus skills, current vs. target levels, progress bar, and the ordered list of upcoming activities with their types and estimated times.",
-      "crossObjects": [{ "slug": "student", "name": "Student" }, { "slug": "skill", "name": "Skill" }]
+      "crossObjects": [
+        {
+          "slug": "student",
+          "name": "Student"
+        },
+        {
+          "slug": "skill",
+          "name": "Skill"
+        }
+      ]
     },
     {
       "title": "Continue Learning Path Activity",
@@ -419,7 +480,12 @@
       "benefit": "I can continue my personalized learning sequence and make progress toward my skill goals.",
       "whenClause": "I open my Learning Path and click Start Next Activity,",
       "thenClause": "the next activity in my sequence launches, and when I complete it, my path progress updates and the system may adapt upcoming activities based on my performance.",
-      "crossObjects": [{ "slug": "assignment", "name": "Assignment" }]
+      "crossObjects": [
+        {
+          "slug": "assignment",
+          "name": "Assignment"
+        }
+      ]
     }
   ],
   "businessRules": [
@@ -492,9 +558,27 @@
       }
     ],
     "transitions": [
-      { "from": "Active", "to": ["Complete", "Paused", "Stale"] },
-      { "from": "Paused", "to": ["Active", "Stale"] },
-      { "from": "Stale", "to": ["Active"] }
+      {
+        "from": "Active",
+        "to": [
+          "Complete",
+          "Paused",
+          "Stale"
+        ]
+      },
+      {
+        "from": "Paused",
+        "to": [
+          "Active",
+          "Stale"
+        ]
+      },
+      {
+        "from": "Stale",
+        "to": [
+          "Active"
+        ]
+      }
     ]
   },
   "relationships": [
@@ -571,7 +655,16 @@
       "dependencies": "Group creation from path data is informational and does not modify paths."
     }
   ],
-  "relatedObjects": ["student", "skill", "assignment", "resource", "assessment", "score", "teacher", "student-group"],
+  "relatedObjects": [
+    "student",
+    "skill",
+    "assignment",
+    "resource",
+    "assessment",
+    "score",
+    "teacher",
+    "student-group"
+  ],
   "nestedObjects": [
     {
       "slug": "assignment",
@@ -690,7 +783,10 @@
       "priority": "P",
       "crossObjectSlug": "skill",
       "crossObjectName": "Skill",
-      "roleKeys": ["teacher", "student"]
+      "roleKeys": [
+        "teacher",
+        "student"
+      ]
     },
     {
       "name": "Start Next Activity",
@@ -699,7 +795,9 @@
       "priority": "P",
       "crossObjectSlug": "assignment",
       "crossObjectName": "Assignment",
-      "roleKeys": ["student"]
+      "roleKeys": [
+        "student"
+      ]
     },
     {
       "name": "Customize Path",
@@ -708,7 +806,9 @@
       "priority": "S",
       "crossObjectSlug": "student",
       "crossObjectName": "Student",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Accept Recommendation",
@@ -717,14 +817,18 @@
       "priority": "P",
       "crossObjectSlug": "assignment",
       "crossObjectName": "Assignment",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Reject Recommendation",
       "roles": "Teacher",
       "permission": "Write",
       "priority": "T",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "View Path Progress",
@@ -733,7 +837,9 @@
       "priority": "S",
       "crossObjectSlug": "score",
       "crossObjectName": "Score",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Reset Path",
@@ -742,7 +848,9 @@
       "priority": "T",
       "crossObjectSlug": "student",
       "crossObjectName": "Student",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Generate Path",
@@ -751,7 +859,9 @@
       "priority": "P",
       "crossObjectSlug": "student",
       "crossObjectName": "Student",
-      "roleKeys": ["system"]
+      "roleKeys": [
+        "system"
+      ]
     },
     {
       "name": "Update Path",
@@ -760,7 +870,9 @@
       "priority": "T",
       "crossObjectSlug": "score",
       "crossObjectName": "Score",
-      "roleKeys": ["system"]
+      "roleKeys": [
+        "system"
+      ]
     }
   ],
   "sipValidation": {
@@ -800,33 +912,134 @@
       "notes": "Technical term emphasizing the adaptive algorithm"
     }
   ],
-  "shapeshifterMatrix": [
+  "objectViews": [
     {
+      "viewType": "list",
       "context": "Student Dashboard",
       "value": "student-dashboard",
-      "shape": "card",
       "description": "A student's active learning path with progress, focus skills, and estimated time remaining. Students see where they are and start their next activity.",
-      "visibleAttributes": ["Path Name", "Subject", "Focus Skills", "Progress", "Status", "Estimated Remaining"],
-      "availableCTAs": ["View Learning Path", "Start Next Activity"],
-      "cardShape": "Dashboard card"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Path Name",
+            "Subject",
+            "Focus Skills",
+            "Progress",
+            "Status",
+            "Estimated Remaining"
+          ],
+          "availableCTAs": [
+            "View Learning Path",
+            "Start Next Activity"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Path Name",
+            "Subject",
+            "Focus Skills",
+            "Progress",
+            "Status",
+            "Estimated Remaining"
+          ],
+          "availableCTAs": [
+            "View Learning Path",
+            "Start Next Activity"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Path Name",
+            "Subject",
+            "Focus Skills",
+            "Progress",
+            "Status",
+            "Estimated Remaining"
+          ],
+          "availableCTAs": [
+            "View Learning Path",
+            "Start Next Activity"
+          ]
+        }
+      }
     },
     {
+      "viewType": "list",
       "context": "Teacher View",
       "value": "teacher-view",
-      "shape": "row",
       "description": "Learning paths for students in a class, listed with progress and status. Teachers monitor pacing and customize paths for individual students.",
-      "visibleAttributes": ["Path Name", "Student", "Subject", "Progress", "Status"],
-      "availableCTAs": ["View Learning Path", "Customize Path"],
-      "cardShape": "Teacher list row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Path Name",
+            "Student",
+            "Subject",
+            "Progress",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View Learning Path",
+            "Customize Path"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Path Name",
+            "Student",
+            "Subject",
+            "Progress",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View Learning Path",
+            "Customize Path"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Path Name",
+            "Student",
+            "Subject",
+            "Progress",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View Learning Path",
+            "Customize Path"
+          ]
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "Detail View",
       "value": "detail-view",
-      "shape": "profile",
       "description": "The complete learning path — skill targets, activity sequence, progress, and all management controls. Teachers review path logic, adjust levels, or regenerate the path entirely.",
-      "visibleAttributes": ["Path Name", "Student", "Subject", "Focus Skills", "Current Level", "Target Level", "Activities", "Progress", "Status", "Generated From", "Last Updated", "Estimated Remaining"],
-      "availableCTAs": ["View Learning Path", "Start Next Activity", "Customize Path", "Accept Recommendation", "Reject Recommendation", "View Path Progress", "Reset Path", "Generate Path", "Update Path"],
-      "cardShape": "Full page"
+      "visibleAttributes": [
+        "Path Name",
+        "Student",
+        "Subject",
+        "Focus Skills",
+        "Current Level",
+        "Target Level",
+        "Activities",
+        "Progress",
+        "Status",
+        "Generated From",
+        "Last Updated",
+        "Estimated Remaining"
+      ],
+      "availableCTAs": [
+        "View Learning Path",
+        "Start Next Activity",
+        "Customize Path",
+        "Accept Recommendation",
+        "Reject Recommendation",
+        "View Path Progress",
+        "Reset Path",
+        "Generate Path",
+        "Update Path"
+      ]
     }
   ]
 }

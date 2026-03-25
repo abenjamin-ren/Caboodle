@@ -6,7 +6,14 @@
     "objectType": "core",
     "category": "knowledge",
     "definition": "A Resource is a piece of instructional content — such as a digital book, article, video, interactive lesson, or practice set — available within Renaissance products that is aligned to specific skills/standards and used by students to learn, practice, and build mastery.",
-    "synonyms": ["book", "article", "lesson", "content", "material", "activity"],
+    "synonyms": [
+      "book",
+      "article",
+      "lesson",
+      "content",
+      "material",
+      "activity"
+    ],
     "products": "myON, AR, Freckle, Nearpod, Lalilo"
   },
   "variations": [],
@@ -15,7 +22,7 @@
       "layout": "card",
       "heading": "Card layout",
       "description": "How a Resource appears in browsing grids and recommendation feeds",
-      "defaultShape": "card",
+      "defaultShape": "list",
       "componentTag": "ren-resource-card",
       "examples": [
         {
@@ -83,21 +90,29 @@
           "roles": "Student",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["student"]
+          "roleKeys": [
+            "student"
+          ]
         },
         {
           "name": "Search / Browse",
           "roles": "Student, Teacher",
           "permission": "Read",
           "priority": "S",
-          "roleKeys": ["student", "teacher"]
+          "roleKeys": [
+            "student",
+            "teacher"
+          ]
         },
         {
           "name": "Add to Favorites",
           "roles": "Student, Teacher",
           "permission": "Write",
           "priority": "T",
-          "roleKeys": ["student", "teacher"]
+          "roleKeys": [
+            "student",
+            "teacher"
+          ]
         }
       ]
     },
@@ -105,7 +120,7 @@
       "layout": "list",
       "heading": "List layout",
       "description": "How a Resource appears in search results and assignment builders",
-      "defaultShape": "row",
+      "defaultShape": "list",
       "componentTag": "ren-resource-row",
       "examples": [
         {
@@ -179,7 +194,9 @@
           "roles": "Teacher",
           "permission": "Read",
           "priority": "S",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Assign",
@@ -188,7 +205,9 @@
           "priority": "S",
           "crossObjectSlug": "assignment",
           "crossObjectName": "Assignment",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         }
       ]
     },
@@ -196,7 +215,7 @@
       "layout": "detail",
       "heading": "Detail page layout",
       "description": "What users see when they open a full Resource record",
-      "defaultShape": "profile",
+      "defaultShape": "details",
       "componentTag": "ren-resource-profile",
       "examples": [
         {
@@ -303,14 +322,18 @@
           "roles": "Student",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["student"]
+          "roleKeys": [
+            "student"
+          ]
         },
         {
           "name": "Preview",
           "roles": "Teacher",
           "permission": "Read",
           "priority": "S",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Assign",
@@ -319,21 +342,29 @@
           "priority": "S",
           "crossObjectSlug": "assignment",
           "crossObjectName": "Assignment",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Add to Favorites",
           "roles": "Student, Teacher",
           "permission": "Write",
           "priority": "T",
-          "roleKeys": ["student", "teacher"]
+          "roleKeys": [
+            "student",
+            "teacher"
+          ]
         },
         {
           "name": "Search / Browse",
           "roles": "Student, Teacher",
           "permission": "Read",
           "priority": "S",
-          "roleKeys": ["student", "teacher"]
+          "roleKeys": [
+            "student",
+            "teacher"
+          ]
         },
         {
           "name": "View Usage Report",
@@ -342,7 +373,10 @@
           "priority": "T",
           "crossObjectSlug": "student",
           "crossObjectName": "Student",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         }
       ]
     }
@@ -368,8 +402,14 @@
       "whenClause": "I preview a resource and choose to assign it,",
       "thenClause": "I can select target classes or individual students, set a due date, and the assignment appears in each student's task list.",
       "crossObjects": [
-        { "slug": "assignment", "name": "Assignment" },
-        { "slug": "class", "name": "Class" }
+        {
+          "slug": "assignment",
+          "name": "Assignment"
+        },
+        {
+          "slug": "class",
+          "name": "Class"
+        }
       ]
     },
     {
@@ -382,8 +422,14 @@
       "whenClause": "I view a resource's usage report,",
       "thenClause": "I see which students have accessed it, completion rates, time spent, and any associated quiz or practice scores.",
       "crossObjects": [
-        { "slug": "student", "name": "Student" },
-        { "slug": "score", "name": "Score" }
+        {
+          "slug": "student",
+          "name": "Student"
+        },
+        {
+          "slug": "score",
+          "name": "Score"
+        }
       ]
     }
   ],
@@ -433,8 +479,18 @@
       }
     ],
     "transitions": [
-      { "from": "Active", "to": ["Archived"] },
-      { "from": "Archived", "to": ["Active"] }
+      {
+        "from": "Active",
+        "to": [
+          "Archived"
+        ]
+      },
+      {
+        "from": "Archived",
+        "to": [
+          "Active"
+        ]
+      }
     ]
   },
   "relationships": [
@@ -466,7 +522,14 @@
       "dependencies": "If a Resource is archived, existing assignments remain accessible for completion but no new assignments can reference the archived resource."
     }
   ],
-  "relatedObjects": ["student", "skill", "assignment", "score", "class", "teacher"],
+  "relatedObjects": [
+    "student",
+    "skill",
+    "assignment",
+    "score",
+    "class",
+    "teacher"
+  ],
   "nestedObjects": [
     {
       "slug": "skill",
@@ -590,14 +653,18 @@
       "roles": "Student",
       "permission": "Read",
       "priority": "P",
-      "roleKeys": ["student"]
+      "roleKeys": [
+        "student"
+      ]
     },
     {
       "name": "Preview",
       "roles": "Teacher",
       "permission": "Read",
       "priority": "S",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Assign",
@@ -606,21 +673,29 @@
       "priority": "S",
       "crossObjectSlug": "assignment",
       "crossObjectName": "Assignment",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Add to Favorites",
       "roles": "Student, Teacher",
       "permission": "Write",
       "priority": "T",
-      "roleKeys": ["student", "teacher"]
+      "roleKeys": [
+        "student",
+        "teacher"
+      ]
     },
     {
       "name": "Search / Browse",
       "roles": "Student, Teacher",
       "permission": "Read",
       "priority": "S",
-      "roleKeys": ["student", "teacher"]
+      "roleKeys": [
+        "student",
+        "teacher"
+      ]
     },
     {
       "name": "View Usage Report",
@@ -629,7 +704,10 @@
       "priority": "T",
       "crossObjectSlug": "student",
       "crossObjectName": "Student",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     }
   ],
   "sipValidation": {
@@ -679,60 +757,266 @@
       "notes": "Interactive practice exercises and skill-building tasks"
     }
   ],
-  "shapeshifterMatrix": [
+  "objectViews": [
     {
+      "viewType": "list",
       "context": "Library Browse",
       "value": "library-browse",
-      "shape": "card",
       "description": "A browsable grid of resources filtered by subject and level. Teachers scan covers and titles to find content for upcoming lessons, with quick access to preview or favorite.",
-      "visibleAttributes": ["Title", "Resource Type", "Subject", "Reading/Difficulty Level", "Product"],
-      "availableCTAs": ["View / Read / Play", "Add to Favorites"],
-      "cardShape": "Cover card"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Title",
+            "Resource Type",
+            "Subject",
+            "Reading/Difficulty Level",
+            "Product"
+          ],
+          "availableCTAs": [
+            "View / Read / Play",
+            "Add to Favorites"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Title",
+            "Resource Type",
+            "Subject",
+            "Reading/Difficulty Level",
+            "Product"
+          ],
+          "availableCTAs": [
+            "View / Read / Play",
+            "Add to Favorites"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Title",
+            "Resource Type",
+            "Subject",
+            "Reading/Difficulty Level",
+            "Product"
+          ],
+          "availableCTAs": [
+            "View / Read / Play",
+            "Add to Favorites"
+          ]
+        }
+      }
     },
     {
+      "viewType": "list",
       "context": "Search Results",
       "value": "search-results",
-      "shape": "row",
       "description": "Resources matching a search query with type, subject, level, and format. Teachers narrow down options and preview content before selecting.",
-      "visibleAttributes": ["Title", "Resource Type", "Subject", "Reading/Difficulty Level", "Product", "Format"],
-      "availableCTAs": ["View / Read / Play", "Preview"],
-      "cardShape": "Compact row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Title",
+            "Resource Type",
+            "Subject",
+            "Reading/Difficulty Level",
+            "Product",
+            "Format"
+          ],
+          "availableCTAs": [
+            "View / Read / Play",
+            "Preview"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Title",
+            "Resource Type",
+            "Subject",
+            "Reading/Difficulty Level",
+            "Product",
+            "Format"
+          ],
+          "availableCTAs": [
+            "View / Read / Play",
+            "Preview"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Title",
+            "Resource Type",
+            "Subject",
+            "Reading/Difficulty Level",
+            "Product",
+            "Format"
+          ],
+          "availableCTAs": [
+            "View / Read / Play",
+            "Preview"
+          ]
+        }
+      }
     },
     {
+      "viewType": "list",
       "context": "Assignment Builder",
       "value": "assignment-builder",
-      "shape": "row",
       "description": "Resources listed for selection when building an assignment. Teachers preview content and assign it to students directly from here.",
-      "visibleAttributes": ["Title", "Resource Type", "Subject", "Reading/Difficulty Level", "Format"],
-      "availableCTAs": ["Preview", "Assign"],
-      "cardShape": "Compact row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Title",
+            "Resource Type",
+            "Subject",
+            "Reading/Difficulty Level",
+            "Format"
+          ],
+          "availableCTAs": [
+            "Preview",
+            "Assign"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Title",
+            "Resource Type",
+            "Subject",
+            "Reading/Difficulty Level",
+            "Format"
+          ],
+          "availableCTAs": [
+            "Preview",
+            "Assign"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Title",
+            "Resource Type",
+            "Subject",
+            "Reading/Difficulty Level",
+            "Format"
+          ],
+          "availableCTAs": [
+            "Preview",
+            "Assign"
+          ]
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "Resource Detail",
       "value": "resource-detail",
-      "shape": "profile",
       "description": "The complete resource record — metadata, skill alignment, publisher, availability, and all actions. Teachers review a resource fully before assigning, favoriting, or checking usage.",
-      "visibleAttributes": ["Title", "Resource Type", "Subject", "Reading/Difficulty Level", "Skill Alignment", "Product", "Format", "Duration/Length", "Publisher/Author", "Topic/Genre", "Language", "Availability", "Status"],
-      "availableCTAs": ["View / Read / Play", "Preview", "Assign", "Add to Favorites", "View Usage Report"],
-      "cardShape": "Full page"
+      "visibleAttributes": [
+        "Title",
+        "Resource Type",
+        "Subject",
+        "Reading/Difficulty Level",
+        "Skill Alignment",
+        "Product",
+        "Format",
+        "Duration/Length",
+        "Publisher/Author",
+        "Topic/Genre",
+        "Language",
+        "Availability",
+        "Status"
+      ],
+      "availableCTAs": [
+        "View / Read / Play",
+        "Preview",
+        "Assign",
+        "Add to Favorites",
+        "View Usage Report"
+      ]
     },
     {
+      "viewType": "list",
       "context": "Student Reading Log",
       "value": "student-reading-log",
-      "shape": "row",
       "description": "Resources a student has read or interacted with, listed with difficulty level and duration. Teachers track reading volume and level progression over time.",
-      "visibleAttributes": ["Title", "Resource Type", "Reading/Difficulty Level", "Duration/Length"],
-      "availableCTAs": ["View / Read / Play"],
-      "cardShape": "Compact row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Title",
+            "Resource Type",
+            "Reading/Difficulty Level",
+            "Duration/Length"
+          ],
+          "availableCTAs": [
+            "View / Read / Play"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Title",
+            "Resource Type",
+            "Reading/Difficulty Level",
+            "Duration/Length"
+          ],
+          "availableCTAs": [
+            "View / Read / Play"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Title",
+            "Resource Type",
+            "Reading/Difficulty Level",
+            "Duration/Length"
+          ],
+          "availableCTAs": [
+            "View / Read / Play"
+          ]
+        }
+      }
     },
     {
+      "viewType": "list",
       "context": "Recommendation Feed",
       "value": "recommendation-feed",
-      "shape": "card",
       "description": "Recommended resources shown as cover cards based on student level and interests. Teachers browse personalized suggestions to find the right content for their students.",
-      "visibleAttributes": ["Title", "Resource Type", "Subject", "Reading/Difficulty Level", "Topic/Genre"],
-      "availableCTAs": ["View / Read / Play", "Add to Favorites"],
-      "cardShape": "Cover card"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Title",
+            "Resource Type",
+            "Subject",
+            "Reading/Difficulty Level",
+            "Topic/Genre"
+          ],
+          "availableCTAs": [
+            "View / Read / Play",
+            "Add to Favorites"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Title",
+            "Resource Type",
+            "Subject",
+            "Reading/Difficulty Level",
+            "Topic/Genre"
+          ],
+          "availableCTAs": [
+            "View / Read / Play",
+            "Add to Favorites"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Title",
+            "Resource Type",
+            "Subject",
+            "Reading/Difficulty Level",
+            "Topic/Genre"
+          ],
+          "availableCTAs": [
+            "View / Read / Play",
+            "Add to Favorites"
+          ]
+        }
+      }
     }
   ]
 }

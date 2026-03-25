@@ -6,7 +6,11 @@
     "objectType": "core",
     "category": "data-ai",
     "definition": "A Proficiency Prediction is an SPS-generated, model-based estimate of how proficient a specific student is on a specific skill, categorized into an instructional group that tells teachers whether the student needs enrichment, core instruction, or approaching-level support.",
-    "synonyms": ["prediction", "proficiency level", "mastery estimate"],
+    "synonyms": [
+      "prediction",
+      "proficiency level",
+      "mastery estimate"
+    ],
     "products": "Star"
   },
   "variations": [],
@@ -15,7 +19,7 @@
       "layout": "card",
       "heading": "Card layout",
       "description": "How a Proficiency Prediction appears in skill proficiency grids and dashboards",
-      "defaultShape": "card",
+      "defaultShape": "list",
       "componentTag": "ren-proficiency-prediction-card",
       "examples": [
         {
@@ -87,7 +91,10 @@
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         }
       ]
     },
@@ -95,7 +102,7 @@
       "layout": "list",
       "heading": "List layout",
       "description": "How a Proficiency Prediction appears in student skill rows and reports",
-      "defaultShape": "row",
+      "defaultShape": "list",
       "componentTag": "ren-proficiency-prediction-row",
       "examples": [
         {
@@ -169,7 +176,10 @@
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         }
       ]
     },
@@ -177,7 +187,7 @@
       "layout": "detail",
       "heading": "Detail layout",
       "description": "Full detail view of a single Proficiency Prediction with all model data",
-      "defaultShape": "profile",
+      "defaultShape": "details",
       "componentTag": "ren-proficiency-prediction-profile",
       "examples": [
         {
@@ -261,21 +271,29 @@
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "View Prediction Detail",
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "S",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Generate Prediction",
           "roles": "System",
           "permission": "System",
           "priority": "T",
-          "roleKeys": ["system"]
+          "roleKeys": [
+            "system"
+          ]
         }
       ]
     }
@@ -300,7 +318,16 @@
       "benefit": "I can plan targeted instruction by identifying which skills have the most students in each instructional group.",
       "whenClause": "I view the class-level proficiency summary,",
       "thenClause": "predictions are aggregated by skill and instructional group so I can see distribution patterns across my class.",
-      "crossObjects": [{ "slug": "skill", "name": "Skill" }, { "slug": "student", "name": "Student" }]
+      "crossObjects": [
+        {
+          "slug": "skill",
+          "name": "Skill"
+        },
+        {
+          "slug": "student",
+          "name": "Student"
+        }
+      ]
     },
     {
       "title": "Compare Student Skills",
@@ -311,7 +338,12 @@
       "benefit": "I can identify relative strengths and weaknesses to personalize instruction.",
       "whenClause": "I view a single student's skill proficiency profile,",
       "thenClause": "all predictions for that student are displayed across skills so I can see which skills need the most attention.",
-      "crossObjects": [{ "slug": "student", "name": "Student" }]
+      "crossObjects": [
+        {
+          "slug": "student",
+          "name": "Student"
+        }
+      ]
     }
   ],
   "businessRules": [
@@ -376,7 +408,12 @@
       }
     ],
     "transitions": [
-      { "from": "Current", "to": ["Superseded"] }
+      {
+        "from": "Current",
+        "to": [
+          "Superseded"
+        ]
+      }
     ]
   },
   "relationships": [
@@ -399,7 +436,14 @@
       "dependencies": "If a Skill is deprecated or remapped, associated predictions may be superseded or recalculated against the replacement skill."
     }
   ],
-  "relatedObjects": ["student", "skill", "score", "standard", "class", "insight"],
+  "relatedObjects": [
+    "student",
+    "skill",
+    "score",
+    "standard",
+    "class",
+    "insight"
+  ],
   "nestedObjects": [],
   "allAttributes": [
     {
@@ -477,21 +521,29 @@
       "roles": "Teacher, Admin",
       "permission": "Read",
       "priority": "P",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "View Prediction Detail",
       "roles": "Teacher, Admin",
       "permission": "Read",
       "priority": "S",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Generate Prediction",
       "roles": "System",
       "permission": "System",
       "priority": "T",
-      "roleKeys": ["system"]
+      "roleKeys": [
+        "system"
+      ]
     }
   ],
   "sipValidation": {
@@ -526,42 +578,136 @@
       "notes": "More precise term used in model documentation and research papers"
     }
   ],
-  "shapeshifterMatrix": [
+  "objectViews": [
     {
+      "viewType": "list",
       "context": "Grid Cell",
       "value": "grid-cell",
-      "shape": "card",
       "description": "A single cell in the skills proficiency grid, color-coded by instructional group. Teachers scan the grid to spot patterns across students and skills.",
-      "visibleAttributes": ["Proficiency %", "Instructional Group"],
-      "availableCTAs": ["View Prediction"],
-      "cardShape": "Colored cell"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Proficiency %",
+            "Instructional Group"
+          ],
+          "availableCTAs": [
+            "View Prediction"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Proficiency %",
+            "Instructional Group"
+          ],
+          "availableCTAs": [
+            "View Prediction"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Proficiency %",
+            "Instructional Group"
+          ],
+          "availableCTAs": [
+            "View Prediction"
+          ]
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "Tooltip",
       "value": "tooltip",
-      "shape": "header",
       "description": "Prediction details shown on hover — proficiency percentage, predicted accuracy, and whether the skill has been practiced. Provides context without leaving the grid.",
-      "visibleAttributes": ["Proficiency %", "Instructional Group", "Predicted % Correct", "Prediction Type", "Skill Is Practiced"],
-      "availableCTAs": ["View Prediction Detail"],
-      "cardShape": "Tooltip overlay"
+      "visibleAttributes": [
+        "Proficiency %",
+        "Instructional Group",
+        "Predicted % Correct",
+        "Prediction Type",
+        "Skill Is Practiced"
+      ],
+      "availableCTAs": [
+        "View Prediction Detail"
+      ]
     },
     {
+      "viewType": "list",
       "context": "Standard Aggregate",
       "value": "standard-aggregate",
-      "shape": "card",
       "description": "Aggregated proficiency predictions rolled up to the standard level. Teachers see how students are predicted to perform across a full standard, not just individual skills.",
-      "visibleAttributes": ["Proficiency %", "Instructional Group"],
-      "availableCTAs": ["View Prediction"],
-      "cardShape": "Aggregate summary"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Proficiency %",
+            "Instructional Group"
+          ],
+          "availableCTAs": [
+            "View Prediction"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Proficiency %",
+            "Instructional Group"
+          ],
+          "availableCTAs": [
+            "View Prediction"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Proficiency %",
+            "Instructional Group"
+          ],
+          "availableCTAs": [
+            "View Prediction"
+          ]
+        }
+      }
     },
     {
+      "viewType": "list",
       "context": "Student Row",
       "value": "student-row",
-      "shape": "row",
       "description": "A student's proficiency predictions listed as data rows with prediction type and practice status. Teachers review predicted performance across skills for an individual student.",
-      "visibleAttributes": ["Proficiency %", "Instructional Group", "Skill Is Practiced", "Prediction Type"],
-      "availableCTAs": ["View Prediction", "View Prediction Detail"],
-      "cardShape": "Data row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Proficiency %",
+            "Instructional Group",
+            "Skill Is Practiced",
+            "Prediction Type"
+          ],
+          "availableCTAs": [
+            "View Prediction",
+            "View Prediction Detail"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Proficiency %",
+            "Instructional Group",
+            "Skill Is Practiced",
+            "Prediction Type"
+          ],
+          "availableCTAs": [
+            "View Prediction",
+            "View Prediction Detail"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Proficiency %",
+            "Instructional Group",
+            "Skill Is Practiced",
+            "Prediction Type"
+          ],
+          "availableCTAs": [
+            "View Prediction",
+            "View Prediction Detail"
+          ]
+        }
+      }
     }
   ]
 }

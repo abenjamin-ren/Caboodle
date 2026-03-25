@@ -6,7 +6,13 @@
     "objectType": "core",
     "category": "activity",
     "definition": "An Assignment is a unit of instructional work — such as a practice set, reading task, activity, or project — created by a teacher and given to students within a class to practice, reinforce, or extend learning on specific skills, typically leveraging resources from the Renaissance content library.",
-    "synonyms": ["task", "practice", "activity", "lesson", "goal"],
+    "synonyms": [
+      "task",
+      "practice",
+      "activity",
+      "lesson",
+      "goal"
+    ],
     "products": "Freckle, Lalilo, myON, Nearpod"
   },
   "variations": [],
@@ -15,7 +21,7 @@
       "layout": "card",
       "heading": "Card layout",
       "description": "How an Assignment appears in teacher dashboards and class activity feeds",
-      "defaultShape": "card",
+      "defaultShape": "list",
       "componentTag": "ren-assignment-card",
       "examples": [
         {
@@ -90,14 +96,19 @@
           "roles": "Teacher, Student",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "student"]
+          "roleKeys": [
+            "teacher",
+            "student"
+          ]
         },
         {
           "name": "Start",
           "roles": "Student",
           "permission": "Write",
           "priority": "P",
-          "roleKeys": ["student"]
+          "roleKeys": [
+            "student"
+          ]
         },
         {
           "name": "View Progress",
@@ -106,7 +117,9 @@
           "priority": "S",
           "crossObjectSlug": "student",
           "crossObjectName": "Student",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         }
       ]
     },
@@ -114,7 +127,7 @@
       "layout": "list",
       "heading": "List layout",
       "description": "How an Assignment appears in class assignment lists and student task queues",
-      "defaultShape": "row",
+      "defaultShape": "list",
       "componentTag": "ren-assignment-row",
       "examples": [
         {
@@ -182,14 +195,19 @@
           "roles": "Teacher, Student",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "student"]
+          "roleKeys": [
+            "teacher",
+            "student"
+          ]
         },
         {
           "name": "Start",
           "roles": "Student",
           "permission": "Write",
           "priority": "P",
-          "roleKeys": ["student"]
+          "roleKeys": [
+            "student"
+          ]
         }
       ]
     },
@@ -197,7 +215,7 @@
       "layout": "detail",
       "heading": "Detail page layout",
       "description": "What users see when they open a full Assignment record",
-      "defaultShape": "profile",
+      "defaultShape": "details",
       "componentTag": "ren-assignment-profile",
       "examples": [
         {
@@ -213,10 +231,22 @@
           "createdBy": "Ms. Johnson",
           "color": "#2B87FF",
           "nestedObjects": [
-            { "label": "Students", "count": 24 },
-            { "label": "Skills", "count": 3 },
-            { "label": "Resources", "count": 1 },
-            { "label": "Scores", "count": 14 }
+            {
+              "label": "Students",
+              "count": 24
+            },
+            {
+              "label": "Skills",
+              "count": 3
+            },
+            {
+              "label": "Resources",
+              "count": 1
+            },
+            {
+              "label": "Scores",
+              "count": 14
+            }
           ]
         }
       ],
@@ -325,7 +355,10 @@
           "roles": "Teacher, Student",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "student"]
+          "roleKeys": [
+            "teacher",
+            "student"
+          ]
         },
         {
           "name": "Create",
@@ -334,7 +367,9 @@
           "priority": "S",
           "crossObjectSlug": "class",
           "crossObjectName": "Class",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Assign to Class",
@@ -343,21 +378,27 @@
           "priority": "S",
           "crossObjectSlug": "class",
           "crossObjectName": "Class",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Edit",
           "roles": "Teacher",
           "permission": "Write",
           "priority": "T",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Start",
           "roles": "Student",
           "permission": "Write",
           "priority": "P",
-          "roleKeys": ["student"]
+          "roleKeys": [
+            "student"
+          ]
         },
         {
           "name": "Submit/Complete",
@@ -366,7 +407,9 @@
           "priority": "S",
           "crossObjectSlug": "score",
           "crossObjectName": "Score",
-          "roleKeys": ["student"]
+          "roleKeys": [
+            "student"
+          ]
         },
         {
           "name": "View Progress",
@@ -375,21 +418,27 @@
           "priority": "S",
           "crossObjectSlug": "student",
           "crossObjectName": "Student",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Delete",
           "roles": "Teacher",
           "permission": "Write",
           "priority": "Q",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Duplicate",
           "roles": "Teacher",
           "permission": "Write",
           "priority": "T",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         }
       ]
     }
@@ -405,8 +454,14 @@
       "whenClause": "I create a new practice assignment and assign it to my class,",
       "thenClause": "each student receives the assignment in their task list, optionally differentiated by proficiency level, with a clear due date and completion criteria.",
       "crossObjects": [
-        { "slug": "class", "name": "Class" },
-        { "slug": "skill", "name": "Skill" }
+        {
+          "slug": "class",
+          "name": "Class"
+        },
+        {
+          "slug": "skill",
+          "name": "Skill"
+        }
       ]
     },
     {
@@ -419,7 +474,10 @@
       "whenClause": "I finish all required items in an assignment and submit it,",
       "thenClause": "a Score is generated, my skill proficiency is updated, and the assignment status changes to Completed.",
       "crossObjects": [
-        { "slug": "score", "name": "Score" }
+        {
+          "slug": "score",
+          "name": "Score"
+        }
       ]
     },
     {
@@ -432,8 +490,14 @@
       "whenClause": "I open an assignment's progress view,",
       "thenClause": "I see each student's completion percentage, time spent, score (if completed), and can identify who hasn't started, who is in progress, and who is done.",
       "crossObjects": [
-        { "slug": "student", "name": "Student" },
-        { "slug": "score", "name": "Score" }
+        {
+          "slug": "student",
+          "name": "Student"
+        },
+        {
+          "slug": "score",
+          "name": "Score"
+        }
       ]
     }
   ],
@@ -501,9 +565,29 @@
       }
     ],
     "transitions": [
-      { "from": "Assigned", "to": ["In Progress", "Overdue", "Deleted"] },
-      { "from": "In Progress", "to": ["Completed", "Overdue", "Deleted"] },
-      { "from": "Overdue", "to": ["Completed", "Deleted"] }
+      {
+        "from": "Assigned",
+        "to": [
+          "In Progress",
+          "Overdue",
+          "Deleted"
+        ]
+      },
+      {
+        "from": "In Progress",
+        "to": [
+          "Completed",
+          "Overdue",
+          "Deleted"
+        ]
+      },
+      {
+        "from": "Overdue",
+        "to": [
+          "Completed",
+          "Deleted"
+        ]
+      }
     ]
   },
   "relationships": [
@@ -535,7 +619,14 @@
       "dependencies": "If an Assignment is deleted, associated Scores persist for historical reporting but are no longer linked to an active assignment."
     }
   ],
-  "relatedObjects": ["class", "student", "teacher", "skill", "resource", "score"],
+  "relatedObjects": [
+    "class",
+    "student",
+    "teacher",
+    "skill",
+    "resource",
+    "score"
+  ],
   "nestedObjects": [
     {
       "slug": "student",
@@ -667,7 +758,10 @@
       "roles": "Teacher, Student",
       "permission": "Read",
       "priority": "P",
-      "roleKeys": ["teacher", "student"]
+      "roleKeys": [
+        "teacher",
+        "student"
+      ]
     },
     {
       "name": "Create",
@@ -676,7 +770,9 @@
       "priority": "S",
       "crossObjectSlug": "class",
       "crossObjectName": "Class",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Assign to Class",
@@ -685,21 +781,27 @@
       "priority": "S",
       "crossObjectSlug": "class",
       "crossObjectName": "Class",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Edit",
       "roles": "Teacher",
       "permission": "Write",
       "priority": "T",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Start",
       "roles": "Student",
       "permission": "Write",
       "priority": "P",
-      "roleKeys": ["student"]
+      "roleKeys": [
+        "student"
+      ]
     },
     {
       "name": "Submit/Complete",
@@ -708,7 +810,9 @@
       "priority": "S",
       "crossObjectSlug": "score",
       "crossObjectName": "Score",
-      "roleKeys": ["student"]
+      "roleKeys": [
+        "student"
+      ]
     },
     {
       "name": "View Progress",
@@ -717,21 +821,27 @@
       "priority": "S",
       "crossObjectSlug": "student",
       "crossObjectName": "Student",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Delete",
       "roles": "Teacher",
       "permission": "Write",
       "priority": "Q",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Duplicate",
       "roles": "Teacher",
       "permission": "Write",
       "priority": "T",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     }
   ],
   "sipValidation": {
@@ -781,70 +891,259 @@
       "notes": "Generic term used in parent reports and notifications"
     }
   ],
-  "shapeshifterMatrix": [
+  "objectViews": [
     {
+      "viewType": "list",
       "context": "Class Dashboard",
       "value": "class-dashboard",
-      "shape": "card",
       "description": "Active assignments for a class shown as cards with due dates, status, and progress. Teachers manage their class workload and check completion from here.",
-      "visibleAttributes": ["Assignment Name/Title", "Subject", "Assignment Type", "Due Date", "Status", "Product"],
-      "availableCTAs": ["View", "View Progress", "Edit"],
-      "cardShape": "Medium card"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Assignment Name/Title",
+            "Subject",
+            "Assignment Type",
+            "Due Date",
+            "Status",
+            "Product"
+          ],
+          "availableCTAs": [
+            "View",
+            "View Progress",
+            "Edit"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Assignment Name/Title",
+            "Subject",
+            "Assignment Type",
+            "Due Date",
+            "Status",
+            "Product"
+          ],
+          "availableCTAs": [
+            "View",
+            "View Progress",
+            "Edit"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Assignment Name/Title",
+            "Subject",
+            "Assignment Type",
+            "Due Date",
+            "Status",
+            "Product"
+          ],
+          "availableCTAs": [
+            "View",
+            "View Progress",
+            "Edit"
+          ]
+        }
+      }
     },
     {
+      "viewType": "list",
       "context": "Student Task List",
       "value": "student-task-list",
-      "shape": "row",
       "description": "A student's assignments listed with due dates and completion status. Students see what's due and start or continue their work.",
-      "visibleAttributes": ["Assignment Name/Title", "Subject", "Due Date", "Status"],
-      "availableCTAs": ["Start", "View"],
-      "cardShape": "Compact row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Assignment Name/Title",
+            "Subject",
+            "Due Date",
+            "Status"
+          ],
+          "availableCTAs": [
+            "Start",
+            "View"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Assignment Name/Title",
+            "Subject",
+            "Due Date",
+            "Status"
+          ],
+          "availableCTAs": [
+            "Start",
+            "View"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Assignment Name/Title",
+            "Subject",
+            "Due Date",
+            "Status"
+          ],
+          "availableCTAs": [
+            "Start",
+            "View"
+          ]
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "Assignment Detail",
       "value": "assignment-detail",
-      "shape": "profile",
       "description": "The complete assignment record — resources, skill targets, class, differentiation settings, and all management controls. Teachers create, edit, and track assignments from this page.",
-      "visibleAttributes": ["Assignment Name/Title", "Subject", "Assignment Type", "Due Date", "Status", "Product", "Skill Targets", "Class", "Resource(s)", "Completion Criteria", "Created By", "Created Date", "Differentiation"],
-      "availableCTAs": ["View", "Create", "Assign to Class", "Edit", "Start", "Submit/Complete", "View Progress", "Delete", "Duplicate"],
-      "cardShape": "Full page"
+      "visibleAttributes": [
+        "Assignment Name/Title",
+        "Subject",
+        "Assignment Type",
+        "Due Date",
+        "Status",
+        "Product",
+        "Skill Targets",
+        "Class",
+        "Resource(s)",
+        "Completion Criteria",
+        "Created By",
+        "Created Date",
+        "Differentiation"
+      ],
+      "availableCTAs": [
+        "View",
+        "Create",
+        "Assign to Class",
+        "Edit",
+        "Start",
+        "Submit/Complete",
+        "View Progress",
+        "Delete",
+        "Duplicate"
+      ]
     },
     {
+      "viewType": "detail",
       "context": "Teacher Calendar",
       "value": "teacher-calendar",
-      "shape": "header",
       "description": "Assignments displayed as compact bars on a calendar view, showing due dates and status. Teachers scan their schedule to spot conflicts and plan ahead.",
-      "visibleAttributes": ["Assignment Name/Title", "Subject", "Due Date", "Status"],
-      "availableCTAs": ["View"],
-      "cardShape": "Compact bar"
+      "visibleAttributes": [
+        "Assignment Name/Title",
+        "Subject",
+        "Due Date",
+        "Status"
+      ],
+      "availableCTAs": [
+        "View"
+      ]
     },
     {
+      "viewType": "list",
       "context": "Progress Report",
       "value": "progress-report",
-      "shape": "row",
       "description": "Assignments listed with status and due dates in a progress report. Teachers review completion patterns across students and identify overdue work.",
-      "visibleAttributes": ["Assignment Name/Title", "Subject", "Status", "Due Date"],
-      "availableCTAs": ["View Progress"],
-      "cardShape": "Data row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Assignment Name/Title",
+            "Subject",
+            "Status",
+            "Due Date"
+          ],
+          "availableCTAs": [
+            "View Progress"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Assignment Name/Title",
+            "Subject",
+            "Status",
+            "Due Date"
+          ],
+          "availableCTAs": [
+            "View Progress"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Assignment Name/Title",
+            "Subject",
+            "Status",
+            "Due Date"
+          ],
+          "availableCTAs": [
+            "View Progress"
+          ]
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "Class Activity Feed",
       "value": "class-activity-feed",
-      "shape": "header",
       "description": "The assignment shown as a section header within a class activity feed, grouping related student activity below it.",
-      "visibleAttributes": ["Assignment Name/Title", "Subject", "Product"],
-      "availableCTAs": ["View"],
-      "cardShape": "Section header"
+      "visibleAttributes": [
+        "Assignment Name/Title",
+        "Subject",
+        "Product"
+      ],
+      "availableCTAs": [
+        "View"
+      ]
     },
     {
+      "viewType": "list",
       "context": "Student Detail",
       "value": "student-detail",
-      "shape": "row",
       "description": "Assignments within a student's profile as a sortable table with status and progress. Teachers review what a student has been assigned and take action on individual items.",
-      "visibleAttributes": ["Assignment Name/Title", "Assignment Type", "Assigned Date", "Status", "Progress", "Created By"],
-      "availableCTAs": ["Start", "Continue", "Delete"],
-      "cardShape": "Table row in sortable list",
-      "userIntent": "What assignments has this student been given?"
+      "userIntent": "What assignments has this student been given?",
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Assignment Name/Title",
+            "Assignment Type",
+            "Assigned Date",
+            "Status",
+            "Progress",
+            "Created By"
+          ],
+          "availableCTAs": [
+            "Start",
+            "Continue",
+            "Delete"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Assignment Name/Title",
+            "Assignment Type",
+            "Assigned Date",
+            "Status",
+            "Progress",
+            "Created By"
+          ],
+          "availableCTAs": [
+            "Start",
+            "Continue",
+            "Delete"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Assignment Name/Title",
+            "Assignment Type",
+            "Assigned Date",
+            "Status",
+            "Progress",
+            "Created By"
+          ],
+          "availableCTAs": [
+            "Start",
+            "Continue",
+            "Delete"
+          ]
+        }
+      }
     }
   ]
 }

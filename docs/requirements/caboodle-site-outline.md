@@ -76,7 +76,7 @@ A modern resource site that serves three audiences:
 ### Features
 
 - **Object List View** — Grid of all objects with avatar, name, definition, category, product associations, stats
-- **Object Detail Page** — Full Object Guide (definition, attributes, nested objects, CTAs, lifecycle, relationships, business rules, card preview, shapeshifter variants, products, related objects)
+- **Object Detail Page** — Full Object Guide (definition, attributes, nested objects, CTAs, lifecycle, relationships, business rules, card preview, **object views**, products, related objects)
 - **Object Comparison Tool** — Side-by-side comparison (future)
 - **Search & Filter** — By category, product, role, attribute type
 - **NOM Visualization** — Interactive Nested-Object Matrix (future)
@@ -108,7 +108,7 @@ A modern resource site that serves three audiences:
 
 - Identity System (colors, avatars, abbreviations)
 - Object Card gallery with variants
-- Shapeshifter Explorer
+- Object Views Explorer
 - CTA Placement Guide
 - Anti-Pattern Checker
 - Token Export (CSS, JSON, Figma, Tailwind)
@@ -135,7 +135,7 @@ A modern resource site that serves three audiences:
 | Home page with hero | Built | Landing page with links to Object Library and Resources |
 | Object Library | Built (evolved) | Now system-based routing (`/objects/[systemSlug]`) instead of flat card grid. 26 object data files across multiple systems |
 | Object Guide pages | Built | All 26 objects render via `[objectSlug]` dynamic route. Tab structure: Views, Attributes, Actions, Relationships |
-| View Inspector | Built | Per-shapeshifter-context editing at `/objects/[systemSlug]/[objectSlug]/views/[viewSlug]` |
+| View Inspector | Built | Per–object-view editing at `/objects/[systemSlug]/[objectSlug]/views/[viewSlug]` |
 | Shell pages for Resources, Process, Glossary | Built | Placeholder pages with heading only |
 | Design System page | Built | Component style guide exists but not linked in main nav |
 | CSS architecture (tokens, layouts, components) | Built | Tokens, Every Layout primitives, component styles |

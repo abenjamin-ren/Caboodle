@@ -2641,6 +2641,18 @@ div.section-group-desc > p + p {
   margin-block-end: 16px;
 }
 
+.card-viz--preview {
+  padding-block-start: 40px;
+  padding-inline-start: 40px;
+  padding-block-end: 0;
+  padding-inline-end: 0;
+}
+
+.card-viz--preview > * {
+  pointer-events: none;
+  min-inline-size: 600px;
+}
+
 .card-stat-bar {
   display: flex;
   background: var(--gray-50);
@@ -3262,8 +3274,14 @@ div.section-group-desc > p + p {
   border: 1px solid #ccc;
   border-radius: 8px;
   inline-size: 100%;
-  max-inline-size: 600px;
+  max-inline-size: 960px;
   overflow: hidden;
+}
+
+.preview-panel-content .preview-list,
+.preview-panel-content .preview-grid,
+.preview-panel-content .preview-table {
+  min-inline-size: 600px;
 }
 
 .preview-grid {
@@ -3925,6 +3943,7 @@ div.section-group-desc > p + p {
   border-radius: var(--radius-md);
   transition: background 0.15s ease;
   cursor: pointer;
+  text-decoration: none;
   font-family: inherit;
   text-align: start;
 }
@@ -4292,4 +4311,230 @@ div.section-group-desc > p + p {
 
 .roster-card-score-band--alert {
   color: var(--brand-website-red);
+}
+
+/* ----- Roster table ----- */
+
+.roster-table-wrap {
+  border: var(--border-thin) solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.roster-table {
+  inline-size: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+  line-height: 1.45;
+}
+
+.roster-table thead {
+  background: var(--gray-50);
+}
+
+.roster-th {
+  padding: var(--s0);
+  font-weight: var(--font-bold);
+  color: var(--color-text-muted);
+  text-align: start;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.roster-th--active {
+  color: var(--gray-800);
+}
+
+.roster-th--actions {
+  inline-size: 61px;
+}
+
+.roster-th-sort {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  border: none;
+  background: transparent;
+  padding: 0;
+  font: inherit;
+  font-weight: var(--font-bold);
+  color: inherit;
+  cursor: pointer;
+}
+
+.roster-th-sort:hover {
+  color: var(--gray-800);
+}
+
+.roster-th-sort:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+.roster-sort-icon {
+  font-size: 10px;
+  line-height: 1;
+  transition: opacity 0.15s ease;
+}
+
+.roster-sort-icon--idle {
+  opacity: 0;
+}
+
+.roster-th-sort:hover .roster-sort-icon--idle {
+  opacity: 0.3;
+}
+
+.roster-th--center,
+.roster-td--center {
+  text-align: center;
+}
+
+.roster-th--center .roster-th-sort {
+  justify-content: center;
+}
+
+.roster-table-row {
+  border-block-start: var(--border-thin) solid var(--color-border);
+  background: var(--white);
+  transition: background 0.15s ease;
+}
+
+.roster-table-row:hover {
+  background: var(--gray-50);
+}
+
+.roster-table-row--inactive {
+  opacity: 0.4;
+}
+
+.roster-td {
+  padding: var(--s0);
+  vertical-align: middle;
+  color: var(--gray-800);
+}
+
+.roster-td-name {
+  font-weight: var(--font-bold);
+  color: var(--color-interactive);
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.roster-td-name--plain {
+  color: var(--gray-800);
+  cursor: default;
+}
+
+.roster-td-name:hover {
+  text-decoration: none;
+}
+
+.roster-td-name:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Score pill badge */
+
+.roster-score-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 32px;
+  white-space: nowrap;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.roster-score-pill:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.roster-score-pill--reading {
+  background: var(--brand-myon-purple-10);
+}
+
+.roster-score-pill--math {
+  background: var(--brand-assessment-teal-10);
+}
+
+.roster-score-pill-dot {
+  inline-size: 8px;
+  block-size: 8px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.roster-score-pill-dot--reading {
+  background: var(--color-subject-reading);
+}
+
+.roster-score-pill-dot--math {
+  background: var(--color-subject-math);
+}
+
+.roster-score-pill-value {
+  font-weight: var(--font-medium, 500);
+  color: var(--gray-800);
+}
+
+.roster-score-pill-band {
+  font-weight: var(--font-medium, 500);
+  color: var(--color-text-muted);
+}
+
+.roster-score-pill-band--alert {
+  color: var(--brand-website-red);
+}
+
+/* Table inspector selection highlights */
+
+.roster-td.selected {
+  background: var(--color-inspector-highlight-bg);
+}
+
+.roster-td-name.selected {
+  color: var(--color-inspector-highlight);
+  background: var(--color-inspector-highlight-bg);
+  border-radius: var(--radius-xs);
+}
+
+.roster-td.selected .roster-score-pill-value,
+.roster-td.selected .roster-score-pill-band {
+  color: var(--color-inspector-highlight);
+}
+
+.roster-td.selected .roster-score-pill-dot--reading,
+.roster-td.selected .roster-score-pill-dot--math {
+  background: var(--color-inspector-highlight);
+}
+
+.roster-td.selected .roster-score-pill--reading,
+.roster-td.selected .roster-score-pill--math,
+.roster-score-pill.selected {
+  background: var(--color-inspector-highlight-bg);
+}
+
+.roster-score-pill.selected .roster-score-pill-value,
+.roster-score-pill.selected .roster-score-pill-band {
+  color: var(--color-inspector-highlight);
+}
+
+.roster-score-pill.selected .roster-score-pill-dot--reading,
+.roster-score-pill.selected .roster-score-pill-dot--math {
+  background: var(--color-inspector-highlight);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roster-table-row,
+  .roster-sort-icon {
+    transition: none;
+  }
 }

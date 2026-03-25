@@ -6,7 +6,11 @@
     "objectType": "core",
     "category": "knowledge",
     "definition": "A Standard is a grade-level learning expectation from a state or district-adopted framework that organizes and groups the ROCK Skills students are measured against, forming the primary column axis of the Skills Grid.",
-    "synonyms": ["learning expectation", "benchmark", "objective"],
+    "synonyms": [
+      "learning expectation",
+      "benchmark",
+      "objective"
+    ],
     "products": "All products"
   },
   "variations": [],
@@ -15,7 +19,7 @@
       "layout": "card",
       "heading": "Card layout",
       "description": "How a Standard appears in grids and browsing views",
-      "defaultShape": "card",
+      "defaultShape": "list",
       "componentTag": "ren-standard-card",
       "examples": [
         {
@@ -75,7 +79,10 @@
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Expand Standard",
@@ -84,7 +91,10 @@
           "priority": "P",
           "crossObjectSlug": "skill",
           "crossObjectName": "Skill",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         }
       ]
     },
@@ -92,7 +102,7 @@
       "layout": "list",
       "heading": "List layout",
       "description": "How a Standard appears in Skills Grid columns and tables",
-      "defaultShape": "row",
+      "defaultShape": "list",
       "componentTag": "ren-standard-row",
       "examples": [
         {
@@ -162,7 +172,10 @@
           "priority": "P",
           "crossObjectSlug": "skill",
           "crossObjectName": "Skill",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Collapse Standard",
@@ -171,7 +184,10 @@
           "priority": "S",
           "crossObjectSlug": "skill",
           "crossObjectName": "Skill",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         }
       ]
     },
@@ -179,7 +195,7 @@
       "layout": "detail",
       "heading": "Detail page layout",
       "description": "Full Standard view with nested Skills and proficiency distribution",
-      "defaultShape": "profile",
+      "defaultShape": "details",
       "componentTag": "ren-standard-profile",
       "examples": [
         {
@@ -191,9 +207,21 @@
           "skillCount": 5,
           "color": "#2563EB",
           "nestedObjects": [
-            { "label": "Skills", "count": 5, "href": "#" },
-            { "label": "Predictions", "count": 12, "href": "#" },
-            { "label": "Insights", "count": 3, "href": "#" }
+            {
+              "label": "Skills",
+              "count": 5,
+              "href": "#"
+            },
+            {
+              "label": "Predictions",
+              "count": 12,
+              "href": "#"
+            },
+            {
+              "label": "Insights",
+              "count": 3,
+              "href": "#"
+            }
           ]
         }
       ],
@@ -247,7 +275,10 @@
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Expand Standard",
@@ -256,7 +287,10 @@
           "priority": "P",
           "crossObjectSlug": "skill",
           "crossObjectName": "Skill",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Collapse Standard",
@@ -265,14 +299,20 @@
           "priority": "S",
           "crossObjectSlug": "skill",
           "crossObjectName": "Skill",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Filter by Domain",
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "T",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         }
       ]
     }
@@ -297,7 +337,12 @@
       "benefit": "I can see the individual Skills grouped under it and review per-student proficiency at the Skill level.",
       "whenClause": "I click on a Standard column header,",
       "thenClause": "the column expands to reveal each Skill within the Standard as a sub-column, showing individual Skill proficiency cells.",
-      "crossObjects": [{ "slug": "skill", "name": "Skill" }]
+      "crossObjects": [
+        {
+          "slug": "skill",
+          "name": "Skill"
+        }
+      ]
     },
     {
       "title": "Filter Standards by Domain",
@@ -364,7 +409,12 @@
       }
     ],
     "transitions": [
-      { "from": "Active", "to": ["Deprecated"] }
+      {
+        "from": "Active",
+        "to": [
+          "Deprecated"
+        ]
+      }
     ]
   },
   "relationships": [
@@ -387,7 +437,13 @@
       "dependencies": "Student proficiency data for a Standard persists even if the student changes classes or schools."
     }
   ],
-  "relatedObjects": ["skill", "student", "class", "proficiency-prediction", "insight"],
+  "relatedObjects": [
+    "skill",
+    "student",
+    "class",
+    "proficiency-prediction",
+    "insight"
+  ],
   "nestedObjects": [
     {
       "slug": "skill",
@@ -462,7 +518,10 @@
       "roles": "Teacher, Admin",
       "permission": "Read",
       "priority": "P",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Expand Standard",
@@ -471,7 +530,10 @@
       "priority": "P",
       "crossObjectSlug": "skill",
       "crossObjectName": "Skill",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Collapse Standard",
@@ -480,14 +542,20 @@
       "priority": "S",
       "crossObjectSlug": "skill",
       "crossObjectName": "Skill",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Filter by Domain",
       "roles": "Teacher, Admin",
       "permission": "Read",
       "priority": "T",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     }
   ],
   "sipValidation": {
@@ -522,42 +590,154 @@
       "notes": "More granular than Standard; closer to Skill in Renaissance taxonomy"
     }
   ],
-  "shapeshifterMatrix": [
+  "objectViews": [
     {
+      "viewType": "list",
       "context": "Skills Grid Column",
       "value": "skills-grid-column",
-      "shape": "card",
       "description": "A standard shown as a column header in the skills proficiency grid. Teachers expand or collapse standards to focus on specific skill areas.",
-      "visibleAttributes": ["Standard Name", "Subject", "Skill Count", "Expanded/Collapsed State"],
-      "availableCTAs": ["View Standard Column", "Expand Standard", "Collapse Standard"],
-      "cardShape": "Column header"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Standard Name",
+            "Subject",
+            "Skill Count",
+            "Expanded/Collapsed State"
+          ],
+          "availableCTAs": [
+            "View Standard Column",
+            "Expand Standard",
+            "Collapse Standard"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Standard Name",
+            "Subject",
+            "Skill Count",
+            "Expanded/Collapsed State"
+          ],
+          "availableCTAs": [
+            "View Standard Column",
+            "Expand Standard",
+            "Collapse Standard"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Standard Name",
+            "Subject",
+            "Skill Count",
+            "Expanded/Collapsed State"
+          ],
+          "availableCTAs": [
+            "View Standard Column",
+            "Expand Standard",
+            "Collapse Standard"
+          ]
+        }
+      }
     },
     {
+      "viewType": "list",
       "context": "Plan Instruction",
       "value": "plan-instruction",
-      "shape": "row",
       "description": "Standards listed with domain, grade level, and skill count for planning instruction. Teachers choose which standards to focus on and filter by domain.",
-      "visibleAttributes": ["Standard Name", "Domain", "Grade Level", "Subject", "Skill Count"],
-      "availableCTAs": ["View Standard Column", "Filter by Domain"],
-      "cardShape": "Compact row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Standard Name",
+            "Domain",
+            "Grade Level",
+            "Subject",
+            "Skill Count"
+          ],
+          "availableCTAs": [
+            "View Standard Column",
+            "Filter by Domain"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Standard Name",
+            "Domain",
+            "Grade Level",
+            "Subject",
+            "Skill Count"
+          ],
+          "availableCTAs": [
+            "View Standard Column",
+            "Filter by Domain"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Standard Name",
+            "Domain",
+            "Grade Level",
+            "Subject",
+            "Skill Count"
+          ],
+          "availableCTAs": [
+            "View Standard Column",
+            "Filter by Domain"
+          ]
+        }
+      }
     },
     {
+      "viewType": "list",
       "context": "Assessment Alignment",
       "value": "assessment-alignment",
-      "shape": "row",
       "description": "Standards shown as data rows within an assessment's alignment section. Teachers verify which standards an assessment covers.",
-      "visibleAttributes": ["Standard ID", "Standard Name", "Domain", "Subject"],
-      "availableCTAs": ["View Standard Column"],
-      "cardShape": "Data row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Standard ID",
+            "Standard Name",
+            "Domain",
+            "Subject"
+          ],
+          "availableCTAs": [
+            "View Standard Column"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Standard ID",
+            "Standard Name",
+            "Domain",
+            "Subject"
+          ],
+          "availableCTAs": [
+            "View Standard Column"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Standard ID",
+            "Standard Name",
+            "Domain",
+            "Subject"
+          ],
+          "availableCTAs": [
+            "View Standard Column"
+          ]
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "Freckle Tags",
       "value": "freckle-tags",
-      "shape": "header",
       "description": "A standard displayed as a tag chip within Freckle content, indicating which standard the practice activity addresses.",
-      "visibleAttributes": ["Standard Name", "Domain"],
-      "availableCTAs": ["View Standard Column"],
-      "cardShape": "Tag chip"
+      "visibleAttributes": [
+        "Standard Name",
+        "Domain"
+      ],
+      "availableCTAs": [
+        "View Standard Column"
+      ]
     }
   ]
 }

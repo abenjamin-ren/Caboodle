@@ -923,9 +923,9 @@ el.contextData = {
             Per-Context Requirements
           </h3>
           <p className="prose">
-            Each shapeshifter context has a <strong>user intent</strong> (the question the user is answering),
+            Each view context has a <strong>user intent</strong> (the question the user is answering),
             a <strong>contextDataSchema</strong> (what relationship data the parent must provide), and a set of
-            <strong> required CTAs</strong>. These are defined in each object&apos;s <code>shapeshifterMatrix</code> entry.
+            <strong> required CTAs</strong>. These are defined in each object&apos;s <code>objectViews</code> entry.
           </p>
 
           {[

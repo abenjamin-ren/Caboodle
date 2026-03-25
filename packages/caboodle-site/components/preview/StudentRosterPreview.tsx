@@ -27,6 +27,7 @@ export interface RosterStudent {
 interface StudentRosterProps extends Partial<PreviewInspectionProps> {
   students?: RosterStudent[];
   menuItems?: RosterMenuItem[];
+  embedded?: boolean;
 }
 
 const INACTIVE_STATUSES = new Set(['Transferred', 'Graduated', 'Inactive']);
@@ -44,7 +45,6 @@ function toRosterStudent(s: MockStudent): RosterStudent {
   return {
     id: s.id,
     name: s.name,
-    href: s.href,
     grade: formatGrade(s.grade),
     readingLevel: s.readingLevel ? `${s.readingLevel}L` : '—',
     readingStatus: s.readingStatus,
@@ -71,6 +71,7 @@ export function StudentRosterPreview({
   displayMode = 'list',
   students: externalStudents,
   menuItems: externalMenuItems,
+  embedded = false,
 }: StudentRosterProps) {
   const isInspector = selectedItem !== undefined;
 
@@ -97,6 +98,9 @@ export function StudentRosterPreview({
 
   const activeState = lifecycleStates?.[0]?.name ?? 'Active';
   const [openMenuIndex, setOpenMenuIndex] = useState<number | null>(null);
+  type SortKey = 'name' | 'grade' | 'assignments' | 'reading' | 'math';
+  const [sortKey, setSortKey] = useState<SortKey | null>(null);
+  const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
   const menuRef = useRef<HTMLDivElement>(null);
 
   const handleMenuClose = useCallback(() => setOpenMenuIndex(null), []);
@@ -127,6 +131,180 @@ export function StudentRosterPreview({
     return true;
   };
 
+  const handleSort = (key: SortKey) => {
+    if (sortKey === key) {
+      setSortDir(prev => (prev === 'asc' ? 'desc' : 'asc'));
+    } else {
+      setSortKey(key);
+      setSortDir('asc');
+    }
+  };
+
+  const sortedStudents = useMemo(() => {
+    if (!sortKey) return students;
+    return [...students].sort((a, b) => {
+      let cmp: number;
+      switch (sortKey) {
+        case 'name':
+          cmp = a.name.localeCompare(b.name);
+          break;
+        case 'grade':
+          cmp = a.grade.localeCompare(b.grade, undefined, { numeric: true });
+          break;
+        case 'assignments':
+          cmp = a.assignmentCount - b.assignmentCount;
+          break;
+        case 'reading':
+          cmp = a.readingLevel.localeCompare(b.readingLevel, undefined, { numeric: true });
+          break;
+        case 'math':
+          cmp = a.mathLevel.localeCompare(b.mathLevel, undefined, { numeric: true });
+          break;
+        default:
+          cmp = 0;
+      }
+      return sortDir === 'asc' ? cmp : -cmp;
+    });
+  }, [students, sortKey, sortDir]);
+
+  const isCTAAvailable = useCallback((name: string): boolean => {
+    if (!viewCTAs || !isActionAvailable) return true;
+    const cta = viewCTAs.find(c => c.name === name);
+    return cta ? isActionAvailable(cta) : false;
+  }, [viewCTAs, isActionAvailable]);
+
+  const viewProfileAvailable = isCTAAvailable('View Profile');
+  const viewScoresAvailable = isCTAAvailable('View Scores');
+
+  const tableMenuItems = useMemo(() => {
+    if (menuCTAs.length > 0) return menuCTAs;
+    if (!viewCTAs || !isActionAvailable) {
+      return [
+        { label: 'Add to Student Group' },
+        { label: 'Enroll in Class' },
+        { label: 'Remove from Class' },
+      ];
+    }
+    return [];
+  }, [menuCTAs, viewCTAs, isActionAvailable]);
+
+  function renderSortHeader(key: SortKey, label: string, extraClass?: string) {
+    const isActive = sortKey === key;
+    return (
+      <th scope="col" className={`roster-th${isActive ? ' roster-th--active' : ''}${extraClass ? ` ${extraClass}` : ''}`}>
+        <button
+          type="button"
+          className="roster-th-sort"
+          aria-label={`Sort by ${label.toLowerCase()}, ${isActive ? sortDir + 'ending' : 'unsorted'}`}
+          onClick={() => handleSort(key)}
+        >
+          {label}
+          <i
+            className={`fa-solid ${isActive && sortDir === 'desc' ? 'fa-arrow-down' : 'fa-arrow-up'} roster-sort-icon${isActive ? '' : ' roster-sort-icon--idle'}`}
+            aria-hidden="true"
+          />
+        </button>
+      </th>
+    );
+  }
+
+  if (displayMode === 'table') {
+    return (
+      <div className="roster-table-wrap">
+        <table className="roster-table">
+          <caption className="sr-only">Student roster</caption>
+          <thead>
+            <tr>
+              {renderSortHeader('name', 'Name')}
+              {renderSortHeader('grade', 'Grade')}
+              {renderSortHeader('assignments', 'Assignments', 'roster-th--center')}
+              {renderSortHeader('reading', 'Reading score')}
+              {renderSortHeader('math', 'Math score')}
+              <th scope="col" className="roster-th roster-th--actions"><span className="sr-only">Actions</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            {sortedStudents.map((s, i) => {
+              const active = isStudentActive(s);
+              const rAlert = needsAttention(s.readingStatus);
+              const mAlert = needsAttention(s.mathStatus);
+              const profileHref = s.href ?? '#';
+              const scoresHref = s.href ? `${s.href}/scores` : '#';
+
+              const readingPill = (
+                <>
+                  <span className="roster-score-pill-dot roster-score-pill-dot--reading" />
+                  <span className="roster-score-pill-value">{s.readingLevel}</span>
+                  <span className={`roster-score-pill-band${rAlert ? ' roster-score-pill-band--alert' : ''}`}>{s.readingStatus}</span>
+                </>
+              );
+
+              const mathPill = (
+                <>
+                  <span className="roster-score-pill-dot roster-score-pill-dot--math" />
+                  <span className="roster-score-pill-value">{s.mathLevel}</span>
+                  <span className={`roster-score-pill-band${mAlert ? ' roster-score-pill-band--alert' : ''}`}>{s.mathStatus}</span>
+                </>
+              );
+
+              return (
+                <tr key={s.id ?? i} className={`roster-table-row${!active ? ' roster-table-row--inactive' : ''}`}>
+                  <td className={`roster-td${nameSelected ? ' selected' : ''}`}>
+                    {viewProfileAvailable ? (
+                      <a href={profileHref} className={`roster-td-name${nameSelected ? ' selected' : ''}`}>{s.name}</a>
+                    ) : (
+                      <span className={`roster-td-name roster-td-name--plain${nameSelected ? ' selected' : ''}`}>{s.name}</span>
+                    )}
+                  </td>
+                  <td className={`roster-td${gradeSelected ? ' selected' : ''}`}>{active ? s.grade : ''}</td>
+                  <td className="roster-td roster-td--center">{active ? s.assignmentCount : ''}</td>
+                  <td className={`roster-td${readingSelected ? ' selected' : ''}`}>
+                    {active && viewScoresAvailable && (
+                      <a href={scoresHref} className={`roster-score-pill roster-score-pill--reading${readingSelected ? ' selected' : ''}`}>
+                        {readingPill}
+                      </a>
+                    )}
+                    {active && !viewScoresAvailable && (
+                      <span className={`roster-score-pill roster-score-pill--reading${readingSelected ? ' selected' : ''}`}>
+                        {readingPill}
+                      </span>
+                    )}
+                    {!active && <span className="roster-meta--italic">{s.enrollmentStatus}</span>}
+                  </td>
+                  <td className={`roster-td${mathSelected ? ' selected' : ''}`}>
+                    {active && viewScoresAvailable && (
+                      <a href={scoresHref} className={`roster-score-pill roster-score-pill--math${mathSelected ? ' selected' : ''}`}>
+                        {mathPill}
+                      </a>
+                    )}
+                    {active && !viewScoresAvailable && (
+                      <span className={`roster-score-pill roster-score-pill--math${mathSelected ? ' selected' : ''}`}>
+                        {mathPill}
+                      </span>
+                    )}
+                  </td>
+                  <td className={`roster-td${menuSelected ? ' selected' : ''}`}>
+                    {tableMenuItems.length > 0 && (
+                      <div className="roster-menu-zone" ref={openMenuIndex === i ? menuRef : null} style={{ padding: 0 }}>
+                        <RosterOverflowMenu
+                          items={tableMenuItems}
+                          open={openMenuIndex === i}
+                          onToggle={() => setOpenMenuIndex(openMenuIndex === i ? null : i)}
+                          onClose={handleMenuClose}
+                          selected={menuSelected ?? false}
+                        />
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+
   if (displayMode === 'grid') {
     return (
       <div className="roster-grid">
@@ -156,7 +334,7 @@ export function StudentRosterPreview({
                   inactive={!active}
                 />
                 <div className="roster-card-name-block">
-                  {s.href ? (
+                  {s.href && !embedded ? (
                     <a href={s.href} className={`roster-card-name${nameSelected ? ' selected' : ''}`}>{s.name}</a>
                   ) : (
                     <div className={`roster-card-name${nameSelected ? ' selected' : ''}`}>{s.name}</div>
@@ -218,7 +396,7 @@ export function StudentRosterPreview({
                 inactive={!active}
               />
               <div className="roster-name-block">
-                {s.href ? (
+                {s.href && !embedded ? (
                   <a href={s.href} className={`roster-name${nameSelected ? ' selected' : ''}`}>{s.name}</a>
                 ) : (
                   <span className={`roster-name${nameSelected ? ' selected' : ''}`}>{s.name}</span>
@@ -243,7 +421,7 @@ export function StudentRosterPreview({
                   band={s.readingStatus}
                   dotClass="roster-score-dot--reading"
                   selected={readingSelected ?? false}
-                  href={s.href}
+                  href={embedded ? undefined : s.href}
                 />
                 <RosterScoreColumn
                   subject="Math"
@@ -251,7 +429,7 @@ export function StudentRosterPreview({
                   band={s.mathStatus}
                   dotClass="roster-score-dot--math"
                   selected={mathSelected ?? false}
-                  href={s.href}
+                  href={embedded ? undefined : s.href}
                 />
               </div>
             )}

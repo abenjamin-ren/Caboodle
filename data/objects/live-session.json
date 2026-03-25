@@ -6,7 +6,12 @@
     "objectType": "domain",
     "category": "activity",
     "definition": "A Live Session is a time-bounded, real-time delivery instance of a Nearpod Lesson where a teacher controls the pace and students participate synchronously using a unique join code.",
-    "synonyms": ["Session", "Live Delivery", "Broadcast", "Real-Time Lesson"],
+    "synonyms": [
+      "Session",
+      "Live Delivery",
+      "Broadcast",
+      "Real-Time Lesson"
+    ],
     "products": "Nearpod"
   },
   "variations": [],
@@ -15,7 +20,7 @@
       "layout": "card",
       "heading": "Card layout",
       "description": "How a Live Session appears in session dashboards and recent activity",
-      "defaultShape": "card",
+      "defaultShape": "list",
       "componentTag": "ren-live-session-card",
       "examples": [
         {
@@ -77,7 +82,9 @@
           "roles": "Teacher",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Join Session",
@@ -86,7 +93,9 @@
           "priority": "P",
           "crossObjectSlug": "class",
           "crossObjectName": "Class",
-          "roleKeys": ["student"]
+          "roleKeys": [
+            "student"
+          ]
         }
       ]
     },
@@ -94,7 +103,7 @@
       "layout": "list",
       "heading": "List layout",
       "description": "How a Live Session appears in session history and management tables",
-      "defaultShape": "row",
+      "defaultShape": "list",
       "componentTag": "ren-live-session-row",
       "examples": [
         {
@@ -165,7 +174,9 @@
           "priority": "S",
           "crossObjectSlug": "report",
           "crossObjectName": "Report",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         }
       ]
     },
@@ -173,7 +184,7 @@
       "layout": "detail",
       "heading": "Detail page layout",
       "description": "Full session view during delivery or post-session review",
-      "defaultShape": "profile",
+      "defaultShape": "details",
       "componentTag": "ren-live-session-profile",
       "examples": [
         {
@@ -278,28 +289,36 @@
           "roles": "Teacher",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Advance Slide",
           "roles": "Teacher",
           "permission": "Write",
           "priority": "P",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Pause Session",
           "roles": "Teacher",
           "permission": "Write",
           "priority": "S",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Resume Session",
           "roles": "Teacher",
           "permission": "Write",
           "priority": "S",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "End Session",
@@ -308,7 +327,9 @@
           "priority": "S",
           "crossObjectSlug": "report",
           "crossObjectName": "Report",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "View Session Report",
@@ -317,7 +338,9 @@
           "priority": "S",
           "crossObjectSlug": "report",
           "crossObjectName": "Report",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         }
       ]
     }
@@ -332,7 +355,12 @@
       "benefit": "my students can join with a code and I can pace the lesson in real time.",
       "whenClause": "I launch a lesson as a live session,",
       "thenClause": "a unique join code is generated, the session status becomes active, and I can begin advancing slides.",
-      "crossObjects": [{ "slug": "lesson", "name": "Lesson" }]
+      "crossObjects": [
+        {
+          "slug": "lesson",
+          "name": "Lesson"
+        }
+      ]
     },
     {
       "title": "Monitor Participation",
@@ -353,7 +381,12 @@
       "benefit": "I can participate in the lesson and respond to activities as the teacher presents them.",
       "whenClause": "I enter the join code on my device,",
       "thenClause": "I am connected to the session and see the current slide synchronized with the teacher's pace.",
-      "crossObjects": [{ "slug": "class", "name": "Class" }]
+      "crossObjects": [
+        {
+          "slug": "class",
+          "name": "Class"
+        }
+      ]
     }
   ],
   "businessRules": [
@@ -430,9 +463,26 @@
       }
     ],
     "transitions": [
-      { "from": "Scheduled", "to": ["Active"] },
-      { "from": "Active", "to": ["Paused", "Ended"] },
-      { "from": "Paused", "to": ["Active", "Ended"] }
+      {
+        "from": "Scheduled",
+        "to": [
+          "Active"
+        ]
+      },
+      {
+        "from": "Active",
+        "to": [
+          "Paused",
+          "Ended"
+        ]
+      },
+      {
+        "from": "Paused",
+        "to": [
+          "Active",
+          "Ended"
+        ]
+      }
     ]
   },
   "relationships": [
@@ -464,7 +514,15 @@
       "dependencies": "The Report is generated only after the session ends. It persists independently of the session state."
     }
   ],
-  "relatedObjects": ["lesson", "activity", "report", "teacher", "student", "class", "score"],
+  "relatedObjects": [
+    "lesson",
+    "activity",
+    "report",
+    "teacher",
+    "student",
+    "class",
+    "score"
+  ],
   "nestedObjects": [
     {
       "slug": "activity",
@@ -585,21 +643,27 @@
       "priority": "P",
       "crossObjectSlug": "lesson",
       "crossObjectName": "Lesson",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Share Join Code",
       "roles": "Teacher",
       "permission": "Read",
       "priority": "P",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Advance Slide",
       "roles": "Teacher",
       "permission": "Write",
       "priority": "P",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Launch Activity",
@@ -608,7 +672,9 @@
       "priority": "P",
       "crossObjectSlug": "activity",
       "crossObjectName": "Activity",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Skip Activity",
@@ -617,21 +683,27 @@
       "priority": "T",
       "crossObjectSlug": "activity",
       "crossObjectName": "Activity",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Pause Session",
       "roles": "Teacher",
       "permission": "Write",
       "priority": "S",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Resume Session",
       "roles": "Teacher",
       "permission": "Write",
       "priority": "S",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "End Session",
@@ -640,7 +712,9 @@
       "priority": "S",
       "crossObjectSlug": "report",
       "crossObjectName": "Report",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Join Session",
@@ -649,7 +723,9 @@
       "priority": "P",
       "crossObjectSlug": "class",
       "crossObjectName": "Class",
-      "roleKeys": ["student"]
+      "roleKeys": [
+        "student"
+      ]
     },
     {
       "name": "Respond to Activity",
@@ -658,7 +734,9 @@
       "priority": "P",
       "crossObjectSlug": "activity",
       "crossObjectName": "Activity",
-      "roleKeys": ["student"]
+      "roleKeys": [
+        "student"
+      ]
     },
     {
       "name": "View Session Report",
@@ -667,7 +745,9 @@
       "priority": "S",
       "crossObjectSlug": "report",
       "crossObjectName": "Report",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "View Session History",
@@ -676,7 +756,9 @@
       "priority": "T",
       "crossObjectSlug": "lesson",
       "crossObjectName": "Lesson",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     }
   ],
   "sipValidation": {
@@ -716,33 +798,130 @@
       "notes": "Emphasizes the synchronous, interactive nature"
     }
   ],
-  "shapeshifterMatrix": [
+  "objectViews": [
     {
+      "viewType": "list",
       "context": "Pre-Launch",
       "value": "pre-launch",
-      "shape": "card",
       "description": "The session launch card with join code, class, and lesson reference. Teachers share the code with students and launch the session from here.",
-      "visibleAttributes": ["Join Code", "Lesson Reference", "Class", "Session Status"],
-      "availableCTAs": ["Launch Session", "Share Join Code"],
-      "cardShape": "Launch card"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Join Code",
+            "Lesson Reference",
+            "Class",
+            "Session Status"
+          ],
+          "availableCTAs": [
+            "Launch Session",
+            "Share Join Code"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Join Code",
+            "Lesson Reference",
+            "Class",
+            "Session Status"
+          ],
+          "availableCTAs": [
+            "Launch Session",
+            "Share Join Code"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Join Code",
+            "Lesson Reference",
+            "Class",
+            "Session Status"
+          ],
+          "availableCTAs": [
+            "Launch Session",
+            "Share Join Code"
+          ]
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "During Session",
       "value": "during-session",
-      "shape": "profile",
       "description": "The full session dashboard — participant count, pacing controls, and real-time engagement metrics. Teachers advance slides, launch activities, and manage the session live.",
-      "visibleAttributes": ["Join Code", "Session Status", "Participant Count", "Participation Rate", "Duration", "Lesson Reference", "Teacher", "Class"],
-      "availableCTAs": ["Advance Slide", "Launch Activity", "Skip Activity", "Pause Session", "Resume Session", "End Session"],
-      "cardShape": "Full dashboard"
+      "visibleAttributes": [
+        "Join Code",
+        "Session Status",
+        "Participant Count",
+        "Participation Rate",
+        "Duration",
+        "Lesson Reference",
+        "Teacher",
+        "Class"
+      ],
+      "availableCTAs": [
+        "Advance Slide",
+        "Launch Activity",
+        "Skip Activity",
+        "Pause Session",
+        "Resume Session",
+        "End Session"
+      ]
     },
     {
+      "viewType": "list",
       "context": "Post-Session",
       "value": "post-session",
-      "shape": "row",
       "description": "Completed sessions listed with participation rates, duration, and timing. Teachers review session outcomes and access detailed reports.",
-      "visibleAttributes": ["Join Code", "Lesson Reference", "Class", "Participant Count", "Participation Rate", "Duration", "Start Time", "End Time"],
-      "availableCTAs": ["View Session Report", "View Session History"],
-      "cardShape": "Summary row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Join Code",
+            "Lesson Reference",
+            "Class",
+            "Participant Count",
+            "Participation Rate",
+            "Duration",
+            "Start Time",
+            "End Time"
+          ],
+          "availableCTAs": [
+            "View Session Report",
+            "View Session History"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Join Code",
+            "Lesson Reference",
+            "Class",
+            "Participant Count",
+            "Participation Rate",
+            "Duration",
+            "Start Time",
+            "End Time"
+          ],
+          "availableCTAs": [
+            "View Session Report",
+            "View Session History"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Join Code",
+            "Lesson Reference",
+            "Class",
+            "Participant Count",
+            "Participation Rate",
+            "Duration",
+            "Start Time",
+            "End Time"
+          ],
+          "availableCTAs": [
+            "View Session Report",
+            "View Session History"
+          ]
+        }
+      }
     }
   ]
 }

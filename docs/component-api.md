@@ -10,22 +10,31 @@ Package: `@renaissance/object-components`
 Location: `packages/object-components/`
 Status: **Rebuilding** — only `ren-student-row` and `shared/tokens.ts` exist on disk. This document describes the target API.
 
-### Shape System
+### Object views (data layer)
 
-Every object can be rendered in multiple shapes. Each shape family is a separate component file:
+Object JSON follows `data/schema.ts`. Each contextual presentation is an **`ObjectView`**:
 
-| Shape Family | Component Tag | Shapes | Purpose | Group |
-|-------------|---------------|--------|---------|-------|
-| Card | `<ren-{obj}-card>` | `card`, `compact-card` | Grid cards, dashboard tiles, search results | All |
-| Row | `<ren-{obj}-row>` | `row`, `mini-row` | List views, rosters, tables | All |
-| Data Row | `<ren-{obj}-data-row>` | `data-row` | Reports, score tables | A only |
-| Profile | `<ren-{obj}-profile>` | `profile` | Detail/profile views | All |
-| Header | `<ren-{obj}-header>` | `header` | Page headers, expanded view | A + B |
+- **`ListView`** — `viewType: 'list'` with optional `shapes: { list?: ShapeSpec; grid?: ShapeSpec; table?: ShapeSpec }`. Each `ShapeSpec` lists `visibleAttributes` and `availableCTAs`.
+- **`DetailView`** — `viewType: 'detail'` with `visibleAttributes` and `availableCTAs` for full-record surfaces.
+
+**`ValidShape`** in the schema is **`'list' | 'grid' | 'table'`** (used for showcase `defaultShape` on `RepresentationSection` and for list-view shape keys). There is **no** `cardShape` field on views.
+
+### Lit components (implementation)
+
+Web Components realize those presentations in product UIs. Each **component family** is typically a separate file; internal props may still expose legacy density variants until fully aligned with JSON.
+
+| Component family | Example tag | Maps to object views | Purpose | Group |
+|-----------------|-------------|----------------------|---------|-------|
+| Card | `<ren-{obj}-card>` | List `shapes.grid`, dense grid tiles | Grid cards, dashboard tiles, search results | All |
+| Row | `<ren-{obj}-row>` | List `shapes.list`, `shapes.table` | Rosters, scannable lists, tables | All |
+| Data Row | `<ren-{obj}-data-row>` | List `shapes.table` (wide metrics) | Reports, score tables | A only |
+| Profile | `<ren-{obj}-profile>` | `DetailView` body / profile zones | Detail / profile regions | All |
+| Header | `<ren-{obj}-header>` | `DetailView` header | Page headers, expanded identity | A + B |
 
 **Group classification:**
-- **Group A** (8 objects — 5 shapes each): student, teacher, class, school, district, assessment, skill, score
-- **Group B** (13 objects — 4 shapes each): activity-event, activity, assignment, insight, lesson, live-session, product-assignment, product, proficiency-prediction, report, resource, solution, standard
-- **Group C** (5 objects — 3 shapes each): educator-academy-module, learning-path, onboarding-checklist, onboarding-step, student-group
+- **Group A** (8 objects — 5 families each): student, teacher, class, school, district, assessment, skill, score
+- **Group B** (13 objects — 4 families each): activity-event, activity, assignment, insight, lesson, live-session, product-assignment, product, proficiency-prediction, report, resource, solution, standard
+- **Group C** (5 objects — 3 families each): educator-academy-module, learning-path, onboarding-checklist, onboarding-step, student-group
 
 ### Generic Component
 
@@ -38,7 +47,7 @@ All shape components follow this property pattern (using `ren-student-row` as re
 | Property | Type | Description |
 |----------|------|-------------|
 | `data` | `{Object}Data` | Object data (name, attributes, metrics) |
-| `shape` | string union | Shape variant within the family (e.g., `'row' \| 'mini-row'`) |
+| `shape` | string union | Implementation variant within the family (e.g. `<ren-student-row>` may still use `'row' \| 'mini-row'` until aligned with `shapes.table` / `shapes.list`) |
 | `state` | string | Lifecycle state (e.g., `'active'`, `'transferred'`) |
 | `role` | string | Viewing user's role (affects visible CTAs) |
 | `ctx-*` | various | Context-specific data attributes (prefixed with `ctx-`) |
@@ -277,7 +286,7 @@ Radio button groups for role/lifecycle/context toggling.
 
 #### `StudentRosterPreview`
 
-Preview renderer for the student class-roster shapeshifter context. Composes `RosterRing`, `RosterScoreColumn`, and `RosterOverflowMenu`.
+Preview renderer for the student **class-roster** object view (`objectViews` context). Composes `RosterRing`, `RosterScoreColumn`, and `RosterOverflowMenu`.
 
 ### Roster Components
 

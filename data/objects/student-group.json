@@ -6,7 +6,12 @@
     "objectType": "domain",
     "category": "container",
     "definition": "A Student Group is a named collection of students from a class, organized by skill level, assessment performance, or teacher selection, used to target instruction and differentiate assignments.",
-    "synonyms": ["Group", "Cluster", "Cohort", "Differentiation Group"],
+    "synonyms": [
+      "Group",
+      "Cluster",
+      "Cohort",
+      "Differentiation Group"
+    ],
     "products": "Renaissance Intelligence"
   },
   "variations": [],
@@ -15,7 +20,7 @@
       "layout": "card",
       "heading": "Card layout",
       "description": "How a Student Group appears in the class grouping view",
-      "defaultShape": "card",
+      "defaultShape": "list",
       "componentTag": "ren-student-group-card",
       "examples": [
         {
@@ -98,7 +103,9 @@
           "priority": "P",
           "crossObjectSlug": "student",
           "crossObjectName": "Student",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Assign to Group",
@@ -107,7 +114,9 @@
           "priority": "P",
           "crossObjectSlug": "assignment",
           "crossObjectName": "Assignment",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Edit Group",
@@ -116,7 +125,9 @@
           "priority": "S",
           "crossObjectSlug": "student",
           "crossObjectName": "Student",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         }
       ]
     },
@@ -124,7 +135,7 @@
       "layout": "list",
       "heading": "List layout",
       "description": "How a Student Group appears in group management lists",
-      "defaultShape": "row",
+      "defaultShape": "list",
       "componentTag": "ren-student-group-row",
       "examples": [
         {
@@ -182,7 +193,9 @@
           "priority": "P",
           "crossObjectSlug": "student",
           "crossObjectName": "Student",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Assign to Group",
@@ -191,7 +204,9 @@
           "priority": "P",
           "crossObjectSlug": "assignment",
           "crossObjectName": "Assignment",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         }
       ]
     },
@@ -199,7 +214,7 @@
       "layout": "detail",
       "heading": "Detail layout",
       "description": "Full Student Group view with member list",
-      "defaultShape": "profile",
+      "defaultShape": "details",
       "componentTag": "ren-student-group-profile",
       "examples": [
         {
@@ -302,7 +317,9 @@
           "priority": "P",
           "crossObjectSlug": "student",
           "crossObjectName": "Student",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Create Group",
@@ -311,7 +328,9 @@
           "priority": "P",
           "crossObjectSlug": "student",
           "crossObjectName": "Student",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Edit Group",
@@ -320,14 +339,18 @@
           "priority": "S",
           "crossObjectSlug": "student",
           "crossObjectName": "Student",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Delete Group",
           "roles": "Teacher",
           "permission": "Write",
           "priority": "Q",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Assign to Group",
@@ -336,7 +359,9 @@
           "priority": "P",
           "crossObjectSlug": "assignment",
           "crossObjectName": "Assignment",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Accept Suggested Group",
@@ -345,7 +370,9 @@
           "priority": "S",
           "crossObjectSlug": "insight",
           "crossObjectName": "Insight",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "View Group Report",
@@ -354,14 +381,18 @@
           "priority": "S",
           "crossObjectSlug": "score",
           "crossObjectName": "Score",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Refresh Group",
           "roles": "System",
           "permission": "Write",
           "priority": "T",
-          "roleKeys": ["system"]
+          "roleKeys": [
+            "system"
+          ]
         }
       ]
     }
@@ -376,7 +407,16 @@
       "benefit": "I can target instruction to students with similar needs and assign differentiated work efficiently.",
       "whenClause": "I create a student group based on assessment data or my own selection,",
       "thenClause": "the group appears in my class view, I can assign work to the entire group at once, and I can track their collective progress.",
-      "crossObjects": [{ "slug": "student", "name": "Student" }, { "slug": "assignment", "name": "Assignment" }]
+      "crossObjects": [
+        {
+          "slug": "student",
+          "name": "Student"
+        },
+        {
+          "slug": "assignment",
+          "name": "Assignment"
+        }
+      ]
     },
     {
       "title": "Accept System-Suggested Group",
@@ -387,7 +427,12 @@
       "benefit": "I save time by leveraging AI-identified clusters of students with similar proficiency gaps.",
       "whenClause": "I review a system-suggested student group from an Insight,",
       "thenClause": "I can accept the suggestion to create the group, modify the membership, or dismiss the suggestion.",
-      "crossObjects": [{ "slug": "insight", "name": "Insight" }]
+      "crossObjects": [
+        {
+          "slug": "insight",
+          "name": "Insight"
+        }
+      ]
     }
   ],
   "businessRules": [
@@ -450,8 +495,20 @@
       }
     ],
     "transitions": [
-      { "from": "Active", "to": ["Stale", "Archived"] },
-      { "from": "Stale", "to": ["Active", "Archived"] }
+      {
+        "from": "Active",
+        "to": [
+          "Stale",
+          "Archived"
+        ]
+      },
+      {
+        "from": "Stale",
+        "to": [
+          "Active",
+          "Archived"
+        ]
+      }
     ]
   },
   "relationships": [
@@ -528,7 +585,16 @@
       "dependencies": "Resource recommendations are informational and do not create assignment obligations."
     }
   ],
-  "relatedObjects": ["student", "teacher", "class", "skill", "insight", "score", "assignment", "resource"],
+  "relatedObjects": [
+    "student",
+    "teacher",
+    "class",
+    "skill",
+    "insight",
+    "score",
+    "assignment",
+    "resource"
+  ],
   "nestedObjects": [
     {
       "slug": "student",
@@ -640,7 +706,9 @@
       "priority": "P",
       "crossObjectSlug": "student",
       "crossObjectName": "Student",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Create Group",
@@ -649,7 +717,9 @@
       "priority": "P",
       "crossObjectSlug": "student",
       "crossObjectName": "Student",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Edit Group",
@@ -658,14 +728,18 @@
       "priority": "S",
       "crossObjectSlug": "student",
       "crossObjectName": "Student",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Delete Group",
       "roles": "Teacher",
       "permission": "Write",
       "priority": "Q",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Assign to Group",
@@ -674,7 +748,9 @@
       "priority": "P",
       "crossObjectSlug": "assignment",
       "crossObjectName": "Assignment",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Accept Suggested Group",
@@ -683,7 +759,9 @@
       "priority": "S",
       "crossObjectSlug": "insight",
       "crossObjectName": "Insight",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "View Group Report",
@@ -692,14 +770,18 @@
       "priority": "S",
       "crossObjectSlug": "score",
       "crossObjectName": "Score",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Refresh Group",
       "roles": "System",
       "permission": "Write",
       "priority": "T",
-      "roleKeys": ["system"]
+      "roleKeys": [
+        "system"
+      ]
     }
   ],
   "sipValidation": {
@@ -739,33 +821,123 @@
       "notes": "Emphasizes the pedagogical purpose of the grouping"
     }
   ],
-  "shapeshifterMatrix": [
+  "objectViews": [
     {
+      "viewType": "list",
       "context": "Class View",
       "value": "class-view",
-      "shape": "card",
       "description": "Student groups within a class shown as cards with member count, criteria, and source. Teachers review existing groups, edit membership, or create new ones.",
-      "visibleAttributes": ["Group Name", "Student Count", "Grouping Criteria", "Source", "Status"],
-      "availableCTAs": ["View Group", "Assign to Group", "Edit Group"],
-      "cardShape": "Group card"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Group Name",
+            "Student Count",
+            "Grouping Criteria",
+            "Source",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View Group",
+            "Assign to Group",
+            "Edit Group"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Group Name",
+            "Student Count",
+            "Grouping Criteria",
+            "Source",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View Group",
+            "Assign to Group",
+            "Edit Group"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Group Name",
+            "Student Count",
+            "Grouping Criteria",
+            "Source",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View Group",
+            "Assign to Group",
+            "Edit Group"
+          ]
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "Group Detail",
       "value": "group-detail",
-      "shape": "profile",
       "description": "The complete group record — members, criteria, associated skill data, and all management controls. Teachers analyze group performance, refresh data-driven groups, or adjust membership.",
-      "visibleAttributes": ["Group Name", "Teacher", "Class", "Students", "Student Count", "Grouping Criteria", "Source", "Associated Skill/Metric", "Status", "Created Date", "Last Refreshed"],
-      "availableCTAs": ["View Group", "Create Group", "Edit Group", "Delete Group", "Assign to Group", "Accept Suggested Group", "View Group Report", "Refresh Group"],
-      "cardShape": "Full page"
+      "visibleAttributes": [
+        "Group Name",
+        "Teacher",
+        "Class",
+        "Students",
+        "Student Count",
+        "Grouping Criteria",
+        "Source",
+        "Associated Skill/Metric",
+        "Status",
+        "Created Date",
+        "Last Refreshed"
+      ],
+      "availableCTAs": [
+        "View Group",
+        "Create Group",
+        "Edit Group",
+        "Delete Group",
+        "Assign to Group",
+        "Accept Suggested Group",
+        "View Group Report",
+        "Refresh Group"
+      ]
     },
     {
+      "viewType": "list",
       "context": "Assignment Target",
       "value": "assignment-target",
-      "shape": "row",
       "description": "Student groups listed as compact rows for selecting assignment targets. Teachers pick a group to assign work to instead of selecting individual students.",
-      "visibleAttributes": ["Group Name", "Student Count", "Source"],
-      "availableCTAs": ["Assign to Group"],
-      "cardShape": "Compact picker row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Group Name",
+            "Student Count",
+            "Source"
+          ],
+          "availableCTAs": [
+            "Assign to Group"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Group Name",
+            "Student Count",
+            "Source"
+          ],
+          "availableCTAs": [
+            "Assign to Group"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Group Name",
+            "Student Count",
+            "Source"
+          ],
+          "availableCTAs": [
+            "Assign to Group"
+          ]
+        }
+      }
     }
   ]
 }

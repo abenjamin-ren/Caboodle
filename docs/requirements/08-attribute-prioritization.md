@@ -1,6 +1,6 @@
 # Attribute Prioritization — OOUX Resource Site
 
-> **Status: Process artifact** — Force-ranked attributes for card and detail views. Attribute rankings are reflected in `shapeshifterMatrix` entries within object JSON files, driving which attributes appear in each context.
+> **Status: Process artifact** — Force-ranked attributes for card and detail views. Attribute rankings are reflected in **`objectViews`** entries within object JSON files (`ShapeSpec.visibleAttributes` on list views, `DetailView.visibleAttributes`, etc.), driving which attributes appear in each context.
 
 **Project:** OOUX Resource Site (Internal Renaissance)
 
@@ -186,4 +186,4 @@ Can users distinguish these 6 object cards from each other at a glance?
 - **Step 9: Object Card Designer** — Design the actual cards using these prioritized attributes
 - **Step 10: Nav Flow Designer** — Design navigation paths using the NOM and MCSFD specs
 - **Step 11: CTA Placement** — Position P/S/T/Q CTAs on cards and detail pages
-- **Step 12: Shapeshifter Matrix** — Define intentional variants for each object across contexts
+- **Step 12: Shapeshifter Matrix Builder** — Define intentional variants for each object across contexts and encode them as **`objectViews`**

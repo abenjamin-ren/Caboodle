@@ -7,16 +7,14 @@ Generate an Object Guide detail page for a Renaissance object (core or domain). 
 - Read `AGENTS.md` for project structure
 - Read `docs/requirements/object-data-template.md` for the full data schema walkthrough
 - Read `data/objects/student.json` as the reference implementation
-- Read `data/schema.ts` for TypeScript type definitions
-- Read `packages/object-components/src/ren-student-card.ts` as the reference card component
-- Read `packages/object-components/src/shared/student.base.ts` for shared types/constants pattern
-- Read `packages/object-components/src/shared/shape-tags.ts` for tag resolution
+- Read `data/schema.ts` for TypeScript type definitions (`ObjectView`, `ListView`, `DetailView`, `ShapeSpec`, `ValidShape`)
+- Read `packages/object-components/src/ren-student-row.ts` as a reference component (library is rebuilding; add other shape families as they land)
 
 ## Steps
 
 ### 1. Research the object in Confluence
 
-Use the Atlassian MCP tools to fetch the object's Confluence page from the OOUX Space. Extract: definition, attributes, CTAs, user stories, business rules, lifecycle, relationships, nested objects, SIP validation, synonyms, and shapeshifter matrix (if present).
+Use the Atlassian MCP tools to fetch the object's Confluence page from the OOUX Space. Extract: definition, attributes, CTAs, user stories, business rules, lifecycle, relationships, nested objects, SIP validation, synonyms, and **object views** (context-specific list/detail specs) if present.
 
 ### 2. Create the object data file
 
@@ -46,13 +44,21 @@ Create `data/objects/{slug}.json` following the `ObjectDefinition` schema:
   "allCTAs": [...],
   "sipValidation": { "structure": {...}, "instances": {...}, "purpose": {...}, "verdict": "..." },
   "synonyms": [...],
-  "shapeshifterMatrix": [...]
+  "objectViews": []
 }
 ```
 
-Key fields for each representation:
-- `componentTag`: Shape-specific tag — `ren-{slug}-card`, `ren-{slug}-row`, `ren-{slug}-profile` etc.
-- `defaultShape`: The shape this representation uses (`card`, `row`, `profile`)
+**`objectViews`** — array of `ObjectView` (`ListView | DetailView`, discriminated by `viewType`):
+
+- **ListView** (`viewType: "list"`): `context`, `value`, `description`, optional `userIntent` / `contextDataSchema`, and `shapes` with optional `list`, `grid`, and `table` entries. Each entry is a **ShapeSpec**: `{ visibleAttributes: string[], availableCTAs: string[] }`.
+- **DetailView** (`viewType: "detail"`): same base fields, plus top-level `visibleAttributes` and `availableCTAs` for the detail surface.
+
+There is no `cardShape` field on views; layout for collection contexts is expressed via `shapes.list` / `shapes.grid` / `shapes.table`.
+
+Key fields for each **representation** (showcase / design-system sections):
+
+- `componentTag`: Lit tag for that section’s default component (e.g. `ren-{slug}-card`, `ren-{slug}-row`)
+- `defaultShape`: `list` | `grid` | `table` (see `ValidShape` in `data/schema.ts`)
 - `examples`: Object-specific mock data as `ShowcaseExample` (generic key-value pairs)
 
 ### 3. Validate the data
@@ -61,7 +67,7 @@ Run `node -e "const d = require('./data/objects/{slug}.json'); console.log(d.ide
 
 ### 4. Create shape-specific Web Components
 
-Create one component per shape family in `packages/object-components/src/`, following the Student pattern:
+Create one component per shape family in `packages/object-components/src/`, following existing object patterns in the repo:
 
 **Shared base** — `shared/{slug}.base.ts`:
 ```typescript
@@ -73,55 +79,17 @@ export const OVERFLOW_CTAS: UtilityMenuItem[] = [ /* ... */ ];
 export const OVERFLOW_CTA_NAMES = new Set(OVERFLOW_CTAS.map(c => c.name));
 ```
 
-**Shape components** — one per shape family:
-- `ren-{slug}-card.ts` — card + compact-card shapes, typed `{Slug}CardContext`
-- `ren-{slug}-row.ts` — row + mini-row shapes, typed `{Slug}RowContext`
-- `ren-{slug}-data-row.ts` — data-row shape, typed `{Slug}DataRowContext`
-- `ren-{slug}-profile.ts` — profile shape, no contextData
-- `ren-{slug}-header.ts` — header shape, typed `{Slug}HeaderContext`
+**Shape components** — one file per component family the object needs (names follow `ren-{slug}-{family}.ts`). Map **object view** `ShapeSpec`s (list / grid / table) to the appropriate component and attribute/CTA filtering; detail views map to profile/header/detail-style components as defined in representations and the View Designer skill.
 
 Each component:
-- Imports only the shared shape styles it needs (card doesn't ship row CSS)
-- Declares a typed `contextData` interface for only its fields
-- Contains only its own render logic and CSS
-- Shares CTA dispatch, utility menu, and attribute filtering via the base module
+
+- Imports only the shared shape styles it needs
+- Declares typed `contextData` where context-specific fields apply
+- Shares CTA dispatch, utility menu, and attribute filtering via the base module where possible
 
 ### 5. Register exports
 
-Add each shape component to these three files:
-
-**`packages/object-components/src/index.ts`** — barrel exports:
-```typescript
-export * from './ren-{slug}-card.js';
-export * from './ren-{slug}-row.js';
-export * from './ren-{slug}-data-row.js';
-export * from './ren-{slug}-profile.js';
-export * from './ren-{slug}-header.js';
-```
-
-**`packages/object-components/vite.config.ts`** — entry points:
-```typescript
-'ren-{slug}-card': resolve(__dirname, 'src/ren-{slug}-card.ts'),
-'ren-{slug}-row': resolve(__dirname, 'src/ren-{slug}-row.ts'),
-'ren-{slug}-data-row': resolve(__dirname, 'src/ren-{slug}-data-row.ts'),
-'ren-{slug}-profile': resolve(__dirname, 'src/ren-{slug}-profile.ts'),
-'ren-{slug}-header': resolve(__dirname, 'src/ren-{slug}-header.ts'),
-```
-
-**`packages/object-components/package.json`** — subpath exports:
-```json
-"./ren-{slug}-card": "./dist/ren-{slug}-card.js",
-"./ren-{slug}-row": "./dist/ren-{slug}-row.js",
-"./ren-{slug}-data-row": "./dist/ren-{slug}-data-row.js",
-"./ren-{slug}-profile": "./dist/ren-{slug}-profile.js",
-"./ren-{slug}-header": "./dist/ren-{slug}-header.js"
-```
-
-**`packages/caboodle-site/components/ui/ComponentShowcase.tsx`** — dynamic imports:
-```typescript
-'ren-{slug}-card': () => import('@renaissance/object-components/ren-{slug}-card'),
-// ... one per shape component
-```
+Add each new component to barrel, Vite entries, `package.json` subpath exports, and `ComponentShowcase.tsx` dynamic imports — mirror how existing objects are wired when multiple shape families exist.
 
 ### 6. Build and verify
 
@@ -133,7 +101,7 @@ npm run build:site        # Build site (generates the new [slug] page)
 ## Data completeness checklist
 
 - [ ] Identity: slug, name, qualifier, objectType, category, definition, synonyms, products
-- [ ] At least 3 representations (card, list, detail) with `defaultShape` and shape-specific `componentTag` (e.g. `ren-{slug}-card`)
+- [ ] At least 3 representations (card, list, detail) with `defaultShape` (`list` | `grid` | `table`) and `componentTag`
 - [ ] ShowcaseExample data with object-specific fields (generic key-value pairs)
 - [ ] At least 2 user stories with acceptance criteria
 - [ ] Business rules (minimum 3)
@@ -144,8 +112,8 @@ npm run build:site        # Build site (generates the new [slug] page)
 - [ ] Complete CTA list with priorities (P/S/T/Q) and role keys
 - [ ] SIP validation (Structure, Instances, Purpose)
 - [ ] Synonyms/Also Known As
-- [ ] Shapeshifter matrix with context entries (if applicable)
+- [ ] Object views: `objectViews` entries for key contexts (`ListView` / `DetailView`) with `ShapeSpec`s where applicable
 
 ## Reference
 
-The Student Object Guide (`data/objects/student.json`) and its shape-specific components (`ren-student-card.ts`, `ren-student-row.ts`, `ren-student-data-row.ts`, `ren-student-profile.ts`, `ren-student-header.ts`) with the shared base module (`shared/student.base.ts`) are the gold standard — use them as templates for all other objects. The `resolveShapeTag()` utility in `shared/shape-tags.ts` maps any shape to its component tag suffix. The dynamic route at `app/objects/[slug]/page.tsx` renders any object automatically from its JSON data file.
+The Student Object Guide (`data/objects/student.json`) is the reference for published JSON. Use `data/schema.ts` for `objectViews` typing. The dynamic route under `packages/caboodle-site/app/objects/` renders guides from object data; Web Component coverage depends on what exists under `packages/object-components/src/`.

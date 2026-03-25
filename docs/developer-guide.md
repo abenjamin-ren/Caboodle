@@ -77,7 +77,7 @@ All types are defined in `data/schema.ts` and shared by both packages. Key types
 | `SystemDefinition` | Product system grouping (slug, name, objectSlugs) |
 | `ObjectAttribute` | Attribute with data type, source, roles, description |
 | `ObjectCTA` | Call to action with P/S/T/Q priority, roles, permissions |
-| `ShapeshifterEntry` | Context-specific visibility rules for attributes and CTAs |
+| `ObjectView` | `ListView` \| `DetailView` — context-specific visibility rules for attributes and CTAs (`shapes.list` / `grid` / `table` for list views) |
 | `MCSFDSpec` | Relationship spec (Mechanics, Cardinality, Sorts, Filters, Dependencies) |
 | `RepresentationSection` | Showcase configuration for card/list/detail views |
 
@@ -303,9 +303,9 @@ Place the object's icon SVG at `packages/caboodle-site/public/img/{slug}_icon.sv
 
 Run `npm run dev` and navigate to `/objects`. The object should appear in the correct system's card grid. Click through to verify the Object Guide page renders with your data.
 
-### 5. Add Shapeshifter Contexts (optional)
+### 5. Add object views (optional)
 
-Add `shapeshifterMatrix` entries to the object JSON to define context-specific attribute/CTA visibility. Each entry creates a View Inspector page at `/objects/[systemSlug]/[objectSlug]/views/[viewValue]`.
+Add `objectViews` entries to the object JSON to define context-specific attribute/CTA visibility. Use `viewType: 'list'` with optional `shapes.list`, `shapes.grid`, and `shapes.table` (each a `ShapeSpec`), or `viewType: 'detail'` for full-record views. Each view's `value` contributes to the View Inspector route slug at `/objects/[systemSlug]/[objectSlug]/views/[viewSlug]`.
 
 ---
 
@@ -382,17 +382,19 @@ export class Ren{Object}{Shape} extends LitElement {
 }
 ```
 
-### Shape Families
+### Component families (list / grid / table / detail)
 
-Each object can have multiple shape components, one per family:
+Each object can have multiple components, one per family. Author **`objectViews`** in JSON with `viewType: 'list'` and `shapes` keys `list`, `grid`, `table`, or `viewType: 'detail'`. `ValidShape` is `'list' | 'grid' | 'table'`.
 
-| Family | File | Shapes | Purpose |
-|--------|------|--------|---------|
-| Card | `ren-{obj}-card.ts` | card, compact-card | Grids, dashboards |
-| Row | `ren-{obj}-row.ts` | row, mini-row | Lists, tables |
-| Data Row | `ren-{obj}-data-row.ts` | data-row | Reports (Group A only) |
-| Profile | `ren-{obj}-profile.ts` | profile | Detail views |
-| Header | `ren-{obj}-header.ts` | header | Page headers (Groups A+B) |
+| Family | File | Typical JSON mapping | Purpose |
+|--------|------|---------------------|---------|
+| Card | `ren-{obj}-card.ts` | `shapes.grid` | Grids, dashboards |
+| Row | `ren-{obj}-row.ts` | `shapes.list`, `shapes.table` | Lists, rosters, tables |
+| Data Row | `ren-{obj}-data-row.ts` | `shapes.table` (wide) | Reports (Group A only) |
+| Profile | `ren-{obj}-profile.ts` | `DetailView` regions | Detail views |
+| Header | `ren-{obj}-header.ts` | `DetailView` header | Page headers (Groups A+B) |
+
+Component-level `shape` props may still use legacy literals (e.g. `'row' \| 'mini-row'`) where the source file has not been refactored; new work should align props with **`objectViews`** shape keys.
 
 ### Theming
 
@@ -441,7 +443,7 @@ During an ORCA session, never write directly to `data/objects/*.json`. Use the w
 ### Object Guide shows empty tabs
 
 - Verify the relevant arrays in the JSON aren't empty (`allAttributes`, `allCTAs`, `relationships`)
-- Check that attribute/CTA names match any referenced names in `shapeshifterMatrix`
+- Check that attribute/CTA names match any referenced names in `objectViews` (`visibleAttributes`, `availableCTAs`, and nested `ShapeSpec` fields)
 
 ### WC library build fails
 

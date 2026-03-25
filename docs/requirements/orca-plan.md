@@ -113,7 +113,7 @@ SIP validation in Step 1 confirmed 6 objects: **Skill**, **Object Definition**, 
 | 9 | Object Cards | `docs/requirements/09-object-cards.md` |
 | 10 | Nav Flow | `docs/requirements/10-nav-flow.md` |
 | 11 | CTA Placement | `docs/requirements/11-cta-placement.md` |
-| 12 | Shapeshifter Matrix | `docs/requirements/12-shapeshifter-matrix.md` |
+| 12 | Object Views (Shapeshifter Matrix Builder) | `docs/requirements/12-shapeshifter-matrix.md` |
 
 ### Supporting Documents
 

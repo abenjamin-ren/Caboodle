@@ -6,7 +6,12 @@
     "objectType": "domain",
     "category": "analytics",
     "definition": "A Report is a system-generated analytics artifact that aggregates student performance data, participation metrics, and per-activity breakdowns from a completed Nearpod lesson delivery.",
-    "synonyms": ["Analytics", "Results", "Performance Summary", "Session Results"],
+    "synonyms": [
+      "Analytics",
+      "Results",
+      "Performance Summary",
+      "Session Results"
+    ],
     "products": "Nearpod"
   },
   "variations": [],
@@ -15,7 +20,7 @@
       "layout": "card",
       "heading": "Card layout",
       "description": "How a Report appears in dashboards and recent reports lists",
-      "defaultShape": "card",
+      "defaultShape": "list",
       "componentTag": "ren-report-card",
       "examples": [
         {
@@ -87,7 +92,9 @@
           "priority": "P",
           "crossObjectSlug": "lesson",
           "crossObjectName": "Lesson",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         }
       ]
     },
@@ -95,7 +102,7 @@
       "layout": "list",
       "heading": "List layout",
       "description": "How a Report appears in report tables and history views",
-      "defaultShape": "row",
+      "defaultShape": "list",
       "componentTag": "ren-report-row",
       "examples": [
         {
@@ -173,14 +180,18 @@
           "priority": "P",
           "crossObjectSlug": "lesson",
           "crossObjectName": "Lesson",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Export Report",
           "roles": "Teacher",
           "permission": "Write",
           "priority": "S",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         }
       ]
     },
@@ -188,7 +199,7 @@
       "layout": "detail",
       "heading": "Detail page layout",
       "description": "Full report view with activity breakdowns and student details",
-      "defaultShape": "profile",
+      "defaultShape": "details",
       "componentTag": "ren-report-profile",
       "examples": [
         {
@@ -301,7 +312,9 @@
           "priority": "P",
           "crossObjectSlug": "lesson",
           "crossObjectName": "Lesson",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "View Activity Breakdown",
@@ -310,7 +323,9 @@
           "priority": "P",
           "crossObjectSlug": "activity",
           "crossObjectName": "Activity",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "View Student Detail",
@@ -319,14 +334,18 @@
           "priority": "S",
           "crossObjectSlug": "student",
           "crossObjectName": "Student",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Export Report",
           "roles": "Teacher",
           "permission": "Write",
           "priority": "S",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Share Report",
@@ -335,7 +354,9 @@
           "priority": "T",
           "crossObjectSlug": "teacher",
           "crossObjectName": "Teacher",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Compare Reports",
@@ -344,21 +365,27 @@
           "priority": "T",
           "crossObjectSlug": "lesson",
           "crossObjectName": "Lesson",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Archive Report",
           "roles": "Teacher",
           "permission": "Write",
           "priority": "T",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Delete Report",
           "roles": "Teacher",
           "permission": "Write",
           "priority": "Q",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         }
       ]
     }
@@ -373,7 +400,12 @@
       "benefit": "I can understand how my class performed and identify students who need additional support.",
       "whenClause": "I open a report after a live session ends,",
       "thenClause": "I see aggregate participation rates, average scores, per-activity breakdowns, and individual student results.",
-      "crossObjects": [{ "slug": "live-session", "name": "Live Session" }]
+      "crossObjects": [
+        {
+          "slug": "live-session",
+          "name": "Live Session"
+        }
+      ]
     },
     {
       "title": "Export Report Data",
@@ -394,7 +426,12 @@
       "benefit": "I can see how different classes or deliveries of the same lesson compare.",
       "whenClause": "I select multiple reports for the same lesson,",
       "thenClause": "I see side-by-side comparisons of participation, scores, and per-activity performance across classes.",
-      "crossObjects": [{ "slug": "lesson", "name": "Lesson" }]
+      "crossObjects": [
+        {
+          "slug": "lesson",
+          "name": "Lesson"
+        }
+      ]
     }
   ],
   "businessRules": [
@@ -465,9 +502,24 @@
       }
     ],
     "transitions": [
-      { "from": "Processing", "to": ["Available"] },
-      { "from": "Available", "to": ["Archived"] },
-      { "from": "Archived", "to": ["Available"] }
+      {
+        "from": "Processing",
+        "to": [
+          "Available"
+        ]
+      },
+      {
+        "from": "Available",
+        "to": [
+          "Archived"
+        ]
+      },
+      {
+        "from": "Archived",
+        "to": [
+          "Available"
+        ]
+      }
     ]
   },
   "relationships": [
@@ -499,7 +551,16 @@
       "dependencies": "Activity breakdowns reference the Lesson's activity configuration at the time of delivery."
     }
   ],
-  "relatedObjects": ["lesson", "live-session", "activity", "teacher", "student", "class", "score", "assignment"],
+  "relatedObjects": [
+    "lesson",
+    "live-session",
+    "activity",
+    "teacher",
+    "student",
+    "class",
+    "score",
+    "assignment"
+  ],
   "nestedObjects": [
     {
       "slug": "activity",
@@ -634,7 +695,9 @@
       "priority": "P",
       "crossObjectSlug": "lesson",
       "crossObjectName": "Lesson",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "View Activity Breakdown",
@@ -643,7 +706,9 @@
       "priority": "P",
       "crossObjectSlug": "activity",
       "crossObjectName": "Activity",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "View Student Detail",
@@ -652,14 +717,18 @@
       "priority": "S",
       "crossObjectSlug": "student",
       "crossObjectName": "Student",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Export Report",
       "roles": "Teacher",
       "permission": "Write",
       "priority": "S",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Share Report",
@@ -668,7 +737,9 @@
       "priority": "T",
       "crossObjectSlug": "teacher",
       "crossObjectName": "Teacher",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Compare Reports",
@@ -677,21 +748,27 @@
       "priority": "T",
       "crossObjectSlug": "lesson",
       "crossObjectName": "Lesson",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Archive Report",
       "roles": "Teacher",
       "permission": "Write",
       "priority": "T",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Delete Report",
       "roles": "Teacher",
       "permission": "Write",
       "priority": "Q",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     }
   ],
   "sipValidation": {
@@ -731,33 +808,132 @@
       "notes": "Distinguishes from self-paced report data"
     }
   ],
-  "shapeshifterMatrix": [
+  "objectViews": [
     {
+      "viewType": "list",
       "context": "Report Dashboard",
       "value": "report-dashboard",
-      "shape": "card",
       "description": "Available reports shown as summary cards with participation rates, scores, and dates. Teachers browse recent reports and open the ones they need.",
-      "visibleAttributes": ["Report Type", "Lesson Reference", "Class", "Generated Date", "Participation Rate", "Average Score", "Status"],
-      "availableCTAs": ["View Report"],
-      "cardShape": "Summary card"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Report Type",
+            "Lesson Reference",
+            "Class",
+            "Generated Date",
+            "Participation Rate",
+            "Average Score",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View Report"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Report Type",
+            "Lesson Reference",
+            "Class",
+            "Generated Date",
+            "Participation Rate",
+            "Average Score",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View Report"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Report Type",
+            "Lesson Reference",
+            "Class",
+            "Generated Date",
+            "Participation Rate",
+            "Average Score",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View Report"
+          ]
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "Full Report",
       "value": "full-report",
-      "shape": "profile",
       "description": "The complete report — participation, scores, activity breakdowns, and student-level detail. Teachers analyze results, export data, share with colleagues, or compare across periods.",
-      "visibleAttributes": ["Report ID", "Report Type", "Lesson Reference", "Class", "Teacher", "Generated Date", "Student Count", "Participation Rate", "Average Score", "Activity Breakdown", "Status", "Time Period"],
-      "availableCTAs": ["View Report", "View Activity Breakdown", "View Student Detail", "Export Report", "Share Report", "Compare Reports", "Archive Report"],
-      "cardShape": "Full analytics page"
+      "visibleAttributes": [
+        "Report ID",
+        "Report Type",
+        "Lesson Reference",
+        "Class",
+        "Teacher",
+        "Generated Date",
+        "Student Count",
+        "Participation Rate",
+        "Average Score",
+        "Activity Breakdown",
+        "Status",
+        "Time Period"
+      ],
+      "availableCTAs": [
+        "View Report",
+        "View Activity Breakdown",
+        "View Student Detail",
+        "Export Report",
+        "Share Report",
+        "Compare Reports",
+        "Archive Report"
+      ]
     },
     {
+      "viewType": "list",
       "context": "Export View",
       "value": "export-view",
-      "shape": "row",
       "description": "Reports listed as compact rows with key metrics for batch selection and export. Teachers pick the reports they need and download the data.",
-      "visibleAttributes": ["Lesson Reference", "Class", "Generated Date", "Student Count", "Participation Rate", "Average Score"],
-      "availableCTAs": ["Export Report"],
-      "cardShape": "Compact row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Lesson Reference",
+            "Class",
+            "Generated Date",
+            "Student Count",
+            "Participation Rate",
+            "Average Score"
+          ],
+          "availableCTAs": [
+            "Export Report"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Lesson Reference",
+            "Class",
+            "Generated Date",
+            "Student Count",
+            "Participation Rate",
+            "Average Score"
+          ],
+          "availableCTAs": [
+            "Export Report"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Lesson Reference",
+            "Class",
+            "Generated Date",
+            "Student Count",
+            "Participation Rate",
+            "Average Score"
+          ],
+          "availableCTAs": [
+            "Export Report"
+          ]
+        }
+      }
     }
   ]
 }

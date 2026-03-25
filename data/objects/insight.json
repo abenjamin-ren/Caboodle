@@ -6,7 +6,12 @@
     "objectType": "core",
     "category": "data-ai",
     "definition": "An Insight is an AI-generated recommendation derived from the Skills Grid's proficiency data, scoped to the currently visible domain, that helps teachers translate raw proficiency patterns into specific instructional actions.",
-    "synonyms": ["Recommendation", "Suggestion", "Action Item", "Advisory"],
+    "synonyms": [
+      "Recommendation",
+      "Suggestion",
+      "Action Item",
+      "Advisory"
+    ],
     "products": "All products"
   },
   "variations": [],
@@ -15,7 +20,7 @@
       "layout": "card",
       "heading": "Card layout",
       "description": "How an Insight appears in the Skills Grid side panel",
-      "defaultShape": "card",
+      "defaultShape": "list",
       "componentTag": "ren-insight-card",
       "examples": [
         {
@@ -81,28 +86,40 @@
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Give Feedback Helpful",
           "roles": "Teacher, Admin",
           "permission": "Write",
           "priority": "S",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Give Feedback Not Helpful",
           "roles": "Teacher, Admin",
           "permission": "Write",
           "priority": "S",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Dismiss Insight",
           "roles": "Teacher, Admin",
           "permission": "Write",
           "priority": "T",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         }
       ]
     },
@@ -110,7 +127,7 @@
       "layout": "list",
       "heading": "List layout",
       "description": "How an Insight appears in stacked insight feeds",
-      "defaultShape": "row",
+      "defaultShape": "list",
       "componentTag": "ren-insight-row",
       "examples": [
         {
@@ -176,14 +193,20 @@
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Dismiss Insight",
           "roles": "Teacher, Admin",
           "permission": "Write",
           "priority": "T",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         }
       ]
     },
@@ -191,7 +214,7 @@
       "layout": "detail",
       "heading": "Detail layout",
       "description": "What users see when they expand a full Insight record",
-      "defaultShape": "profile",
+      "defaultShape": "details",
       "componentTag": "ren-insight-profile",
       "examples": [
         {
@@ -278,35 +301,50 @@
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Regenerate Insights",
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "T",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Give Feedback Helpful",
           "roles": "Teacher, Admin",
           "permission": "Write",
           "priority": "S",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Give Feedback Not Helpful",
           "roles": "Teacher, Admin",
           "permission": "Write",
           "priority": "S",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Dismiss Insight",
           "roles": "Teacher, Admin",
           "permission": "Write",
           "priority": "T",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         }
       ]
     }
@@ -331,7 +369,12 @@
       "benefit": "I can form targeted small groups based on shared proficiency gaps without manually analyzing each student's data.",
       "whenClause": "I review a student grouping suggestion Insight,",
       "thenClause": "I see which students share similar gaps, the relevant standard, and can use this information to create focused instructional groups.",
-      "crossObjects": [{ "slug": "student", "name": "Student" }]
+      "crossObjects": [
+        {
+          "slug": "student",
+          "name": "Student"
+        }
+      ]
     },
     {
       "title": "Provide Feedback on Insight",
@@ -412,8 +455,19 @@
       }
     ],
     "transitions": [
-      { "from": "Generated", "to": ["Viewed", "Dismissed"] },
-      { "from": "Viewed", "to": ["Dismissed"] }
+      {
+        "from": "Generated",
+        "to": [
+          "Viewed",
+          "Dismissed"
+        ]
+      },
+      {
+        "from": "Viewed",
+        "to": [
+          "Dismissed"
+        ]
+      }
     ]
   },
   "relationships": [
@@ -436,7 +490,14 @@
       "dependencies": "If a Standard is retired or restructured, associated Insights become historical and no new Insights are generated for that Standard."
     }
   ],
-  "relatedObjects": ["student", "standard", "class", "skill", "proficiency-prediction", "score"],
+  "relatedObjects": [
+    "student",
+    "standard",
+    "class",
+    "skill",
+    "proficiency-prediction",
+    "score"
+  ],
   "nestedObjects": [
     {
       "slug": "student",
@@ -535,42 +596,59 @@
       "roles": "Teacher, Admin",
       "permission": "Read",
       "priority": "P",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Generate Insights",
       "roles": "System",
       "permission": "System",
       "priority": "T",
-      "roleKeys": ["system"]
+      "roleKeys": [
+        "system"
+      ]
     },
     {
       "name": "Regenerate Insights",
       "roles": "Teacher, Admin",
       "permission": "Read",
       "priority": "T",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Give Feedback Helpful",
       "roles": "Teacher, Admin",
       "permission": "Write",
       "priority": "S",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Give Feedback Not Helpful",
       "roles": "Teacher, Admin",
       "permission": "Write",
       "priority": "S",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Dismiss Insight",
       "roles": "Teacher, Admin",
       "permission": "Write",
       "priority": "T",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     }
   ],
   "sipValidation": {
@@ -610,42 +688,160 @@
       "notes": "Technical term used in model documentation"
     }
   ],
-  "shapeshifterMatrix": [
+  "objectViews": [
     {
+      "viewType": "list",
       "context": "Skills Grid Panel",
       "value": "skills-grid-panel",
-      "shape": "card",
       "description": "AI-generated insights shown as cards in a side panel alongside the skills grid. Teachers review instructional suggestions, give feedback, or dismiss ones that aren't useful.",
-      "visibleAttributes": ["Title", "Body/Description", "Insight Type", "Referenced Students", "Referenced Standard/Domain", "Feedback Status"],
-      "availableCTAs": ["View Insight", "Give Feedback Helpful", "Give Feedback Not Helpful", "Dismiss Insight"],
-      "cardShape": "Side panel card"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Title",
+            "Body/Description",
+            "Insight Type",
+            "Referenced Students",
+            "Referenced Standard/Domain",
+            "Feedback Status"
+          ],
+          "availableCTAs": [
+            "View Insight",
+            "Give Feedback Helpful",
+            "Give Feedback Not Helpful",
+            "Dismiss Insight"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Title",
+            "Body/Description",
+            "Insight Type",
+            "Referenced Students",
+            "Referenced Standard/Domain",
+            "Feedback Status"
+          ],
+          "availableCTAs": [
+            "View Insight",
+            "Give Feedback Helpful",
+            "Give Feedback Not Helpful",
+            "Dismiss Insight"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Title",
+            "Body/Description",
+            "Insight Type",
+            "Referenced Students",
+            "Referenced Standard/Domain",
+            "Feedback Status"
+          ],
+          "availableCTAs": [
+            "View Insight",
+            "Give Feedback Helpful",
+            "Give Feedback Not Helpful",
+            "Dismiss Insight"
+          ]
+        }
+      }
     },
     {
+      "viewType": "list",
       "context": "Individual Card",
       "value": "individual-card",
-      "shape": "card",
       "description": "A standalone insight card highlighting a student or standard pattern. Teachers scan these to catch actionable recommendations they might otherwise miss.",
-      "visibleAttributes": ["Title", "Insight Type", "Referenced Students", "Referenced Standard/Domain"],
-      "availableCTAs": ["View Insight"],
-      "cardShape": "Standalone card"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Title",
+            "Insight Type",
+            "Referenced Students",
+            "Referenced Standard/Domain"
+          ],
+          "availableCTAs": [
+            "View Insight"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Title",
+            "Insight Type",
+            "Referenced Students",
+            "Referenced Standard/Domain"
+          ],
+          "availableCTAs": [
+            "View Insight"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Title",
+            "Insight Type",
+            "Referenced Students",
+            "Referenced Standard/Domain"
+          ],
+          "availableCTAs": [
+            "View Insight"
+          ]
+        }
+      }
     },
     {
+      "viewType": "list",
       "context": "Admin Dashboard (future)",
       "value": "admin-dashboard",
-      "shape": "row",
       "description": "Insights listed in a data table with type, standard, and feedback status. Admins monitor which insights are being generated and how teachers are responding to them.",
-      "visibleAttributes": ["Title", "Insight Type", "Referenced Standard/Domain", "Feedback Status", "Generated Timestamp"],
-      "availableCTAs": ["View Insight"],
-      "cardShape": "Data row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Title",
+            "Insight Type",
+            "Referenced Standard/Domain",
+            "Feedback Status",
+            "Generated Timestamp"
+          ],
+          "availableCTAs": [
+            "View Insight"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Title",
+            "Insight Type",
+            "Referenced Standard/Domain",
+            "Feedback Status",
+            "Generated Timestamp"
+          ],
+          "availableCTAs": [
+            "View Insight"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Title",
+            "Insight Type",
+            "Referenced Standard/Domain",
+            "Feedback Status",
+            "Generated Timestamp"
+          ],
+          "availableCTAs": [
+            "View Insight"
+          ]
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "Star Dashboard (future)",
       "value": "star-dashboard",
-      "shape": "header",
       "description": "An insight shown as a compact header within the Star dashboard, surfacing a key recommendation tied to assessment data.",
-      "visibleAttributes": ["Title", "Insight Type"],
-      "availableCTAs": ["View Insight"],
-      "cardShape": "Compact header"
+      "visibleAttributes": [
+        "Title",
+        "Insight Type"
+      ],
+      "availableCTAs": [
+        "View Insight"
+      ]
     }
   ]
 }

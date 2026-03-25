@@ -6,7 +6,12 @@
     "objectType": "domain",
     "category": "activity",
     "definition": "An Onboarding Step is a single, actionable task within an Onboarding Checklist that guides a user to perform a specific activation behavior.",
-    "synonyms": ["Task", "Setup Task", "Action Item", "Getting Started Step"],
+    "synonyms": [
+      "Task",
+      "Setup Task",
+      "Action Item",
+      "Getting Started Step"
+    ],
     "products": "Renaissance Intelligence"
   },
   "variations": [],
@@ -15,7 +20,7 @@
       "layout": "card",
       "heading": "Card layout",
       "description": "How an Onboarding Step appears as a standalone card",
-      "defaultShape": "card",
+      "defaultShape": "list",
       "componentTag": "ren-onboarding-step-card",
       "examples": [
         {
@@ -97,14 +102,20 @@
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Start Step",
           "roles": "Teacher, Admin",
           "permission": "Write",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Skip Step",
@@ -113,7 +124,10 @@
           "priority": "S",
           "crossObjectSlug": "onboarding-checklist",
           "crossObjectName": "Onboarding Checklist",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         }
       ]
     },
@@ -121,7 +135,7 @@
       "layout": "list",
       "heading": "List layout",
       "description": "How an Onboarding Step appears within a checklist",
-      "defaultShape": "row",
+      "defaultShape": "list",
       "componentTag": "ren-onboarding-step-row",
       "examples": [
         {
@@ -180,7 +194,10 @@
           "roles": "Teacher, Admin",
           "permission": "Write",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Complete Step",
@@ -189,7 +206,10 @@
           "priority": "P",
           "crossObjectSlug": "onboarding-checklist",
           "crossObjectName": "Onboarding Checklist",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         }
       ]
     },
@@ -197,7 +217,7 @@
       "layout": "detail",
       "heading": "Detail layout",
       "description": "What users see when they expand a full Onboarding Step",
-      "defaultShape": "profile",
+      "defaultShape": "details",
       "componentTag": "ren-onboarding-step-profile",
       "examples": [
         {
@@ -294,14 +314,20 @@
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Start Step",
           "roles": "Teacher, Admin",
           "permission": "Write",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Complete Step",
@@ -310,7 +336,10 @@
           "priority": "P",
           "crossObjectSlug": "onboarding-checklist",
           "crossObjectName": "Onboarding Checklist",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Skip Step",
@@ -319,7 +348,10 @@
           "priority": "S",
           "crossObjectSlug": "onboarding-checklist",
           "crossObjectName": "Onboarding Checklist",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Undo Skip",
@@ -328,7 +360,10 @@
           "priority": "T",
           "crossObjectSlug": "onboarding-checklist",
           "crossObjectName": "Onboarding Checklist",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "View Help",
@@ -337,7 +372,10 @@
           "priority": "T",
           "crossObjectSlug": "educator-academy-module",
           "crossObjectName": "Educator Academy Module",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         }
       ]
     }
@@ -352,7 +390,12 @@
       "benefit": "I make progress toward setting up my account and the checklist reflects my advancement.",
       "whenClause": "I perform the target action for a step (e.g., schedule my first assessment),",
       "thenClause": "the step is automatically marked complete if auto-detect is enabled, or I can manually mark it done, and the parent checklist progress updates.",
-      "crossObjects": [{ "slug": "onboarding-checklist", "name": "Onboarding Checklist" }]
+      "crossObjects": [
+        {
+          "slug": "onboarding-checklist",
+          "name": "Onboarding Checklist"
+        }
+      ]
     },
     {
       "title": "Skip Optional Step",
@@ -363,7 +406,12 @@
       "benefit": "I can focus on the setup tasks most relevant to my immediate needs without being blocked.",
       "whenClause": "I skip a step I don't need right now,",
       "thenClause": "the step is marked skipped, the checklist progress still advances, and I can undo the skip later if I change my mind.",
-      "crossObjects": [{ "slug": "onboarding-checklist", "name": "Onboarding Checklist" }]
+      "crossObjects": [
+        {
+          "slug": "onboarding-checklist",
+          "name": "Onboarding Checklist"
+        }
+      ]
     }
   ],
   "businessRules": [
@@ -424,9 +472,26 @@
       }
     ],
     "transitions": [
-      { "from": "Not Started", "to": ["In Progress", "Skipped"] },
-      { "from": "In Progress", "to": ["Complete", "Skipped"] },
-      { "from": "Skipped", "to": ["Not Started"] }
+      {
+        "from": "Not Started",
+        "to": [
+          "In Progress",
+          "Skipped"
+        ]
+      },
+      {
+        "from": "In Progress",
+        "to": [
+          "Complete",
+          "Skipped"
+        ]
+      },
+      {
+        "from": "Skipped",
+        "to": [
+          "Not Started"
+        ]
+      }
     ]
   },
   "relationships": [
@@ -458,7 +523,11 @@
       "dependencies": "If a teacher is deactivated, their step data is retained for analytics but no longer visible in active views."
     }
   ],
-  "relatedObjects": ["onboarding-checklist", "educator-academy-module", "teacher"],
+  "relatedObjects": [
+    "onboarding-checklist",
+    "educator-academy-module",
+    "teacher"
+  ],
   "nestedObjects": [],
   "allAttributes": [
     {
@@ -549,14 +618,20 @@
       "roles": "Teacher, Admin",
       "permission": "Read",
       "priority": "P",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Start Step",
       "roles": "Teacher, Admin",
       "permission": "Write",
       "priority": "P",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Complete Step",
@@ -565,7 +640,10 @@
       "priority": "P",
       "crossObjectSlug": "onboarding-checklist",
       "crossObjectName": "Onboarding Checklist",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Skip Step",
@@ -574,7 +652,10 @@
       "priority": "S",
       "crossObjectSlug": "onboarding-checklist",
       "crossObjectName": "Onboarding Checklist",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Undo Skip",
@@ -583,7 +664,10 @@
       "priority": "T",
       "crossObjectSlug": "onboarding-checklist",
       "crossObjectName": "Onboarding Checklist",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "View Help",
@@ -592,7 +676,10 @@
       "priority": "T",
       "crossObjectSlug": "educator-academy-module",
       "crossObjectName": "Educator Academy Module",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     }
   ],
   "sipValidation": {
@@ -632,24 +719,84 @@
       "notes": "Descriptive term used in help articles and tooltips"
     }
   ],
-  "shapeshifterMatrix": [
+  "objectViews": [
     {
+      "viewType": "list",
       "context": "In Checklist",
       "value": "in-checklist",
-      "shape": "row",
       "description": "An individual onboarding step shown as a row within the checklist. Users start, complete, or skip steps as they work through setup.",
-      "visibleAttributes": ["Step Title", "Order", "Status", "Target Object", "Icon"],
-      "availableCTAs": ["Start Step", "Complete Step", "Skip Step"],
-      "cardShape": "Checklist row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Step Title",
+            "Order",
+            "Status",
+            "Target Object",
+            "Icon"
+          ],
+          "availableCTAs": [
+            "Start Step",
+            "Complete Step",
+            "Skip Step"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Step Title",
+            "Order",
+            "Status",
+            "Target Object",
+            "Icon"
+          ],
+          "availableCTAs": [
+            "Start Step",
+            "Complete Step",
+            "Skip Step"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Step Title",
+            "Order",
+            "Status",
+            "Target Object",
+            "Icon"
+          ],
+          "availableCTAs": [
+            "Start Step",
+            "Complete Step",
+            "Skip Step"
+          ]
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "Step Detail",
       "value": "step-detail",
-      "shape": "profile",
       "description": "The complete step record — description, target object, completion method, and help link. Users get guidance on what to do and how to complete each onboarding task.",
-      "visibleAttributes": ["Step Title", "Step Description", "Order", "Status", "Target Object", "Target CTA", "Completion Method", "Help Link", "Icon", "Success Metric", "Completed Date", "Skipped Date"],
-      "availableCTAs": ["View Step", "Start Step", "Complete Step", "Skip Step", "Undo Skip", "View Help"],
-      "cardShape": "Full detail"
+      "visibleAttributes": [
+        "Step Title",
+        "Step Description",
+        "Order",
+        "Status",
+        "Target Object",
+        "Target CTA",
+        "Completion Method",
+        "Help Link",
+        "Icon",
+        "Success Metric",
+        "Completed Date",
+        "Skipped Date"
+      ],
+      "availableCTAs": [
+        "View Step",
+        "Start Step",
+        "Complete Step",
+        "Skip Step",
+        "Undo Skip",
+        "View Help"
+      ]
     }
   ]
 }

@@ -14,7 +14,7 @@ export async function generateStaticParams() {
     const result = getSystemBySlug(systemSlug);
     if (!result) continue;
     for (const obj of result.objects) {
-      for (const entry of obj.shapeshifterMatrix ?? []) {
+      for (const entry of obj.objectViews ?? []) {
         params.push({
           systemSlug,
           objectSlug: obj.identity.slug,
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { objectSlug, viewSlug } = await params;
   const obj = getObjectBySlug(objectSlug);
   if (!obj) return { title: 'Not Found' };
-  const view = obj.shapeshifterMatrix?.find(e => e.value === viewSlug);
+  const view = obj.objectViews?.find(e => e.value === viewSlug);
   if (!view) return { title: 'Not Found' };
   return { title: `${view.context} — ${obj.identity.name}` };
 }
@@ -40,7 +40,7 @@ export default async function ViewDetailPage({ params }: Props) {
   const obj = getObjectBySlug(objectSlug);
   if (!obj) notFound();
 
-  const view = obj.shapeshifterMatrix?.find(e => e.value === viewSlug);
+  const view = obj.objectViews?.find(e => e.value === viewSlug);
   if (!view) notFound();
 
   return (

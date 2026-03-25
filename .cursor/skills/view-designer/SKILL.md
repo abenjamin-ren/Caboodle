@@ -5,20 +5,22 @@ description: "Design and build object views — the full lifecycle from context 
 
 # View Designer
 
-Design a specific visual representation of an object in a specific context, then build it. A **view** is how an object appears in a particular product surface — a class roster row, a score report data-row, a student detail page. Each view is grounded in ORCA artifacts: force-ranked attributes determine content hierarchy, P/S/T/Q rankings determine CTA placement, NOM relationships determine nesting, and the Shapeshifter Matrix tracks intentional variance.
+Design a specific visual representation of an object in a specific context, then build it. A **view** is how an object appears in a particular product surface — a class roster row, a score report table row, a student detail page. Each view is grounded in ORCA artifacts: force-ranked attributes determine content hierarchy, P/S/T/Q rankings determine CTA placement, NOM relationships determine nesting, and **object views** in `data/objects/{slug}.json` (`objectViews`) track intentional variance per context.
 
 ## Terminology
 
 - **View** — the design deliverable: a specific visual representation of an object in a specific context
-- **Context** — the ORCA concept: where/why this view appears (from the Shapeshifter Matrix)
-- **Shape** — the component variant: `card`, `compact-card`, `row`, `mini-row`, `data-row`, `profile`, `header`, `detail`, `nested-card`, `embed` (from `ValidShape` in `data/schema.ts`)
+- **Context** — the ORCA concept: where/why this view appears (aligned with an `ObjectView` entry’s `context` / `value` in `objectViews`)
+- **ObjectView** — TypeScript type: `ListView | DetailView` (see `data/schema.ts`). List contexts use `viewType: 'list'` with optional `shapes.list`, `shapes.grid`, and `shapes.table` (each a **ShapeSpec**). Detail surfaces use `viewType: 'detail'` with top-level `visibleAttributes` and `availableCTAs`.
+- **ShapeSpec** — `{ visibleAttributes: string[], availableCTAs: string[] }` — which attributes and CTAs appear for a given list layout variant (list vs. grid vs. table).
+- **ValidShape** — `list` | `grid` | `table`: used on **representations** (`RepresentationSection.defaultShape`) for showcase/layout defaults, not as per-view duplicate fields (there is no `cardShape` on `ObjectView`).
 - **View spec** — the documented design decisions for a view
 
 ## When to Use This Skill
 
 - User wants to design how an object looks in a specific product surface
 - User asks to design a card, list row, detail page, or any object representation
-- User wants to build a new context for the Shapeshifter Matrix
+- User wants to build a new context entry in `objectViews`
 - User says "design a view" or runs `/orca-view`
 
 ## Prerequisites
@@ -65,7 +67,7 @@ Load the object JSON and extract:
 | CTAs | `allCTAs` | All actions, with priority tier (P/S/T/Q) and role permissions |
 | Nested objects | `nestedObjects` | Which objects live inside this one, cardinality |
 | Relationships | `relationships` | MCSFD specs for each related object |
-| Existing views | `shapeshifterMatrix` | Contexts already defined, with their shapes and visible attributes |
+| Existing views | `objectViews` | Contexts already defined as `ObjectView` rows, with list `shapes` and/or detail fields |
 | Representations | `representations` | Layout sections (card, list, detail) with examples |
 | User stories | `stories` | Who acts, what CTA, what outcome |
 | Business rules | `businessRules` | Constraints that affect the view |
@@ -73,7 +75,7 @@ Load the object JSON and extract:
 
 ### Step 3 — Read related objects
 
-For each entry in `nestedObjects`, load that object's JSON too. Extract its name, existing shapes (from `shapeshifterMatrix` and `representations`), and identity. This surfaces which nested components already exist vs which need designing.
+For each entry in `nestedObjects`, load that object's JSON too. Extract its name, existing views (from `objectViews` and `representations`), and identity. This surfaces which nested components already exist vs which need designing.
 
 ### Step 4 — Search Confluence for additional context
 
@@ -104,24 +106,20 @@ Use the translation tables from the `orca-to-ui` skill (`.cursor/skills/orca-to-
 
 ### View Classification
 
-**Shape** — Select from `ValidShape` with rationale:
+**View kind** — Choose the serialized form:
 
-| Shape | When to use |
-|-------|-------------|
-| `card` | Default representation. Shows identity + top attributes + primary CTA. |
-| `compact-card` | Reduced card for grids with many instances. Fewer attributes, smaller footprint. |
-| `row` | List/table context. Scannable, comparable, sortable. |
-| `mini-row` | Compact row for picker/selector contexts. Name + minimal metadata. |
-| `data-row` | Data-dense row for reports and exports. Tabular, numeric emphasis. |
-| `profile` | Full detail view. All attributes, all CTAs, nested object lists. |
-| `header` | Page/section header showing identity + key stats. Breadcrumb context. |
-| `detail` | Deep single-object view with tabs or sections. |
-| `nested-card` | Compact card that appears inside a parent object's view. |
-| `embed` | Inline representation within another object's content area. |
+| `viewType` | When to use | Data shape |
+|------------|-------------|------------|
+| `list` | Collection surfaces: rosters, pickers, report tables, card grids | `shapes.list`, `shapes.grid`, and/or `shapes.table` — each optional `ShapeSpec` with `visibleAttributes` + `availableCTAs` |
+| `detail` | Single-object page, profile, header region, deep dive with tabs/sections | Top-level `visibleAttributes` + `availableCTAs` on the `DetailView` |
 
-**Layout type** — `detail`, `list`, or `input`:
-- `detail` — single-object deep dive (profile, header, detail shapes)
-- `list` — collection of instances (card, row, data-row shapes)
+**List layout variant** — For `viewType: 'list'`, decide which of `list` / `grid` / `table` you are designing (you may document one, two, or all three if the same context uses multiple layouts). Each variant gets its own `ShapeSpec` if visibility differs.
+
+**Representation `defaultShape`** (`ValidShape`: `list` | `grid` | `table`) — aligns a **representations** showcase section with the default list layout variant for docs/previews; it does not replace `objectViews`.
+
+**Layout type** (design narrative) — `detail`, `list`, or `input`:
+- `detail` — single-object deep dive
+- `list` — collection of instances (map to `ListView` + relevant `shapes.*`)
 - `input` — form-driven creation or editing of the object
 
 **Every Layout primitives** — which composition primitives from `styles/layouts.css` apply (stack, grid, cluster, with-sidebar, switcher, etc.)
@@ -147,7 +145,7 @@ Map force-ranked attributes to view zones:
 | Rank 5 (Context/parent) | Footer or breadcrumb | Small, muted | Visible on card; breadcrumb on detail |
 | Rank 6+ (Supporting) | Detail page sections | Normal body text | Detail only |
 
-Identify context-specific data — fields that only appear in this context (e.g., `latestScore` on a score-report view, `assignmentCompletion` on an assignment-management view). Define the `contextDataSchema` for the `ShapeshifterEntry`.
+Identify context-specific data — fields that only appear in this context (e.g., `latestScore` on a score-report view, `assignmentCompletion` on an assignment-management view). Define optional `contextDataSchema` on the `ObjectView` (supported on both list and detail via `BaseView` in `data/schema.ts`).
 
 ### CTA Placement
 
@@ -168,7 +166,7 @@ List which objects appear nested in this view:
 
 - Object name and relationship type (parent-child, peer, composition)
 - What shape the nested object uses in this context
-- Whether that shape already exists (check the nested object's `shapeshifterMatrix`) or needs designing — flag missing shapes for the cascade queue
+- Whether that representation already exists (check the nested object's `objectViews`) or needs designing — flag missing views for the cascade queue
 
 ### User Stories
 
@@ -204,9 +202,9 @@ Present the full proposal. Wait for user feedback before proceeding. Revise the 
 
 ## Phase 3: Cascade Queue
 
-Check the nested objects section of the proposal. For each nested object that appears in a shape that doesn't yet exist:
+Check the nested objects section of the proposal. For each nested object that appears in a list or detail representation that doesn't yet exist in `objectViews`:
 
-1. List it as a cascade item with the object name, required shape, and parent context
+1. List it as a cascade item with the object name, required `viewType` / layout variant (`list` | `grid` | `table` or detail), and parent context
 2. Ask the user: design these now (depth-first) or queue them for later?
 3. If designing now, recursively enter Phase 2 for each nested view before continuing to Phase 4
 
@@ -233,7 +231,7 @@ When the user shares a Figma URL, use the `get_design_context` MCP tool to pull 
 Analyze the design against the proposal:
 - Does the content hierarchy match the attribute ranking?
 - Are CTAs placed according to P/S/T/Q tiers?
-- Are nested objects represented with appropriate shapes?
+- Are nested objects represented with appropriate list/detail layouts and `ShapeSpec`s?
 - Does the layout use the proposed Every Layout primitives?
 
 ---
@@ -298,7 +296,7 @@ All of the following must be true:
 - [ ] CTAs follow P/S/T/Q hierarchy with correct button styles
 - [ ] All required states are designed (at minimum: default and empty)
 - [ ] WCAG 2.2 AA compliance (contrast, keyboard, focus, touch targets)
-- [ ] Nested objects use defined shapes (or cascade items are queued)
+- [ ] Nested objects use defined `objectViews` entries (or cascade items are queued)
 - [ ] At least one user story justifies the view's existence
 - [ ] User explicitly approves the design
 
@@ -318,7 +316,8 @@ Append a View Specification section to `orca/{project}/objects/{slug}.md`. If th
 ## View: {Context Name}
 
 **Status:** confirmed
-**Shape:** {shape}
+**View type:** {list | detail}
+**List variants:** {list / grid / table — which ShapeSpecs apply}
 **Layout type:** {detail | list | input}
 **Primary role:** {role}
 **Parent context:** {where the user navigates from}
@@ -349,9 +348,9 @@ Append a View Specification section to `orca/{project}/objects/{slug}.md`. If th
 
 ### Nested Objects
 
-| Object | Shape | Status |
-|--------|-------|--------|
-| {object} | {shape} | Exists / Needs design |
+| Object | View / variant | Status |
+|--------|------------------|--------|
+| {object} | {list: grid / table / … or detail} | Exists / Needs design |
 
 ### States
 
@@ -373,20 +372,52 @@ Append a View Specification section to `orca/{project}/objects/{slug}.md`. If th
 - Screenshot: {path or description}
 ```
 
-### Step 2 — Update the ShapeshifterMatrix
+### Step 2 — Update `objectViews`
 
-Add or update the `ShapeshifterEntry` in `data/objects/{slug}.json`:
+Add or update an `ObjectView` in `data/objects/{slug}.json` inside the `objectViews` array.
+
+**List context** (`ListView`):
 
 ```json
 {
+  "viewType": "list",
   "context": "{Context Name}",
   "value": "{context-slug}",
-  "shape": "{shape}",
   "description": "{user intent}",
+  "userIntent": "{what question the user is answering}",
+  "contextDataSchema": {
+    "{field}": { "type": "{type}", "description": "{description}" }
+  },
+  "shapes": {
+    "list": {
+      "visibleAttributes": ["{attr1}", "{attr2}"],
+      "availableCTAs": ["{cta1}", "{cta2}"]
+    },
+    "grid": {
+      "visibleAttributes": ["{attr1}"],
+      "availableCTAs": ["{cta1}"]
+    },
+    "table": {
+      "visibleAttributes": ["{attr1}", "{attr2}", "{attr3}"],
+      "availableCTAs": ["{cta1}"]
+    }
+  }
+}
+```
+
+Include only the `shapes` keys that differ from each other or that you need; omit keys for variants not used in this context.
+
+**Detail context** (`DetailView`):
+
+```json
+{
+  "viewType": "detail",
+  "context": "{Context Name}",
+  "value": "{context-slug}",
+  "description": "{user intent}",
+  "userIntent": "{what question the user is answering}",
   "visibleAttributes": ["{attr1}", "{attr2}", "..."],
   "availableCTAs": ["{cta1}", "{cta2}", "..."],
-  "cardShape": "{shape}",
-  "userIntent": "{what question the user is answering}",
   "contextDataSchema": {
     "{field}": { "type": "{type}", "description": "{description}" }
   }
@@ -421,10 +452,10 @@ If this is a new shape family without existing styles at `packages/object-compon
 
 ### Step 3 — Create the Lit Web Component
 
-Build `packages/object-components/src/ren-{slug}-{shape}.ts`:
+Build `packages/object-components/src/ren-{slug}-{family}.ts` (family names follow repo conventions: card, row, profile, etc.):
 
-- Lit 3 `@customElement` with tag name `ren-{slug}-{shape}`
-- Properties: `data` (typed to `{Object}Data`), `shape`, `state`, `context`, `visibleAttributes`, `availableCTAs`, `contextData`
+- Lit 3 `@customElement` with the agreed tag name (e.g. `ren-{slug}-row`)
+- Properties: `data` (typed to `{Object}Data`), layout props as needed, `state`, `context`, `visibleAttributes`, `availableCTAs`, `contextData` — map props from the relevant `ShapeSpec` or `DetailView` fields
 - Shadow DOM with CSS custom properties for theming
 - Context-aware rendering using `shouldShow` / `resolvePreset` patterns
 - CTA events via `ren-cta-click` custom event

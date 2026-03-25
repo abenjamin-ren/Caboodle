@@ -61,10 +61,10 @@ Located in `packages/caboodle-site/components/`. Standard React components for s
 Located in `packages/object-components/src/`. Framework-agnostic Custom Elements distributable as `@renaissance/object-components`.
 
 **Current state:** The library was previously built and source files have been deleted. Only two files remain:
-- `ren-student-row.ts` — the `<ren-student-row>` component (row + mini-row shapes)
+- `ren-student-row.ts` — the `<ren-student-row>` component (list/table-style row presentations; internal layout variants)
 - `shared/tokens.ts` — design token CSS custom properties (`--ren-*` variables)
 
-**Target architecture:** Components follow the `<ren-{object}-{shapeFamily}>` naming convention. Each object gets shape-specific components (card, row, data-row, profile, header) depending on its group classification (A/B/C).
+**Target architecture:** Components follow the `<ren-{object}-{family}>` naming convention. Each object gets presentation-oriented components (e.g. card, row, profile, header families) depending on its group classification (A/B/C). Authored **`objectViews`** in JSON use `viewType: 'list'` with `shapes: { list?, grid?, table? }` (each a `ShapeSpec`) or `viewType: 'detail'`; `ValidShape` is `'list' | 'grid' | 'table'`.
 
 ### Server Actions
 
@@ -126,13 +126,13 @@ All types are defined in `data/schema.ts`:
 
 | Type | Purpose |
 |------|---------|
-| `ObjectDefinition` | Top-level type — everything about an object |
+| `ObjectDefinition` | Top-level type — everything about an object (optional `objectViews: ObjectView[]`) |
 | `ObjectIdentity` | Name, slug, qualifier, objectType, category, definition, synonyms, products |
 | `SystemDefinition` | System-level grouping (slug, name, description, owner, objectSlugs) |
 | `ObjectAttribute` | Attribute with dataType, source, description, optional role restriction |
 | `ObjectCTA` | CTA with roles, permission, priority (P/S/T/Q), optional cross-object link |
 | `ObjectVariation` | Domain-specific variant (name, qualifier, slug, products, objectType) |
-| `ShapeshifterEntry` | Context-specific attribute/CTA visibility and card shape |
+| `ObjectView` | Union of `ListView` \| `DetailView` — context-specific attribute/CTA visibility; list views nest `ShapeSpec` under `shapes.list` / `shapes.grid` / `shapes.table` |
 | `RepresentationSection` | Showcase config: layout, examples, attributes, CTAs, componentTag |
 | `UserStory` | Role/action/object/benefit with when/then clauses |
 | `BusinessRule` | Title + description pairs |
@@ -148,7 +148,7 @@ All types are defined in `data/schema.ts`:
 ObjectType:     'core' | 'domain' | 'variation'
 ObjectCategory: 'people' | 'container' | 'activity' | 'knowledge' | 'data-ai'
 Priority:       'P' | 'S' | 'T' | 'Q'
-ValidShape:     'card' | 'compact-card' | 'row' | 'mini-row' | 'data-row' | 'profile' | 'header' | 'detail' | 'embedded' | 'tooltip'
+ValidShape:     'list' | 'grid' | 'table'   // used by RepresentationSection.defaultShape; list views use the same literals under shapes.*
 ```
 
 ---
@@ -185,14 +185,14 @@ CSS custom properties pass through shadow DOM boundaries, allowing Lit Web Compo
 
 ### Object Guide — 4 Tabs
 
-1. **Views** — Cards linking to View Inspector pages for each shapeshifter context
+1. **Views** — Cards linking to View Inspector pages for each **`objectViews`** context
 2. **Attributes** — `AttributeTable` showing all object attributes with data type, source, description
 3. **Actions** — `CTATable` with priority badges + user story cards
 4. **Relationships** — MCSFD spec tables + nested object links
 
 ### View Inspector
 
-Per-shapeshifter-context editing interface with:
+Per–object-view editing interface with:
 - Role selection controls
 - Attribute toggle list with inline editing (description, source, data type)
 - CTA toggle list with inline editing (permission, roles, priority)
@@ -206,7 +206,7 @@ Partially implemented from `student-roster-list.md` spec:
 - `RosterScoreColumn` — score value + proficiency band display
 - `RosterOverflowMenu` — three-dot menu with menu items
 - `StudentRosterPreview` — composition registered as `student:class-roster` preview
-- `ren-student-row.ts` — Lit WC row component (row + mini-row shapes)
+- `ren-student-row.ts` — Lit WC row component (list/table-style presentations)
 
 ### Core Object Data
 
@@ -218,12 +218,12 @@ Partially implemented from `student-roster-list.md` spec:
 
 ### Lit Web Component Library (rebuild)
 
-Source files were deleted. Reference implementation: `ren-student-row.ts` + `shared/tokens.ts`. Target: ~127 shape components across 26 objects.
+Source files were deleted. Reference implementation: `ren-student-row.ts` + `shared/tokens.ts`. Target: ~127 presentation components across 26 objects (mapped to **`objectViews`** list/grid/table and detail patterns).
 
 Steps to rebuild:
 1. Create `shared/` infrastructure: `context.ts`, `identity.ts`, `shape-tags.ts`, `shapes/` CSS, `{slug}.base.ts` per object
 2. Create barrel `src/index.ts` exporting all components
-3. Create shape components per object following group classification (A: 5 shapes, B: 4 shapes, C: 3 shapes)
+3. Create components per object following group classification (A: 5 families, B: 4 families, C: 3 families), aligned with list/grid/table and detail views in JSON
 4. Verify `vite build` produces the `dist/` output
 5. Test components render in Object Guide showcases
 

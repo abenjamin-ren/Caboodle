@@ -99,4 +99,4 @@ When unsure if something is an object, ask the user:
 - For full Object Discovery facilitation: use skill `01-object-discovery`
 - For building comprehensive Object Guides: use skill `05-object-guide-builder`
 - For designing distinct Object Cards: use skill `09-object-card-designer`
-- For checking if objects are consistent across contexts: use skill `12-shapeshifter-matrix-builder`
+- For checking if objects are consistent across contexts: use skill `12-shapeshifter-matrix-builder` (workspace artifact: Shapeshifter Matrix; promoted field: `objectViews` in `data/objects/{slug}.json`)

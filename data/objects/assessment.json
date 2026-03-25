@@ -6,7 +6,13 @@
     "objectType": "core",
     "category": "activity",
     "definition": "An Assessment is a formal evaluation instrument — such as Star Reading, Star Math, a district benchmark, or a teacher-created quiz — that is administered to students to measure their knowledge, proficiency, or growth on specific skills and standards, producing scores that inform instructional decisions.",
-    "synonyms": ["test", "quiz", "benchmark", "exam", "probe"],
+    "synonyms": [
+      "test",
+      "quiz",
+      "benchmark",
+      "exam",
+      "probe"
+    ],
     "products": "Star, AR, myON"
   },
   "variations": [],
@@ -15,7 +21,7 @@
       "layout": "card",
       "heading": "Card layout",
       "description": "How an Assessment appears in dashboards and library views",
-      "defaultShape": "card",
+      "defaultShape": "list",
       "componentTag": "ren-assessment-card",
       "examples": [
         {
@@ -106,7 +112,10 @@
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "View Results",
@@ -115,7 +124,10 @@
           "priority": "S",
           "crossObjectSlug": "score",
           "crossObjectName": "Score",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         }
       ]
     },
@@ -123,7 +135,7 @@
       "layout": "list",
       "heading": "List layout",
       "description": "How an Assessment appears in scheduling tables and assignment lists",
-      "defaultShape": "row",
+      "defaultShape": "list",
       "componentTag": "ren-assessment-row",
       "examples": [
         {
@@ -195,7 +207,10 @@
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Schedule",
@@ -204,7 +219,10 @@
           "priority": "S",
           "crossObjectSlug": "class",
           "crossObjectName": "Class",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         }
       ]
     },
@@ -212,7 +230,7 @@
       "layout": "detail",
       "heading": "Detail page layout",
       "description": "What users see when they open a full Assessment record",
-      "defaultShape": "profile",
+      "defaultShape": "details",
       "componentTag": "ren-assessment-profile",
       "examples": [
         {
@@ -232,10 +250,26 @@
           "createdBy": "System (Star)",
           "color": "#2B87FF",
           "nestedObjects": [
-            { "label": "Scores", "count": 28, "href": "#" },
-            { "label": "Skills", "count": 14, "href": "#" },
-            { "label": "Items", "count": 34, "href": "#" },
-            { "label": "Students", "count": 28, "href": "#" }
+            {
+              "label": "Scores",
+              "count": 28,
+              "href": "#"
+            },
+            {
+              "label": "Skills",
+              "count": 14,
+              "href": "#"
+            },
+            {
+              "label": "Items",
+              "count": 34,
+              "href": "#"
+            },
+            {
+              "label": "Students",
+              "count": 28,
+              "href": "#"
+            }
           ]
         }
       ],
@@ -340,7 +374,10 @@
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "View Results",
@@ -349,7 +386,10 @@
           "priority": "S",
           "crossObjectSlug": "score",
           "crossObjectName": "Score",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Schedule",
@@ -358,14 +398,20 @@
           "priority": "S",
           "crossObjectSlug": "class",
           "crossObjectName": "Class",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Edit",
           "roles": "Teacher, Admin",
           "permission": "Write",
           "priority": "T",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Administer",
@@ -374,14 +420,19 @@
           "priority": "T",
           "crossObjectSlug": "student",
           "crossObjectName": "Student",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Cancel",
           "roles": "Teacher, Admin",
           "permission": "Write",
           "priority": "Q",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Reassign",
@@ -390,14 +441,20 @@
           "priority": "T",
           "crossObjectSlug": "student",
           "crossObjectName": "Student",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Print",
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "T",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Export Results",
@@ -406,7 +463,10 @@
           "priority": "T",
           "crossObjectSlug": "score",
           "crossObjectName": "Score",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         }
       ]
     }
@@ -421,7 +481,12 @@
       "benefit": "I can see how my students performed and identify which skills need re-teaching.",
       "whenClause": "I open a completed Assessment,",
       "thenClause": "I see the class average, individual student scores, skill breakdowns, and benchmark distribution.",
-      "crossObjects": [{ "slug": "score", "name": "Score" }]
+      "crossObjects": [
+        {
+          "slug": "score",
+          "name": "Score"
+        }
+      ]
     },
     {
       "title": "Schedule Assessment for Class",
@@ -432,7 +497,12 @@
       "benefit": "students in that class will receive the assessment during the testing window and I can plan instruction around it.",
       "whenClause": "I schedule an Assessment for a class,",
       "thenClause": "the assessment appears on the class calendar, students see it in their to-do list, and the status changes to Scheduled.",
-      "crossObjects": [{ "slug": "class", "name": "Class" }]
+      "crossObjects": [
+        {
+          "slug": "class",
+          "name": "Class"
+        }
+      ]
     },
     {
       "title": "Monitor Assessment Progress",
@@ -509,9 +579,27 @@
       }
     ],
     "transitions": [
-      { "from": "Created", "to": ["Scheduled", "Canceled"] },
-      { "from": "Scheduled", "to": ["In Progress", "Canceled"] },
-      { "from": "In Progress", "to": ["Completed", "Canceled"] }
+      {
+        "from": "Created",
+        "to": [
+          "Scheduled",
+          "Canceled"
+        ]
+      },
+      {
+        "from": "Scheduled",
+        "to": [
+          "In Progress",
+          "Canceled"
+        ]
+      },
+      {
+        "from": "In Progress",
+        "to": [
+          "Completed",
+          "Canceled"
+        ]
+      }
     ]
   },
   "relationships": [
@@ -543,7 +631,13 @@
       "dependencies": "If a Skill is deprecated from the standard set, existing Assessment alignments persist for historical reporting but new assessments use updated standards."
     }
   ],
-  "relatedObjects": ["score", "student", "class", "teacher", "skill"],
+  "relatedObjects": [
+    "score",
+    "student",
+    "class",
+    "teacher",
+    "skill"
+  ],
   "nestedObjects": [
     {
       "slug": "score",
@@ -678,14 +772,20 @@
       "roles": "Teacher, Admin",
       "permission": "Read",
       "priority": "P",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Create",
       "roles": "Teacher, Admin",
       "permission": "Write",
       "priority": "S",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Schedule",
@@ -694,7 +794,10 @@
       "priority": "S",
       "crossObjectSlug": "class",
       "crossObjectName": "Class",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Administer",
@@ -703,7 +806,9 @@
       "priority": "T",
       "crossObjectSlug": "student",
       "crossObjectName": "Student",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "View Results",
@@ -712,21 +817,30 @@
       "priority": "S",
       "crossObjectSlug": "score",
       "crossObjectName": "Score",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Edit",
       "roles": "Teacher, Admin",
       "permission": "Write",
       "priority": "T",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Cancel",
       "roles": "Teacher, Admin",
       "permission": "Write",
       "priority": "Q",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Reassign",
@@ -735,14 +849,20 @@
       "priority": "T",
       "crossObjectSlug": "student",
       "crossObjectName": "Student",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Print",
       "roles": "Teacher, Admin",
       "permission": "Read",
       "priority": "T",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Export Results",
@@ -751,7 +871,10 @@
       "priority": "T",
       "crossObjectSlug": "score",
       "crossObjectName": "Score",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     }
   ],
   "sipValidation": {
@@ -796,110 +919,430 @@
       "notes": "Short, frequent assessment for tracking growth in intervention programs."
     }
   ],
-  "shapeshifterMatrix": [
+  "objectViews": [
     {
+      "viewType": "list",
       "context": "Assessment Library",
       "value": "assessment-library",
-      "shape": "card",
       "description": "Available assessments shown as cards with type, subject, and completion status. Teachers browse here to find assessments to schedule or check results on ones already given.",
-      "visibleAttributes": ["Assessment Name", "Assessment Type", "Subject", "Grade Range", "Status"],
-      "availableCTAs": ["View", "View Results", "Schedule"],
-      "cardShape": "Medium card",
       "userIntent": "What assessments have I given or need to give?",
       "contextDataSchema": {
-        "classCompletionPercent": { "type": "number", "description": "Percentage of students finished" },
-        "classAverageScore": { "type": "string", "description": "Class average score" },
-        "assignedClassCount": { "type": "number", "description": "Number of classes assigned" }
+        "classCompletionPercent": {
+          "type": "number",
+          "description": "Percentage of students finished"
+        },
+        "classAverageScore": {
+          "type": "string",
+          "description": "Class average score"
+        },
+        "assignedClassCount": {
+          "type": "number",
+          "description": "Number of classes assigned"
+        }
+      },
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Assessment Name",
+            "Assessment Type",
+            "Subject",
+            "Grade Range",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View",
+            "View Results",
+            "Schedule"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Assessment Name",
+            "Assessment Type",
+            "Subject",
+            "Grade Range",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View",
+            "View Results",
+            "Schedule"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Assessment Name",
+            "Assessment Type",
+            "Subject",
+            "Grade Range",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View",
+            "View Results",
+            "Schedule"
+          ]
+        }
       }
     },
     {
+      "viewType": "list",
       "context": "Class Assessment Schedule",
       "value": "class-schedule",
-      "shape": "row",
       "description": "Assessments scheduled for a specific class, listed with testing windows and status. Teachers see what's coming up and can administer or cancel from here.",
-      "visibleAttributes": ["Assessment Name", "Assessment Type", "Subject", "Testing Window", "Status"],
-      "availableCTAs": ["View", "Administer", "Cancel"],
-      "cardShape": "Compact row",
-      "userIntent": "What assessments are scheduled for this class?"
+      "userIntent": "What assessments are scheduled for this class?",
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Assessment Name",
+            "Assessment Type",
+            "Subject",
+            "Testing Window",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View",
+            "Administer",
+            "Cancel"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Assessment Name",
+            "Assessment Type",
+            "Subject",
+            "Testing Window",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View",
+            "Administer",
+            "Cancel"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Assessment Name",
+            "Assessment Type",
+            "Subject",
+            "Testing Window",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View",
+            "Administer",
+            "Cancel"
+          ]
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "Assessment Detail",
       "value": "assessment-detail",
-      "shape": "profile",
       "description": "The complete assessment record — configuration, scheduling, standards alignment, and all administrative controls. Teachers and admins manage every aspect of an assessment from this page.",
-      "visibleAttributes": ["Assessment Name", "Assessment Type", "Subject", "Grade Range", "Status", "Testing Window", "Duration", "Item Count", "Scoring Method", "Accommodations", "Created By", "Administered By", "Class/Students", "Standards Alignment"],
-      "availableCTAs": ["View", "View Results", "Schedule", "Administer", "Edit", "Cancel", "Reassign", "Print", "Export Results"],
-      "cardShape": "Full page",
-      "userIntent": "What is the full detail of this assessment?"
+      "userIntent": "What is the full detail of this assessment?",
+      "visibleAttributes": [
+        "Assessment Name",
+        "Assessment Type",
+        "Subject",
+        "Grade Range",
+        "Status",
+        "Testing Window",
+        "Duration",
+        "Item Count",
+        "Scoring Method",
+        "Accommodations",
+        "Created By",
+        "Administered By",
+        "Class/Students",
+        "Standards Alignment"
+      ],
+      "availableCTAs": [
+        "View",
+        "View Results",
+        "Schedule",
+        "Administer",
+        "Edit",
+        "Cancel",
+        "Reassign",
+        "Print",
+        "Export Results"
+      ]
     },
     {
+      "viewType": "list",
       "context": "Student Score History",
       "value": "student-score-history",
-      "shape": "row",
       "description": "Assessments a student has taken, paired with their individual scores and proficiency bands. Teachers review a student's assessment history to track growth over time.",
-      "visibleAttributes": ["Assessment Name", "Assessment Type", "Subject"],
-      "availableCTAs": ["View", "View Results"],
-      "cardShape": "Compact row",
       "userIntent": "What assessments has this student taken, and what did they score?",
       "contextDataSchema": {
-        "studentScore": { "type": "number", "description": "This student's score on the assessment" },
-        "studentBand": { "type": "string", "description": "Proficiency band for this student" },
-        "studentDate": { "type": "string", "description": "When the student took the assessment" },
-        "studentGrowth": { "type": "number", "description": "Student Growth Percentile" },
-        "studentPercentile": { "type": "number", "description": "Percentile rank" }
+        "studentScore": {
+          "type": "number",
+          "description": "This student's score on the assessment"
+        },
+        "studentBand": {
+          "type": "string",
+          "description": "Proficiency band for this student"
+        },
+        "studentDate": {
+          "type": "string",
+          "description": "When the student took the assessment"
+        },
+        "studentGrowth": {
+          "type": "number",
+          "description": "Student Growth Percentile"
+        },
+        "studentPercentile": {
+          "type": "number",
+          "description": "Percentile rank"
+        }
+      },
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Assessment Name",
+            "Assessment Type",
+            "Subject"
+          ],
+          "availableCTAs": [
+            "View",
+            "View Results"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Assessment Name",
+            "Assessment Type",
+            "Subject"
+          ],
+          "availableCTAs": [
+            "View",
+            "View Results"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Assessment Name",
+            "Assessment Type",
+            "Subject"
+          ],
+          "availableCTAs": [
+            "View",
+            "View Results"
+          ]
+        }
       }
     },
     {
+      "viewType": "list",
       "context": "Admin Dashboard",
       "value": "admin-dashboard",
-      "shape": "data-row",
       "description": "Assessments listed with school-wide completion rates and average scores. Admins monitor assessment rollout and performance across schools and districts.",
-      "visibleAttributes": ["Assessment Name", "Assessment Type", "Subject", "Grade Range", "Status", "Testing Window"],
-      "availableCTAs": ["View", "View Results", "Export Results"],
-      "cardShape": "Data row",
       "userIntent": "How is this assessment performing across my school/district?",
       "contextDataSchema": {
-        "schoolCompletionPercent": { "type": "number", "description": "School-wide completion percentage" },
-        "schoolAverageScore": { "type": "string", "description": "School average score" },
-        "schoolCount": { "type": "number", "description": "Number of schools (district context)" },
-        "classCount": { "type": "number", "description": "Number of classes assigned" }
+        "schoolCompletionPercent": {
+          "type": "number",
+          "description": "School-wide completion percentage"
+        },
+        "schoolAverageScore": {
+          "type": "string",
+          "description": "School average score"
+        },
+        "schoolCount": {
+          "type": "number",
+          "description": "Number of schools (district context)"
+        },
+        "classCount": {
+          "type": "number",
+          "description": "Number of classes assigned"
+        }
+      },
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Assessment Name",
+            "Assessment Type",
+            "Subject",
+            "Grade Range",
+            "Status",
+            "Testing Window"
+          ],
+          "availableCTAs": [
+            "View",
+            "View Results",
+            "Export Results"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Assessment Name",
+            "Assessment Type",
+            "Subject",
+            "Grade Range",
+            "Status",
+            "Testing Window"
+          ],
+          "availableCTAs": [
+            "View",
+            "View Results",
+            "Export Results"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Assessment Name",
+            "Assessment Type",
+            "Subject",
+            "Grade Range",
+            "Status",
+            "Testing Window"
+          ],
+          "availableCTAs": [
+            "View",
+            "View Results",
+            "Export Results"
+          ]
+        }
       }
     },
     {
+      "viewType": "detail",
       "context": "Score Report Header",
       "value": "score-report-header",
-      "shape": "header",
       "description": "The assessment shown as a section header identifying which assessment the score report below covers. Provides context — no interactive elements.",
-      "visibleAttributes": ["Assessment Name", "Assessment Type", "Subject"],
-      "availableCTAs": ["View"],
-      "cardShape": "Section header",
-      "userIntent": "What assessment is this score report about?"
+      "userIntent": "What assessment is this score report about?",
+      "visibleAttributes": [
+        "Assessment Name",
+        "Assessment Type",
+        "Subject"
+      ],
+      "availableCTAs": [
+        "View"
+      ]
     },
     {
+      "viewType": "list",
       "context": "Student Assessment List",
       "value": "student-assessment-list",
-      "shape": "compact-card",
       "description": "A student's view of their assessments — what's upcoming, what's available to start, and past results with scores. Shows testing windows and proficiency bands for completed work.",
-      "visibleAttributes": ["Assessment Name", "Assessment Type", "Subject", "Status"],
-      "availableCTAs": ["View"],
-      "cardShape": "Compact card",
       "userIntent": "What do I need to take, and how did I do on past ones?",
       "contextDataSchema": {
-        "studentScore": { "type": "number", "description": "Own score if completed" },
-        "studentBand": { "type": "string", "description": "Own proficiency band if completed" },
-        "windowStart": { "type": "string", "description": "When assessment becomes available" },
-        "windowEnd": { "type": "string", "description": "Assessment deadline" }
+        "studentScore": {
+          "type": "number",
+          "description": "Own score if completed"
+        },
+        "studentBand": {
+          "type": "string",
+          "description": "Own proficiency band if completed"
+        },
+        "windowStart": {
+          "type": "string",
+          "description": "When assessment becomes available"
+        },
+        "windowEnd": {
+          "type": "string",
+          "description": "Assessment deadline"
+        }
+      },
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Assessment Name",
+            "Assessment Type",
+            "Subject",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Assessment Name",
+            "Assessment Type",
+            "Subject",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Assessment Name",
+            "Assessment Type",
+            "Subject",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        }
       }
     },
     {
+      "viewType": "list",
       "context": "Student Detail",
       "value": "student-detail",
-      "shape": "row",
       "description": "Assessments listed within a student's profile as a sortable table with scores and status. Teachers review assessment history and take action on individual assessments.",
-      "visibleAttributes": ["Assessment Name", "Assessment Type", "Subject", "Testing Window", "Score", "Proficiency Band"],
-      "availableCTAs": ["View Results", "Start", "View Score", "Export", "Cancel", "Schedule"],
-      "cardShape": "Table row in sortable list",
-      "userIntent": "What assessments has this student taken?"
+      "userIntent": "What assessments has this student taken?",
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Assessment Name",
+            "Assessment Type",
+            "Subject",
+            "Testing Window",
+            "Score",
+            "Proficiency Band"
+          ],
+          "availableCTAs": [
+            "View Results",
+            "Start",
+            "View Score",
+            "Export",
+            "Cancel",
+            "Schedule"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Assessment Name",
+            "Assessment Type",
+            "Subject",
+            "Testing Window",
+            "Score",
+            "Proficiency Band"
+          ],
+          "availableCTAs": [
+            "View Results",
+            "Start",
+            "View Score",
+            "Export",
+            "Cancel",
+            "Schedule"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Assessment Name",
+            "Assessment Type",
+            "Subject",
+            "Testing Window",
+            "Score",
+            "Proficiency Band"
+          ],
+          "availableCTAs": [
+            "View Results",
+            "Start",
+            "View Score",
+            "Export",
+            "Cancel",
+            "Schedule"
+          ]
+        }
+      }
     }
   ]
 }

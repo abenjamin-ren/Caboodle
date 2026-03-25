@@ -1,7 +1,7 @@
 export type ObjectType = 'core' | 'domain' | 'variation';
 export type ObjectCategory = 'people' | 'container' | 'activity' | 'knowledge' | 'data-ai' | 'content' | 'analytics';
 export type Priority = 'P' | 'S' | 'T' | 'Q';
-export type ValidShape = 'card' | 'compact-card' | 'row' | 'mini-row' | 'data-row' | 'profile' | 'header' | 'detail' | 'nested-card' | 'embed';
+export type ValidShape = 'list' | 'grid' | 'table';
 
 export interface ObjectIdentity {
   slug: string;
@@ -122,17 +122,35 @@ export interface RepresentationSection {
   componentTag: string;
 }
 
-export interface ShapeshifterEntry {
-  context: string;
-  value: string;
-  shape: ValidShape;
-  description: string;
+export interface ShapeSpec {
   visibleAttributes: string[];
   availableCTAs: string[];
-  cardShape: string;
+}
+
+interface BaseView {
+  context: string;
+  value: string;
+  description: string;
   userIntent?: string;
   contextDataSchema?: Record<string, { type: string; description: string }>;
 }
+
+export interface ListView extends BaseView {
+  viewType: 'list';
+  shapes: {
+    list?: ShapeSpec;
+    grid?: ShapeSpec;
+    table?: ShapeSpec;
+  };
+}
+
+export interface DetailView extends BaseView {
+  viewType: 'detail';
+  visibleAttributes: string[];
+  availableCTAs: string[];
+}
+
+export type ObjectView = ListView | DetailView;
 
 export interface ObjectDefinition {
   identity: ObjectIdentity;
@@ -148,7 +166,7 @@ export interface ObjectDefinition {
   allCTAs: ObjectCTA[];
   sipValidation: SIPValidation;
   synonyms: SynonymEntry[];
-  shapeshifterMatrix?: ShapeshifterEntry[];
+  objectViews?: ObjectView[];
 }
 
 export interface SystemDefinition {

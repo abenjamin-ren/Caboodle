@@ -1,18 +1,29 @@
 'use client';
 
-import type { ObjectDefinition } from '../../../../../../data/schema';
+import type { ObjectDefinition, ObjectView } from '../../../../../../data/schema';
 import { Tabs } from '@/components/ui/Tabs';
 import { AttributeTable, CTATable } from '@/components/ui/DataTable';
+import { getPreviewRenderer } from '@/lib/preview-registry';
 
 interface ObjectDetailClientProps {
   obj: ObjectDefinition;
   systemSlug: string;
 }
 
-const LIST_SHAPES = new Set(['card', 'compact-card', 'row', 'mini-row', 'data-row', 'nested-card']);
+function viewTypeLabel(view: ObjectView): string {
+  return view.viewType === 'detail' ? 'Detail' : 'List';
+}
 
-function viewTypeLabel(shape: string): string {
-  return LIST_SHAPES.has(shape) ? 'List' : 'Details';
+function countAttrs(view: ObjectView): number {
+  if (view.viewType === 'detail') return view.visibleAttributes.length;
+  const first = view.shapes.list ?? view.shapes.grid ?? view.shapes.table;
+  return first?.visibleAttributes.length ?? 0;
+}
+
+function countCTAs(view: ObjectView): number {
+  if (view.viewType === 'detail') return view.availableCTAs.length;
+  const first = view.shapes.list ?? view.shapes.grid ?? view.shapes.table;
+  return first?.availableCTAs.length ?? 0;
 }
 
 function ViewCard({
@@ -20,12 +31,13 @@ function ViewCard({
   objectSlug,
   systemSlug,
 }: {
-  entry: { context: string; value: string; shape: string; description: string; visibleAttributes: string[]; availableCTAs: string[] };
+  entry: ObjectView;
   objectSlug: string;
   systemSlug: string;
 }) {
-  const attrCount = entry.visibleAttributes.length;
-  const ctaCount = entry.availableCTAs.length;
+  const attrCount = countAttrs(entry);
+  const ctaCount = countCTAs(entry);
+  const Preview = getPreviewRenderer(objectSlug, entry.value);
 
   return (
     <a className="card-base view-card" href={`/objects/${systemSlug}/${objectSlug}/views/${entry.value}`}>
@@ -33,10 +45,23 @@ function ViewCard({
         <div className="view-card-label">
           <i className="fa-solid fa-window-maximize" aria-hidden="true" />
           <strong>{entry.context}</strong>{' '}
-          <span className="view-card-label-type">({viewTypeLabel(entry.shape)})</span>
+          <span className="view-card-label-type">({viewTypeLabel(entry)})</span>
         </div>
       </div>
-      <div className="card-viz" aria-hidden="true" role="presentation" />
+      <div className={`card-viz${Preview ? ' card-viz--preview' : ''}`} aria-hidden="true" role="presentation">
+        {Preview && (
+          <Preview
+            selectedItem={null}
+            onSelectItem={() => {}}
+            selectedRole="Teacher"
+            viewCTAs={[]}
+            viewAttributes={[]}
+            isActionAvailable={() => true}
+            lifecycleStates={[]}
+            embedded
+          />
+        )}
+      </div>
       <dl className="card-stat-bar">
         <div className="card-stat" title="Attributes">
           <dt><i className="fa-solid fa-table" aria-hidden="true" /><span className="sr-only">Attributes</span></dt>
@@ -56,7 +81,7 @@ function ViewCard({
 }
 
 export function ObjectDetailClient({ obj, systemSlug }: ObjectDetailClientProps) {
-  const views = obj.shapeshifterMatrix ?? [];
+  const views = obj.objectViews ?? [];
 
   return (
     <Tabs

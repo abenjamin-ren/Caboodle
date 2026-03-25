@@ -1,17 +1,17 @@
 # Student Roster List — Component Requirements
 
-> **Status: Partial** — Core visualization and menu components are built. The following exist: `RosterRing` (dual-arc SVG), `RosterScoreColumn`, `RosterOverflowMenu`, `StudentRosterPreview` (registered as `student:class-roster` preview). The Lit `<ren-student-row>` component exists with row + mini-row shapes. The full `StudentRosterRow` React composition and prototype route integration remain incomplete.
+> **Status: Partial** — Core visualization and menu components are built. The following exist: `RosterRing` (dual-arc SVG), `RosterScoreColumn`, `RosterOverflowMenu`, `StudentRosterPreview` (registered as `student:class-roster` preview). The Lit `<ren-student-row>` component exists with internal layout variants that align with a **list** view (typically `shapes.table` in `objectViews`). The full `StudentRosterRow` React composition and prototype route integration remain incomplete.
 
 **Object:** Student
-**Context:** Class Roster (shapeshifter value: `class-roster`)
-**Shape:** Row (compact)
+**Context:** Class Roster (`objectViews` entry `value`: `class-roster`)
+**Presentation:** List view, dense row (maps to `shapes.table` in JSON)
 **Primary user:** Teacher viewing their class
 **User intent:** "Who is in my class and how are they performing?"
 
 **Figma source:** [Common Objects — Roster](https://www.figma.com/design/cvYcOvHomKCMt3uGOFSEdR/Common-Objects?node-id=141-2205)
 
 **OOUX sources:**
-- [Object Guide: Student](https://illuminate.atlassian.net/wiki/spaces/OOUX/pages/19015172104/Object+Guide+Student) — Shapeshifter Matrix, CTAs, attributes
+- [Object Guide: Student](https://illuminate.atlassian.net/wiki/spaces/OOUX/pages/19015172104/Object+Guide+Student) — Object views, CTAs, attributes
 - [Object Guide: Class](https://illuminate.atlassian.net/wiki/spaces/OOUX/pages/19012387599/Object+Guide+Class) — Student↔Class MCSFD (sorts, filters)
 - Student object data: `data/objects/student.json`
 
@@ -133,7 +133,7 @@ Same visual treatment as Transferred:
 
 ## CTAs
 
-Derived from `data/objects/student.json` shapeshifter entry for `class-roster`:
+Derived from `data/objects/student.json` `objectViews` entry for context `class-roster`:
 
 | CTA | Priority | Placement | Behavior |
 |-----|----------|-----------|----------|

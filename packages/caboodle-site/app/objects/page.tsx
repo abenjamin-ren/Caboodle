@@ -14,7 +14,7 @@ export default function ObjectLibraryPage() {
       .map(slug => allObjects.find(o => o.identity.slug === slug))
       .filter(Boolean);
     const viewCount = objs.reduce(
-      (sum, o) => sum + (o?.shapeshifterMatrix?.length ?? 0),
+      (sum, o) => sum + (o?.objectViews?.length ?? 0),
       0
     );
     return { ...sys, objectCount: objs.length, viewCount };

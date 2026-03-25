@@ -6,7 +6,11 @@
     "objectType": "core",
     "category": "container",
     "definition": "A School is a physical or virtual educational site within a district where students are enrolled, teachers are assigned, and Renaissance products are provisioned and configured — serving as the mid-level organizational container that determines product access, data scope, and administrative authority.",
-    "synonyms": ["site", "building", "campus"],
+    "synonyms": [
+      "site",
+      "building",
+      "campus"
+    ],
     "products": "All products"
   },
   "variations": [],
@@ -15,7 +19,7 @@
       "layout": "card",
       "heading": "Card layout",
       "description": "How a School appears in grids and dashboards",
-      "defaultShape": "card",
+      "defaultShape": "list",
       "componentTag": "ren-school-card",
       "examples": [
         {
@@ -65,7 +69,10 @@
           "roles": "School Admin, District Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["school-admin", "district-admin"]
+          "roleKeys": [
+            "school-admin",
+            "district-admin"
+          ]
         },
         {
           "name": "Manage Users",
@@ -74,7 +81,10 @@
           "priority": "S",
           "crossObjectSlug": "teacher",
           "crossObjectName": "Teacher",
-          "roleKeys": ["school-admin", "district-admin"]
+          "roleKeys": [
+            "school-admin",
+            "district-admin"
+          ]
         }
       ]
     },
@@ -82,7 +92,7 @@
       "layout": "list",
       "heading": "List layout",
       "description": "How a School appears in district rosters and tables",
-      "defaultShape": "row",
+      "defaultShape": "list",
       "componentTag": "ren-school-row",
       "examples": [
         {
@@ -149,7 +159,10 @@
           "roles": "School Admin, District Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["school-admin", "district-admin"]
+          "roleKeys": [
+            "school-admin",
+            "district-admin"
+          ]
         },
         {
           "name": "Manage Users",
@@ -158,7 +171,10 @@
           "priority": "S",
           "crossObjectSlug": "teacher",
           "crossObjectName": "Teacher",
-          "roleKeys": ["school-admin", "district-admin"]
+          "roleKeys": [
+            "school-admin",
+            "district-admin"
+          ]
         }
       ]
     },
@@ -166,7 +182,7 @@
       "layout": "detail",
       "heading": "Detail page layout",
       "description": "What users see when they open a full School record",
-      "defaultShape": "profile",
+      "defaultShape": "details",
       "componentTag": "ren-school-profile",
       "examples": [
         {
@@ -282,14 +298,20 @@
           "roles": "School Admin, District Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["school-admin", "district-admin"]
+          "roleKeys": [
+            "school-admin",
+            "district-admin"
+          ]
         },
         {
           "name": "Edit",
           "roles": "School Admin, District Admin",
           "permission": "Write",
           "priority": "S",
-          "roleKeys": ["school-admin", "district-admin"]
+          "roleKeys": [
+            "school-admin",
+            "district-admin"
+          ]
         },
         {
           "name": "Manage Users",
@@ -298,14 +320,20 @@
           "priority": "S",
           "crossObjectSlug": "teacher",
           "crossObjectName": "Teacher",
-          "roleKeys": ["school-admin", "district-admin"]
+          "roleKeys": [
+            "school-admin",
+            "district-admin"
+          ]
         },
         {
           "name": "Configure Products",
           "roles": "School Admin, District Admin",
           "permission": "Write",
           "priority": "T",
-          "roleKeys": ["school-admin", "district-admin"]
+          "roleKeys": [
+            "school-admin",
+            "district-admin"
+          ]
         },
         {
           "name": "View Reports",
@@ -314,21 +342,28 @@
           "priority": "S",
           "crossObjectSlug": "score",
           "crossObjectName": "Score",
-          "roleKeys": ["school-admin", "district-admin"]
+          "roleKeys": [
+            "school-admin",
+            "district-admin"
+          ]
         },
         {
           "name": "Create",
           "roles": "District Admin, System",
           "permission": "Write",
           "priority": "T",
-          "roleKeys": ["district-admin"]
+          "roleKeys": [
+            "district-admin"
+          ]
         },
         {
           "name": "Deactivate",
           "roles": "District Admin",
           "permission": "Write",
           "priority": "Q",
-          "roleKeys": ["district-admin"]
+          "roleKeys": [
+            "district-admin"
+          ]
         },
         {
           "name": "Manage Classes",
@@ -337,7 +372,9 @@
           "priority": "T",
           "crossObjectSlug": "class",
           "crossObjectName": "Class",
-          "roleKeys": ["school-admin"]
+          "roleKeys": [
+            "school-admin"
+          ]
         }
       ]
     }
@@ -353,8 +390,14 @@
       "whenClause": "I add, remove, or reassign users at my school,",
       "thenClause": "their product access, class assignments, and data scope update immediately to reflect the change.",
       "crossObjects": [
-        { "slug": "teacher", "name": "Teacher" },
-        { "slug": "student", "name": "Student" }
+        {
+          "slug": "teacher",
+          "name": "Teacher"
+        },
+        {
+          "slug": "student",
+          "name": "Student"
+        }
       ]
     },
     {
@@ -366,7 +409,12 @@
       "benefit": "I can see aggregate performance data, assessment completion rates, and growth trends across all students at my school.",
       "whenClause": "I navigate to my school's reports,",
       "thenClause": "I see dashboards showing reading and math performance, assessment completion, and growth metrics for all enrolled students.",
-      "crossObjects": [{ "slug": "score", "name": "Score" }]
+      "crossObjects": [
+        {
+          "slug": "score",
+          "name": "Score"
+        }
+      ]
     },
     {
       "title": "Configure Product Settings",
@@ -431,8 +479,18 @@
       }
     ],
     "transitions": [
-      { "from": "Active", "to": ["Inactive"] },
-      { "from": "Inactive", "to": ["Reactivated"] }
+      {
+        "from": "Active",
+        "to": [
+          "Inactive"
+        ]
+      },
+      {
+        "from": "Inactive",
+        "to": [
+          "Reactivated"
+        ]
+      }
     ]
   },
   "relationships": [
@@ -464,7 +522,12 @@
       "dependencies": "A School cannot exist without a District. District-level license changes cascade to all schools within."
     }
   ],
-  "relatedObjects": ["district", "student", "teacher", "class"],
+  "relatedObjects": [
+    "district",
+    "student",
+    "teacher",
+    "class"
+  ],
   "nestedObjects": [
     {
       "slug": "student",
@@ -592,14 +655,20 @@
       "roles": "School Admin, District Admin",
       "permission": "Read",
       "priority": "P",
-      "roleKeys": ["school-admin", "district-admin"]
+      "roleKeys": [
+        "school-admin",
+        "district-admin"
+      ]
     },
     {
       "name": "Edit",
       "roles": "School Admin, District Admin",
       "permission": "Write",
       "priority": "S",
-      "roleKeys": ["school-admin", "district-admin"]
+      "roleKeys": [
+        "school-admin",
+        "district-admin"
+      ]
     },
     {
       "name": "Manage Users",
@@ -608,14 +677,20 @@
       "priority": "S",
       "crossObjectSlug": "teacher",
       "crossObjectName": "Teacher",
-      "roleKeys": ["school-admin", "district-admin"]
+      "roleKeys": [
+        "school-admin",
+        "district-admin"
+      ]
     },
     {
       "name": "Configure Products",
       "roles": "School Admin, District Admin",
       "permission": "Write",
       "priority": "T",
-      "roleKeys": ["school-admin", "district-admin"]
+      "roleKeys": [
+        "school-admin",
+        "district-admin"
+      ]
     },
     {
       "name": "View Reports",
@@ -624,21 +699,28 @@
       "priority": "S",
       "crossObjectSlug": "score",
       "crossObjectName": "Score",
-      "roleKeys": ["school-admin", "district-admin"]
+      "roleKeys": [
+        "school-admin",
+        "district-admin"
+      ]
     },
     {
       "name": "Create",
       "roles": "District Admin, System",
       "permission": "Write",
       "priority": "T",
-      "roleKeys": ["district-admin"]
+      "roleKeys": [
+        "district-admin"
+      ]
     },
     {
       "name": "Deactivate",
       "roles": "District Admin",
       "permission": "Write",
       "priority": "Q",
-      "roleKeys": ["district-admin"]
+      "roleKeys": [
+        "district-admin"
+      ]
     },
     {
       "name": "Manage Classes",
@@ -647,7 +729,9 @@
       "priority": "T",
       "crossObjectSlug": "class",
       "crossObjectName": "Class",
-      "roleKeys": ["school-admin"]
+      "roleKeys": [
+        "school-admin"
+      ]
     }
   ],
   "sipValidation": {
@@ -687,60 +771,214 @@
       "notes": "Legacy term from platform data model; being deprecated in favor of School"
     }
   ],
-  "shapeshifterMatrix": [
+  "objectViews": [
     {
+      "viewType": "list",
       "context": "District School List",
       "value": "district-school-list",
-      "shape": "data-row",
       "description": "Schools in a district listed with enrollment, staffing, and licensing data. District admins compare schools and manage user access from this table.",
-      "visibleAttributes": ["School Name", "Grade Span", "Student Count", "Teacher Count", "Product Licenses"],
-      "availableCTAs": ["View", "Manage Users"],
-      "cardShape": "Data row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "School Name",
+            "Grade Span",
+            "Student Count",
+            "Teacher Count",
+            "Product Licenses"
+          ],
+          "availableCTAs": [
+            "View",
+            "Manage Users"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "School Name",
+            "Grade Span",
+            "Student Count",
+            "Teacher Count",
+            "Product Licenses"
+          ],
+          "availableCTAs": [
+            "View",
+            "Manage Users"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "School Name",
+            "Grade Span",
+            "Student Count",
+            "Teacher Count",
+            "Product Licenses"
+          ],
+          "availableCTAs": [
+            "View",
+            "Manage Users"
+          ]
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "School Detail",
       "value": "school-detail",
-      "shape": "profile",
       "description": "The complete school record — enrollment, staffing, contact info, product configuration, and administrative tools. School and district admins manage everything about a school from this page.",
-      "visibleAttributes": ["School Name", "District", "Grade Span", "Student Count", "Teacher Count", "Address", "NCES ID", "State School ID", "Product Licenses", "Admin Contact(s)", "Phone", "Time Zone", "School Type", "Status"],
-      "availableCTAs": ["View", "Edit", "Manage Users", "Configure Products", "View Reports", "Create", "Deactivate", "Manage Classes"],
-      "cardShape": "Full page"
+      "visibleAttributes": [
+        "School Name",
+        "District",
+        "Grade Span",
+        "Student Count",
+        "Teacher Count",
+        "Address",
+        "NCES ID",
+        "State School ID",
+        "Product Licenses",
+        "Admin Contact(s)",
+        "Phone",
+        "Time Zone",
+        "School Type",
+        "Status"
+      ],
+      "availableCTAs": [
+        "View",
+        "Edit",
+        "Manage Users",
+        "Configure Products",
+        "View Reports",
+        "Create",
+        "Deactivate",
+        "Manage Classes"
+      ]
     },
     {
+      "viewType": "list",
       "context": "School Picker",
       "value": "school-picker",
-      "shape": "mini-row",
       "description": "A minimal row for selecting a school during setup or filtering. Shows name, grade span, and student count — just enough to choose the right one.",
-      "visibleAttributes": ["School Name", "Grade Span", "Student Count"],
-      "availableCTAs": [],
-      "cardShape": "Mini row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "School Name",
+            "Grade Span",
+            "Student Count"
+          ],
+          "availableCTAs": []
+        },
+        "grid": {
+          "visibleAttributes": [
+            "School Name",
+            "Grade Span",
+            "Student Count"
+          ],
+          "availableCTAs": []
+        },
+        "table": {
+          "visibleAttributes": [
+            "School Name",
+            "Grade Span",
+            "Student Count"
+          ],
+          "availableCTAs": []
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "Report Header",
       "value": "report-header",
-      "shape": "header",
       "description": "The school displayed as a banner identifying which school a report covers. Provides context for the data below — no interactive elements.",
-      "visibleAttributes": ["School Name", "Grade Span", "Student Count"],
-      "availableCTAs": [],
-      "cardShape": "Banner"
+      "visibleAttributes": [
+        "School Name",
+        "Grade Span",
+        "Student Count"
+      ],
+      "availableCTAs": []
     },
     {
+      "viewType": "list",
       "context": "District Dashboard Card",
       "value": "district-dashboard",
-      "shape": "card",
       "description": "A summary card for each school on the district dashboard, showing enrollment and staffing at a glance. District admins scan these to spot schools that need attention.",
-      "visibleAttributes": ["School Name", "Grade Span", "Student Count", "Teacher Count"],
-      "availableCTAs": ["View"],
-      "cardShape": "Summary card"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "School Name",
+            "Grade Span",
+            "Student Count",
+            "Teacher Count"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "School Name",
+            "Grade Span",
+            "Student Count",
+            "Teacher Count"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "School Name",
+            "Grade Span",
+            "Student Count",
+            "Teacher Count"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        }
+      }
     },
     {
+      "viewType": "list",
       "context": "School Search Results",
       "value": "school-search",
-      "shape": "row",
       "description": "Schools matching a search query with district affiliation and enrollment numbers. Used to find and navigate to a specific school.",
-      "visibleAttributes": ["School Name", "District", "Grade Span", "Student Count", "Teacher Count"],
-      "availableCTAs": ["View"],
-      "cardShape": "Compact row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "School Name",
+            "District",
+            "Grade Span",
+            "Student Count",
+            "Teacher Count"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "School Name",
+            "District",
+            "Grade Span",
+            "Student Count",
+            "Teacher Count"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "School Name",
+            "District",
+            "Grade Span",
+            "Student Count",
+            "Teacher Count"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        }
+      }
     }
   ]
 }

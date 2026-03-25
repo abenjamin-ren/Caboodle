@@ -56,7 +56,7 @@ Based on the project description, present the most relevant goals and ask:
 |------|-------------|----------------|
 | **a) New Feature / Product** | Building something that doesn't exist yet | Full Discovery, Prioritization, and Representation |
 | **b) Redesign** | Improving something that already exists | Audit existing objects, fix gaps, rebuild artifacts |
-| **c) Consistency Audit** | Checking for object inconsistencies across screens or products | Shapeshifter Matrix, Object Cards, Nav Flow review |
+| **c) Consistency Audit** | Checking for object inconsistencies across screens or products | Shapeshifter Matrix Builder (document variance → `objectViews` in JSON), Object Cards, Nav Flow review |
 | **d) Object Documentation** | Just need solid Object Guides | Object Discovery then Object Guides (targeted) |
 | **e) Engineering Handoff** | Design is done, engineers need specs | Object Guides, MCSFD Specs, Engineering Handoff |
 | **f) Workshop Prep** | Running an ORCA session with a team | Facilitation Kit, Discovery, NOM (collaborative) |

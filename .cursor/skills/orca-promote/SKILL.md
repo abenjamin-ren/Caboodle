@@ -88,7 +88,7 @@ For each confirmed artifact, apply the appropriate field mapping:
 | 09 Object Cards | `objects/{slug}.md` | Updates `representations` array (card layout section) |
 | 10 Nav Flow | `10-nav-flow.md` | Cross-object artifact — no direct JSON field. Writes to `orca/{project}/cross-object/nav-flow.md` |
 | 11 CTA Placement | `objects/{slug}.md` | Updates CTA entries within `representations[].ctas` |
-| 12 Shapeshifter Matrix | `objects/{slug}.md` | Updates `shapeshifterMatrix` array |
+| 12 Shapeshifter Matrix | `objects/{slug}.md` | Updates `objectViews` array |
 
 ### Step 4 — Merge into JSON
 
@@ -147,7 +147,8 @@ When step 01 (Object Discovery) introduces new objects that don't have JSON file
     "purpose": { "pass": true, "evidence": "" },
     "verdict": ""
   },
-  "synonyms": []
+  "synonyms": [],
+  "objectViews": []
 }
 ```
 

@@ -1,6 +1,8 @@
-# Shapeshifter Matrix — OOUX Resource Site
+# Object Views — OOUX Resource Site
 
-> **Status: Process artifact** — Variant matrix for consistent display of Caboodle's six meta-objects. Shapeshifter data is stored in object JSON files as `shapeshifterMatrix` entries. The View Inspector at `/objects/[systemSlug]/[objectSlug]/views/[viewSlug]` provides per-context attribute/CTA editing.
+> **Status: Process artifact** — Variant matrix for consistent display of Caboodle's six meta-objects. Object view data is stored in object JSON files as `objectViews` entries (`ListView` with `shapes.list` / `shapes.grid` / `shapes.table`, or `DetailView`). The View Inspector at `/objects/[systemSlug]/[objectSlug]/views/[viewSlug]` provides per-context attribute/CTA editing.
+>
+> **ORCA:** This artifact is produced by **Step 12: Shapeshifter Matrix Builder** (same ancient truth: Attributes; anti-pattern: **Shapeshifters**).
 
 **Project:** OOUX Resource Site (Internal Renaissance)
 
@@ -9,11 +11,13 @@
 
 This matrix defines every intentional variant for each object — documenting what changes, what stays constant, and WHY. If a difference isn't documented here, it's a bug.
 
-> **Scope Note:** This document covers shapeshifting for the **6 resource site objects**. For the **cross-product Shapeshifter Matrix** covering the 13 core Renaissance objects — including cross-product invariant rules (e.g., "Student in Star vs. Student in Freckle must share identity color, avatar shape, and name treatment") — see [`design-system.md`](design-system.md), Section 4: Cross-Product Shapeshifter Rules. The invariant rules and variant definitions below establish the pattern that the product design system extends to all 13 objects.
+> **Scope Note:** This document covers contextual variation for the **6 resource site objects**. For **cross-product object view rules** covering the 13 core Renaissance objects — including cross-product invariant rules (e.g., "Student in Star vs. Student in Freckle must share identity color, avatar shape, and name treatment") — see [`design-system.md`](design-system.md), Section 4: Cross-Product Object View Rules. The invariant rules and variant definitions below establish the pattern that the product design system extends to all 13 objects.
+
+> **Data model:** In Caboodle JSON, each context is an `ObjectView`: **`viewType: 'list'`** exposes optional `ShapeSpec` entries under `shapes` for **`list`**, **`grid`**, and **`table`** (see `ValidShape` in `data/schema.ts`). **`viewType: 'detail'`** carries `visibleAttributes` and `availableCTAs` for full-record views. The presentation columns below (Tooltip, Compact, Standard, Expanded, Embedded) are **design-language variants**; map them to list/detail views and list shapes when promoting to `objectViews`.
 
 ---
 
-## The Shapeshifter Rule (Invariants)
+## Object view invariants (consistency rule)
 
 Across ALL variants of ANY object, these three elements **never change**:
 
@@ -41,7 +45,7 @@ Every object can appear in up to 5 contexts:
 
 ---
 
-## Shapeshifter Matrix
+## Object views matrix
 
 ### Skill
 
@@ -208,4 +212,4 @@ All four anti-patterns have been addressed:
 | **09 Object Cards** | Things different → look different | Masked Objects | ✅ 6 visually distinct cards |
 | **10 Nav Flow** | Navigate through relationships | Isolated Objects | ✅ No dead ends, all objects linked |
 | **11 CTA Placement** | Act through direct manipulation | Broken Objects | ✅ CTAs on every card and detail page |
-| **12 Shapeshifter Matrix** | Same → look the same | Shapeshifters | ✅ All variants documented with invariants |
+| **12 Shapeshifter Matrix Builder** | Same → look the same | Shapeshifters | ✅ All variants documented with invariants |

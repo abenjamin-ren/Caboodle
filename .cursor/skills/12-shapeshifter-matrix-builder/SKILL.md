@@ -27,7 +27,7 @@ Act as a consistency-focused OOUX facilitator. You will:
 
 Before starting, read from the project workspace and object data:
 
-1. **Target object JSON** — Read `data/objects/{slug}.json` for the object's full definition: attributes, CTAs, representations, nested objects, synonyms, and any existing shapeshifter data.
+1. **Target object JSON** — Read `data/objects/{slug}.json` for the object's full definition: attributes, CTAs, representations, nested objects, synonyms, and any existing `objectViews` data.
 2. **ORCA workspace** — Read `orca/{project}/` for in-progress artifacts:
    - `10-nav-flow.md` — where this object appears in the system (all contexts)
    - `objects/{slug}.md` — per-object artifacts including card specs (step 9) and CTA placement (step 11)
@@ -200,7 +200,7 @@ The body contains the Shapeshifter Matrix table, consistency report, recommendat
 After the user confirms the Shapeshifter Matrix:
 
 1. Update frontmatter status from `draft` to `confirmed`
-2. Present: "The Shapeshifter Matrix is confirmed and saved to `orca/{project}/objects/{slug}.md`. When you're ready, use the **orca-promote** skill to sync the matrix into the `shapeshifterMatrix` array on `data/objects/{slug}.json`."
+2. Present: "The Shapeshifter Matrix is confirmed and saved to `orca/{project}/objects/{slug}.md`. When you're ready, use the **orca-promote** skill to sync the matrix into the `objectViews` array on `data/objects/{slug}.json`."
 3. Present the ORCA completion message:
 
 > **The full ORCA cycle is now complete.** You've worked through all 12 steps across three rounds:

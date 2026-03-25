@@ -6,7 +6,12 @@
     "objectType": "domain",
     "category": "content",
     "definition": "An Activity is a discrete, interactive element embedded within a Nearpod Lesson that presents a prompt or question to students, collects their responses, and optionally produces a score.",
-    "synonyms": ["Question", "Quiz", "Interactive Element", "Engagement Check"],
+    "synonyms": [
+      "Question",
+      "Quiz",
+      "Interactive Element",
+      "Engagement Check"
+    ],
     "products": "Nearpod"
   },
   "variations": [],
@@ -15,7 +20,7 @@
       "layout": "card",
       "heading": "Card layout",
       "description": "How an Activity appears in lesson builders and activity grids",
-      "defaultShape": "card",
+      "defaultShape": "list",
       "componentTag": "ren-activity-card",
       "examples": [
         {
@@ -69,14 +74,18 @@
           "roles": "Teacher",
           "permission": "Write",
           "priority": "S",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Preview Activity",
           "roles": "Teacher",
           "permission": "Read",
           "priority": "S",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         }
       ]
     },
@@ -84,7 +93,7 @@
       "layout": "list",
       "heading": "List layout",
       "description": "How an Activity appears in lesson activity lists and reorder views",
-      "defaultShape": "row",
+      "defaultShape": "list",
       "componentTag": "ren-activity-row",
       "examples": [
         {
@@ -142,7 +151,9 @@
           "priority": "T",
           "crossObjectSlug": "lesson",
           "crossObjectName": "Lesson",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Remove Activity from Lesson",
@@ -151,7 +162,9 @@
           "priority": "T",
           "crossObjectSlug": "lesson",
           "crossObjectName": "Lesson",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         }
       ]
     },
@@ -159,7 +172,7 @@
       "layout": "detail",
       "heading": "Detail page layout",
       "description": "Full Activity view during configuration or results review",
-      "defaultShape": "profile",
+      "defaultShape": "details",
       "componentTag": "ren-activity-profile",
       "examples": [
         {
@@ -236,14 +249,18 @@
           "roles": "Teacher",
           "permission": "Write",
           "priority": "S",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Preview Activity",
           "roles": "Teacher",
           "permission": "Read",
           "priority": "S",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Launch Activity",
@@ -252,7 +269,9 @@
           "priority": "P",
           "crossObjectSlug": "live-session",
           "crossObjectName": "Live Session",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "View Activity Results",
@@ -261,7 +280,9 @@
           "priority": "S",
           "crossObjectSlug": "score",
           "crossObjectName": "Score",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         }
       ]
     }
@@ -276,7 +297,12 @@
       "benefit": "I can make my lesson interactive and check for student understanding at key moments.",
       "whenClause": "I insert an activity into my lesson,",
       "thenClause": "it appears in the lesson timeline at the specified position and is ready for configuration.",
-      "crossObjects": [{ "slug": "lesson", "name": "Lesson" }]
+      "crossObjects": [
+        {
+          "slug": "lesson",
+          "name": "Lesson"
+        }
+      ]
     },
     {
       "title": "Launch Activity During Session",
@@ -287,7 +313,12 @@
       "benefit": "students see the prompt on their devices and can submit responses in real time.",
       "whenClause": "I advance to an activity slide during a live session,",
       "thenClause": "the activity is presented to all connected students and responses begin streaming in.",
-      "crossObjects": [{ "slug": "live-session", "name": "Live Session" }]
+      "crossObjects": [
+        {
+          "slug": "live-session",
+          "name": "Live Session"
+        }
+      ]
     },
     {
       "title": "Respond to Activity",
@@ -298,7 +329,12 @@
       "benefit": "my answer is recorded and I can see if I was correct (for auto-scored activities).",
       "whenClause": "I submit my response to an activity,",
       "thenClause": "my response is saved, the response count increments, and a Score is generated if scoring is enabled.",
-      "crossObjects": [{ "slug": "score", "name": "Score" }]
+      "crossObjects": [
+        {
+          "slug": "score",
+          "name": "Score"
+        }
+      ]
     }
   ],
   "businessRules": [
@@ -379,9 +415,25 @@
       }
     ],
     "transitions": [
-      { "from": "Draft", "to": ["Published"] },
-      { "from": "Published", "to": ["Launched", "Draft"] },
-      { "from": "Launched", "to": ["Closed"] }
+      {
+        "from": "Draft",
+        "to": [
+          "Published"
+        ]
+      },
+      {
+        "from": "Published",
+        "to": [
+          "Launched",
+          "Draft"
+        ]
+      },
+      {
+        "from": "Launched",
+        "to": [
+          "Closed"
+        ]
+      }
     ]
   },
   "relationships": [
@@ -413,7 +465,12 @@
       "dependencies": "A Live Session must reference a Lesson to access its Activities. If an Activity is skipped, it is excluded from the session report."
     }
   ],
-  "relatedObjects": ["lesson", "live-session", "student", "score"],
+  "relatedObjects": [
+    "lesson",
+    "live-session",
+    "student",
+    "score"
+  ],
   "nestedObjects": [
     {
       "slug": "score",
@@ -502,7 +559,9 @@
       "priority": "P",
       "crossObjectSlug": "lesson",
       "crossObjectName": "Lesson",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Remove Activity from Lesson",
@@ -511,21 +570,27 @@
       "priority": "T",
       "crossObjectSlug": "lesson",
       "crossObjectName": "Lesson",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Configure Activity",
       "roles": "Teacher",
       "permission": "Write",
       "priority": "S",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Preview Activity",
       "roles": "Teacher",
       "permission": "Read",
       "priority": "S",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Reorder Activity",
@@ -534,7 +599,9 @@
       "priority": "T",
       "crossObjectSlug": "lesson",
       "crossObjectName": "Lesson",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Duplicate Activity",
@@ -543,7 +610,9 @@
       "priority": "T",
       "crossObjectSlug": "lesson",
       "crossObjectName": "Lesson",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Launch Activity",
@@ -552,7 +621,9 @@
       "priority": "P",
       "crossObjectSlug": "live-session",
       "crossObjectName": "Live Session",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Skip Activity",
@@ -561,7 +632,9 @@
       "priority": "T",
       "crossObjectSlug": "live-session",
       "crossObjectName": "Live Session",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Respond to Activity",
@@ -570,7 +643,9 @@
       "priority": "P",
       "crossObjectSlug": "score",
       "crossObjectName": "Score",
-      "roleKeys": ["student"]
+      "roleKeys": [
+        "student"
+      ]
     },
     {
       "name": "View Activity Results",
@@ -579,7 +654,9 @@
       "priority": "S",
       "crossObjectSlug": "score",
       "crossObjectName": "Score",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     }
   ],
   "sipValidation": {
@@ -619,33 +696,120 @@
       "notes": "Frames activities as formative assessment checkpoints"
     }
   ],
-  "shapeshifterMatrix": [
+  "objectViews": [
     {
+      "viewType": "list",
       "context": "In Lesson Editor",
       "value": "in-lesson-editor",
-      "shape": "card",
       "description": "Activities within a lesson being authored, shown as draggable cards with scoring and point settings. Authors configure, preview, reorder, or duplicate activities while building a lesson.",
-      "visibleAttributes": ["Title/Label", "Activity Type", "Scoring Method", "Point Value"],
-      "availableCTAs": ["Configure Activity", "Preview Activity", "Reorder Activity", "Duplicate Activity", "Remove Activity from Lesson"],
-      "cardShape": "Medium card"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Title/Label",
+            "Activity Type",
+            "Scoring Method",
+            "Point Value"
+          ],
+          "availableCTAs": [
+            "Configure Activity",
+            "Preview Activity",
+            "Reorder Activity",
+            "Duplicate Activity",
+            "Remove Activity from Lesson"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Title/Label",
+            "Activity Type",
+            "Scoring Method",
+            "Point Value"
+          ],
+          "availableCTAs": [
+            "Configure Activity",
+            "Preview Activity",
+            "Reorder Activity",
+            "Duplicate Activity",
+            "Remove Activity from Lesson"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Title/Label",
+            "Activity Type",
+            "Scoring Method",
+            "Point Value"
+          ],
+          "availableCTAs": [
+            "Configure Activity",
+            "Preview Activity",
+            "Reorder Activity",
+            "Duplicate Activity",
+            "Remove Activity from Lesson"
+          ]
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "During Live Session",
       "value": "during-live-session",
-      "shape": "profile",
       "description": "The active activity during a live session, displayed full-screen with real-time response counts. Teachers launch activities, monitor participation, and control pacing.",
-      "visibleAttributes": ["Title/Label", "Activity Type", "Question/Prompt", "Time Limit", "Response Count"],
-      "availableCTAs": ["Launch Activity", "Skip Activity"],
-      "cardShape": "Full screen"
+      "visibleAttributes": [
+        "Title/Label",
+        "Activity Type",
+        "Question/Prompt",
+        "Time Limit",
+        "Response Count"
+      ],
+      "availableCTAs": [
+        "Launch Activity",
+        "Skip Activity"
+      ]
     },
     {
+      "viewType": "list",
       "context": "In Report",
       "value": "in-report",
-      "shape": "row",
       "description": "Activities listed with response counts and average scores in a lesson report. Teachers review which activities students struggled with or excelled at.",
-      "visibleAttributes": ["Title/Label", "Activity Type", "Response Count", "Average Score", "Point Value"],
-      "availableCTAs": ["View Activity Results"],
-      "cardShape": "Data row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Title/Label",
+            "Activity Type",
+            "Response Count",
+            "Average Score",
+            "Point Value"
+          ],
+          "availableCTAs": [
+            "View Activity Results"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Title/Label",
+            "Activity Type",
+            "Response Count",
+            "Average Score",
+            "Point Value"
+          ],
+          "availableCTAs": [
+            "View Activity Results"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Title/Label",
+            "Activity Type",
+            "Response Count",
+            "Average Score",
+            "Point Value"
+          ],
+          "availableCTAs": [
+            "View Activity Results"
+          ]
+        }
+      }
     }
   ]
 }

@@ -6,7 +6,11 @@
     "objectType": "core",
     "category": "container",
     "definition": "A Class is an organizational grouping of students under one or more teachers for a specific subject, grade level, or instructional period that serves as the primary unit for assigning work, administering assessments, viewing reports, and managing day-to-day instruction across Renaissance products.",
-    "synonyms": ["section", "group", "roster"],
+    "synonyms": [
+      "section",
+      "group",
+      "roster"
+    ],
     "products": "All products"
   },
   "variations": [],
@@ -15,7 +19,7 @@
       "layout": "card",
       "heading": "Card layout",
       "description": "How a Class appears in grids and dashboards",
-      "defaultShape": "card",
+      "defaultShape": "list",
       "componentTag": "ren-class-card",
       "examples": [
         {
@@ -105,7 +109,10 @@
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Create Assignment",
@@ -114,7 +121,9 @@
           "priority": "S",
           "crossObjectSlug": "assignment",
           "crossObjectName": "Assignment",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         }
       ]
     },
@@ -122,7 +131,7 @@
       "layout": "list",
       "heading": "List layout",
       "description": "How a Class appears in rosters and tables",
-      "defaultShape": "row",
+      "defaultShape": "list",
       "componentTag": "ren-class-row",
       "examples": [
         {
@@ -191,7 +200,10 @@
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Create Assignment",
@@ -200,7 +212,9 @@
           "priority": "S",
           "crossObjectSlug": "assignment",
           "crossObjectName": "Assignment",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         }
       ]
     },
@@ -208,7 +222,7 @@
       "layout": "detail",
       "heading": "Detail page layout",
       "description": "What users see when they open a full Class record",
-      "defaultShape": "profile",
+      "defaultShape": "details",
       "componentTag": "ren-class-profile",
       "examples": [
         {
@@ -226,11 +240,31 @@
           "coTeachers": "Mrs. Davis",
           "sisId": "SEC-00412",
           "nestedObjects": [
-            { "label": "Students", "count": 24, "href": "#students" },
-            { "label": "Assignments", "count": 8, "href": "#assignments" },
-            { "label": "Assessments", "count": 5, "href": "#assessments" },
-            { "label": "Resources", "count": 14, "href": "#resources" },
-            { "label": "Scores", "count": 72, "href": "#scores" }
+            {
+              "label": "Students",
+              "count": 24,
+              "href": "#students"
+            },
+            {
+              "label": "Assignments",
+              "count": 8,
+              "href": "#assignments"
+            },
+            {
+              "label": "Assessments",
+              "count": 5,
+              "href": "#assessments"
+            },
+            {
+              "label": "Resources",
+              "count": 14,
+              "href": "#resources"
+            },
+            {
+              "label": "Scores",
+              "count": 72,
+              "href": "#scores"
+            }
           ]
         }
       ],
@@ -338,21 +372,29 @@
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Create",
           "roles": "Admin, System",
           "permission": "Write",
           "priority": "T",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         },
         {
           "name": "Edit",
           "roles": "Teacher, Admin",
           "permission": "Write",
           "priority": "S",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Add Students",
@@ -361,7 +403,10 @@
           "priority": "T",
           "crossObjectSlug": "student",
           "crossObjectName": "Student",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Remove Students",
@@ -370,7 +415,10 @@
           "priority": "T",
           "crossObjectSlug": "student",
           "crossObjectName": "Student",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Assign Teacher",
@@ -379,7 +427,9 @@
           "priority": "T",
           "crossObjectSlug": "teacher",
           "crossObjectName": "Teacher",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         },
         {
           "name": "Create Assignment",
@@ -388,7 +438,9 @@
           "priority": "S",
           "crossObjectSlug": "assignment",
           "crossObjectName": "Assignment",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Schedule Assessment",
@@ -397,7 +449,10 @@
           "priority": "S",
           "crossObjectSlug": "assessment",
           "crossObjectName": "Assessment",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "View Class Report",
@@ -406,21 +461,28 @@
           "priority": "S",
           "crossObjectSlug": "score",
           "crossObjectName": "Score",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Archive",
           "roles": "Admin, System",
           "permission": "Write",
           "priority": "Q",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         },
         {
           "name": "Delete",
           "roles": "Admin",
           "permission": "Write",
           "priority": "Q",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         }
       ]
     }
@@ -446,8 +508,14 @@
       "whenClause": "I create an assignment or schedule an assessment for a class,",
       "thenClause": "every active student in the class roster should receive the assignment and it should appear in their to-do lists.",
       "crossObjects": [
-        { "slug": "assignment", "name": "Assignment" },
-        { "slug": "assessment", "name": "Assessment" }
+        {
+          "slug": "assignment",
+          "name": "Assignment"
+        },
+        {
+          "slug": "assessment",
+          "name": "Assessment"
+        }
       ]
     },
     {
@@ -459,7 +527,12 @@
       "benefit": "I can identify trends, compare student performance, and adjust instruction for the group.",
       "whenClause": "I open the class report,",
       "thenClause": "aggregated scores, growth data, and performance distributions across all students in the class.",
-      "crossObjects": [{ "slug": "score", "name": "Score" }]
+      "crossObjects": [
+        {
+          "slug": "score",
+          "name": "Score"
+        }
+      ]
     }
   ],
   "businessRules": [
@@ -514,7 +587,13 @@
       }
     ],
     "transitions": [
-      { "from": "Active", "to": ["Archived", "Deleted"] }
+      {
+        "from": "Active",
+        "to": [
+          "Archived",
+          "Deleted"
+        ]
+      }
     ]
   },
   "relationships": [
@@ -546,7 +625,15 @@
       "dependencies": "If a Class is archived, scheduled future assessments are cancelled. Completed assessment results persist."
     }
   ],
-  "relatedObjects": ["student", "teacher", "school", "assessment", "assignment", "resource", "score"],
+  "relatedObjects": [
+    "student",
+    "teacher",
+    "school",
+    "assessment",
+    "assignment",
+    "resource",
+    "score"
+  ],
   "nestedObjects": [
     {
       "slug": "student",
@@ -689,21 +776,29 @@
       "roles": "Teacher, Admin",
       "permission": "Read",
       "priority": "P",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Create",
       "roles": "Admin, System",
       "permission": "Write",
       "priority": "T",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     },
     {
       "name": "Edit",
       "roles": "Teacher, Admin",
       "permission": "Write",
       "priority": "S",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Add Students",
@@ -712,7 +807,10 @@
       "priority": "T",
       "crossObjectSlug": "student",
       "crossObjectName": "Student",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Remove Students",
@@ -721,7 +819,10 @@
       "priority": "T",
       "crossObjectSlug": "student",
       "crossObjectName": "Student",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Assign Teacher",
@@ -730,7 +831,9 @@
       "priority": "T",
       "crossObjectSlug": "teacher",
       "crossObjectName": "Teacher",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     },
     {
       "name": "Create Assignment",
@@ -739,7 +842,9 @@
       "priority": "S",
       "crossObjectSlug": "assignment",
       "crossObjectName": "Assignment",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Schedule Assessment",
@@ -748,7 +853,10 @@
       "priority": "S",
       "crossObjectSlug": "assessment",
       "crossObjectName": "Assessment",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "View Class Report",
@@ -757,21 +865,28 @@
       "priority": "S",
       "crossObjectSlug": "score",
       "crossObjectName": "Score",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Archive",
       "roles": "Admin, System",
       "permission": "Write",
       "priority": "Q",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     },
     {
       "name": "Delete",
       "roles": "Admin",
       "permission": "Write",
       "priority": "Q",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     }
   ],
   "sipValidation": {
@@ -811,107 +926,389 @@
       "notes": "Often used interchangeably with class in casual conversation"
     }
   ],
-  "shapeshifterMatrix": [
+  "objectViews": [
     {
+      "viewType": "list",
       "context": "Teachers Class List",
       "value": "teacher-class-list",
-      "shape": "card",
       "description": "Classes a teacher is responsible for, shown as cards with student count and active assignment status. The starting point for creating assignments, scheduling assessments, and viewing class reports.",
-      "visibleAttributes": ["Class Name", "Grade Level", "Subject", "Student Count"],
-      "availableCTAs": ["View", "Create Assignment", "Schedule Assessment", "View Class Report"],
-      "cardShape": "Medium card",
       "userIntent": "What classes do I have, and what's their current status?",
       "contextDataSchema": {
-        "activeAssignmentCount": { "type": "number", "description": "Number of active assignments" },
-        "recentAssessment": { "type": "string", "description": "Name of last assessment given" },
-        "averageScore": { "type": "number", "description": "Class average on recent assessment" },
-        "averageGrowth": { "type": "number", "description": "Class average SGP" }
+        "activeAssignmentCount": {
+          "type": "number",
+          "description": "Number of active assignments"
+        },
+        "recentAssessment": {
+          "type": "string",
+          "description": "Name of last assessment given"
+        },
+        "averageScore": {
+          "type": "number",
+          "description": "Class average on recent assessment"
+        },
+        "averageGrowth": {
+          "type": "number",
+          "description": "Class average SGP"
+        }
+      },
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Class Name",
+            "Grade Level",
+            "Subject",
+            "Student Count"
+          ],
+          "availableCTAs": [
+            "View",
+            "Create Assignment",
+            "Schedule Assessment",
+            "View Class Report"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Class Name",
+            "Grade Level",
+            "Subject",
+            "Student Count"
+          ],
+          "availableCTAs": [
+            "View",
+            "Create Assignment",
+            "Schedule Assessment",
+            "View Class Report"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Class Name",
+            "Grade Level",
+            "Subject",
+            "Student Count"
+          ],
+          "availableCTAs": [
+            "View",
+            "Create Assignment",
+            "Schedule Assessment",
+            "View Class Report"
+          ]
+        }
       }
     },
     {
+      "viewType": "list",
       "context": "School Admin Class List",
       "value": "admin-class-list",
-      "shape": "data-row",
       "description": "All classes across a school with teacher, enrollment, and performance metrics in a data table. Admins compare class performance, attendance, and spot patterns across the roster.",
-      "visibleAttributes": ["Class Name", "Teacher", "Grade Level", "Subject", "Student Count"],
-      "availableCTAs": ["View", "Edit"],
-      "cardShape": "Data row",
       "userIntent": "How are all classes performing across my school?",
       "contextDataSchema": {
-        "averageScore": { "type": "number", "description": "Class average score" },
-        "attendanceRate": { "type": "number", "description": "Class attendance percentage" },
-        "benchmarkAbovePercent": { "type": "number", "description": "Percentage of students at/above benchmark" }
+        "averageScore": {
+          "type": "number",
+          "description": "Class average score"
+        },
+        "attendanceRate": {
+          "type": "number",
+          "description": "Class attendance percentage"
+        },
+        "benchmarkAbovePercent": {
+          "type": "number",
+          "description": "Percentage of students at/above benchmark"
+        }
+      },
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Class Name",
+            "Teacher",
+            "Grade Level",
+            "Subject",
+            "Student Count"
+          ],
+          "availableCTAs": [
+            "View",
+            "Edit"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Class Name",
+            "Teacher",
+            "Grade Level",
+            "Subject",
+            "Student Count"
+          ],
+          "availableCTAs": [
+            "View",
+            "Edit"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Class Name",
+            "Teacher",
+            "Grade Level",
+            "Subject",
+            "Student Count"
+          ],
+          "availableCTAs": [
+            "View",
+            "Edit"
+          ]
+        }
       }
     },
     {
+      "viewType": "list",
       "context": "Students Class List",
       "value": "student-class-list",
-      "shape": "compact-card",
       "description": "A student's enrolled classes shown as compact cards with teacher name and upcoming due dates. Students check what's due next and navigate to class content.",
-      "visibleAttributes": ["Class Name", "Teacher", "Subject"],
-      "availableCTAs": ["View"],
-      "cardShape": "Compact card",
       "userIntent": "What classes am I in, and what's due?",
       "contextDataSchema": {
-        "nextAssignment": { "type": "string", "description": "Next due assignment name" },
-        "nextDueDate": { "type": "string", "description": "When next assignment is due" },
-        "myGrade": { "type": "string", "description": "Current grade in the class" },
-        "dueAssignmentCount": { "type": "number", "description": "Number of assignments due" }
+        "nextAssignment": {
+          "type": "string",
+          "description": "Next due assignment name"
+        },
+        "nextDueDate": {
+          "type": "string",
+          "description": "When next assignment is due"
+        },
+        "myGrade": {
+          "type": "string",
+          "description": "Current grade in the class"
+        },
+        "dueAssignmentCount": {
+          "type": "number",
+          "description": "Number of assignments due"
+        }
+      },
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Class Name",
+            "Teacher",
+            "Subject"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Class Name",
+            "Teacher",
+            "Subject"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Class Name",
+            "Teacher",
+            "Subject"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        }
       }
     },
     {
+      "viewType": "detail",
       "context": "Class Detail Page",
       "value": "class-detail",
-      "shape": "profile",
       "description": "The complete class record — roster, schedule, product settings, and full administrative controls. Teachers and admins manage enrollment, create assignments, schedule assessments, and view reports from here.",
-      "visibleAttributes": ["Class Name", "Teacher", "Student Roster", "Grade Level", "Subject", "School", "School Year", "Period / Block", "Student Count", "Status", "Product Settings", "Co-Teacher(s)", "SIS Section ID"],
-      "availableCTAs": ["View", "Create", "Edit", "Add Students", "Remove Students", "Assign Teacher", "Create Assignment", "Schedule Assessment", "View Class Report", "Archive", "Delete"],
-      "cardShape": "Full page",
-      "userIntent": "What is the full detail of this class?"
+      "userIntent": "What is the full detail of this class?",
+      "visibleAttributes": [
+        "Class Name",
+        "Teacher",
+        "Student Roster",
+        "Grade Level",
+        "Subject",
+        "School",
+        "School Year",
+        "Period / Block",
+        "Student Count",
+        "Status",
+        "Product Settings",
+        "Co-Teacher(s)",
+        "SIS Section ID"
+      ],
+      "availableCTAs": [
+        "View",
+        "Create",
+        "Edit",
+        "Add Students",
+        "Remove Students",
+        "Assign Teacher",
+        "Create Assignment",
+        "Schedule Assessment",
+        "View Class Report",
+        "Archive",
+        "Delete"
+      ]
     },
     {
+      "viewType": "list",
       "context": "Assessment Target Picker",
       "value": "assessment-picker",
-      "shape": "mini-row",
       "description": "A compact selection row for choosing which class to schedule an assessment for. Shows grade level, student count, and eligibility to help teachers pick the right target.",
-      "visibleAttributes": ["Class Name", "Teacher", "Grade Level", "Student Count"],
-      "availableCTAs": [],
-      "cardShape": "Mini row",
       "userIntent": "Which class should I schedule this assessment for?",
       "contextDataSchema": {
-        "eligibleStudentCount": { "type": "number", "description": "Students eligible to take the assessment" },
-        "lastAssessmentDate": { "type": "string", "description": "When the class was last assessed" }
+        "eligibleStudentCount": {
+          "type": "number",
+          "description": "Students eligible to take the assessment"
+        },
+        "lastAssessmentDate": {
+          "type": "string",
+          "description": "When the class was last assessed"
+        }
+      },
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Class Name",
+            "Teacher",
+            "Grade Level",
+            "Student Count"
+          ],
+          "availableCTAs": []
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Class Name",
+            "Teacher",
+            "Grade Level",
+            "Student Count"
+          ],
+          "availableCTAs": []
+        },
+        "table": {
+          "visibleAttributes": [
+            "Class Name",
+            "Teacher",
+            "Grade Level",
+            "Student Count"
+          ],
+          "availableCTAs": []
+        }
       }
     },
     {
+      "viewType": "detail",
       "context": "Report Header",
       "value": "report-header",
-      "shape": "header",
       "description": "The class displayed as a banner at the top of a report, identifying which class the results below apply to. No interactive elements.",
-      "visibleAttributes": ["Class Name", "Teacher", "Grade Level", "Subject", "Student Count"],
-      "availableCTAs": [],
-      "cardShape": "Banner",
-      "userIntent": "What class is this report about?"
+      "userIntent": "What class is this report about?",
+      "visibleAttributes": [
+        "Class Name",
+        "Teacher",
+        "Grade Level",
+        "Subject",
+        "Student Count"
+      ],
+      "availableCTAs": []
     },
     {
+      "viewType": "list",
       "context": "Teacher Class Roster",
       "value": "teacher-class-roster",
-      "shape": "row",
       "description": "A teacher's full class list with grade, subject, period, and student counts. Teachers check their schedule and jump into specific classes to manage assignments.",
-      "visibleAttributes": ["Class Name", "Teacher", "Grade Level", "Subject", "Student Count", "Period / Block"],
-      "availableCTAs": ["View", "Create Assignment"],
-      "cardShape": "Compact row",
-      "userIntent": "What classes do I teach and what's the student breakdown?"
+      "userIntent": "What classes do I teach and what's the student breakdown?",
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Class Name",
+            "Teacher",
+            "Grade Level",
+            "Subject",
+            "Student Count",
+            "Period / Block"
+          ],
+          "availableCTAs": [
+            "View",
+            "Create Assignment"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Class Name",
+            "Teacher",
+            "Grade Level",
+            "Subject",
+            "Student Count",
+            "Period / Block"
+          ],
+          "availableCTAs": [
+            "View",
+            "Create Assignment"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Class Name",
+            "Teacher",
+            "Grade Level",
+            "Subject",
+            "Student Count",
+            "Period / Block"
+          ],
+          "availableCTAs": [
+            "View",
+            "Create Assignment"
+          ]
+        }
+      }
     },
     {
+      "viewType": "list",
       "context": "Student Detail",
       "value": "student-detail",
-      "shape": "nested-card",
       "description": "Classes shown as nested cards within a student's profile, with embedded assignment and assessment info. Teachers see everything a student is enrolled in and what they're working on.",
-      "visibleAttributes": ["Class Name", "Subject", "Teacher", "Schedule", "Student Count"],
-      "availableCTAs": ["View", "View Class Report"],
-      "cardShape": "Nested card with embedded assignments and assessments",
-      "userIntent": "What classes is this student enrolled in?"
+      "userIntent": "What classes is this student enrolled in?",
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Class Name",
+            "Subject",
+            "Teacher",
+            "Schedule",
+            "Student Count"
+          ],
+          "availableCTAs": [
+            "View",
+            "View Class Report"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Class Name",
+            "Subject",
+            "Teacher",
+            "Schedule",
+            "Student Count"
+          ],
+          "availableCTAs": [
+            "View",
+            "View Class Report"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Class Name",
+            "Subject",
+            "Teacher",
+            "Schedule",
+            "Student Count"
+          ],
+          "availableCTAs": [
+            "View",
+            "View Class Report"
+          ]
+        }
+      }
     }
   ]
 }

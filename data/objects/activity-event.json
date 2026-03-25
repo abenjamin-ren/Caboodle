@@ -6,7 +6,12 @@
     "objectType": "domain",
     "category": "activity",
     "definition": "An Activity Event is a record of a single student interaction with Renaissance content — completing a skills practice session, reading a book, finishing an assignment, taking an assessment, or participating in a live lesson.",
-    "synonyms": ["activity", "event", "interaction", "action"],
+    "synonyms": [
+      "activity",
+      "event",
+      "interaction",
+      "action"
+    ],
     "products": "All products"
   },
   "variations": [],
@@ -15,7 +20,7 @@
       "layout": "card",
       "heading": "Card layout",
       "description": "How an Activity Event appears in activity feeds and dashboards",
-      "defaultShape": "card",
+      "defaultShape": "list",
       "componentTag": "ren-activity-event-card",
       "examples": [
         {
@@ -73,7 +78,9 @@
           "roles": "Teacher",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         }
       ]
     },
@@ -81,7 +88,7 @@
       "layout": "list",
       "heading": "List layout",
       "description": "How an Activity Event appears in student activity logs and reports",
-      "defaultShape": "row",
+      "defaultShape": "list",
       "componentTag": "ren-activity-event-row",
       "examples": [
         {
@@ -162,14 +169,18 @@
           "roles": "Teacher",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Open Report",
           "roles": "Teacher",
           "permission": "Read",
           "priority": "S",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         }
       ]
     },
@@ -177,7 +188,7 @@
       "layout": "detail",
       "heading": "Detail page layout",
       "description": "What users see when they open a full Activity Event record",
-      "defaultShape": "profile",
+      "defaultShape": "details",
       "componentTag": "ren-activity-event-profile",
       "examples": [
         {
@@ -297,14 +308,18 @@
           "roles": "Teacher",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Open Report",
           "roles": "Teacher",
           "permission": "Read",
           "priority": "S",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         }
       ]
     }
@@ -319,7 +334,12 @@
       "benefit": "I can see what work a student has completed across all Renaissance products in a unified timeline.",
       "whenClause": "I view a student's activity feed,",
       "thenClause": "I see a chronological list of Activity Events with type badges, scores, and product sources.",
-      "crossObjects": [{ "slug": "student", "name": "Student" }]
+      "crossObjects": [
+        {
+          "slug": "student",
+          "name": "Student"
+        }
+      ]
     },
     {
       "title": "Drill into Activity Details",
@@ -384,9 +404,25 @@
       }
     ],
     "transitions": [
-      { "from": "In Progress", "to": ["Completed"] },
-      { "from": "Completed", "to": ["Synced"] },
-      { "from": "Synced", "to": ["Scored", "Unscored"] }
+      {
+        "from": "In Progress",
+        "to": [
+          "Completed"
+        ]
+      },
+      {
+        "from": "Completed",
+        "to": [
+          "Synced"
+        ]
+      },
+      {
+        "from": "Synced",
+        "to": [
+          "Scored",
+          "Unscored"
+        ]
+      }
     ]
   },
   "relationships": [
@@ -409,7 +445,13 @@
       "dependencies": "If a Class is archived, Activity Events referencing it remain for historical reporting."
     }
   ],
-  "relatedObjects": ["student", "class", "assignment", "assessment", "score"],
+  "relatedObjects": [
+    "student",
+    "class",
+    "assignment",
+    "assessment",
+    "score"
+  ],
   "nestedObjects": [
     {
       "slug": "student",
@@ -567,14 +609,18 @@
       "roles": "Teacher",
       "permission": "Read",
       "priority": "P",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Open Report",
       "roles": "Teacher",
       "permission": "Read",
       "priority": "S",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     }
   ],
   "sipValidation": {
@@ -614,33 +660,127 @@
       "notes": "Used in student dashboards to describe completed work"
     }
   ],
-  "shapeshifterMatrix": [
+  "objectViews": [
     {
+      "viewType": "list",
       "context": "Student Activity Feed",
       "value": "student-activity-feed",
-      "shape": "card",
       "description": "Individual activity events for a student — what they worked on, when, and how they scored. Teachers scan the feed to gauge engagement and spot recent performance.",
-      "visibleAttributes": ["Activity Label", "Activity Type", "Source Product", "Score Summary", "Started At", "Completed At"],
-      "availableCTAs": ["Open Details"],
-      "cardShape": "Medium card"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Activity Label",
+            "Activity Type",
+            "Source Product",
+            "Score Summary",
+            "Started At",
+            "Completed At"
+          ],
+          "availableCTAs": [
+            "Open Details"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Activity Label",
+            "Activity Type",
+            "Source Product",
+            "Score Summary",
+            "Started At",
+            "Completed At"
+          ],
+          "availableCTAs": [
+            "Open Details"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Activity Label",
+            "Activity Type",
+            "Source Product",
+            "Score Summary",
+            "Started At",
+            "Completed At"
+          ],
+          "availableCTAs": [
+            "Open Details"
+          ]
+        }
+      }
     },
     {
+      "viewType": "list",
       "context": "Class Activity Log",
       "value": "class-activity-log",
-      "shape": "row",
       "description": "Activity events across a class listed with timestamps and scores. Teachers review what students have been doing and jump to detailed reports.",
-      "visibleAttributes": ["Activity Label", "Activity Type", "Source Product", "Score Summary", "Started At"],
-      "availableCTAs": ["Open Details", "Open Report"],
-      "cardShape": "Compact row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Activity Label",
+            "Activity Type",
+            "Source Product",
+            "Score Summary",
+            "Started At"
+          ],
+          "availableCTAs": [
+            "Open Details",
+            "Open Report"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Activity Label",
+            "Activity Type",
+            "Source Product",
+            "Score Summary",
+            "Started At"
+          ],
+          "availableCTAs": [
+            "Open Details",
+            "Open Report"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Activity Label",
+            "Activity Type",
+            "Source Product",
+            "Score Summary",
+            "Started At"
+          ],
+          "availableCTAs": [
+            "Open Details",
+            "Open Report"
+          ]
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "Activity Detail",
       "value": "activity-detail",
-      "shape": "profile",
       "description": "The complete activity event record — student, class, content level, timing, scores, and response details. Teachers dig into a specific activity for granular performance data.",
-      "visibleAttributes": ["Event ID", "Student ID", "Class ID", "Activity Type", "Source Product", "Activity Label", "Subject", "Content Level", "Started At", "Completed At", "Data Freshness", "Last Updated At", "Score Summary", "Drill Down Destination", "Response Details"],
-      "availableCTAs": ["Open Details", "Open Report"],
-      "cardShape": "Full page"
+      "visibleAttributes": [
+        "Event ID",
+        "Student ID",
+        "Class ID",
+        "Activity Type",
+        "Source Product",
+        "Activity Label",
+        "Subject",
+        "Content Level",
+        "Started At",
+        "Completed At",
+        "Data Freshness",
+        "Last Updated At",
+        "Score Summary",
+        "Drill Down Destination",
+        "Response Details"
+      ],
+      "availableCTAs": [
+        "Open Details",
+        "Open Report"
+      ]
     }
   ]
 }

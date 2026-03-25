@@ -14,4 +14,5 @@ export interface PreviewInspectionProps {
   isActionAvailable: (cta: ObjectCTA) => boolean;
   lifecycleStates: LifecycleState[];
   displayMode?: 'list' | 'grid' | 'table';
+  embedded?: boolean;
 }

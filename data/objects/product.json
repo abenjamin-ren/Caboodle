@@ -6,7 +6,11 @@
     "objectType": "domain",
     "category": "container",
     "definition": "A Product is an individual Renaissance application that can be included in a Solution or assigned independently.",
-    "synonyms": ["app", "application", "tool"],
+    "synonyms": [
+      "app",
+      "application",
+      "tool"
+    ],
     "products": "All products"
   },
   "variations": [],
@@ -15,7 +19,7 @@
       "layout": "card",
       "heading": "Card layout",
       "description": "How a Product appears in catalogs and selection interfaces",
-      "defaultShape": "card",
+      "defaultShape": "list",
       "componentTag": "ren-product-card",
       "examples": [
         {
@@ -67,7 +71,11 @@
           "roles": "Teacher, Admin, Student",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin", "student"]
+          "roleKeys": [
+            "teacher",
+            "admin",
+            "student"
+          ]
         }
       ]
     },
@@ -75,7 +83,7 @@
       "layout": "list",
       "heading": "List layout",
       "description": "How a Product appears in Solution detail views and assignment tables",
-      "defaultShape": "row",
+      "defaultShape": "list",
       "componentTag": "ren-product-row",
       "examples": [
         {
@@ -135,7 +143,11 @@
           "roles": "Teacher, Admin, Student",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin", "student"]
+          "roleKeys": [
+            "teacher",
+            "admin",
+            "student"
+          ]
         }
       ]
     },
@@ -143,7 +155,7 @@
       "layout": "detail",
       "heading": "Detail page layout",
       "description": "What users see when they open a full Product record",
-      "defaultShape": "profile",
+      "defaultShape": "details",
       "componentTag": "ren-product-profile",
       "examples": [
         {
@@ -152,7 +164,10 @@
           "availability": "available",
           "subject": "Reading",
           "productType": "assessment",
-          "solutionNames": ["Renaissance Star 360", "myON + Accelerated Reader"],
+          "solutionNames": [
+            "Renaissance Star 360",
+            "myON + Accelerated Reader"
+          ],
           "color": "#2563EB"
         }
       ],
@@ -215,7 +230,11 @@
           "roles": "Teacher, Admin, Student",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin", "student"]
+          "roleKeys": [
+            "teacher",
+            "admin",
+            "student"
+          ]
         }
       ]
     }
@@ -280,8 +299,18 @@
       }
     ],
     "transitions": [
-      { "from": "Available", "to": ["Deprecated"] },
-      { "from": "Deprecated", "to": ["Sunset"] }
+      {
+        "from": "Available",
+        "to": [
+          "Deprecated"
+        ]
+      },
+      {
+        "from": "Deprecated",
+        "to": [
+          "Sunset"
+        ]
+      }
     ]
   },
   "relationships": [
@@ -295,7 +324,12 @@
       "dependencies": "If a Product is deprecated, existing Student access is maintained until the corresponding Product Assignment is deactivated."
     }
   ],
-  "relatedObjects": ["solution", "product-assignment", "student", "teacher"],
+  "relatedObjects": [
+    "solution",
+    "product-assignment",
+    "student",
+    "teacher"
+  ],
   "nestedObjects": [],
   "allAttributes": [
     {
@@ -361,7 +395,11 @@
       "roles": "Teacher, Admin, Student",
       "permission": "Read",
       "priority": "P",
-      "roleKeys": ["teacher", "admin", "student"]
+      "roleKeys": [
+        "teacher",
+        "admin",
+        "student"
+      ]
     }
   ],
   "sipValidation": {
@@ -396,33 +434,107 @@
       "notes": "Used when describing Products as classroom tools"
     }
   ],
-  "shapeshifterMatrix": [
+  "objectViews": [
     {
+      "viewType": "list",
       "context": "Product Catalog",
       "value": "product-catalog",
-      "shape": "card",
       "description": "Products shown as cards with tier, subject, and type. Admins browse the catalog to understand what's available and drill into product details.",
-      "visibleAttributes": ["Name", "Tier", "Subject", "Product Type"],
-      "availableCTAs": ["View Details"],
-      "cardShape": "Medium card"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Name",
+            "Tier",
+            "Subject",
+            "Product Type"
+          ],
+          "availableCTAs": [
+            "View Details"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Name",
+            "Tier",
+            "Subject",
+            "Product Type"
+          ],
+          "availableCTAs": [
+            "View Details"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Name",
+            "Tier",
+            "Subject",
+            "Product Type"
+          ],
+          "availableCTAs": [
+            "View Details"
+          ]
+        }
+      }
     },
     {
+      "viewType": "list",
       "context": "Solution Detail",
       "value": "solution-detail",
-      "shape": "row",
       "description": "Products listed within a solution's detail page, showing tier and availability. Admins see which products are bundled in a given solution.",
-      "visibleAttributes": ["Name", "Tier", "Availability", "Product Type"],
-      "availableCTAs": ["View Details"],
-      "cardShape": "Compact row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Name",
+            "Tier",
+            "Availability",
+            "Product Type"
+          ],
+          "availableCTAs": [
+            "View Details"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Name",
+            "Tier",
+            "Availability",
+            "Product Type"
+          ],
+          "availableCTAs": [
+            "View Details"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Name",
+            "Tier",
+            "Availability",
+            "Product Type"
+          ],
+          "availableCTAs": [
+            "View Details"
+          ]
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "Product Detail",
       "value": "product-detail",
-      "shape": "profile",
       "description": "The complete product record — ID, tier, included solutions, subject, and availability. Admins review product configuration and component details.",
-      "visibleAttributes": ["Product ID", "Name", "Apps Tag", "Tier", "Availability", "Included Solutions", "Subject", "Product Type"],
-      "availableCTAs": ["View Details"],
-      "cardShape": "Full page"
+      "visibleAttributes": [
+        "Product ID",
+        "Name",
+        "Apps Tag",
+        "Tier",
+        "Availability",
+        "Included Solutions",
+        "Subject",
+        "Product Type"
+      ],
+      "availableCTAs": [
+        "View Details"
+      ]
     }
   ]
 }

@@ -46,7 +46,7 @@ Each step in the Representation round directly addresses one of the Four Ancient
 | 09 | `09-object-card-designer` | Object Card Designer | Objects | Masked Objects | Visually distinct object cards |
 | 10 | `10-nav-flow-designer` | Nav Flow Designer | Relationships | Isolated Objects | Navigation blueprint with nested objects |
 | 11 | `11-cta-placement-designer` | CTA Placement Designer | CTAs | Broken Objects | CTA-equipped cards and detail pages |
-| 12 | `12-shapeshifter-matrix-builder` | Shapeshifter Matrix Builder | Attributes | Shapeshifters | Intentional object variant matrix |
+| 12 | `12-shapeshifter-matrix-builder` | Shapeshifter Matrix Builder | Attributes | Shapeshifters | Intentional object views (view contexts; `list` / `detail`; list/grid/table shapes) |
 
 ### Supporting Skills — Use Anytime
 
@@ -72,7 +72,7 @@ Each step in the Representation round directly addresses one of the Four Ancient
 
 OOUX data lives in two locations:
 
-- **Published data**: `data/objects/*.json` — structured object definitions conforming to `data/schema.ts`
+- **Published data**: `data/objects/*.json` — structured object definitions conforming to `data/schema.ts` (including `objectViews`: `ObjectView[]` — each entry has a **view context**, `viewType` `'list'` or `'detail'`, and list views use `shapes.list` / `.grid` / `.table` as `ShapeSpec`)
 - **ORCA workspace**: `orca/{project-name}/` — iterative drafts from ORCA sessions
 
 The workspace uses a draft-then-promote model:
@@ -118,6 +118,6 @@ When designing or implementing UI from OOUX artifacts, apply the Caboodle UI rul
 - User wants a case study, project summary, portfolio piece, or to document a completed project → suggest **s10 Case Study Writer**
 - User wants to promote confirmed artifacts to published data → suggest **orca-promote**
 - User wants to turn object data into UI designs → suggest **orca-to-ui**
-- User wants to design a view, card, row, or detail page for an object → suggest **view-designer** (or `/orca-view`)
+- User wants to design an object view (list/detail, list/grid/table layout) or detail UI for an object → suggest **view-designer** (or `/orca-view`)
 - User wants to create or scaffold a new Caboodle page → suggest **page-builder**
 - User is working on a Renaissance product or asks about Student, Class, Assessment, etc. → suggest **ooux-renaissance-objects** domain skill for context on the 13 core objects

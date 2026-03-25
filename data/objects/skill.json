@@ -6,7 +6,13 @@
     "objectType": "core",
     "category": "knowledge",
     "definition": "A Skill is a discrete learning competency, standard, or objective — such as a Common Core standard, state standard, or Renaissance learning progression — that represents what a student should know or be able to do, serving as the connective thread across assessments, assignments, resources, and scores in the Renaissance platform.",
-    "synonyms": ["standard", "learning objective", "competency", "domain", "strand"],
+    "synonyms": [
+      "standard",
+      "learning objective",
+      "competency",
+      "domain",
+      "strand"
+    ],
     "products": "Freckle, Lalilo"
   },
   "variations": [],
@@ -15,7 +21,7 @@
       "layout": "card",
       "heading": "Card layout",
       "description": "How a Skill appears in skill browsers, assignment builders, and standards dashboards",
-      "defaultShape": "card",
+      "defaultShape": "list",
       "componentTag": "ren-skill-card",
       "examples": [
         {
@@ -104,7 +110,11 @@
           "roles": "Teacher, Admin, Student",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin", "student"]
+          "roleKeys": [
+            "teacher",
+            "admin",
+            "student"
+          ]
         },
         {
           "name": "Find Resources",
@@ -113,7 +123,9 @@
           "priority": "T",
           "crossObjectSlug": "resource",
           "crossObjectName": "Resource",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         }
       ]
     },
@@ -121,7 +133,7 @@
       "layout": "list",
       "heading": "List layout",
       "description": "How a Skill appears in standards tables, mastery reports, and alignment views",
-      "defaultShape": "row",
+      "defaultShape": "list",
       "componentTag": "ren-skill-row",
       "examples": [
         {
@@ -193,7 +205,11 @@
           "roles": "Teacher, Admin, Student",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin", "student"]
+          "roleKeys": [
+            "teacher",
+            "admin",
+            "student"
+          ]
         },
         {
           "name": "View Mastery Report",
@@ -202,7 +218,10 @@
           "priority": "S",
           "crossObjectSlug": "student",
           "crossObjectName": "Student",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         }
       ]
     },
@@ -210,7 +229,7 @@
       "layout": "detail",
       "heading": "Detail page layout",
       "description": "What users see when they open a full Skill record with mastery distribution and related objects",
-      "defaultShape": "profile",
+      "defaultShape": "details",
       "componentTag": "ren-skill-profile",
       "examples": [
         {
@@ -226,11 +245,26 @@
           "assessmentCount": 3,
           "color": "#2563EB",
           "nestedObjects": [
-            { "label": "Assessments", "count": 3 },
-            { "label": "Assignments", "count": 12 },
-            { "label": "Resources", "count": 8 },
-            { "label": "Scores", "count": 156 },
-            { "label": "Prerequisites", "count": 2 }
+            {
+              "label": "Assessments",
+              "count": 3
+            },
+            {
+              "label": "Assignments",
+              "count": 12
+            },
+            {
+              "label": "Resources",
+              "count": 8
+            },
+            {
+              "label": "Scores",
+              "count": 156
+            },
+            {
+              "label": "Prerequisites",
+              "count": 2
+            }
           ]
         }
       ],
@@ -308,7 +342,11 @@
           "roles": "Teacher, Admin, Student",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin", "student"]
+          "roleKeys": [
+            "teacher",
+            "admin",
+            "student"
+          ]
         },
         {
           "name": "View Mastery Report",
@@ -317,7 +355,10 @@
           "priority": "S",
           "crossObjectSlug": "student",
           "crossObjectName": "Student",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Assign Practice",
@@ -326,7 +367,9 @@
           "priority": "S",
           "crossObjectSlug": "assignment",
           "crossObjectName": "Assignment",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Find Resources",
@@ -335,7 +378,9 @@
           "priority": "T",
           "crossObjectSlug": "resource",
           "crossObjectName": "Resource",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Create Assessment",
@@ -344,7 +389,10 @@
           "priority": "T",
           "crossObjectSlug": "assessment",
           "crossObjectName": "Assessment",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         }
       ]
     }
@@ -370,8 +418,14 @@
       "whenClause": "I select 'Assign Practice' on a Skill,",
       "thenClause": "the system creates an adaptive assignment for selected students targeting that specific standard.",
       "crossObjects": [
-        { "slug": "assignment", "name": "Assignment" },
-        { "slug": "student", "name": "Student" }
+        {
+          "slug": "assignment",
+          "name": "Assignment"
+        },
+        {
+          "slug": "student",
+          "name": "Student"
+        }
       ]
     },
     {
@@ -431,7 +485,12 @@
       }
     ],
     "transitions": [
-      { "from": "Active", "to": ["Deprecated"] }
+      {
+        "from": "Active",
+        "to": [
+          "Deprecated"
+        ]
+      }
     ]
   },
   "relationships": [
@@ -463,7 +522,14 @@
       "dependencies": "If a Skill is deprecated, its resource alignments remain but the Skill is no longer surfaced in resource search results."
     }
   ],
-  "relatedObjects": ["student", "assessment", "assignment", "resource", "score", "insight"],
+  "relatedObjects": [
+    "student",
+    "assessment",
+    "assignment",
+    "resource",
+    "score",
+    "insight"
+  ],
   "nestedObjects": [
     {
       "slug": "assessment",
@@ -577,7 +643,11 @@
       "roles": "Teacher, Admin, Student",
       "permission": "Read",
       "priority": "P",
-      "roleKeys": ["teacher", "admin", "student"]
+      "roleKeys": [
+        "teacher",
+        "admin",
+        "student"
+      ]
     },
     {
       "name": "View Mastery Report",
@@ -586,7 +656,10 @@
       "priority": "S",
       "crossObjectSlug": "student",
       "crossObjectName": "Student",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Assign Practice",
@@ -595,7 +668,9 @@
       "priority": "S",
       "crossObjectSlug": "assignment",
       "crossObjectName": "Assignment",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Find Resources",
@@ -604,7 +679,9 @@
       "priority": "T",
       "crossObjectSlug": "resource",
       "crossObjectName": "Resource",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Create Assessment",
@@ -613,7 +690,10 @@
       "priority": "T",
       "crossObjectSlug": "assessment",
       "crossObjectName": "Assessment",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     }
   ],
   "sipValidation": {
@@ -663,116 +743,414 @@
       "notes": "Sometimes used to mean a Skill-level performance target rather than the Skill itself."
     }
   ],
-  "shapeshifterMatrix": [
+  "objectViews": [
     {
+      "viewType": "list",
       "context": "Standards Browser",
       "value": "standards-browser",
-      "shape": "card",
       "description": "Skills organized by subject and grade for browsing the standards framework. Teachers explore what skills exist and find aligned resources for instruction.",
-      "visibleAttributes": ["Skill Code", "Skill Name/Description", "Subject", "Grade Level", "Domain/Strand"],
-      "availableCTAs": ["View", "Find Resources"],
-      "cardShape": "Medium card",
-      "userIntent": "What skills exist in this subject and grade?"
+      "userIntent": "What skills exist in this subject and grade?",
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Skill Code",
+            "Skill Name/Description",
+            "Subject",
+            "Grade Level",
+            "Domain/Strand"
+          ],
+          "availableCTAs": [
+            "View",
+            "Find Resources"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Skill Code",
+            "Skill Name/Description",
+            "Subject",
+            "Grade Level",
+            "Domain/Strand"
+          ],
+          "availableCTAs": [
+            "View",
+            "Find Resources"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Skill Code",
+            "Skill Name/Description",
+            "Subject",
+            "Grade Level",
+            "Domain/Strand"
+          ],
+          "availableCTAs": [
+            "View",
+            "Find Resources"
+          ]
+        }
+      }
     },
     {
+      "viewType": "list",
       "context": "Mastery Report",
       "value": "mastery-report",
-      "shape": "row",
       "description": "Skills listed as data rows with class mastery percentages and student distribution. Teachers identify which skills the class has mastered and where to focus instruction next.",
-      "visibleAttributes": ["Skill Code", "Skill Name/Description", "Subject", "Grade Level", "Domain/Strand"],
-      "availableCTAs": ["View", "View Mastery Report", "Assign Practice"],
-      "cardShape": "Data row",
       "userIntent": "How has my class mastered each skill?",
       "contextDataSchema": {
-        "classMasteryPercent": { "type": "number", "description": "Class average mastery percentage" },
-        "classMasteryBand": { "type": "string", "description": "Distribution label for class mastery" },
-        "studentCount": { "type": "number", "description": "Number of students assessed" },
-        "masteredCount": { "type": "number", "description": "Students at mastery level" },
-        "developingCount": { "type": "number", "description": "Students at developing level" },
-        "notStartedCount": { "type": "number", "description": "Students not yet started" }
+        "classMasteryPercent": {
+          "type": "number",
+          "description": "Class average mastery percentage"
+        },
+        "classMasteryBand": {
+          "type": "string",
+          "description": "Distribution label for class mastery"
+        },
+        "studentCount": {
+          "type": "number",
+          "description": "Number of students assessed"
+        },
+        "masteredCount": {
+          "type": "number",
+          "description": "Students at mastery level"
+        },
+        "developingCount": {
+          "type": "number",
+          "description": "Students at developing level"
+        },
+        "notStartedCount": {
+          "type": "number",
+          "description": "Students not yet started"
+        }
+      },
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Skill Code",
+            "Skill Name/Description",
+            "Subject",
+            "Grade Level",
+            "Domain/Strand"
+          ],
+          "availableCTAs": [
+            "View",
+            "View Mastery Report",
+            "Assign Practice"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Skill Code",
+            "Skill Name/Description",
+            "Subject",
+            "Grade Level",
+            "Domain/Strand"
+          ],
+          "availableCTAs": [
+            "View",
+            "View Mastery Report",
+            "Assign Practice"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Skill Code",
+            "Skill Name/Description",
+            "Subject",
+            "Grade Level",
+            "Domain/Strand"
+          ],
+          "availableCTAs": [
+            "View",
+            "View Mastery Report",
+            "Assign Practice"
+          ]
+        }
       }
     },
     {
+      "viewType": "detail",
       "context": "Skill Detail",
       "value": "skill-detail",
-      "shape": "profile",
       "description": "The complete skill record — standards alignment, prerequisites, related skills, and difficulty. Teachers dig into a specific skill to plan instruction or assign targeted practice.",
-      "visibleAttributes": ["Skill Code", "Skill Name/Description", "Subject", "Grade Level", "Domain/Strand", "Standard Framework", "Difficulty", "Prerequisites", "Related Skills", "Status"],
-      "availableCTAs": ["View", "View Mastery Report", "Assign Practice", "Find Resources", "Create Assessment"],
-      "cardShape": "Full page",
-      "userIntent": "What is the full detail of this skill?"
+      "userIntent": "What is the full detail of this skill?",
+      "visibleAttributes": [
+        "Skill Code",
+        "Skill Name/Description",
+        "Subject",
+        "Grade Level",
+        "Domain/Strand",
+        "Standard Framework",
+        "Difficulty",
+        "Prerequisites",
+        "Related Skills",
+        "Status"
+      ],
+      "availableCTAs": [
+        "View",
+        "View Mastery Report",
+        "Assign Practice",
+        "Find Resources",
+        "Create Assessment"
+      ]
     },
     {
+      "viewType": "list",
       "context": "Student Proficiency Dashboard",
       "value": "student-proficiency-dashboard",
-      "shape": "compact-card",
       "description": "Skills shown as compact cards with individual student mastery levels. Teachers check which skills a student has mastered and assign targeted practice where needed.",
-      "visibleAttributes": ["Skill Code", "Skill Name/Description", "Subject", "Grade Level"],
-      "availableCTAs": ["View", "Assign Practice"],
-      "cardShape": "Compact card",
       "userIntent": "How has this student mastered each skill?",
       "contextDataSchema": {
-        "studentMasteryPercent": { "type": "number", "description": "This student's mastery percentage" },
-        "studentMasteryBand": { "type": "string", "description": "Mastery level label" },
-        "lastAssessedDate": { "type": "string", "description": "When last measured" },
-        "practiceAvailable": { "type": "boolean", "description": "Whether practice is assignable" }
+        "studentMasteryPercent": {
+          "type": "number",
+          "description": "This student's mastery percentage"
+        },
+        "studentMasteryBand": {
+          "type": "string",
+          "description": "Mastery level label"
+        },
+        "lastAssessedDate": {
+          "type": "string",
+          "description": "When last measured"
+        },
+        "practiceAvailable": {
+          "type": "boolean",
+          "description": "Whether practice is assignable"
+        }
+      },
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Skill Code",
+            "Skill Name/Description",
+            "Subject",
+            "Grade Level"
+          ],
+          "availableCTAs": [
+            "View",
+            "Assign Practice"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Skill Code",
+            "Skill Name/Description",
+            "Subject",
+            "Grade Level"
+          ],
+          "availableCTAs": [
+            "View",
+            "Assign Practice"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Skill Code",
+            "Skill Name/Description",
+            "Subject",
+            "Grade Level"
+          ],
+          "availableCTAs": [
+            "View",
+            "Assign Practice"
+          ]
+        }
       }
     },
     {
+      "viewType": "list",
       "context": "Assignment Builder",
       "value": "assignment-builder",
-      "shape": "mini-row",
       "description": "A compact selection list of skills for targeting with an assignment. Shows mastery data and resource counts to help teachers choose the most impactful skills to practice.",
-      "visibleAttributes": ["Skill Code", "Skill Name/Description", "Grade Level", "Domain/Strand"],
-      "availableCTAs": [],
-      "cardShape": "Mini row",
       "userIntent": "Which skills should I target with this assignment?",
       "contextDataSchema": {
-        "resourceCount": { "type": "number", "description": "Available practice resources" },
-        "assessmentCount": { "type": "number", "description": "Assessments measuring this skill" },
-        "classMasteryPercent": { "type": "number", "description": "Current class mastery for prioritization" }
+        "resourceCount": {
+          "type": "number",
+          "description": "Available practice resources"
+        },
+        "assessmentCount": {
+          "type": "number",
+          "description": "Assessments measuring this skill"
+        },
+        "classMasteryPercent": {
+          "type": "number",
+          "description": "Current class mastery for prioritization"
+        }
+      },
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Skill Code",
+            "Skill Name/Description",
+            "Grade Level",
+            "Domain/Strand"
+          ],
+          "availableCTAs": []
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Skill Code",
+            "Skill Name/Description",
+            "Grade Level",
+            "Domain/Strand"
+          ],
+          "availableCTAs": []
+        },
+        "table": {
+          "visibleAttributes": [
+            "Skill Code",
+            "Skill Name/Description",
+            "Grade Level",
+            "Domain/Strand"
+          ],
+          "availableCTAs": []
+        }
       }
     },
     {
+      "viewType": "list",
       "context": "Assessment Skill Breakdown",
       "value": "assessment-skill-breakdown",
-      "shape": "data-row",
       "description": "Skills measured by an assessment, shown with class-level performance data. Teachers see how students performed on each skill to identify instructional gaps.",
-      "visibleAttributes": ["Skill Code", "Skill Name/Description", "Domain/Strand"],
-      "availableCTAs": ["View", "Assign Practice"],
-      "cardShape": "Data row",
       "userIntent": "How did students perform on each skill within this assessment?",
       "contextDataSchema": {
-        "classAveragePercent": { "type": "number", "description": "Class average on this skill" },
-        "masteredCount": { "type": "number", "description": "Students at mastery" },
-        "developingCount": { "type": "number", "description": "Students developing" },
-        "belowCount": { "type": "number", "description": "Students below expectations" }
+        "classAveragePercent": {
+          "type": "number",
+          "description": "Class average on this skill"
+        },
+        "masteredCount": {
+          "type": "number",
+          "description": "Students at mastery"
+        },
+        "developingCount": {
+          "type": "number",
+          "description": "Students developing"
+        },
+        "belowCount": {
+          "type": "number",
+          "description": "Students below expectations"
+        }
+      },
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Skill Code",
+            "Skill Name/Description",
+            "Domain/Strand"
+          ],
+          "availableCTAs": [
+            "View",
+            "Assign Practice"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Skill Code",
+            "Skill Name/Description",
+            "Domain/Strand"
+          ],
+          "availableCTAs": [
+            "View",
+            "Assign Practice"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Skill Code",
+            "Skill Name/Description",
+            "Domain/Strand"
+          ],
+          "availableCTAs": [
+            "View",
+            "Assign Practice"
+          ]
+        }
       }
     },
     {
+      "viewType": "detail",
       "context": "Student Proficiency",
       "value": "student-proficiency",
-      "shape": "header",
       "description": "A skill shown as a section header within a student's proficiency view, identifying which skill is being profiled in the detail below.",
-      "visibleAttributes": ["Skill Code", "Skill Name/Description", "Subject", "Grade Level"],
-      "availableCTAs": ["View"],
-      "cardShape": "Section header",
-      "userIntent": "What skill is being profiled?"
+      "userIntent": "What skill is being profiled?",
+      "visibleAttributes": [
+        "Skill Code",
+        "Skill Name/Description",
+        "Subject",
+        "Grade Level"
+      ],
+      "availableCTAs": [
+        "View"
+      ]
     },
     {
+      "viewType": "list",
       "context": "Student Detail",
       "value": "student-detail",
-      "shape": "compact-card",
       "description": "Skills within a student's profile showing individual mastery percentages and proficiency bands. Teachers see at a glance which skills are solid and which need work.",
-      "visibleAttributes": ["Skill Code", "Skill Name/Description", "Subject", "Grade Level", "Domain/Strand"],
-      "availableCTAs": ["View", "View Mastery Report", "Assign Practice"],
-      "cardShape": "Compact card with mastery bar",
       "userIntent": "How has this student mastered each skill?",
       "contextDataSchema": {
-        "studentMasteryPercent": { "type": "number", "description": "Student mastery percentage for this skill" },
-        "studentMasteryBand": { "type": "string", "description": "Mastered, Developing, or Not Started" },
-        "lastAssessedDate": { "type": "string", "description": "Date of most recent assessment for this skill" },
-        "latestScore": { "type": "number", "description": "Most recent score value" }
+        "studentMasteryPercent": {
+          "type": "number",
+          "description": "Student mastery percentage for this skill"
+        },
+        "studentMasteryBand": {
+          "type": "string",
+          "description": "Mastered, Developing, or Not Started"
+        },
+        "lastAssessedDate": {
+          "type": "string",
+          "description": "Date of most recent assessment for this skill"
+        },
+        "latestScore": {
+          "type": "number",
+          "description": "Most recent score value"
+        }
+      },
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Skill Code",
+            "Skill Name/Description",
+            "Subject",
+            "Grade Level",
+            "Domain/Strand"
+          ],
+          "availableCTAs": [
+            "View",
+            "View Mastery Report",
+            "Assign Practice"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Skill Code",
+            "Skill Name/Description",
+            "Subject",
+            "Grade Level",
+            "Domain/Strand"
+          ],
+          "availableCTAs": [
+            "View",
+            "View Mastery Report",
+            "Assign Practice"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Skill Code",
+            "Skill Name/Description",
+            "Subject",
+            "Grade Level",
+            "Domain/Strand"
+          ],
+          "availableCTAs": [
+            "View",
+            "View Mastery Report",
+            "Assign Practice"
+          ]
+        }
       }
     }
   ]

@@ -6,7 +6,11 @@
     "objectType": "domain",
     "category": "container",
     "definition": "A Solution is a bundle of Renaissance products sold as a unit, serving as the primary commercial offering under Renaissance Intelligence.",
-    "synonyms": ["bundle", "package", "suite"],
+    "synonyms": [
+      "bundle",
+      "package",
+      "suite"
+    ],
     "products": "Renaissance Intelligence"
   },
   "variations": [],
@@ -15,7 +19,7 @@
       "layout": "card",
       "heading": "Card layout",
       "description": "How a Solution appears in product management dashboards and catalog grids",
-      "defaultShape": "card",
+      "defaultShape": "list",
       "componentTag": "ren-solution-card",
       "examples": [
         {
@@ -60,7 +64,9 @@
           "roles": "Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         }
       ]
     },
@@ -68,7 +74,7 @@
       "layout": "list",
       "heading": "List layout",
       "description": "How a Solution appears in management tables and assignment workflows",
-      "defaultShape": "row",
+      "defaultShape": "list",
       "componentTag": "ren-solution-row",
       "examples": [
         {
@@ -113,7 +119,9 @@
           "roles": "Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         }
       ]
     },
@@ -121,7 +129,7 @@
       "layout": "detail",
       "heading": "Detail page layout",
       "description": "What users see when they open a full Solution record",
-      "defaultShape": "profile",
+      "defaultShape": "details",
       "componentTag": "ren-solution-profile",
       "examples": [
         {
@@ -184,7 +192,9 @@
           "roles": "Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         },
         {
           "name": "View Included Products",
@@ -193,7 +203,9 @@
           "priority": "S",
           "crossObjectSlug": "product",
           "crossObjectName": "Product",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         }
       ]
     }
@@ -218,7 +230,12 @@
       "benefit": "I can verify the correct products are bundled before assigning the Solution to a school.",
       "whenClause": "I open a Solution's detail page,",
       "thenClause": "I see the full list of included Products with their tiers and availability.",
-      "crossObjects": [{ "slug": "product", "name": "Product" }]
+      "crossObjects": [
+        {
+          "slug": "product",
+          "name": "Product"
+        }
+      ]
     }
   ],
   "businessRules": [
@@ -265,8 +282,20 @@
       }
     ],
     "transitions": [
-      { "from": "Active", "to": ["Inactive", "Deprecated"] },
-      { "from": "Inactive", "to": ["Active", "Deprecated"] }
+      {
+        "from": "Active",
+        "to": [
+          "Inactive",
+          "Deprecated"
+        ]
+      },
+      {
+        "from": "Inactive",
+        "to": [
+          "Active",
+          "Deprecated"
+        ]
+      }
     ]
   },
   "relationships": [
@@ -280,7 +309,10 @@
       "dependencies": "Removing a Product from a Solution does not affect existing Product Assignments that were created from the Solution."
     }
   ],
-  "relatedObjects": ["product", "product-assignment"],
+  "relatedObjects": [
+    "product",
+    "product-assignment"
+  ],
   "nestedObjects": [
     {
       "slug": "product",
@@ -348,7 +380,9 @@
       "roles": "Admin",
       "permission": "Read",
       "priority": "P",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     },
     {
       "name": "View Included Products",
@@ -357,7 +391,9 @@
       "priority": "S",
       "crossObjectSlug": "product",
       "crossObjectName": "Product",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     }
   ],
   "sipValidation": {
@@ -392,33 +428,104 @@
       "notes": "Used to describe comprehensive product collections"
     }
   ],
-  "shapeshifterMatrix": [
+  "objectViews": [
     {
+      "viewType": "list",
       "context": "Solution Catalog",
       "value": "solution-catalog",
-      "shape": "card",
       "description": "Solutions shown as cards with included products and status. Admins browse the catalog to understand product bundles and their availability.",
-      "visibleAttributes": ["Name", "Included Products", "Status"],
-      "availableCTAs": ["View Details"],
-      "cardShape": "Medium card"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Name",
+            "Included Products",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View Details"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Name",
+            "Included Products",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View Details"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Name",
+            "Included Products",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View Details"
+          ]
+        }
+      }
     },
     {
+      "viewType": "list",
       "context": "Assignment Workflow",
       "value": "assignment-workflow",
-      "shape": "row",
       "description": "Solutions listed during the provisioning workflow, showing included products and status. Admins select which solution to assign to a school or district.",
-      "visibleAttributes": ["Name", "Included Products", "Status"],
-      "availableCTAs": ["View Details", "View Included Products"],
-      "cardShape": "Compact row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Name",
+            "Included Products",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View Details",
+            "View Included Products"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Name",
+            "Included Products",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View Details",
+            "View Included Products"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Name",
+            "Included Products",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View Details",
+            "View Included Products"
+          ]
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "Solution Detail",
       "value": "solution-detail",
-      "shape": "profile",
       "description": "The complete solution record — ID, included products, activation logic, and override rules. Admins review how a solution is configured and what products it enables.",
-      "visibleAttributes": ["Solution ID", "Name", "Apps Tag", "Included Products", "Activation Logic", "Override Rules", "Status"],
-      "availableCTAs": ["View Details", "View Included Products"],
-      "cardShape": "Full page"
+      "visibleAttributes": [
+        "Solution ID",
+        "Name",
+        "Apps Tag",
+        "Included Products",
+        "Activation Logic",
+        "Override Rules",
+        "Status"
+      ],
+      "availableCTAs": [
+        "View Details",
+        "View Included Products"
+      ]
     }
   ]
 }

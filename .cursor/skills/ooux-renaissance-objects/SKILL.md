@@ -8,7 +8,7 @@ Renaissance products share 13 core objects. Use this reference when discussing a
 
 ## Object Directory
 
-Full Object Guide data lives in `data/objects/`. Read the JSON file for any object to get its complete definition, attributes, CTAs, relationships, and more.
+Full Object Guide data lives in `data/objects/`. Read the JSON file for any object to get its complete definition, attributes, CTAs, relationships, **`objectViews`** (context-specific `ObjectView` entries: list vs. detail, with `ShapeSpec`s for list/grid/table where applicable), and more.
 
 ## The 13 Core Objects
 

@@ -6,7 +6,11 @@
     "objectType": "domain",
     "category": "container",
     "definition": "A Product Assignment is a scoped provisioning record that declares a Solution or Product available to a defined population within a school or district.",
-    "synonyms": ["provisioning record", "license assignment", "access grant"],
+    "synonyms": [
+      "provisioning record",
+      "license assignment",
+      "access grant"
+    ],
     "products": "Renaissance Intelligence"
   },
   "variations": [],
@@ -15,7 +19,7 @@
       "layout": "card",
       "heading": "Card layout",
       "description": "How a Product Assignment appears in provisioning dashboards",
-      "defaultShape": "card",
+      "defaultShape": "list",
       "componentTag": "ren-product-assignment-card",
       "examples": [
         {
@@ -70,14 +74,18 @@
           "roles": "Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         },
         {
           "name": "Edit",
           "roles": "Admin",
           "permission": "Write",
           "priority": "S",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         }
       ]
     },
@@ -85,7 +93,7 @@
       "layout": "list",
       "heading": "List layout",
       "description": "How a Product Assignment appears in assignment management tables",
-      "defaultShape": "row",
+      "defaultShape": "list",
       "componentTag": "ren-product-assignment-row",
       "examples": [
         {
@@ -146,14 +154,18 @@
           "roles": "Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         },
         {
           "name": "Deactivate",
           "roles": "Admin",
           "permission": "Write",
           "priority": "T",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         }
       ]
     },
@@ -161,7 +173,7 @@
       "layout": "detail",
       "heading": "Detail page layout",
       "description": "What users see when they open a full Product Assignment record",
-      "defaultShape": "profile",
+      "defaultShape": "details",
       "componentTag": "ren-product-assignment-profile",
       "examples": [
         {
@@ -253,35 +265,45 @@
           "roles": "Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         },
         {
           "name": "Edit",
           "roles": "Admin",
           "permission": "Write",
           "priority": "S",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         },
         {
           "name": "Deactivate",
           "roles": "Admin",
           "permission": "Write",
           "priority": "T",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         },
         {
           "name": "Reactivate",
           "roles": "Admin",
           "permission": "Write",
           "priority": "T",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         },
         {
           "name": "Delete",
           "roles": "Admin",
           "permission": "Write",
           "priority": "Q",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         }
       ]
     }
@@ -296,7 +318,16 @@
       "benefit": "all teachers and students at that school gain access to the included Products.",
       "whenClause": "I assign a Solution to a school,",
       "thenClause": "a Product Assignment record is created and all users at the school can access the Solution's products.",
-      "crossObjects": [{ "slug": "solution", "name": "Solution" }, { "slug": "school", "name": "School" }]
+      "crossObjects": [
+        {
+          "slug": "solution",
+          "name": "Solution"
+        },
+        {
+          "slug": "school",
+          "name": "School"
+        }
+      ]
     },
     {
       "title": "Review Assignment Coverage",
@@ -365,8 +396,18 @@
       }
     ],
     "transitions": [
-      { "from": "Active", "to": ["Inactive"] },
-      { "from": "Inactive", "to": ["Active"] }
+      {
+        "from": "Active",
+        "to": [
+          "Inactive"
+        ]
+      },
+      {
+        "from": "Inactive",
+        "to": [
+          "Active"
+        ]
+      }
     ]
   },
   "relationships": [
@@ -389,7 +430,13 @@
       "dependencies": "If a School is deactivated, its Product Assignments are automatically deactivated."
     }
   ],
-  "relatedObjects": ["solution", "product", "school", "class", "district"],
+  "relatedObjects": [
+    "solution",
+    "product",
+    "school",
+    "class",
+    "district"
+  ],
   "nestedObjects": [
     {
       "slug": "solution",
@@ -482,70 +529,90 @@
       "roles": "Admin",
       "permission": "Write",
       "priority": "P",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     },
     {
       "name": "View",
       "roles": "Admin",
       "permission": "Read",
       "priority": "P",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     },
     {
       "name": "Browse",
       "roles": "Admin",
       "permission": "Read",
       "priority": "P",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     },
     {
       "name": "Edit",
       "roles": "Admin",
       "permission": "Write",
       "priority": "S",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     },
     {
       "name": "Deactivate",
       "roles": "Admin",
       "permission": "Write",
       "priority": "T",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     },
     {
       "name": "Reactivate",
       "roles": "Admin",
       "permission": "Write",
       "priority": "T",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     },
     {
       "name": "Delete",
       "roles": "Admin",
       "permission": "Write",
       "priority": "Q",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     },
     {
       "name": "Bulk Create",
       "roles": "District Admin",
       "permission": "Write",
       "priority": "T",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     },
     {
       "name": "Rollover",
       "roles": "Admin",
       "permission": "Write",
       "priority": "T",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     },
     {
       "name": "Audit",
       "roles": "Admin",
       "permission": "Read",
       "priority": "T",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     }
   ],
   "sipValidation": {
@@ -580,42 +647,163 @@
       "notes": "Used when diagnosing why a user can or cannot access a product"
     }
   ],
-  "shapeshifterMatrix": [
+  "objectViews": [
     {
+      "viewType": "list",
       "context": "Provisioning Dashboard",
       "value": "provisioning-dashboard",
-      "shape": "card",
       "description": "Product assignments shown as cards with scope, solution, and status. Admins manage which products are provisioned to which schools or districts.",
-      "visibleAttributes": ["Scope Level", "Scope Value", "Solution ID", "State"],
-      "availableCTAs": ["View", "Edit"],
-      "cardShape": "Medium card"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Scope Level",
+            "Scope Value",
+            "Solution ID",
+            "State"
+          ],
+          "availableCTAs": [
+            "View",
+            "Edit"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Scope Level",
+            "Scope Value",
+            "Solution ID",
+            "State"
+          ],
+          "availableCTAs": [
+            "View",
+            "Edit"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Scope Level",
+            "Scope Value",
+            "Solution ID",
+            "State"
+          ],
+          "availableCTAs": [
+            "View",
+            "Edit"
+          ]
+        }
+      }
     },
     {
+      "viewType": "list",
       "context": "Assignment List",
       "value": "assignment-list",
-      "shape": "row",
       "description": "Product assignments listed in a compact table with state and ownership. Admins activate, deactivate, or review provisioning records.",
-      "visibleAttributes": ["Scope Level", "Scope Value", "Solution ID", "State", "Created By"],
-      "availableCTAs": ["View", "Deactivate", "Reactivate"],
-      "cardShape": "Compact row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Scope Level",
+            "Scope Value",
+            "Solution ID",
+            "State",
+            "Created By"
+          ],
+          "availableCTAs": [
+            "View",
+            "Deactivate",
+            "Reactivate"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Scope Level",
+            "Scope Value",
+            "Solution ID",
+            "State",
+            "Created By"
+          ],
+          "availableCTAs": [
+            "View",
+            "Deactivate",
+            "Reactivate"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Scope Level",
+            "Scope Value",
+            "Solution ID",
+            "State",
+            "Created By"
+          ],
+          "availableCTAs": [
+            "View",
+            "Deactivate",
+            "Reactivate"
+          ]
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "Assignment Detail",
       "value": "assignment-detail",
-      "shape": "profile",
       "description": "The complete product assignment record — scope, solution, effective date, and all management controls. Admins configure and adjust provisioning from this page.",
-      "visibleAttributes": ["Assignment ID", "Scope Level", "Scope Value", "Solution ID", "Product ID", "State", "Created By", "Created At", "Effective Date", "School ID"],
-      "availableCTAs": ["View", "Edit", "Deactivate", "Reactivate", "Delete"],
-      "cardShape": "Full page"
+      "visibleAttributes": [
+        "Assignment ID",
+        "Scope Level",
+        "Scope Value",
+        "Solution ID",
+        "Product ID",
+        "State",
+        "Created By",
+        "Created At",
+        "Effective Date",
+        "School ID"
+      ],
+      "availableCTAs": [
+        "View",
+        "Edit",
+        "Deactivate",
+        "Reactivate",
+        "Delete"
+      ]
     },
     {
+      "viewType": "list",
       "context": "School Overview",
       "value": "school-overview",
-      "shape": "row",
       "description": "Product assignments shown as compact rows within a school's overview, listing which solutions are active at that school.",
-      "visibleAttributes": ["Solution ID", "Scope Level", "State"],
-      "availableCTAs": ["View"],
-      "cardShape": "Compact row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Solution ID",
+            "Scope Level",
+            "State"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Solution ID",
+            "Scope Level",
+            "State"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Solution ID",
+            "Scope Level",
+            "State"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        }
+      }
     }
   ]
 }

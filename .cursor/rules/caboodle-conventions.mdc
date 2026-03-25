@@ -8,19 +8,19 @@ alwaysApply: true
 
 ## Project overview
 
-Caboodle is a monorepo with two packages: a Next.js 16 site (`packages/caboodle-site`) and a Lit Web Component library (`packages/object-components`). Object data lives in `data/objects/*.json` (26 files) with a shared TypeScript schema in `data/schema.ts`. The WC library is currently rebuilding — only `ren-student-row.ts` and `shared/tokens.ts` remain on disk.
+Caboodle is a monorepo with two packages: a Next.js 16 site (`packages/caboodle-site`) and a Lit Web Component library (`packages/object-components`). Object data lives in `data/objects/*.json` (26 files) with a shared TypeScript schema in `data/schema.ts`. Each object can define **`objectViews`**: an array of `ObjectView` entries, each with a **view context** (`context`), `viewType` `'list'` or `'detail'`, and (for list views) optional `shapes` for `list`, `grid`, and `table` (`ShapeSpec`). The WC library is currently rebuilding — only `ren-student-row.ts` and `shared/tokens.ts` remain on disk.
 
 ## File organization
 
 - **Site pages**: `packages/caboodle-site/app/{route}/page.tsx` (Next.js App Router)
 - **React components**: `packages/caboodle-site/components/{category}/ComponentName.tsx`
-- **Lit Web Components**: `packages/object-components/src/ren-{object}-{shape}.ts` (rebuilding)
+- **Lit Web Components**: `packages/object-components/src/ren-{object}-{component}.ts` (rebuilding) — components implement presentations aligned to **object views** (e.g. a list-shape row); naming may still use legacy suffixes like `-row` until the library is fully rebuilt
 - **Styles**: `packages/caboodle-site/styles/` — tokens.css, layouts.css, globals.css, components.css
 - **Object data**: `data/objects/{slug}.json` — one file per object (26 files)
 - **Data schema**: `data/schema.ts` — TypeScript types shared by site and WC library
 - **Data loading**: `packages/caboodle-site/lib/objects.ts` and `lib/systems.ts`
 - **Server actions**: `packages/caboodle-site/app/actions.ts` — updateAttribute, updateCTA
-- **Preview registry**: `packages/caboodle-site/lib/preview-registry.ts` — maps view contexts to preview components
+- **Preview registry**: `packages/caboodle-site/lib/preview-registry.ts` — maps **view contexts** (from `objectViews`) to preview components
 - **Static assets**: `packages/caboodle-site/public/` — logo, icons, framework logos, PWA icons
 - **Reference docs**: `docs/requirements/` (see `docs/requirements/STATUS.md` for status)
 - **Architecture decisions**: `docs/decisions/`
@@ -42,7 +42,7 @@ Systems are derived from each object's `identity.products` field via `lib/system
 ## Component conventions
 
 - **React components** handle site-specific UI: navigation, tabs, data tables, config panels, preview renderers, roster components
-- **Lit Web Components** handle object representations: cards, list rows, profiles, headers (currently rebuilding)
+- **Lit Web Components** handle object representations for list/detail **object views** and list/grid/table shapes (cards, rows, profiles, headers — currently rebuilding)
 - Client components use `'use client'` directive; server components are the default
 - Tabs component has full ARIA support (tablist, tab, tabpanel, keyboard navigation)
 - Server/client split: page.tsx loads data, client component receives props for interactivity

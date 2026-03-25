@@ -23,7 +23,7 @@ Status of all requirement and specification documents in `docs/requirements/`. L
 
 | Document | Description | Status | Notes |
 |----------|-------------|--------|-------|
-| [design-system.md](design-system.md) | Object identity, card recipes, shapeshifter variants, token exports | **Partial** | Proposes per-object colors; implementation chose icon-based identity instead (see ADR-004). Shape system and token architecture sections remain relevant |
+| [design-system.md](design-system.md) | Object identity, card recipes, object view variants, token exports | **Partial** | Proposes per-object colors; implementation chose icon-based identity instead (see ADR-004). Presentation system and token architecture sections remain relevant |
 | [object-guide-page.md](object-guide-page.md) | Object Guide UI spec (tabs, showcases, tables) | **Partial** | Tab structure and data tables match implementation; path references and some tab names are outdated |
 | [object-data-template.md](object-data-template.md) | Template for authoring `{slug}.json` files | **Built** | Still the correct guide for creating object data files |
 | [student-roster-list.md](student-roster-list.md) | Student row component for class roster context | **Partial** | RosterRing, RosterScoreColumn, RosterOverflowMenu, and StudentRosterPreview exist; row component is `ren-student-row.ts` in WC library |
@@ -48,10 +48,10 @@ These documents record the ORCA process applied to Caboodle's own information mo
 | [05-object-guides.md](05-object-guides.md) | Prioritized Object Guides for 6 site objects | **Process** | Object Definition Guide fully implemented; others are stubs or planned |
 | [06-mcsfd-specs.md](06-mcsfd-specs.md) | MCSFD relationship specs for 12 pairs | **Process** | Relationship display implemented in Object Guide Relationships tab |
 | [07-cta-prioritization.md](07-cta-prioritization.md) | P/S/T/Q rankings for all site CTAs | **Process** | CTA priority data stored in object JSON; UI display in Actions tab |
-| [08-attribute-prioritization.md](08-attribute-prioritization.md) | Force-ranked attributes for card/detail views | **Process** | Attribute rankings reflected in `shapeshifterMatrix` entries |
+| [08-attribute-prioritization.md](08-attribute-prioritization.md) | Force-ranked attributes for card/detail views | **Process** | Attribute rankings reflected in `objectViews` entries |
 | [09-object-cards.md](09-object-cards.md) | Object card designs and library layout | **Process** | Object Library uses system-based card grid; icon identity system adopted |
 | [11-cta-placement.md](11-cta-placement.md) | CTA zone placement on cards and detail pages | **Process** | Zone model referenced in design-system.md; partially visible in View Inspector |
-| [12-shapeshifter-matrix.md](12-shapeshifter-matrix.md) | Variant matrix for consistent object display | **Process** | Shapeshifter data in object JSON; View Inspector shows per-context views |
+| [12-shapeshifter-matrix.md](12-shapeshifter-matrix.md) | Variant matrix for consistent object display (ORCA Step 12: Shapeshifter Matrix Builder) | **Process** | `objectViews` in object JSON; View Inspector shows per-context views |
 
 ## Summary
 

@@ -6,7 +6,12 @@
     "objectType": "domain",
     "category": "content",
     "definition": "A Lesson is a structured, interactive instructional content unit from Nearpod containing slides, activities, and assessments that a teacher can deliver live or assign self-paced.",
-    "synonyms": ["Content", "Presentation", "Module", "Slide Deck"],
+    "synonyms": [
+      "Content",
+      "Presentation",
+      "Module",
+      "Slide Deck"
+    ],
     "products": "Nearpod"
   },
   "variations": [],
@@ -15,7 +20,7 @@
       "layout": "card",
       "heading": "Card layout",
       "description": "How a Lesson appears in the library browser and search results",
-      "defaultShape": "card",
+      "defaultShape": "list",
       "componentTag": "ren-lesson-card",
       "examples": [
         {
@@ -89,7 +94,9 @@
           "roles": "Teacher",
           "permission": "Read",
           "priority": "S",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Launch Live Lesson",
@@ -98,7 +105,9 @@
           "priority": "P",
           "crossObjectSlug": "live-session",
           "crossObjectName": "Live Session",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         }
       ]
     },
@@ -106,7 +115,7 @@
       "layout": "list",
       "heading": "List layout",
       "description": "How a Lesson appears in tables, search results, and management views",
-      "defaultShape": "row",
+      "defaultShape": "list",
       "componentTag": "ren-lesson-row",
       "examples": [
         {
@@ -180,14 +189,18 @@
           "roles": "Teacher",
           "permission": "Read",
           "priority": "S",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Edit Lesson",
           "roles": "Teacher",
           "permission": "Write",
           "priority": "S",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         }
       ]
     },
@@ -195,7 +208,7 @@
       "layout": "detail",
       "heading": "Detail page layout",
       "description": "Full Lesson view in the editor or preview mode",
-      "defaultShape": "profile",
+      "defaultShape": "details",
       "componentTag": "ren-lesson-profile",
       "examples": [
         {
@@ -305,7 +318,9 @@
           "roles": "Teacher",
           "permission": "Read",
           "priority": "S",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Launch Live Lesson",
@@ -314,7 +329,9 @@
           "priority": "P",
           "crossObjectSlug": "live-session",
           "crossObjectName": "Live Session",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Assign Self-Paced",
@@ -323,21 +340,27 @@
           "priority": "P",
           "crossObjectSlug": "assignment",
           "crossObjectName": "Assignment",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Edit Lesson",
           "roles": "Teacher",
           "permission": "Write",
           "priority": "S",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Duplicate Lesson",
           "roles": "Teacher",
           "permission": "Write",
           "priority": "S",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Share Lesson",
@@ -346,7 +369,9 @@
           "priority": "T",
           "crossObjectSlug": "teacher",
           "crossObjectName": "Teacher",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "View Lesson Report",
@@ -355,14 +380,18 @@
           "priority": "S",
           "crossObjectSlug": "report",
           "crossObjectName": "Report",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Delete Lesson",
           "roles": "Teacher",
           "permission": "Write",
           "priority": "Q",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         }
       ]
     }
@@ -377,7 +406,12 @@
       "benefit": "I can find standards-aligned content and deliver it live to my class immediately.",
       "whenClause": "I search the Nearpod library and select a lesson,",
       "thenClause": "I can preview its slides and activities, then launch it as a live session with a single click.",
-      "crossObjects": [{ "slug": "live-session", "name": "Live Session" }]
+      "crossObjects": [
+        {
+          "slug": "live-session",
+          "name": "Live Session"
+        }
+      ]
     },
     {
       "title": "Create Custom Lesson",
@@ -398,7 +432,16 @@
       "benefit": "I can participate in interactive activities and demonstrate my understanding.",
       "whenClause": "I join a lesson using the session code,",
       "thenClause": "I see the teacher's slides, respond to activities in real time, and receive immediate feedback on scored items.",
-      "crossObjects": [{ "slug": "live-session", "name": "Live Session" }, { "slug": "score", "name": "Score" }]
+      "crossObjects": [
+        {
+          "slug": "live-session",
+          "name": "Live Session"
+        },
+        {
+          "slug": "score",
+          "name": "Score"
+        }
+      ]
     }
   ],
   "businessRules": [
@@ -469,9 +512,25 @@
       }
     ],
     "transitions": [
-      { "from": "Draft", "to": ["Published"] },
-      { "from": "Published", "to": ["Draft", "Archived"] },
-      { "from": "Archived", "to": ["Published"] }
+      {
+        "from": "Draft",
+        "to": [
+          "Published"
+        ]
+      },
+      {
+        "from": "Published",
+        "to": [
+          "Draft",
+          "Archived"
+        ]
+      },
+      {
+        "from": "Archived",
+        "to": [
+          "Published"
+        ]
+      }
     ]
   },
   "relationships": [
@@ -503,7 +562,18 @@
       "dependencies": "Reports persist even if the source Lesson is archived or deleted."
     }
   ],
-  "relatedObjects": ["activity", "live-session", "report", "teacher", "student", "class", "skill", "score", "assignment", "resource"],
+  "relatedObjects": [
+    "activity",
+    "live-session",
+    "report",
+    "teacher",
+    "student",
+    "class",
+    "skill",
+    "score",
+    "assignment",
+    "resource"
+  ],
   "nestedObjects": [
     {
       "slug": "activity",
@@ -644,14 +714,18 @@
       "roles": "Teacher",
       "permission": "Read",
       "priority": "P",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Preview Lesson",
       "roles": "Teacher",
       "permission": "Read",
       "priority": "S",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Launch Live Lesson",
@@ -660,7 +734,9 @@
       "priority": "P",
       "crossObjectSlug": "live-session",
       "crossObjectName": "Live Session",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Assign Self-Paced",
@@ -669,21 +745,27 @@
       "priority": "P",
       "crossObjectSlug": "assignment",
       "crossObjectName": "Assignment",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Favorite Lesson",
       "roles": "Teacher",
       "permission": "Write",
       "priority": "T",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Duplicate Lesson",
       "roles": "Teacher",
       "permission": "Write",
       "priority": "S",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Create Lesson",
@@ -692,21 +774,27 @@
       "priority": "S",
       "crossObjectSlug": "resource",
       "crossObjectName": "Resource",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Edit Lesson",
       "roles": "Teacher",
       "permission": "Write",
       "priority": "S",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Delete Lesson",
       "roles": "Teacher",
       "permission": "Write",
       "priority": "Q",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Share Lesson",
@@ -715,7 +803,9 @@
       "priority": "T",
       "crossObjectSlug": "teacher",
       "crossObjectName": "Teacher",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Join Lesson",
@@ -724,7 +814,9 @@
       "priority": "P",
       "crossObjectSlug": "live-session",
       "crossObjectName": "Live Session",
-      "roleKeys": ["student"]
+      "roleKeys": [
+        "student"
+      ]
     },
     {
       "name": "Complete Lesson",
@@ -733,7 +825,9 @@
       "priority": "P",
       "crossObjectSlug": "score",
       "crossObjectName": "Score",
-      "roleKeys": ["student"]
+      "roleKeys": [
+        "student"
+      ]
     },
     {
       "name": "View Lesson Report",
@@ -742,7 +836,9 @@
       "priority": "S",
       "crossObjectSlug": "report",
       "crossObjectName": "Report",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     }
   ],
   "sipValidation": {
@@ -782,42 +878,146 @@
       "notes": "Reflects the visual similarity to presentation software"
     }
   ],
-  "shapeshifterMatrix": [
+  "objectViews": [
     {
+      "viewType": "list",
       "context": "Browse Library",
       "value": "browse-library",
-      "shape": "card",
       "description": "Lessons shown as cards with thumbnails, subject, grade band, and duration. Teachers browse the library to find lessons to preview, launch live, or save as favorites.",
-      "visibleAttributes": ["Lesson Title", "Subject", "Grade Band", "Lesson Type", "Slide Count", "Duration", "Source"],
-      "availableCTAs": ["Preview Lesson", "Launch Live Lesson", "Favorite Lesson"],
-      "cardShape": "Medium card with thumbnail"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Lesson Title",
+            "Subject",
+            "Grade Band",
+            "Lesson Type",
+            "Slide Count",
+            "Duration",
+            "Source"
+          ],
+          "availableCTAs": [
+            "Preview Lesson",
+            "Launch Live Lesson",
+            "Favorite Lesson"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Lesson Title",
+            "Subject",
+            "Grade Band",
+            "Lesson Type",
+            "Slide Count",
+            "Duration",
+            "Source"
+          ],
+          "availableCTAs": [
+            "Preview Lesson",
+            "Launch Live Lesson",
+            "Favorite Lesson"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Lesson Title",
+            "Subject",
+            "Grade Band",
+            "Lesson Type",
+            "Slide Count",
+            "Duration",
+            "Source"
+          ],
+          "availableCTAs": [
+            "Preview Lesson",
+            "Launch Live Lesson",
+            "Favorite Lesson"
+          ]
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "Lesson Editor",
       "value": "lesson-editor",
-      "shape": "profile",
       "description": "The full lesson authoring view — slides, activities, standards alignment, and editing controls. Authors build and refine lesson content from this page.",
-      "visibleAttributes": ["Lesson Title", "Subject", "Grade Band", "Lesson Type", "Slide Count", "Duration", "Author", "Status", "Interactive Elements", "Skills/Standards"],
-      "availableCTAs": ["Edit Lesson", "Preview Lesson", "Duplicate Lesson", "Delete Lesson"],
-      "cardShape": "Full page editor"
+      "visibleAttributes": [
+        "Lesson Title",
+        "Subject",
+        "Grade Band",
+        "Lesson Type",
+        "Slide Count",
+        "Duration",
+        "Author",
+        "Status",
+        "Interactive Elements",
+        "Skills/Standards"
+      ],
+      "availableCTAs": [
+        "Edit Lesson",
+        "Preview Lesson",
+        "Duplicate Lesson",
+        "Delete Lesson"
+      ]
     },
     {
+      "viewType": "detail",
       "context": "Live Delivery",
       "value": "live-delivery",
-      "shape": "header",
       "description": "The lesson displayed as a minimal header during live delivery — just the title and slide count, staying out of the way of the content.",
-      "visibleAttributes": ["Lesson Title", "Slide Count"],
-      "availableCTAs": ["Launch Live Lesson"],
-      "cardShape": "Minimal header"
+      "visibleAttributes": [
+        "Lesson Title",
+        "Slide Count"
+      ],
+      "availableCTAs": [
+        "Launch Live Lesson"
+      ]
     },
     {
+      "viewType": "list",
       "context": "Lesson Report",
       "value": "lesson-report",
-      "shape": "row",
       "description": "Lessons listed with usage counts, average scores, and status. Teachers review which lessons landed well and which need revision.",
-      "visibleAttributes": ["Lesson Title", "Subject", "Grade Band", "Usage Count", "Average Score", "Status"],
-      "availableCTAs": ["View Lesson Report"],
-      "cardShape": "Data row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Lesson Title",
+            "Subject",
+            "Grade Band",
+            "Usage Count",
+            "Average Score",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View Lesson Report"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Lesson Title",
+            "Subject",
+            "Grade Band",
+            "Usage Count",
+            "Average Score",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View Lesson Report"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Lesson Title",
+            "Subject",
+            "Grade Band",
+            "Usage Count",
+            "Average Score",
+            "Status"
+          ],
+          "availableCTAs": [
+            "View Lesson Report"
+          ]
+        }
+      }
     }
   ]
 }

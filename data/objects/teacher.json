@@ -6,7 +6,11 @@
     "objectType": "core",
     "category": "people",
     "definition": "A Teacher is an educator associated with one or more schools and classes who creates and delivers instructional content, assigns and monitors student work, administers assessments, and analyzes learning data to make informed instructional decisions across Renaissance products.",
-    "synonyms": ["educator", "instructor", "staff"],
+    "synonyms": [
+      "educator",
+      "instructor",
+      "staff"
+    ],
     "products": "All products"
   },
   "variations": [],
@@ -15,7 +19,7 @@
       "layout": "card",
       "heading": "Card layout",
       "description": "How a Teacher appears in grids and dashboards",
-      "defaultShape": "card",
+      "defaultShape": "list",
       "componentTag": "ren-teacher-card",
       "examples": [
         {
@@ -89,7 +93,10 @@
           "roles": "Self, Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "View Classes",
@@ -98,7 +105,10 @@
           "priority": "S",
           "crossObjectSlug": "class",
           "crossObjectName": "Class",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         }
       ]
     },
@@ -106,7 +116,7 @@
       "layout": "list",
       "heading": "List layout",
       "description": "How a Teacher appears in staff rosters and tables",
-      "defaultShape": "row",
+      "defaultShape": "list",
       "componentTag": "ren-teacher-row",
       "examples": [
         {
@@ -186,7 +196,10 @@
           "roles": "Self, Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "View Classes",
@@ -195,7 +208,10 @@
           "priority": "S",
           "crossObjectSlug": "class",
           "crossObjectName": "Class",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         }
       ]
     },
@@ -203,7 +219,7 @@
       "layout": "detail",
       "heading": "Detail page layout",
       "description": "What users see when they open a full Teacher record",
-      "defaultShape": "profile",
+      "defaultShape": "details",
       "componentTag": "ren-teacher-profile",
       "examples": [
         {
@@ -224,11 +240,31 @@
           "language": "English",
           "productAccess": "Star Reading, Star Math, AR, Freckle",
           "nestedObjects": [
-            { "label": "Classes", "count": 4, "href": "#" },
-            { "label": "Assignments", "count": 23, "href": "#" },
-            { "label": "Students", "count": 87, "href": "#" },
-            { "label": "Resources", "count": 15, "href": "#" },
-            { "label": "Assessments", "count": 8, "href": "#" }
+            {
+              "label": "Classes",
+              "count": 4,
+              "href": "#"
+            },
+            {
+              "label": "Assignments",
+              "count": 23,
+              "href": "#"
+            },
+            {
+              "label": "Students",
+              "count": 87,
+              "href": "#"
+            },
+            {
+              "label": "Resources",
+              "count": 15,
+              "href": "#"
+            },
+            {
+              "label": "Assessments",
+              "count": 8,
+              "href": "#"
+            }
           ]
         }
       ],
@@ -339,14 +375,20 @@
           "roles": "Self, Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Edit Profile",
           "roles": "Self, Admin",
           "permission": "Write",
           "priority": "S",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Assign to Class",
@@ -355,7 +397,9 @@
           "priority": "T",
           "crossObjectSlug": "class",
           "crossObjectName": "Class",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         },
         {
           "name": "Remove from Class",
@@ -364,7 +408,9 @@
           "priority": "T",
           "crossObjectSlug": "class",
           "crossObjectName": "Class",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         },
         {
           "name": "Create Assignment",
@@ -373,7 +419,9 @@
           "priority": "S",
           "crossObjectSlug": "assignment",
           "crossObjectName": "Assignment",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Create Assessment",
@@ -382,7 +430,9 @@
           "priority": "S",
           "crossObjectSlug": "assessment",
           "crossObjectName": "Assessment",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "View Reports",
@@ -391,7 +441,10 @@
           "priority": "S",
           "crossObjectSlug": "score",
           "crossObjectName": "Score",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Manage Class Settings",
@@ -400,7 +453,9 @@
           "priority": "T",
           "crossObjectSlug": "class",
           "crossObjectName": "Class",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Search Resources",
@@ -409,21 +464,28 @@
           "priority": "T",
           "crossObjectSlug": "resource",
           "crossObjectName": "Resource",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Manage Settings",
           "roles": "Self, Admin",
           "permission": "Write",
           "priority": "T",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Deactivate",
           "roles": "Admin",
           "permission": "Write",
           "priority": "Q",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         }
       ]
     }
@@ -438,7 +500,12 @@
       "benefit": "I can monitor student activity, track assignment completion, and review recent assessment results for my class.",
       "whenClause": "I navigate to one of my Classes,",
       "thenClause": "a dashboard showing student activity, assignment progress, and recent assessment results.",
-      "crossObjects": [{ "slug": "class", "name": "Class" }]
+      "crossObjects": [
+        {
+          "slug": "class",
+          "name": "Class"
+        }
+      ]
     },
     {
       "title": "Create and Assign Work",
@@ -449,7 +516,16 @@
       "benefit": "students receive targeted practice aligned to their skill levels and curricular goals.",
       "whenClause": "I create an Assignment for my Class,",
       "thenClause": "the assignment is distributed to enrolled students with targeted skills and due dates.",
-      "crossObjects": [{ "slug": "assignment", "name": "Assignment" }, { "slug": "class", "name": "Class" }]
+      "crossObjects": [
+        {
+          "slug": "assignment",
+          "name": "Assignment"
+        },
+        {
+          "slug": "class",
+          "name": "Class"
+        }
+      ]
     },
     {
       "title": "Analyze Student Progress",
@@ -460,7 +536,16 @@
       "benefit": "I can identify students who need intervention and adjust my instruction accordingly.",
       "whenClause": "I view Score reports for my Students,",
       "thenClause": "aggregated and individual score data across assessments, with trend indicators and benchmark comparisons.",
-      "crossObjects": [{ "slug": "score", "name": "Score" }, { "slug": "student", "name": "Student" }]
+      "crossObjects": [
+        {
+          "slug": "score",
+          "name": "Score"
+        },
+        {
+          "slug": "student",
+          "name": "Student"
+        }
+      ]
     }
   ],
   "businessRules": [
@@ -521,7 +606,14 @@
       }
     ],
     "transitions": [
-      { "from": "Active", "to": ["Inactive", "Transferred", "Deactivated"] }
+      {
+        "from": "Active",
+        "to": [
+          "Inactive",
+          "Transferred",
+          "Deactivated"
+        ]
+      }
     ]
   },
   "relationships": [
@@ -553,7 +645,16 @@
       "dependencies": "If a Student is removed from all of a Teacher's classes, the teacher loses visibility of that student's data."
     }
   ],
-  "relatedObjects": ["class", "school", "student", "assignment", "assessment", "score", "resource", "district"],
+  "relatedObjects": [
+    "class",
+    "school",
+    "student",
+    "assignment",
+    "assessment",
+    "score",
+    "resource",
+    "district"
+  ],
   "nestedObjects": [
     {
       "slug": "class",
@@ -701,14 +802,20 @@
       "roles": "Self, Admin",
       "permission": "Read",
       "priority": "P",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Edit Profile",
       "roles": "Self, Admin",
       "permission": "Write",
       "priority": "S",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Assign to Class",
@@ -717,7 +824,9 @@
       "priority": "T",
       "crossObjectSlug": "class",
       "crossObjectName": "Class",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     },
     {
       "name": "Remove from Class",
@@ -726,7 +835,9 @@
       "priority": "T",
       "crossObjectSlug": "class",
       "crossObjectName": "Class",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     },
     {
       "name": "Create Assignment",
@@ -735,7 +846,9 @@
       "priority": "S",
       "crossObjectSlug": "assignment",
       "crossObjectName": "Assignment",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Create Assessment",
@@ -744,7 +857,9 @@
       "priority": "S",
       "crossObjectSlug": "assessment",
       "crossObjectName": "Assessment",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "View Reports",
@@ -753,7 +868,10 @@
       "priority": "S",
       "crossObjectSlug": "score",
       "crossObjectName": "Score",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Manage Class Settings",
@@ -762,7 +880,9 @@
       "priority": "T",
       "crossObjectSlug": "class",
       "crossObjectName": "Class",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Search Resources",
@@ -771,21 +891,28 @@
       "priority": "T",
       "crossObjectSlug": "resource",
       "crossObjectName": "Resource",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Manage Settings",
       "roles": "Self, Admin",
       "permission": "Write",
       "priority": "T",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Deactivate",
       "roles": "Admin",
       "permission": "Write",
       "priority": "Q",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     }
   ],
   "sipValidation": {
@@ -825,69 +952,237 @@
       "notes": "Generic term in technical contexts; not used in product UI"
     }
   ],
-  "shapeshifterMatrix": [
+  "objectViews": [
     {
+      "viewType": "list",
       "context": "School Staff List",
       "value": "school-staff",
-      "shape": "row",
       "description": "Teachers at a school listed with their role, subjects, and class assignments. Admins browse this to check staffing and jump to individual profiles.",
-      "visibleAttributes": ["Full Name", "Role/Title", "Profile Photo", "Subject Area(s)", "Class(es)"],
-      "availableCTAs": ["View Profile"],
-      "cardShape": "Compact row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Full Name",
+            "Role/Title",
+            "Profile Photo",
+            "Subject Area(s)",
+            "Class(es)"
+          ],
+          "availableCTAs": [
+            "View Profile"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Full Name",
+            "Role/Title",
+            "Profile Photo",
+            "Subject Area(s)",
+            "Class(es)"
+          ],
+          "availableCTAs": [
+            "View Profile"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Full Name",
+            "Role/Title",
+            "Profile Photo",
+            "Subject Area(s)",
+            "Class(es)"
+          ],
+          "availableCTAs": [
+            "View Profile"
+          ]
+        }
+      }
     },
     {
+      "viewType": "list",
       "context": "Class Assignment Picker",
       "value": "class-assignment-picker",
-      "shape": "mini-row",
       "description": "A minimal row for selecting which teacher to assign to a class. Shows name, role, photo, and subject area — just enough to pick the right person.",
-      "visibleAttributes": ["Full Name", "Role/Title", "Profile Photo", "Subject Area(s)"],
-      "availableCTAs": [],
-      "cardShape": "Mini row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Full Name",
+            "Role/Title",
+            "Profile Photo",
+            "Subject Area(s)"
+          ],
+          "availableCTAs": []
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Full Name",
+            "Role/Title",
+            "Profile Photo",
+            "Subject Area(s)"
+          ],
+          "availableCTAs": []
+        },
+        "table": {
+          "visibleAttributes": [
+            "Full Name",
+            "Role/Title",
+            "Profile Photo",
+            "Subject Area(s)"
+          ],
+          "availableCTAs": []
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "Teacher Detail Page",
       "value": "teacher-detail",
-      "shape": "profile",
       "description": "The complete teacher profile — contact info, school and class assignments, product access, and administrative controls. Admins manage teacher accounts and permissions from here.",
-      "visibleAttributes": ["Full Name", "Email", "School(s)", "Class(es)", "Role/Title", "Subject Area(s)", "Grade Band", "Employee ID", "Product Access", "Username / Login", "Profile Photo", "District", "Phone", "Certifications", "Preferred Language"],
-      "availableCTAs": ["View Profile", "Edit Profile", "Assign to Class", "Remove from Class", "Create Assignment", "Create Assessment", "View Reports", "Manage Class Settings", "Search Resources", "Manage Settings", "Deactivate"],
-      "cardShape": "Full page"
+      "visibleAttributes": [
+        "Full Name",
+        "Email",
+        "School(s)",
+        "Class(es)",
+        "Role/Title",
+        "Subject Area(s)",
+        "Grade Band",
+        "Employee ID",
+        "Product Access",
+        "Username / Login",
+        "Profile Photo",
+        "District",
+        "Phone",
+        "Certifications",
+        "Preferred Language"
+      ],
+      "availableCTAs": [
+        "View Profile",
+        "Edit Profile",
+        "Assign to Class",
+        "Remove from Class",
+        "Create Assignment",
+        "Create Assessment",
+        "View Reports",
+        "Manage Class Settings",
+        "Search Resources",
+        "Manage Settings",
+        "Deactivate"
+      ]
     },
     {
+      "viewType": "list",
       "context": "Admin User Management",
       "value": "admin-user-mgmt",
-      "shape": "data-row",
       "description": "Teachers listed in an admin data table for bulk account management. Focused on role, school assignment, and account status with quick edit and deactivation controls.",
-      "visibleAttributes": ["Full Name", "Role/Title", "School(s)", "Subject Area(s)", "Class(es)"],
-      "availableCTAs": ["Edit Profile", "Deactivate"],
-      "cardShape": "Data row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Full Name",
+            "Role/Title",
+            "School(s)",
+            "Subject Area(s)",
+            "Class(es)"
+          ],
+          "availableCTAs": [
+            "Edit Profile",
+            "Deactivate"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Full Name",
+            "Role/Title",
+            "School(s)",
+            "Subject Area(s)",
+            "Class(es)"
+          ],
+          "availableCTAs": [
+            "Edit Profile",
+            "Deactivate"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Full Name",
+            "Role/Title",
+            "School(s)",
+            "Subject Area(s)",
+            "Class(es)"
+          ],
+          "availableCTAs": [
+            "Edit Profile",
+            "Deactivate"
+          ]
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "Report Attribution",
       "value": "report-attribution",
-      "shape": "header",
       "description": "The teacher's name displayed inline within a report to attribute results. Purely informational — no interactive elements.",
-      "visibleAttributes": ["Full Name"],
-      "availableCTAs": [],
-      "cardShape": "Inline text"
+      "visibleAttributes": [
+        "Full Name"
+      ],
+      "availableCTAs": []
     },
     {
+      "viewType": "detail",
       "context": "Class Header",
       "value": "class-header",
-      "shape": "header",
       "description": "The teacher shown as part of a class banner — name, role, and photo identifying who teaches this class.",
-      "visibleAttributes": ["Full Name", "Role/Title", "Profile Photo"],
-      "availableCTAs": [],
-      "cardShape": "Banner element"
+      "visibleAttributes": [
+        "Full Name",
+        "Role/Title",
+        "Profile Photo"
+      ],
+      "availableCTAs": []
     },
     {
+      "viewType": "list",
       "context": "Teacher Overview Card",
       "value": "teacher-overview",
-      "shape": "card",
       "description": "A summary card showing role, subjects, classes, and school at a glance. Used in dashboards where admins need a quick overview of a teacher.",
-      "visibleAttributes": ["Full Name", "Role/Title", "Profile Photo", "Subject Area(s)", "Class(es)", "School(s)"],
-      "availableCTAs": ["View Profile"],
-      "cardShape": "Medium card"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Full Name",
+            "Role/Title",
+            "Profile Photo",
+            "Subject Area(s)",
+            "Class(es)",
+            "School(s)"
+          ],
+          "availableCTAs": [
+            "View Profile"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Full Name",
+            "Role/Title",
+            "Profile Photo",
+            "Subject Area(s)",
+            "Class(es)",
+            "School(s)"
+          ],
+          "availableCTAs": [
+            "View Profile"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Full Name",
+            "Role/Title",
+            "Profile Photo",
+            "Subject Area(s)",
+            "Class(es)",
+            "School(s)"
+          ],
+          "availableCTAs": [
+            "View Profile"
+          ]
+        }
+      }
     }
   ]
 }

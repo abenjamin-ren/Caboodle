@@ -6,7 +6,12 @@
     "objectType": "domain",
     "category": "container",
     "definition": "An Onboarding Checklist is a system-generated, user-specific sequence of setup and discovery tasks that appears after a user's first login to Renaissance Intelligence.",
-    "synonyms": ["Setup Guide", "Getting Started", "Welcome Checklist", "Activation Guide"],
+    "synonyms": [
+      "Setup Guide",
+      "Getting Started",
+      "Welcome Checklist",
+      "Activation Guide"
+    ],
     "products": "Renaissance Intelligence"
   },
   "variations": [],
@@ -15,7 +20,7 @@
       "layout": "card",
       "heading": "Card layout",
       "description": "How an Onboarding Checklist appears as a dashboard widget",
-      "defaultShape": "card",
+      "defaultShape": "list",
       "componentTag": "ren-onboarding-checklist-card",
       "examples": [
         {
@@ -81,21 +86,30 @@
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Resume Checklist",
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "S",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Dismiss Checklist",
           "roles": "Teacher, Admin",
           "permission": "Write",
           "priority": "S",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         }
       ]
     },
@@ -103,7 +117,7 @@
       "layout": "list",
       "heading": "List layout",
       "description": "How an Onboarding Checklist appears in admin views",
-      "defaultShape": "row",
+      "defaultShape": "list",
       "componentTag": "ren-onboarding-checklist-row",
       "examples": [
         {
@@ -160,7 +174,10 @@
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         }
       ]
     },
@@ -168,7 +185,7 @@
       "layout": "detail",
       "heading": "Detail layout",
       "description": "Full expanded Onboarding Checklist with all steps",
-      "defaultShape": "profile",
+      "defaultShape": "details",
       "componentTag": "ren-onboarding-checklist-profile",
       "examples": [
         {
@@ -256,35 +273,48 @@
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Resume Checklist",
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "S",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Dismiss Checklist",
           "roles": "Teacher, Admin",
           "permission": "Write",
           "priority": "S",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Complete Checklist",
           "roles": "System",
           "permission": "Write",
           "priority": "P",
-          "roleKeys": ["system"]
+          "roleKeys": [
+            "system"
+          ]
         },
         {
           "name": "Reset Checklist",
           "roles": "Admin",
           "permission": "Write",
           "priority": "T",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         }
       ]
     }
@@ -299,7 +329,12 @@
       "benefit": "I know exactly what setup steps to take and can track my progress toward being fully onboarded.",
       "whenClause": "I log in to Renaissance Intelligence for the first time,",
       "thenClause": "a personalized checklist appears on my dashboard showing the steps I need to complete, with progress tracking and direct links to each action.",
-      "crossObjects": [{ "slug": "onboarding-step", "name": "Onboarding Step" }]
+      "crossObjects": [
+        {
+          "slug": "onboarding-step",
+          "name": "Onboarding Step"
+        }
+      ]
     },
     {
       "title": "Monitor Teacher Onboarding",
@@ -310,7 +345,12 @@
       "benefit": "I can identify which teachers need onboarding support and intervene before they stall.",
       "whenClause": "I view the admin onboarding dashboard,",
       "thenClause": "I see a list of teachers with their checklist progress, days since start, and current status so I can prioritize outreach.",
-      "crossObjects": [{ "slug": "teacher", "name": "Teacher" }]
+      "crossObjects": [
+        {
+          "slug": "teacher",
+          "name": "Teacher"
+        }
+      ]
     }
   ],
   "businessRules": [
@@ -375,9 +415,26 @@
       }
     ],
     "transitions": [
-      { "from": "Not Started", "to": ["In Progress", "Dismissed"] },
-      { "from": "In Progress", "to": ["Complete", "Dismissed"] },
-      { "from": "Dismissed", "to": ["In Progress"] }
+      {
+        "from": "Not Started",
+        "to": [
+          "In Progress",
+          "Dismissed"
+        ]
+      },
+      {
+        "from": "In Progress",
+        "to": [
+          "Complete",
+          "Dismissed"
+        ]
+      },
+      {
+        "from": "Dismissed",
+        "to": [
+          "In Progress"
+        ]
+      }
     ]
   },
   "relationships": [
@@ -409,7 +466,11 @@
       "dependencies": "Module availability affects step help links but not checklist structure."
     }
   ],
-  "relatedObjects": ["onboarding-step", "teacher", "educator-academy-module"],
+  "relatedObjects": [
+    "onboarding-step",
+    "teacher",
+    "educator-academy-module"
+  ],
   "nestedObjects": [
     {
       "slug": "onboarding-step",
@@ -500,35 +561,48 @@
       "roles": "Teacher, Admin",
       "permission": "Read",
       "priority": "P",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Resume Checklist",
       "roles": "Teacher, Admin",
       "permission": "Read",
       "priority": "S",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Dismiss Checklist",
       "roles": "Teacher, Admin",
       "permission": "Write",
       "priority": "S",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Complete Checklist",
       "roles": "System",
       "permission": "Write",
       "priority": "P",
-      "roleKeys": ["system"]
+      "roleKeys": [
+        "system"
+      ]
     },
     {
       "name": "Reset Checklist",
       "roles": "Admin",
       "permission": "Write",
       "priority": "T",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     }
   ],
   "sipValidation": {
@@ -568,33 +642,125 @@
       "notes": "Emphasizes the business goal of user activation; internal analytics term"
     }
   ],
-  "shapeshifterMatrix": [
+  "objectViews": [
     {
+      "viewType": "list",
       "context": "Dashboard Widget",
       "value": "dashboard-widget",
-      "shape": "card",
       "description": "The onboarding checklist shown as a dashboard widget with progress and next steps. New users see what they need to complete and pick up where they left off.",
-      "visibleAttributes": ["Role Variant", "Progress", "Status", "Steps"],
-      "availableCTAs": ["View Checklist", "Resume Checklist", "Dismiss Checklist"],
-      "cardShape": "Dashboard widget card"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Role Variant",
+            "Progress",
+            "Status",
+            "Steps"
+          ],
+          "availableCTAs": [
+            "View Checklist",
+            "Resume Checklist",
+            "Dismiss Checklist"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Role Variant",
+            "Progress",
+            "Status",
+            "Steps"
+          ],
+          "availableCTAs": [
+            "View Checklist",
+            "Resume Checklist",
+            "Dismiss Checklist"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Role Variant",
+            "Progress",
+            "Status",
+            "Steps"
+          ],
+          "availableCTAs": [
+            "View Checklist",
+            "Resume Checklist",
+            "Dismiss Checklist"
+          ]
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "Full Checklist",
       "value": "full-checklist",
-      "shape": "profile",
       "description": "The complete onboarding checklist — all steps, progress, and management controls. Users work through setup tasks; admins can reset or review completion status.",
-      "visibleAttributes": ["Checklist ID", "User", "Role Variant", "Progress", "Status", "Steps", "Created Date", "Completed Date", "Dismissed Date", "Days Since Start"],
-      "availableCTAs": ["View Checklist", "Resume Checklist", "Dismiss Checklist", "Complete Checklist", "Reset Checklist"],
-      "cardShape": "Full page"
+      "visibleAttributes": [
+        "Checklist ID",
+        "User",
+        "Role Variant",
+        "Progress",
+        "Status",
+        "Steps",
+        "Created Date",
+        "Completed Date",
+        "Dismissed Date",
+        "Days Since Start"
+      ],
+      "availableCTAs": [
+        "View Checklist",
+        "Resume Checklist",
+        "Dismiss Checklist",
+        "Complete Checklist",
+        "Reset Checklist"
+      ]
     },
     {
+      "viewType": "list",
       "context": "Admin View",
       "value": "admin-view",
-      "shape": "row",
       "description": "Onboarding checklists listed in an admin table with progress, status, and days since start. Admins monitor which users are completing onboarding and who's stalled.",
-      "visibleAttributes": ["User", "Role Variant", "Progress", "Status", "Days Since Start"],
-      "availableCTAs": ["View Checklist", "Reset Checklist"],
-      "cardShape": "Admin data row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "User",
+            "Role Variant",
+            "Progress",
+            "Status",
+            "Days Since Start"
+          ],
+          "availableCTAs": [
+            "View Checklist",
+            "Reset Checklist"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "User",
+            "Role Variant",
+            "Progress",
+            "Status",
+            "Days Since Start"
+          ],
+          "availableCTAs": [
+            "View Checklist",
+            "Reset Checklist"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "User",
+            "Role Variant",
+            "Progress",
+            "Status",
+            "Days Since Start"
+          ],
+          "availableCTAs": [
+            "View Checklist",
+            "Reset Checklist"
+          ]
+        }
+      }
     }
   ]
 }

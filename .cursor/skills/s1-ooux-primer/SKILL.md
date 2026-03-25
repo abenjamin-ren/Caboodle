@@ -103,7 +103,7 @@ All three must pass. If any fails, the noun is likely an attribute, a CTA, or to
 ### Project-Specific Examples
 
 Use the core objects from `data/objects/` as teaching examples:
-- **Student** is a core object across Star, myON, Freckle, Nearpod — it's a classic "shapeshifter" that appears differently in each product. See `data/objects/student.json` for the reference implementation.
+- **Student** is a core object across Star, myON, Freckle, Nearpod — it's a classic "shapeshifter" that appears differently in each product. See `data/objects/student.json` for the reference implementation (including `objectViews` for context-specific list/detail specs).
 - **Assessment** vs **Assignment** vs **Resource** are often "masked objects" — they're called different things in different products but serve similar structural roles
 - **Class** is a "hub" object — many other objects nest inside it, making it a natural navigation anchor
 

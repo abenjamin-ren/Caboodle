@@ -20,7 +20,7 @@
       "layout": "card",
       "heading": "Card layout",
       "description": "How a Student appears in grids and dashboards",
-      "defaultShape": "card",
+      "defaultShape": "list",
       "componentTag": "ren-student-card",
       "examples": [
         {
@@ -192,7 +192,7 @@
       "layout": "list",
       "heading": "List layout",
       "description": "How a Student appears in rosters and tables",
-      "defaultShape": "row",
+      "defaultShape": "list",
       "componentTag": "ren-student-row",
       "examples": [
         {
@@ -298,7 +298,7 @@
       "layout": "detail",
       "heading": "Detail page layout",
       "description": "What users see when they open a full Student record",
-      "defaultShape": "profile",
+      "defaultShape": "details",
       "componentTag": "ren-student-profile",
       "examples": [
         {
@@ -1106,54 +1106,121 @@
       "notes": "Not used in product UI"
     }
   ],
-  "shapeshifterMatrix": [
+  "objectViews": [
     {
+      "viewType": "list",
       "context": "Roster",
       "value": "class-roster",
-      "shape": "row",
       "description": "A scannable list of every student in a class with at-a-glance performance levels. Teachers use this to spot who needs attention and jump to individual profiles or scores.",
-      "visibleAttributes": [
-        "Full Name",
-        "Grade Level",
-        "Enrollment Status",
-        "Reading Level",
-        "Reading Proficiency",
-        "Math Level",
-        "Math Proficiency",
-        "Number of Assignments"
-      ],
-      "availableCTAs": [
-        "View Profile",
-        "View Scores",
-        "Add to Student Group",
-        "Enroll in Class",
-        "Remove from Class"
-      ],
-      "cardShape": "Compact row",
-      "userIntent": "Who is in my class and how are they performing?"
+      "userIntent": "Who is in my class and how are they performing?",
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level",
+            "Enrollment Status",
+            "Reading Level",
+            "Reading Proficiency",
+            "Math Level",
+            "Math Proficiency",
+            "Number of Assignments"
+          ],
+          "availableCTAs": [
+            "View Profile",
+            "View Scores",
+            "Add to Student Group",
+            "Enroll in Class",
+            "Remove from Class"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level",
+            "Enrollment Status",
+            "Reading Level",
+            "Reading Proficiency",
+            "Math Level",
+            "Math Proficiency",
+            "Number of Assignments"
+          ],
+          "availableCTAs": [
+            "View Profile",
+            "View Scores",
+            "Add to Student Group",
+            "Enroll in Class",
+            "Remove from Class"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level",
+            "Enrollment Status",
+            "Reading Level",
+            "Reading Proficiency",
+            "Math Level",
+            "Math Proficiency",
+            "Number of Assignments"
+          ],
+          "availableCTAs": [
+            "View Profile",
+            "View Scores",
+            "Add to Student Group",
+            "Enroll in Class",
+            "Remove from Class"
+          ]
+        }
+      }
     },
     {
+      "viewType": "list",
       "context": "Class Activity",
       "value": "class-activity",
-      "shape": "card",
       "description": "Students participating in a live class activity, shown as cards for quick visual identification. Teachers tap through to see what each student has been working on.",
-      "visibleAttributes": [
-        "Full Name",
-        "Grade Level",
-        "Student Avatar"
-      ],
-      "availableCTAs": [
-        "View Profile",
-        "View Student Activity"
-      ],
-      "cardShape": "Medium card",
-      "userIntent": "Which students are engaged in this class activity?"
+      "userIntent": "Which students are engaged in this class activity?",
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level",
+            "Student Avatar"
+          ],
+          "availableCTAs": [
+            "View Profile",
+            "View Student Activity"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level",
+            "Student Avatar"
+          ],
+          "availableCTAs": [
+            "View Profile",
+            "View Student Activity"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level",
+            "Student Avatar"
+          ],
+          "availableCTAs": [
+            "View Profile",
+            "View Student Activity"
+          ]
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "Student Detail",
       "value": "student-detail",
-      "shape": "detail",
       "description": "The complete student profile — identity, enrollment, demographics, and academic performance in one place. Teachers and admins come here to check standing, manage enrollment, or drill into scores and skill proficiency.",
+      "userIntent": "What is the complete picture of this student?",
       "visibleAttributes": [
         "Full Name",
         "Grade Level",
@@ -1185,73 +1252,133 @@
         "Add to Student Group",
         "Export Data",
         "Deactivate"
-      ],
-      "cardShape": "Full page",
-      "userIntent": "What is the complete picture of this student?"
+      ]
     },
     {
+      "viewType": "list",
       "context": "Assignment Picker",
       "value": "assignment-picker",
-      "shape": "mini-row",
       "description": "A minimal selection list for choosing which students receive an assignment. Shows just enough to identify each student — name, grade, and photo.",
-      "visibleAttributes": [
-        "Full Name",
-        "Grade Level",
-        "Student Avatar"
-      ],
-      "availableCTAs": [],
-      "cardShape": "Mini row",
-      "userIntent": "Which students should I assign this to?"
+      "userIntent": "Which students should I assign this to?",
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level",
+            "Student Avatar"
+          ],
+          "availableCTAs": []
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level",
+            "Student Avatar"
+          ],
+          "availableCTAs": []
+        },
+        "table": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level",
+            "Student Avatar"
+          ],
+          "availableCTAs": []
+        }
+      }
     },
     {
+      "viewType": "list",
       "context": "School Roster",
       "value": "school-roster",
-      "shape": "row",
       "description": "All students at a school listed with name, grade, and school affiliation. Principals and admins browse enrollment and jump to profiles or score summaries.",
-      "visibleAttributes": [
-        "Full Name",
-        "Grade Level",
-        "Student Avatar",
-        "School"
-      ],
-      "availableCTAs": [
-        "View Profile",
-        "View Scores"
-      ],
-      "cardShape": "Compact row",
-      "userIntent": "Who are the students at this school?"
+      "userIntent": "Who are the students at this school?",
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level",
+            "Student Avatar",
+            "School"
+          ],
+          "availableCTAs": [
+            "View Profile",
+            "View Scores"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level",
+            "Student Avatar",
+            "School"
+          ],
+          "availableCTAs": [
+            "View Profile",
+            "View Scores"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level",
+            "Student Avatar",
+            "School"
+          ],
+          "availableCTAs": [
+            "View Profile",
+            "View Scores"
+          ]
+        }
+      }
     },
     {
+      "viewType": "list",
       "context": "Search Results",
       "value": "search-results",
-      "shape": "compact-card",
       "description": "Students matching a search query, displayed as compact cards with school affiliation. The goal is fast identification — confirm the right student and open their profile.",
-      "visibleAttributes": [
-        "Full Name",
-        "Grade Level",
-        "Student Avatar",
-        "School"
-      ],
-      "availableCTAs": [
-        "View Profile"
-      ],
-      "cardShape": "Compact card",
-      "userIntent": "Is this the student I'm looking for?"
+      "userIntent": "Is this the student I'm looking for?",
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level",
+            "Student Avatar",
+            "School"
+          ],
+          "availableCTAs": [
+            "View Profile"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level",
+            "Student Avatar",
+            "School"
+          ],
+          "availableCTAs": [
+            "View Profile"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level",
+            "Student Avatar",
+            "School"
+          ],
+          "availableCTAs": [
+            "View Profile"
+          ]
+        }
+      }
     },
     {
+      "viewType": "list",
       "context": "Score Report",
       "value": "score-report",
-      "shape": "data-row",
       "description": "Students listed alongside their scores for a specific assessment. Teachers scan the data rows to compare performance, spot proficiency bands, and identify who needs follow-up.",
-      "visibleAttributes": [
-        "Full Name",
-        "Grade Level"
-      ],
-      "availableCTAs": [
-        "View Profile",
-        "View Scores"
-      ],
-      "cardShape": "Data row",
       "userIntent": "How did each student score on this assessment?",
       "contextDataSchema": {
         "latestScore": {
@@ -1274,27 +1401,45 @@
           "type": "number",
           "description": "Percentile rank"
         }
+      },
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level"
+          ],
+          "availableCTAs": [
+            "View Profile",
+            "View Scores"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level"
+          ],
+          "availableCTAs": [
+            "View Profile",
+            "View Scores"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level"
+          ],
+          "availableCTAs": [
+            "View Profile",
+            "View Scores"
+          ]
+        }
       }
     },
     {
+      "viewType": "list",
       "context": "Student Group",
       "value": "student-group",
-      "shape": "compact-card",
       "description": "Members of an intervention or enrichment group with reading and math levels visible. Teachers check group composition and performance to decide on next steps.",
-      "visibleAttributes": [
-        "Full Name",
-        "Grade Level",
-        "Student Avatar",
-        "Reading Level",
-        "Reading Proficiency",
-        "Math Level",
-        "Math Proficiency"
-      ],
-      "availableCTAs": [
-        "View Profile",
-        "Add to Student Group"
-      ],
-      "cardShape": "Compact card",
       "userIntent": "Who is in this intervention/enrichment group?",
       "contextDataSchema": {
         "groupName": {
@@ -1305,26 +1450,60 @@
           "type": "string",
           "description": "Student's role within the group"
         }
+      },
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level",
+            "Student Avatar",
+            "Reading Level",
+            "Reading Proficiency",
+            "Math Level",
+            "Math Proficiency"
+          ],
+          "availableCTAs": [
+            "View Profile",
+            "Add to Student Group"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level",
+            "Student Avatar",
+            "Reading Level",
+            "Reading Proficiency",
+            "Math Level",
+            "Math Proficiency"
+          ],
+          "availableCTAs": [
+            "View Profile",
+            "Add to Student Group"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level",
+            "Student Avatar",
+            "Reading Level",
+            "Reading Proficiency",
+            "Math Level",
+            "Math Proficiency"
+          ],
+          "availableCTAs": [
+            "View Profile",
+            "Add to Student Group"
+          ]
+        }
       }
     },
     {
+      "viewType": "list",
       "context": "Parent Dashboard",
       "value": "parent-dashboard",
-      "shape": "compact-card",
       "description": "A parent's view of their child — a summary card showing grade level, reading and math performance, and recent activity. Designed for quick reassurance or to flag concerns.",
-      "visibleAttributes": [
-        "Full Name",
-        "Grade Level",
-        "Student Avatar",
-        "Reading Level",
-        "Reading Proficiency",
-        "Math Level",
-        "Math Proficiency"
-      ],
-      "availableCTAs": [
-        "View Profile"
-      ],
-      "cardShape": "Summary card",
       "userIntent": "How is my child doing overall?",
       "contextDataSchema": {
         "recentActivity": {
@@ -1339,23 +1518,57 @@
           "type": "string[]",
           "description": "List of enrolled class names"
         }
+      },
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level",
+            "Student Avatar",
+            "Reading Level",
+            "Reading Proficiency",
+            "Math Level",
+            "Math Proficiency"
+          ],
+          "availableCTAs": [
+            "View Profile"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level",
+            "Student Avatar",
+            "Reading Level",
+            "Reading Proficiency",
+            "Math Level",
+            "Math Proficiency"
+          ],
+          "availableCTAs": [
+            "View Profile"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level",
+            "Student Avatar",
+            "Reading Level",
+            "Reading Proficiency",
+            "Math Level",
+            "Math Proficiency"
+          ],
+          "availableCTAs": [
+            "View Profile"
+          ]
+        }
       }
     },
     {
+      "viewType": "detail",
       "context": "Activity Feed",
       "value": "activity-feed",
-      "shape": "header",
       "description": "A header identifying which student's activity stream is being viewed, with recent activity count and last-active timestamp to contextualize the feed below.",
-      "visibleAttributes": [
-        "Full Name",
-        "Grade Level",
-        "Student Avatar"
-      ],
-      "availableCTAs": [
-        "View Profile",
-        "View Student Activity"
-      ],
-      "cardShape": "Section header",
       "userIntent": "What has this student been working on recently?",
       "contextDataSchema": {
         "activityCount": {
@@ -1366,13 +1579,7 @@
           "type": "string",
           "description": "Relative timestamp of last activity"
         }
-      }
-    },
-    {
-      "context": "Assignment Management",
-      "value": "assignment-management",
-      "shape": "row",
-      "description": "Students listed against a specific assignment with individual progress, completion status, and scores. Teachers track who's finished, who's behind, and who needs help.",
+      },
       "visibleAttributes": [
         "Full Name",
         "Grade Level",
@@ -1380,9 +1587,14 @@
       ],
       "availableCTAs": [
         "View Profile",
-        "View Scores"
-      ],
-      "cardShape": "Compact row",
+        "View Student Activity"
+      ]
+    },
+    {
+      "viewType": "list",
+      "context": "Assignment Management",
+      "value": "assignment-management",
+      "description": "Students listed against a specific assignment with individual progress, completion status, and scores. Teachers track who's finished, who's behind, and who needs help.",
       "userIntent": "How is each student progressing on this assignment?",
       "contextDataSchema": {
         "assignmentName": {
@@ -1404,6 +1616,41 @@
         "assignmentScore": {
           "type": "number",
           "description": "Score if completed"
+        }
+      },
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level",
+            "Student Avatar"
+          ],
+          "availableCTAs": [
+            "View Profile",
+            "View Scores"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level",
+            "Student Avatar"
+          ],
+          "availableCTAs": [
+            "View Profile",
+            "View Scores"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Full Name",
+            "Grade Level",
+            "Student Avatar"
+          ],
+          "availableCTAs": [
+            "View Profile",
+            "View Scores"
+          ]
         }
       }
     }

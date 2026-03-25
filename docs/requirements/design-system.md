@@ -1,6 +1,6 @@
 # Design System — Object-Oriented Component Library for Renaissance Products
 
-> **Status: Partial** — The two-layer model, structural category system, shapeshifter framework, CTA placement framework, and anti-pattern checklists remain valid design guidance. However, the identity system was implemented differently: the current codebase uses an **icon-based** identity system (three tiers: core, domain, variation) instead of the per-object color and avatar shape system proposed below. See `docs/decisions/004-icon-identity.md` for the rationale. The Lit WC library that would implement these card recipes needs rebuilding.
+> **Status: Partial** — The two-layer model, structural category system, object views framework, CTA placement framework, and anti-pattern checklists remain valid design guidance. However, the identity system was implemented differently: the current codebase uses an **icon-based** identity system (three tiers: core, domain, variation) instead of the per-object color and avatar shape system proposed below. See `docs/decisions/004-icon-identity.md` for the rationale. The Lit WC library that would implement these card recipes needs rebuilding.
 
 **Project:** OOUX Resource Site (Internal Renaissance)
 **Purpose:** A browsable, adoptable design system organized around the 13 core Renaissance objects — enabling product teams across Star, Freckle, myON, Nearpod, and Lalilo to render objects consistently and fight the four OOUX anti-patterns.
@@ -39,7 +39,7 @@ The recipes layer is what this design system provides. It answers: *"When a user
 | 1 | Things that are different should look different | **Masked Objects** | A Student card and a Class card use the same generic tile. Users can't tell what they're looking at. | Every object gets a unique identity color, avatar shape, and card structure. |
 | 2 | Humans navigate through relationships | **Isolated Objects** | A Score appears with no link to the Student who earned it or the Assessment that produced it. | Every object card and detail page must surface its NOM relationships. |
 | 3 | Humans act through direct manipulation | **Broken Objects** | A Teacher can see an Assessment on screen but has to navigate to a different page to schedule it. | CTAs are placed directly on object cards using the P/S/T/Q framework. |
-| 4 | Same objects should look the same | **Shapeshifters** | A Student's profile photo is circular in Star, square in Freckle, and absent in Nearpod — for no reason. | The Shapeshifter Matrix defines invariants and documents every intentional variant. |
+| 4 | Same objects should look the same | **Shapeshifters** | A Student's profile photo is circular in Star, square in Freckle, and absent in Nearpod — for no reason. | Published **object views** (`objectViews` in object JSON) define invariants and document every intentional variant. |
 
 ---
 
@@ -382,7 +382,7 @@ The atomic unit of the design system. Every object has a card recipe based on it
 | **Tertiary CTAs** | CTA Prioritization | Icon buttons or overflow menu `···`. |
 | **Stats footer** | NOM | Nested object counts, status badge. |
 
-### 2. Object Card Variants (Shapeshifter System)
+### 2. Object Card Variants (Object Views)
 
 Every object can appear in up to 6 contexts. The design system defines what to show in each:
 
@@ -393,9 +393,9 @@ Every object can appear in up to 6 contexts. The design system defines what to s
 | **Standard** | Grid cards, search results | ~300px card | Full card anatomy (see above) | Tertiary/Quaternary CTAs |
 | **Expanded** | Detail page header | Full width | Large avatar, full definition, all P/S CTAs, lifecycle badge | Nothing hidden — this is the complete view |
 | **Embedded** | Nested inside another object's page | ~250px mini-card | Color dot, avatar (small), name, relationship label | Description, CTAs, most attributes |
-| **Data Row** | Reports, score tables | Full width, single row | Name, key metrics, status | Avatar (optional), description |
+| **Table row** | Reports, score tables | Full width, single row | Name, key metrics, status | Avatar (optional), description |
 
-**The Shapeshifter Rule:** Across ALL variants, the three invariants (identity color, avatar, name treatment) **never change**. If a visual difference isn't documented in the Shapeshifter Matrix, it's a bug.
+**Object view consistency rule:** Across ALL variants, the three invariants (identity color, avatar, name treatment) **never change**. If a visual difference isn't documented in the object views for that object, it's a bug.
 
 ### 3. Object Card Recipes — Per Object
 
@@ -424,7 +424,7 @@ Each object's card uses its **structural category template** and emphasizes diff
 - **Unique signature:** Photo avatar (or initials), grade level subtitle, reading/math levels as key metrics
 - **Primary CTA:** View Profile
 - **Contextual CTAs:** View Scores (class context), Assign (assignment context), Select (picker context)
-- **Shapeshifter note:** Student is the #1 shapeshifter in Renaissance. Appears in 9+ contexts. Photo + blue color are the anchors.
+- **Object view note:** Student appears in more contexts than any other core object (9+). Photo + blue color are the anchors.
 
 #### Teacher Card — People Template
 
@@ -550,7 +550,7 @@ Each object's card uses its **structural category template** and emphasizes diff
 - **Unique signature:** Status badge (Scheduled/In Progress/Completed). Progress bar. Assessment window dates. Score summary.
 - **Primary CTA (Teacher):** View Results (post-completion), Schedule (pre-admin)
 - **Primary CTA (Student):** Start Assessment
-- **Shapeshifter note:** Assessment is context-sensitive — Teacher sees scheduling/results CTAs, Student sees start/review CTAs
+- **Object view note:** Assessment is context-sensitive — Teacher sees scheduling/results CTAs, Student sees start/review CTAs
 - **No longer confused with Assignment** — both share the Activity template (progress bar + status badge), but Assessment shows a date *window* while Assignment shows a *due date*. Type badges (Star/Benchmark vs. Practice/Homework) provide additional differentiation.
 
 #### Assignment Card — Activity Template
@@ -770,8 +770,8 @@ Every object gets a detail page that follows a consistent structure:
 ```
 
 **Rules:**
-- The header uses the **Expanded** variant from the Shapeshifter Matrix
-- Nested objects use the **Embedded** variant — small cards or list items
+- The header follows the **detail** view treatment (full record header)
+- Nested objects use a **compact list** treatment — small cards or list items
 - Tab bar sections are force-ranked: most important attributes/relationships first
 - The Admin bar appears at the bottom, only for authorized roles
 
@@ -830,9 +830,9 @@ Some objects show different CTAs to different user roles. The card must adapt:
 
 ---
 
-## Cross-Product Shapeshifter Rules
+## Cross-Product Object View Rules
 
-This is the most critical section. Renaissance objects appear across multiple products — and the Shapeshifter problem is biggest here.
+This is the most critical section. Renaissance objects appear across multiple products — and the **Shapeshifters** anti-pattern is most at risk here.
 
 ### The Cross-Product Invariant Rule
 
@@ -852,21 +852,21 @@ When the same object appears across different Renaissance products, these elemen
 | Which attributes appear on the card | ✅ Yes | Different products emphasize different attributes (Star shows test scores; Freckle shows practice stats; myON shows reading history). Use the product-specific Attribute Prioritization. |
 | Which CTAs appear | ✅ Yes | Star Assessment card shows "View Results"; Freckle Assignment card shows "Start Practice". CTAs are object × product × role specific. |
 | Card layout/proportions | ✅ Yes, within reason | Products can use their own card dimensions, padding, and grid. But the anatomy order (stripe → avatar → name → attributes → CTAs → footer) should be consistent. |
-| Detail page structure | ✅ Yes, within reason | Products can arrange tabs and sections differently. But the header (expanded variant) should follow the template. |
+| Detail page structure | ✅ Yes, within reason | Products can arrange tabs and sections differently. But the detail view header should follow the template. |
 | Color palette for non-identity elements | ✅ Yes | Products use their own background colors, text colors, and UI chrome. Only the identity color must be shared. |
 
 ### Student: The Ultimate Shapeshifter
 
-Student is the object that appears in the most contexts across the most products. Here's what intentional shapeshifting looks like:
+Student is the object that appears in the most contexts across the most products. Here's what intentional variation across object views looks like:
 
-| Product | Context | Key Attributes Shown | Key CTAs | Card Shape |
+| Product | Context | Key Attributes Shown | Key CTAs | Typical presentation |
 |---|---|---|---|---|
-| **Star** | Assessment results | Name, Grade, Scaled Score, Benchmark Band, Growth | View Scores, View Skills | Score-focused card |
-| **Freckle** | Adaptive practice | Name, Grade, Adaptive Level, Practice Stats, Streak | Start Practice, View Progress | Practice-focused card |
-| **myON** | Digital library | Name, Grade, Lexile, Books Read, Reading Time | Read, View Bookshelf | Reading-focused card |
-| **Nearpod** | Live lesson | Name, Participation Status, Response Count | View Responses | Participation-focused card |
-| **Lalilo** | Literacy | Name, Grade, Literacy Level, Module Progress | Continue Lesson | Progress-focused card |
-| **Admin (School)** | Roster | Name, Grade, ID, Status, Enrollment Date | View, Transfer, Deactivate | Data row |
+| **Star** | Assessment results | Name, Grade, Scaled Score, Benchmark Band, Growth | View Scores, View Skills | Grid / card emphasis on scores |
+| **Freckle** | Adaptive practice | Name, Grade, Adaptive Level, Practice Stats, Streak | Start Practice, View Progress | Grid / card emphasis on practice |
+| **myON** | Digital library | Name, Grade, Lexile, Books Read, Reading Time | Read, View Bookshelf | Grid / card emphasis on reading |
+| **Nearpod** | Live lesson | Name, Participation Status, Response Count | View Responses | List / live status |
+| **Lalilo** | Literacy | Name, Grade, Literacy Level, Module Progress | Continue Lesson | List / progress |
+| **Admin (School)** | Roster | Name, Grade, ID, Status, Enrollment Date | View, Transfer, Deactivate | Dense list (`table` shape) |
 
 **What stays constant:** Blue `#2563EB`, circle avatar (photo or initials "ST"), bold name, grade level.
 
@@ -938,7 +938,7 @@ For every object the user can see:
 - [ ] Is the Primary CTA visible without hovering or expanding a menu?
 - [ ] Do role-appropriate CTAs appear without navigating to a different page?
 
-### Shapeshifter Audit
+### Object views audit (Shapeshifters)
 
 For every object that appears in multiple contexts:
 
@@ -962,7 +962,7 @@ The Design System is a top-level section of the OOUX Resource Site. Here's what 
 | **Identity System** | Browsable grid of all 13 objects with their colors, avatars, and abbreviations. Interactive: click an object to see its full identity spec. |
 | **Component Library** | Live examples of every component pattern: Object Card, Detail Page Header, CTA Buttons, Badges, Relationship Connectors, Breadcrumbs |
 | **Object Cards Gallery** | All 13 object cards rendered side by side in all variants (Tooltip, Compact, Standard, Expanded, Embedded). Interactive: toggle between variants. |
-| **Shapeshifter Explorer** | Interactive tool: select an object, then see how it looks across all Renaissance products. Highlights what changes and what stays constant. |
+| **Object Views Explorer** | Interactive tool: select an object, then see how it looks across all Renaissance products. Highlights what changes and what stays constant. |
 | **CTA Placement Guide** | Visual reference showing P/S/T/Q zones on cards and detail pages. Interactive: toggle between user roles to see how CTAs change. |
 | **Anti-Pattern Checker** | Interactive checklist tool. Teams enter their product name, select an object, and walk through the audit checklist. Results can be exported. |
 | **Token Export** | Download design tokens in multiple formats: CSS custom properties, JSON, Figma Variables, Tailwind config |
@@ -975,7 +975,7 @@ The resource site should include a "How to Adopt" page targeting product teams:
 2. **Add Color Stripes to Cards** — Any card that represents a core object gets a 3–4px top border in the identity color.
 3. **Standardize Avatars** — Use the circle/square shape and abbreviation system.
 4. **Prioritize CTAs** — Run CTA Prioritization (ORCA step 7) for your product-specific CTAs and map them to P/S/T/Q.
-5. **Document Your Shapeshifters** — Run the Shapeshifter Matrix (ORCA step 12) for your product. Cross-reference against the cross-product invariants.
+5. **Document intentional variation** — Run **Shapeshifter Matrix Builder** (ORCA step 12) for your product and capture **object views** in your Object Guides. Cross-reference against the cross-product invariants.
 6. **Build Object Cards** — Create card components for each object in your product using the recipes above.
 7. **Audit with the Checklist** — Use the Anti-Pattern Checker to verify your implementation.
 
@@ -1006,7 +1006,7 @@ The result: each product looks and feels like itself (its own ingredients), whil
 
 The design system draws from Object Guides already published in Confluence:
 
-| Object | Confluence Page ID | Has Card Spec? | Has Shapeshifter Matrix? |
+| Object | Confluence Page ID | Has Card Spec? | Has object views spec? |
 |---|---|---|---|
 | Student | `19015172104` | ✅ | ✅ |
 | Teacher | `19012125424` | ✅ | ✅ |

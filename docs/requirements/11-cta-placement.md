@@ -1,6 +1,6 @@
 # CTA Placement Designer — OOUX Resource Site
 
-> **Status: Process artifact** — CTA placement zones for cards and detail pages. The P/S/T/Q zone model is referenced in `design-system.md` and partially visible in the View Inspector, which allows toggling CTA visibility per shapeshifter context.
+> **Status: Process artifact** — CTA placement zones for cards and detail pages. The P/S/T/Q zone model is referenced in `design-system.md` and partially visible in the View Inspector, which allows toggling CTA visibility per **object view** (per `objectViews` context).
 
 **Project:** OOUX Resource Site (Internal Renaissance)
 
@@ -182,4 +182,4 @@ Every card and detail page has defined zones where CTAs appear based on their pr
 
 ## Next Steps
 
-→ **Step 12: Shapeshifter Matrix** — Define how each object intentionally varies across contexts while maintaining identity.
+→ **Step 12: Shapeshifter Matrix Builder** — Define how each object intentionally varies across contexts while maintaining identity; capture as **`objectViews`** in object JSON (`ListView` / `DetailView`).

@@ -13,7 +13,7 @@
 |--------|------|----------------------|
 | Route | `/objects/:slug` | `/objects/[systemSlug]/[objectSlug]` (system-based nesting) |
 | Tab names | Overview, Stories & Rules, Relationships, Reference | Views, Attributes, Actions, Relationships |
-| Overview tab | Two-column layout with card/list/detail showcases + sidebar | Views tab shows shapeshifter context cards linking to View Inspector |
+| Overview tab | Two-column layout with card/list/detail showcases + sidebar | Views tab shows object view cards (per `objectViews` context) linking to View Inspector |
 | Showcase rendering | Inline rendered components | View Inspector at `/objects/[systemSlug]/[objectSlug]/views/[viewSlug]` |
 | Configuration controls | Sidebar radio buttons (Role/State/Context) | View Inspector has role selection and attribute/CTA toggles |
 | Framework code examples | Web Components, React, Angular, Vue tabs | Not currently shown in Object Guide (was in Reference tab) |

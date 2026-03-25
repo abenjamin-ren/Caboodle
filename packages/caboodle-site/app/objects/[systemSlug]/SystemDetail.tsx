@@ -2,18 +2,29 @@
 
 import type { SystemDefinition, ObjectDefinition } from '../../../../../data/schema';
 import { objectIconSrc } from '@/components/ui/ObjectIcon';
+import { getPreviewRenderer } from '@/lib/preview-registry';
 
 interface SystemDetailProps {
   system: SystemDefinition;
   objects: ObjectDefinition[];
 }
 
+function getFirstPreview(obj: ObjectDefinition) {
+  for (const view of obj.objectViews ?? []) {
+    const Preview = getPreviewRenderer(obj.identity.slug, view.context);
+    if (Preview) return Preview;
+  }
+  return null;
+}
+
 function ObjectCard({ obj, systemSlug }: { obj: ObjectDefinition; systemSlug: string }) {
   const iconSrc = objectIconSrc(obj.identity.objectType);
-  const viewCount = obj.shapeshifterMatrix?.length ?? 0;
+  const viewCount = obj.objectViews?.length ?? 0;
   const attrCount = obj.allAttributes.length;
   const ctaCount = obj.allCTAs.length;
   const relCount = obj.relationships.length;
+
+  const Preview = getFirstPreview(obj);
 
   return (
     <a
@@ -38,7 +49,20 @@ function ObjectCard({ obj, systemSlug }: { obj: ObjectDefinition; systemSlug: st
           </div>
         </div>
       </div>
-      <div className="card-viz" aria-hidden="true" />
+      <div className={`card-viz${Preview ? ' card-viz--preview' : ''}`} aria-hidden="true">
+        {Preview && (
+          <Preview
+            selectedItem={null}
+            onSelectItem={() => {}}
+            selectedRole="Teacher"
+            viewCTAs={[]}
+            viewAttributes={[]}
+            isActionAvailable={() => true}
+            lifecycleStates={[]}
+            embedded
+          />
+        )}
+      </div>
       <dl className="card-stat-bar">
         <div className="card-stat" title="Views">
           <dt><i className="fa-solid fa-window-maximize" aria-hidden="true" /><span className="sr-only">Views</span></dt>

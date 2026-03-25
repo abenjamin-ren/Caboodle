@@ -49,7 +49,7 @@ An Object Guide is the single source of truth for one object. It contains:
 8. **Business Rules** — Domain constraints, validations, edge cases
 9. **Meta-Attributes** — Cross-cutting categories like breakdowns, sorts, and filters
 10. **Object Card Specification** — How this object appears in lists and cards
-11. **Shapeshifter Matrix** — How the object varies across contexts
+11. **Object views** — How the object varies across contexts (list vs. detail, and list layout variants); in published data this is the `objectViews` array
 
 ### Getting a Great Definition
 A good definition:
@@ -163,7 +163,7 @@ MCSFD summaries for each relationship.
 {Who can see/do what}
 
 ## Visual Representation
-{Card specs, shapeshifter notes}
+{Card specs, object view notes}
 
 ## Open Questions
 - {question}

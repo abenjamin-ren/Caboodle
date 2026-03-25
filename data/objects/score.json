@@ -6,7 +6,13 @@
     "objectType": "core",
     "category": "data-ai",
     "definition": "A Score is the measured outcome of a student's performance on an assessment or assignment — including scaled scores, percentiles, proficiency bands, growth measures, and skill-level breakdowns — that informs instructional decisions, tracks progress over time, and feeds platform recommendations.",
-    "synonyms": ["result", "grade", "performance", "measure", "data point"],
+    "synonyms": [
+      "result",
+      "grade",
+      "performance",
+      "measure",
+      "data point"
+    ],
     "products": "Star, AR, Freckle"
   },
   "variations": [],
@@ -15,7 +21,7 @@
       "layout": "card",
       "heading": "Card layout",
       "description": "How a Score appears in dashboards and score grids",
-      "defaultShape": "card",
+      "defaultShape": "list",
       "componentTag": "ren-score-card",
       "examples": [
         {
@@ -121,7 +127,11 @@
           "roles": "Student, Teacher, Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["student", "teacher", "admin"]
+          "roleKeys": [
+            "student",
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "View Skill Breakdown",
@@ -130,7 +140,11 @@
           "priority": "S",
           "crossObjectSlug": "skill",
           "crossObjectName": "Skill",
-          "roleKeys": ["teacher", "admin", "student"]
+          "roleKeys": [
+            "teacher",
+            "admin",
+            "student"
+          ]
         }
       ]
     },
@@ -138,7 +152,7 @@
       "layout": "list",
       "heading": "List layout",
       "description": "How a Score appears in score tables and history views",
-      "defaultShape": "row",
+      "defaultShape": "list",
       "componentTag": "ren-score-row",
       "examples": [
         {
@@ -207,7 +221,11 @@
           "roles": "Student, Teacher, Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["student", "teacher", "admin"]
+          "roleKeys": [
+            "student",
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "View Trend",
@@ -216,7 +234,10 @@
           "priority": "S",
           "crossObjectSlug": "assessment",
           "crossObjectName": "Assessment",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         }
       ]
     },
@@ -224,7 +245,7 @@
       "layout": "detail",
       "heading": "Detail page layout",
       "description": "What users see when they open a full Score record",
-      "defaultShape": "profile",
+      "defaultShape": "details",
       "componentTag": "ren-score-profile",
       "examples": [
         {
@@ -240,14 +261,36 @@
           "duration": 22,
           "color": "#398b26",
           "skillBreakdown": [
-            { "name": "Vocabulary", "level": "Proficient", "percent": 85 },
-            { "name": "Comprehension", "level": "Proficient", "percent": 78 },
-            { "name": "Literary Analysis", "level": "Developing", "percent": 52 },
-            { "name": "Informational Text", "level": "Proficient", "percent": 74 }
+            {
+              "name": "Vocabulary",
+              "level": "Proficient",
+              "percent": 85
+            },
+            {
+              "name": "Comprehension",
+              "level": "Proficient",
+              "percent": 78
+            },
+            {
+              "name": "Literary Analysis",
+              "level": "Developing",
+              "percent": 52
+            },
+            {
+              "name": "Informational Text",
+              "level": "Proficient",
+              "percent": 74
+            }
           ],
           "nestedObjects": [
-            { "label": "Skills", "count": 4 },
-            { "label": "Items", "count": 34 }
+            {
+              "label": "Skills",
+              "count": 4
+            },
+            {
+              "label": "Items",
+              "count": 34
+            }
           ]
         }
       ],
@@ -346,7 +389,11 @@
           "roles": "Student, Teacher, Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["student", "teacher", "admin"]
+          "roleKeys": [
+            "student",
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "View Trend",
@@ -355,7 +402,10 @@
           "priority": "S",
           "crossObjectSlug": "assessment",
           "crossObjectName": "Assessment",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "View Skill Breakdown",
@@ -364,7 +414,11 @@
           "priority": "S",
           "crossObjectSlug": "skill",
           "crossObjectName": "Skill",
-          "roleKeys": ["teacher", "admin", "student"]
+          "roleKeys": [
+            "teacher",
+            "admin",
+            "student"
+          ]
         },
         {
           "name": "Compare",
@@ -373,14 +427,20 @@
           "priority": "T",
           "crossObjectSlug": "student",
           "crossObjectName": "Student",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Export",
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "T",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Share with Parent",
@@ -389,7 +449,9 @@
           "priority": "T",
           "crossObjectSlug": "student",
           "crossObjectName": "Student",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         },
         {
           "name": "Assign Follow-Up",
@@ -398,7 +460,9 @@
           "priority": "T",
           "crossObjectSlug": "assignment",
           "crossObjectName": "Assignment",
-          "roleKeys": ["teacher"]
+          "roleKeys": [
+            "teacher"
+          ]
         }
       ]
     }
@@ -423,7 +487,12 @@
       "benefit": "I can evaluate whether a student's interventions are working and adjust my teaching strategy accordingly.",
       "whenClause": "I compare multiple Scores for a student across assessment windows,",
       "thenClause": "the growth SGP and scaled score trend are visualized so I can see trajectory at a glance.",
-      "crossObjects": [{ "slug": "assessment", "name": "Assessment" }]
+      "crossObjects": [
+        {
+          "slug": "assessment",
+          "name": "Assessment"
+        }
+      ]
     },
     {
       "title": "Share Score with Parent",
@@ -434,7 +503,12 @@
       "benefit": "parents can understand their child's performance and support learning at home.",
       "whenClause": "I share a Score report with a parent,",
       "thenClause": "a parent-friendly summary with proficiency band, grade equivalent, and growth context is sent.",
-      "crossObjects": [{ "slug": "student", "name": "Student" }]
+      "crossObjects": [
+        {
+          "slug": "student",
+          "name": "Student"
+        }
+      ]
     }
   ],
   "businessRules": [
@@ -489,8 +563,19 @@
       }
     ],
     "transitions": [
-      { "from": "Active", "to": ["Historical", "Invalidated"] },
-      { "from": "Historical", "to": ["Invalidated"] }
+      {
+        "from": "Active",
+        "to": [
+          "Historical",
+          "Invalidated"
+        ]
+      },
+      {
+        "from": "Historical",
+        "to": [
+          "Invalidated"
+        ]
+      }
     ]
   },
   "relationships": [
@@ -522,7 +607,15 @@
       "dependencies": "Skill proficiency data depends on having item-level data. If item data is unavailable, skill breakdown is empty."
     }
   ],
-  "relatedObjects": ["student", "assessment", "assignment", "skill", "class", "teacher", "resource"],
+  "relatedObjects": [
+    "student",
+    "assessment",
+    "assignment",
+    "skill",
+    "class",
+    "teacher",
+    "resource"
+  ],
   "nestedObjects": [
     {
       "slug": "skill-mastery",
@@ -636,7 +729,11 @@
       "roles": "Student, Teacher, Admin",
       "permission": "Read",
       "priority": "P",
-      "roleKeys": ["student", "teacher", "admin"]
+      "roleKeys": [
+        "student",
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "View Trend",
@@ -645,7 +742,10 @@
       "priority": "S",
       "crossObjectSlug": "assessment",
       "crossObjectName": "Assessment",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Compare",
@@ -654,14 +754,20 @@
       "priority": "T",
       "crossObjectSlug": "student",
       "crossObjectName": "Student",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Export",
       "roles": "Teacher, Admin",
       "permission": "Read",
       "priority": "T",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "View Skill Breakdown",
@@ -670,7 +776,11 @@
       "priority": "S",
       "crossObjectSlug": "skill",
       "crossObjectName": "Skill",
-      "roleKeys": ["teacher", "admin", "student"]
+      "roleKeys": [
+        "teacher",
+        "admin",
+        "student"
+      ]
     },
     {
       "name": "Share with Parent",
@@ -679,7 +789,9 @@
       "priority": "T",
       "crossObjectSlug": "student",
       "crossObjectName": "Student",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     },
     {
       "name": "Assign Follow-Up",
@@ -688,7 +800,9 @@
       "priority": "T",
       "crossObjectSlug": "assignment",
       "crossObjectName": "Assignment",
-      "roleKeys": ["teacher"]
+      "roleKeys": [
+        "teacher"
+      ]
     }
   ],
   "sipValidation": {
@@ -738,112 +852,401 @@
       "notes": "British English equivalent. Not used in US-focused products"
     }
   ],
-  "shapeshifterMatrix": [
+  "objectViews": [
     {
+      "viewType": "list",
       "context": "Student Score View",
       "value": "student-score-view",
-      "shape": "card",
       "description": "A student's view of their own score — the value, proficiency band, and trend compared to their last attempt. Communicates what the score means, not just what it is.",
-      "visibleAttributes": ["Score Value", "Score Type", "Proficiency Band", "Assessment/Assignment", "Date"],
-      "availableCTAs": ["View"],
-      "cardShape": "Summary card",
       "userIntent": "What did I score and what does it mean?",
       "contextDataSchema": {
-        "trendDirection": { "type": "string", "description": "Trend compared to prior: up, down, or flat" },
-        "priorScore": { "type": "number", "description": "Previous score for comparison" }
+        "trendDirection": {
+          "type": "string",
+          "description": "Trend compared to prior: up, down, or flat"
+        },
+        "priorScore": {
+          "type": "number",
+          "description": "Previous score for comparison"
+        }
+      },
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Score Value",
+            "Score Type",
+            "Proficiency Band",
+            "Assessment/Assignment",
+            "Date"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Score Value",
+            "Score Type",
+            "Proficiency Band",
+            "Assessment/Assignment",
+            "Date"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Score Value",
+            "Score Type",
+            "Proficiency Band",
+            "Assessment/Assignment",
+            "Date"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        }
       }
     },
     {
+      "viewType": "list",
       "context": "Class Score Report",
       "value": "class-score-report",
-      "shape": "row",
       "description": "Scores for each student in a class on a specific assessment, with growth and percentile data. Teachers compare performance, identify struggling students, and assign follow-up work.",
-      "visibleAttributes": ["Score Value", "Score Type", "Student", "Proficiency Band", "Growth SGP"],
-      "availableCTAs": ["View", "Compare", "Assign Follow-Up"],
-      "cardShape": "Data row",
       "userIntent": "How did my class perform on this assessment?",
       "contextDataSchema": {
-        "studentName": { "type": "string", "description": "Which student (when embedded in class view)" },
-        "classAverage": { "type": "number", "description": "Class average for comparison" },
-        "classPercentile": { "type": "number", "description": "Class percentile rank" },
-        "growthTarget": { "type": "number", "description": "Expected growth target" }
+        "studentName": {
+          "type": "string",
+          "description": "Which student (when embedded in class view)"
+        },
+        "classAverage": {
+          "type": "number",
+          "description": "Class average for comparison"
+        },
+        "classPercentile": {
+          "type": "number",
+          "description": "Class percentile rank"
+        },
+        "growthTarget": {
+          "type": "number",
+          "description": "Expected growth target"
+        }
+      },
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Score Value",
+            "Score Type",
+            "Student",
+            "Proficiency Band",
+            "Growth SGP"
+          ],
+          "availableCTAs": [
+            "View",
+            "Compare",
+            "Assign Follow-Up"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Score Value",
+            "Score Type",
+            "Student",
+            "Proficiency Band",
+            "Growth SGP"
+          ],
+          "availableCTAs": [
+            "View",
+            "Compare",
+            "Assign Follow-Up"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Score Value",
+            "Score Type",
+            "Student",
+            "Proficiency Band",
+            "Growth SGP"
+          ],
+          "availableCTAs": [
+            "View",
+            "Compare",
+            "Assign Follow-Up"
+          ]
+        }
       }
     },
     {
+      "viewType": "list",
       "context": "Student Profile Score History",
       "value": "student-profile-score-history",
-      "shape": "card",
       "description": "A student's scores over time, displayed as timeline cards showing trends and growth targets. Teachers track whether a student is improving, plateauing, or declining.",
-      "visibleAttributes": ["Score Value", "Proficiency Band", "Assessment/Assignment", "Date"],
-      "availableCTAs": ["View", "View Trend"],
-      "cardShape": "Timeline card",
       "userIntent": "How has this student's score changed over time?",
       "contextDataSchema": {
-        "trendDirection": { "type": "string", "description": "Trend: up, down, or flat" },
-        "priorScore": { "type": "number", "description": "Previous score in series" },
-        "growthTarget": { "type": "number", "description": "Target for this period" }
+        "trendDirection": {
+          "type": "string",
+          "description": "Trend: up, down, or flat"
+        },
+        "priorScore": {
+          "type": "number",
+          "description": "Previous score in series"
+        },
+        "growthTarget": {
+          "type": "number",
+          "description": "Target for this period"
+        }
+      },
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Score Value",
+            "Proficiency Band",
+            "Assessment/Assignment",
+            "Date"
+          ],
+          "availableCTAs": [
+            "View",
+            "View Trend"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Score Value",
+            "Proficiency Band",
+            "Assessment/Assignment",
+            "Date"
+          ],
+          "availableCTAs": [
+            "View",
+            "View Trend"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Score Value",
+            "Proficiency Band",
+            "Assessment/Assignment",
+            "Date"
+          ],
+          "availableCTAs": [
+            "View",
+            "View Trend"
+          ]
+        }
       }
     },
     {
+      "viewType": "list",
       "context": "School/District Report",
       "value": "school-district-report",
-      "shape": "data-row",
       "description": "Aggregated scores across a school or district with proficiency band distributions. Admins analyze performance patterns and benchmark against targets.",
-      "visibleAttributes": ["Score Value", "Score Type", "Proficiency Band", "Assessment/Assignment"],
-      "availableCTAs": ["View", "Export"],
-      "cardShape": "Data row",
       "userIntent": "How are scores distributed across my school/district?",
       "contextDataSchema": {
-        "classCount": { "type": "number", "description": "Number of classes included" },
-        "studentCount": { "type": "number", "description": "Number of students included" },
-        "benchmarkAbovePercent": { "type": "number", "description": "Percentage at/above benchmark" },
-        "benchmarkOnWatchPercent": { "type": "number", "description": "Percentage on watch" },
-        "benchmarkInterventionPercent": { "type": "number", "description": "Percentage needing intervention" }
+        "classCount": {
+          "type": "number",
+          "description": "Number of classes included"
+        },
+        "studentCount": {
+          "type": "number",
+          "description": "Number of students included"
+        },
+        "benchmarkAbovePercent": {
+          "type": "number",
+          "description": "Percentage at/above benchmark"
+        },
+        "benchmarkOnWatchPercent": {
+          "type": "number",
+          "description": "Percentage on watch"
+        },
+        "benchmarkInterventionPercent": {
+          "type": "number",
+          "description": "Percentage needing intervention"
+        }
+      },
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Score Value",
+            "Score Type",
+            "Proficiency Band",
+            "Assessment/Assignment"
+          ],
+          "availableCTAs": [
+            "View",
+            "Export"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Score Value",
+            "Score Type",
+            "Proficiency Band",
+            "Assessment/Assignment"
+          ],
+          "availableCTAs": [
+            "View",
+            "Export"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Score Value",
+            "Score Type",
+            "Proficiency Band",
+            "Assessment/Assignment"
+          ],
+          "availableCTAs": [
+            "View",
+            "Export"
+          ]
+        }
       }
     },
     {
+      "viewType": "list",
       "context": "Parent Report",
       "value": "parent-report",
-      "shape": "card",
       "description": "A simplified score card for parents showing their child's result, proficiency level, and how it compares to the grade average. Designed for clarity over detail.",
-      "visibleAttributes": ["Score Value", "Proficiency Band", "Assessment/Assignment", "Date"],
-      "availableCTAs": ["View"],
-      "cardShape": "Simplified card",
       "userIntent": "How is my child doing?",
       "contextDataSchema": {
-        "trendDirection": { "type": "string", "description": "Improvement direction" },
-        "gradeAverage": { "type": "number", "description": "Grade-level average for reference" }
+        "trendDirection": {
+          "type": "string",
+          "description": "Improvement direction"
+        },
+        "gradeAverage": {
+          "type": "number",
+          "description": "Grade-level average for reference"
+        }
+      },
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Score Value",
+            "Proficiency Band",
+            "Assessment/Assignment",
+            "Date"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Score Value",
+            "Proficiency Band",
+            "Assessment/Assignment",
+            "Date"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Score Value",
+            "Proficiency Band",
+            "Assessment/Assignment",
+            "Date"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        }
       }
     },
     {
+      "viewType": "detail",
       "context": "Score Detail",
       "value": "score-detail",
-      "shape": "profile",
       "description": "The complete score record — raw value, proficiency band, growth percentile, skill breakdown, and item-level data. Teachers and admins analyze a score from every angle, share results, or assign follow-up.",
-      "visibleAttributes": ["Score Value", "Score Type", "Proficiency Band", "Student", "Assessment/Assignment", "Date", "Growth SGP", "Percentile Rank", "Grade Equivalent", "Duration", "Skill Breakdown", "Item-Level Data"],
-      "availableCTAs": ["View", "View Trend", "Compare", "Export", "View Skill Breakdown", "Share with Parent", "Assign Follow-Up"],
-      "cardShape": "Full page",
-      "userIntent": "What is the full detail of this score?"
+      "userIntent": "What is the full detail of this score?",
+      "visibleAttributes": [
+        "Score Value",
+        "Score Type",
+        "Proficiency Band",
+        "Student",
+        "Assessment/Assignment",
+        "Date",
+        "Growth SGP",
+        "Percentile Rank",
+        "Grade Equivalent",
+        "Duration",
+        "Skill Breakdown",
+        "Item-Level Data"
+      ],
+      "availableCTAs": [
+        "View",
+        "View Trend",
+        "Compare",
+        "Export",
+        "View Skill Breakdown",
+        "Share with Parent",
+        "Assign Follow-Up"
+      ]
     },
     {
+      "viewType": "detail",
       "context": "Student Profile (embedded)",
       "value": "student-profile-embedded",
-      "shape": "header",
       "description": "The latest score displayed as a compact bar within a student's profile — score value, assessment name, and proficiency band at a glance.",
-      "visibleAttributes": ["Score Value", "Assessment/Assignment", "Proficiency Band"],
-      "availableCTAs": ["View"],
-      "cardShape": "Compact bar",
-      "userIntent": "What is the latest score for this student?"
+      "userIntent": "What is the latest score for this student?",
+      "visibleAttributes": [
+        "Score Value",
+        "Assessment/Assignment",
+        "Proficiency Band"
+      ],
+      "availableCTAs": [
+        "View"
+      ]
     },
     {
+      "viewType": "list",
       "context": "Growth Report",
       "value": "growth-report",
-      "shape": "row",
       "description": "Scores plotted for growth analysis with SGP, percentile rank, and dates. Teachers and admins assess a student's growth trajectory across assessment periods.",
-      "visibleAttributes": ["Score Value", "Score Type", "Growth SGP", "Percentile Rank", "Date"],
-      "availableCTAs": ["View Trend", "Compare"],
-      "cardShape": "Data row",
-      "userIntent": "What is this student's growth trajectory?"
+      "userIntent": "What is this student's growth trajectory?",
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Score Value",
+            "Score Type",
+            "Growth SGP",
+            "Percentile Rank",
+            "Date"
+          ],
+          "availableCTAs": [
+            "View Trend",
+            "Compare"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Score Value",
+            "Score Type",
+            "Growth SGP",
+            "Percentile Rank",
+            "Date"
+          ],
+          "availableCTAs": [
+            "View Trend",
+            "Compare"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Score Value",
+            "Score Type",
+            "Growth SGP",
+            "Percentile Rank",
+            "Date"
+          ],
+          "availableCTAs": [
+            "View Trend",
+            "Compare"
+          ]
+        }
+      }
     }
   ]
 }

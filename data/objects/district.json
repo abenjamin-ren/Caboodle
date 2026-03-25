@@ -6,7 +6,11 @@
     "objectType": "core",
     "category": "container",
     "definition": "A District is the top-level organizational entity representing a school district, diocese, charter network, or other educational authority that contracts with Renaissance for product licensing — serving as the parent container for all schools, users, data, and administrative policies across Renaissance products.",
-    "synonyms": ["LEA", "organization", "network"],
+    "synonyms": [
+      "LEA",
+      "organization",
+      "network"
+    ],
     "products": "All products"
   },
   "variations": [],
@@ -15,7 +19,7 @@
       "layout": "card",
       "heading": "Card layout",
       "description": "How a District appears in grids and dashboards",
-      "defaultShape": "card",
+      "defaultShape": "list",
       "componentTag": "ren-district-card",
       "examples": [
         {
@@ -67,7 +71,9 @@
           "roles": "District Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         }
       ]
     },
@@ -75,7 +81,7 @@
       "layout": "list",
       "heading": "List layout",
       "description": "How a District appears in admin tables and internal lists",
-      "defaultShape": "row",
+      "defaultShape": "list",
       "componentTag": "ren-district-row",
       "examples": [
         {
@@ -136,7 +142,9 @@
           "roles": "District Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         },
         {
           "name": "Manage Schools",
@@ -145,7 +153,9 @@
           "priority": "S",
           "crossObjectSlug": "school",
           "crossObjectName": "School",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         }
       ]
     },
@@ -153,7 +163,7 @@
       "layout": "detail",
       "heading": "Detail page layout",
       "description": "What users see when they open a full District record",
-      "defaultShape": "profile",
+      "defaultShape": "details",
       "componentTag": "ren-district-profile",
       "examples": [
         {
@@ -274,14 +284,18 @@
           "roles": "District Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         },
         {
           "name": "Edit",
           "roles": "District Admin",
           "permission": "Write",
           "priority": "S",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         },
         {
           "name": "Manage Schools",
@@ -290,7 +304,9 @@
           "priority": "S",
           "crossObjectSlug": "school",
           "crossObjectName": "School",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         },
         {
           "name": "Manage Users",
@@ -299,21 +315,27 @@
           "priority": "T",
           "crossObjectSlug": "teacher",
           "crossObjectName": "User",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         },
         {
           "name": "Configure SIS",
           "roles": "District Admin",
           "permission": "Write",
           "priority": "T",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         },
         {
           "name": "Configure Products",
           "roles": "District Admin",
           "permission": "Write",
           "priority": "T",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         },
         {
           "name": "View District Reports",
@@ -322,21 +344,27 @@
           "priority": "S",
           "crossObjectSlug": "score",
           "crossObjectName": "Score",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         },
         {
           "name": "Create",
           "roles": "Renaissance Admin, System",
           "permission": "Write",
           "priority": "Q",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         },
         {
           "name": "Deactivate",
           "roles": "Renaissance Admin",
           "permission": "Write",
           "priority": "Q",
-          "roleKeys": ["admin"]
+          "roleKeys": [
+            "admin"
+          ]
         }
       ]
     }
@@ -361,7 +389,12 @@
       "benefit": "I can add, remove, or configure schools within my district so each school has the correct products, SIS integration, and admin assignments.",
       "whenClause": "I navigate to my district's school management area,",
       "thenClause": "I see a list of all schools with their status, student counts, and product licenses, and I can add new schools or modify existing ones.",
-      "crossObjects": [{ "slug": "school", "name": "School" }]
+      "crossObjects": [
+        {
+          "slug": "school",
+          "name": "School"
+        }
+      ]
     },
     {
       "title": "Compare School Performance",
@@ -372,7 +405,16 @@
       "benefit": "I can identify which schools are excelling and which need additional support by comparing assessment outcomes across the district.",
       "whenClause": "I open district-level reports,",
       "thenClause": "I see comparative data across all schools — including Star scores, growth metrics, and product utilization rates — filterable by grade, subject, and time period.",
-      "crossObjects": [{ "slug": "school", "name": "School" }, { "slug": "score", "name": "Score" }]
+      "crossObjects": [
+        {
+          "slug": "school",
+          "name": "School"
+        },
+        {
+          "slug": "score",
+          "name": "Score"
+        }
+      ]
     }
   ],
   "businessRules": [
@@ -433,9 +475,24 @@
       }
     ],
     "transitions": [
-      { "from": "Provisioned", "to": ["Active"] },
-      { "from": "Active", "to": ["Inactive"] },
-      { "from": "Inactive", "to": ["Reactivated"] }
+      {
+        "from": "Provisioned",
+        "to": [
+          "Active"
+        ]
+      },
+      {
+        "from": "Active",
+        "to": [
+          "Inactive"
+        ]
+      },
+      {
+        "from": "Inactive",
+        "to": [
+          "Reactivated"
+        ]
+      }
     ]
   },
   "relationships": [
@@ -458,7 +515,11 @@
       "dependencies": "If a Student transfers schools within the same District, their data remains within the district scope. Cross-district transfers require separate handling."
     }
   ],
-  "relatedObjects": ["school", "student", "teacher"],
+  "relatedObjects": [
+    "school",
+    "student",
+    "teacher"
+  ],
   "nestedObjects": [
     {
       "slug": "school",
@@ -586,14 +647,18 @@
       "roles": "District Admin",
       "permission": "Read",
       "priority": "P",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     },
     {
       "name": "Edit",
       "roles": "District Admin",
       "permission": "Write",
       "priority": "S",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     },
     {
       "name": "Manage Schools",
@@ -602,7 +667,9 @@
       "priority": "S",
       "crossObjectSlug": "school",
       "crossObjectName": "School",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     },
     {
       "name": "Manage Users",
@@ -611,21 +678,27 @@
       "priority": "T",
       "crossObjectSlug": "teacher",
       "crossObjectName": "User",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     },
     {
       "name": "Configure SIS",
       "roles": "District Admin",
       "permission": "Write",
       "priority": "T",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     },
     {
       "name": "Configure Products",
       "roles": "District Admin",
       "permission": "Write",
       "priority": "T",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     },
     {
       "name": "View District Reports",
@@ -634,21 +707,27 @@
       "priority": "S",
       "crossObjectSlug": "score",
       "crossObjectName": "Score",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     },
     {
       "name": "Create",
       "roles": "Renaissance Admin, System",
       "permission": "Write",
       "priority": "Q",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     },
     {
       "name": "Deactivate",
       "roles": "Renaissance Admin",
       "permission": "Write",
       "priority": "Q",
-      "roleKeys": ["admin"]
+      "roleKeys": [
+        "admin"
+      ]
     }
   ],
   "sipValidation": {
@@ -693,60 +772,213 @@
       "notes": "Salesforce and billing systems refer to the contracting entity as Account"
     }
   ],
-  "shapeshifterMatrix": [
+  "objectViews": [
     {
+      "viewType": "list",
       "context": "Renaissance Internal List",
       "value": "internal-list",
-      "shape": "data-row",
       "description": "Districts listed in an internal admin table with location, enrollment, and licensing data. Renaissance staff manage accounts and track customer scale from here.",
-      "visibleAttributes": ["District Name", "State", "School Count", "Student Count", "Product Licenses"],
-      "availableCTAs": ["View", "Edit"],
-      "cardShape": "Data row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "District Name",
+            "State",
+            "School Count",
+            "Student Count",
+            "Product Licenses"
+          ],
+          "availableCTAs": [
+            "View",
+            "Edit"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "District Name",
+            "State",
+            "School Count",
+            "Student Count",
+            "Product Licenses"
+          ],
+          "availableCTAs": [
+            "View",
+            "Edit"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "District Name",
+            "State",
+            "School Count",
+            "Student Count",
+            "Product Licenses"
+          ],
+          "availableCTAs": [
+            "View",
+            "Edit"
+          ]
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "District Admin Dashboard",
       "value": "district-dashboard",
-      "shape": "profile",
       "description": "The complete district record — schools, licensing, SIS configuration, and admin contacts. District admins manage their organization and access district-wide reports from this page.",
-      "visibleAttributes": ["District Name", "State", "School Count", "Student Count", "Product Licenses", "District Admin(s)", "NCES District ID", "SIS Configuration", "Address", "Phone", "Time Zone", "District Type", "Status", "Contract Period"],
-      "availableCTAs": ["View", "Edit", "Manage Schools", "Manage Users", "Configure SIS", "Configure Products", "View District Reports", "Create", "Deactivate"],
-      "cardShape": "Full page"
+      "visibleAttributes": [
+        "District Name",
+        "State",
+        "School Count",
+        "Student Count",
+        "Product Licenses",
+        "District Admin(s)",
+        "NCES District ID",
+        "SIS Configuration",
+        "Address",
+        "Phone",
+        "Time Zone",
+        "District Type",
+        "Status",
+        "Contract Period"
+      ],
+      "availableCTAs": [
+        "View",
+        "Edit",
+        "Manage Schools",
+        "Manage Users",
+        "Configure SIS",
+        "Configure Products",
+        "View District Reports",
+        "Create",
+        "Deactivate"
+      ]
     },
     {
+      "viewType": "list",
       "context": "District Picker",
       "value": "district-picker",
-      "shape": "mini-row",
       "description": "A minimal row for selecting a district during setup or filtering. Shows district name, state, and school count — just enough to choose the right one.",
-      "visibleAttributes": ["District Name", "State", "School Count"],
-      "availableCTAs": [],
-      "cardShape": "Mini row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "District Name",
+            "State",
+            "School Count"
+          ],
+          "availableCTAs": []
+        },
+        "grid": {
+          "visibleAttributes": [
+            "District Name",
+            "State",
+            "School Count"
+          ],
+          "availableCTAs": []
+        },
+        "table": {
+          "visibleAttributes": [
+            "District Name",
+            "State",
+            "School Count"
+          ],
+          "availableCTAs": []
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "Report Header",
       "value": "report-header",
-      "shape": "header",
       "description": "The district displayed as a banner at the top of a report, providing organizational context for the data below. No interactive elements.",
-      "visibleAttributes": ["District Name", "State", "School Count", "Student Count"],
-      "availableCTAs": [],
-      "cardShape": "Banner"
+      "visibleAttributes": [
+        "District Name",
+        "State",
+        "School Count",
+        "Student Count"
+      ],
+      "availableCTAs": []
     },
     {
+      "viewType": "list",
       "context": "District Overview Card",
       "value": "district-overview",
-      "shape": "card",
       "description": "A summary card showing district size and location on a regional dashboard. Used to scan district-level metrics at a glance.",
-      "visibleAttributes": ["District Name", "State", "School Count", "Student Count"],
-      "availableCTAs": ["View"],
-      "cardShape": "Summary card"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "District Name",
+            "State",
+            "School Count",
+            "Student Count"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "District Name",
+            "State",
+            "School Count",
+            "Student Count"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "District Name",
+            "State",
+            "School Count",
+            "Student Count"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        }
+      }
     },
     {
+      "viewType": "list",
       "context": "District Search Results",
       "value": "district-search",
-      "shape": "row",
       "description": "Districts matching a search query with state, school count, and student count. Used to find and navigate to a specific district.",
-      "visibleAttributes": ["District Name", "State", "School Count", "Student Count"],
-      "availableCTAs": ["View"],
-      "cardShape": "Compact row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "District Name",
+            "State",
+            "School Count",
+            "Student Count"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "District Name",
+            "State",
+            "School Count",
+            "Student Count"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "District Name",
+            "State",
+            "School Count",
+            "Student Count"
+          ],
+          "availableCTAs": [
+            "View"
+          ]
+        }
+      }
     }
   ]
 }

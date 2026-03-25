@@ -87,7 +87,7 @@ Caboodle/
 │   │   └── tsconfig.json
 │   └── object-components/             # Lit Web Component library
 │       ├── src/
-│       │   ├── ren-student-row.ts     # <ren-student-row> — row + mini-row shapes
+│       │   ├── ren-student-row.ts     # <ren-student-row> — legacy list layout (to align with ListView / ValidShape)
 │       │   └── shared/
 │       │       └── tokens.ts          # Design tokens (--ren-* CSS custom properties)
 │       ├── vite.config.ts             # Library build config (multi-entry Rollup)
@@ -145,32 +145,34 @@ Key components:
 Located in `packages/object-components/src/`. These render object cards, list rows, and profile views — the visual representations of OOUX objects. They are framework-agnostic Custom Elements distributable as `@renaissance/object-components` so product teams can import them directly.
 
 **Current state:** The WC library was previously built and has been deleted. Only two source files remain on disk:
-- `ren-student-row.ts` — the `<ren-student-row>` component (row + mini-row shapes)
+- `ren-student-row.ts` — the `<ren-student-row>` component (legacy list-style row; to be aligned with **ListView** and `ValidShape`: `list` | `grid` | `table`)
 - `shared/tokens.ts` — design token CSS custom properties (`--ren-*` variables)
 
 The `dist/` directory is empty and the library cannot be built until source files are restored.
 
 **Target architecture** (to be rebuilt):
 
-Naming convention: `<ren-{object}-{shapeFamily}>` (e.g. `<ren-student-card>`, `<ren-student-row>`). Each shape family maps to one component file: card/compact-card → `-card`, row/mini-row → `-row`, data-row → `-data-row`, profile → `-profile`, header → `-header`. The generic `<ren-object-card>` renders any object from the library grid.
+Components map to **`objectViews`** in object data. **`ListView`** entries use **`ValidShape`**: `'list' | 'grid' | 'table'` — each optional key under `shapes` (`list`, `grid`, `table`) has a **`ShapeSpec`** (`visibleAttributes`, `availableCTAs`). **`DetailView`** entries use flat `visibleAttributes` and `availableCTAs` for detail surfaces.
 
-Shape component counts by group (planned):
-- **Group A** (student, teacher, class, school, district, assessment, skill, score): 5 shapes each (card, row, data-row, profile, header)
-- **Group B** (activity-event, activity, assignment, insight, lesson, live-session, product-assignment, product, proficiency-prediction, report, resource, solution, standard): 4 shapes each (card, row, profile, header)
-- **Group C** (educator-academy-module, learning-path, onboarding-checklist, onboarding-step, student-group): 3 shapes each (card, row, profile)
+Naming convention: `<ren-{object}-{validShape}>` for list layouts (e.g. `<ren-student-list>`, `<ren-student-grid>`, `<ren-student-table>`) plus detail-oriented components for **`DetailView`** contexts. The generic `<ren-object-card>` (or grid cell) can render any object in library browsing contexts.
 
-Each object will have a base module at `shared/{slug}.base.ts` with shared types (`{Object}Data`, `{Object}State`) and constants. Shared infrastructure includes `shared/context.ts`, `shared/identity.ts`, `shared/shape-tags.ts`, and `shared/shapes/` (shape-specific CSS).
+Planned coverage by object group (driven by each object’s `objectViews`):
+- **Group A** (student, teacher, class, school, district, assessment, skill, score): full **ListView** coverage (`list`, `grid`, `table` where defined) plus **DetailView** components as specified
+- **Group B** (activity-event, activity, assignment, insight, lesson, live-session, product-assignment, product, proficiency-prediction, report, resource, solution, standard): **ListView** and **DetailView** components per `objectViews`
+- **Group C** (educator-academy-module, learning-path, onboarding-checklist, onboarding-step, student-group): **ListView** and **DetailView** components per `objectViews`
+
+Each object will have a base module at `shared/{slug}.base.ts` with shared types (`{Object}Data`, `{Object}State`) and constants. Shared infrastructure includes `shared/context.ts`, `shared/identity.ts`, layout/shape tagging, and `shared/shapes/` (layout-specific CSS).
 
 ## Data Architecture
 
 Object data is stored as JSON files in `data/objects/` (one file per object, 26 files total). The shared TypeScript schema at `data/schema.ts` defines all types:
 
-- `ObjectDefinition` — top-level type containing everything about an object
+- `ObjectDefinition` — top-level type containing everything about an object, including optional `objectViews?: ObjectView[]`
 - `ObjectIdentity` — name, slug, qualifier, type, category, definition, synonyms, products
 - `SystemDefinition` — system-level grouping with slug, name, owner, objectSlugs
 - `ObjectAttribute`, `ObjectCTA` — attribute and CTA definitions with roles/permissions
 - `ObjectVariation` — domain-specific variants
-- `ShapeshifterEntry` — context-specific attribute/CTA visibility and card shape
+- `ObjectView` — union of **`ListView` | `DetailView`** (discriminated by `viewType`). **`ListView`** (`viewType: 'list'`) has `shapes` with optional `list`, `grid`, and `table` entries, each a **`ShapeSpec`** (`visibleAttributes`, `availableCTAs`). **`DetailView`** (`viewType: 'detail'`) has flat `visibleAttributes` and `availableCTAs`. **`ValidShape`** = `'list' | 'grid' | 'table'` for list layouts
 - `RepresentationSection` — card/list/detail showcase configuration
 - `UserStory`, `BusinessRule`, `LifecycleFlow` — behavioral specs
 - `MCSFDSpec` — relationship specifications (Mechanics, Cardinality, Sorts, Filters, Dependencies)
@@ -265,14 +267,14 @@ Systems are derived from object JSON data — each object's `identity.products` 
 Each object gets a detail page at `/objects/[systemSlug]/[objectSlug]` with:
 - Guide header (icon, name, qualifier, definition, synonyms, action buttons)
 - Tabbed content: **Views**, **Attributes**, **Actions**, **Relationships**
-- Views tab: cards linking to View Inspector pages for each shapeshifter context
+- Views tab: cards linking to View Inspector pages for each view context
 - Attributes tab: `AttributeTable` showing all object attributes
 - Actions tab: `CTATable` + user story cards
 - Relationships tab: MCSFD relationship tables + nested object links
 
 ### View Inspector
 
-Each shapeshifter context has a dedicated View Inspector page at `/objects/[systemSlug]/[objectSlug]/views/[viewSlug]`. The inspector shows:
+Each view context has a dedicated View Inspector page at `/objects/[systemSlug]/[objectSlug]/views/[viewSlug]`. The inspector shows:
 - Role selection controls
 - Attribute and CTA toggle lists with inline editing
 - Preview rendering (when a preview component is registered in `lib/preview-registry.ts`)
@@ -286,7 +288,7 @@ Student, Teacher, Class, School, District, Assessment, Assignment, Skill, Resour
 
 ### What's Built
 - **Next.js site** with system-based Object Library, Object Guide pages, and View Inspector
-- **26 object JSON files** with full schema coverage (identity, attributes, CTAs, relationships, shapeshifter matrix)
+- **26 object JSON files** with full schema coverage (identity, attributes, CTAs, relationships, object views)
 - **React components**: navigation, tabs, data tables, config panels, code blocks, object icons, share URL, back links
 - **Student roster prototype**: RosterRing, RosterScoreColumn, RosterOverflowMenu, StudentRosterPreview
 - **Server actions** for inline attribute and CTA editing
@@ -295,7 +297,7 @@ Student, Teacher, Class, School, District, Assessment, Assignment, Skill, Resour
 - **Design system page** (not linked in navigation)
 
 ### What Needs Building
-- **Lit Web Component library**: Previously built, source files were deleted. Only `ren-student-row.ts` and `shared/tokens.ts` remain. Full library needs rebuilding (~127 shape components across 26 objects)
+- **Lit Web Component library**: Previously built, source files were deleted. Only `ren-student-row.ts` and `shared/tokens.ts` remain. Full library needs rebuilding (ListView layouts for `list` / `grid` / `table` plus DetailView-oriented components across 26 objects, per `objectViews`)
 - **Placeholder pages**: Glossary, Process, Resources are stubs with heading only
 - **Search**: MainNav has a search trigger UI but no search functionality
 - **User profile**: MainNav has a profile button stub
@@ -338,7 +340,7 @@ orca/
     08-attribute-prioritization.md  # Force-ranked attributes
     10-nav-flow.md             # Navigation flow
     objects/                   # Per-object artifacts (steps 5, 6, 9, 11, 12)
-      {slug}.md                # Object Guide draft + MCSFD + cards + CTAs + shapeshifters
+      {slug}.md                # Object Guide draft + MCSFD + cards + CTAs + object views
     cross-object/              # System-wide compiled views
       nom.md                   # Compiled NOM from all objects
       cta-matrix.md            # Compiled CTA Matrix from all objects
@@ -382,7 +384,7 @@ orca/
 | 09 | Object Card Designer | Masked Objects | Distinct card designs |
 | 10 | Nav Flow Designer | Isolated Objects | Navigation blueprint |
 | 11 | CTA Placement Designer | Broken Objects | CTA-equipped cards/pages |
-| 12 | Shapeshifter Matrix Builder | Shapeshifters | Variant consistency rules |
+| 12 | Shapeshifter Matrix Builder | Shapeshifters | Variant consistency rules (captured in data as `objectViews` / `ObjectView`) |
 
 ### Supporting Skills
 
@@ -446,4 +448,4 @@ orca/
 - Check `styles/components.css` for existing component classes before creating new ones
 - Use Every Layout primitives for all layout — never write custom layout CSS when a primitive exists
 - Always ask, never assume — follow the collaboration rules in `.cursor/rules/ooux-collaboration.mdc`
-- The Lit WC library needs rebuilding — use `ren-student-row.ts` and `shared/tokens.ts` as reference implementations when creating new shape components
+- The Lit WC library needs rebuilding — use `ren-student-row.ts` and `shared/tokens.ts` as reference implementations when creating new list/grid/table or detail view components

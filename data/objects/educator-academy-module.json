@@ -6,7 +6,12 @@
     "objectType": "domain",
     "category": "content",
     "definition": "An Educator Academy Module is a structured, self-paced professional learning unit that teaches educators how to use a specific feature or workflow in Renaissance Intelligence.",
-    "synonyms": ["Training", "Tutorial", "Course", "PD Module"],
+    "synonyms": [
+      "Training",
+      "Tutorial",
+      "Course",
+      "PD Module"
+    ],
     "products": "Renaissance Intelligence"
   },
   "variations": [],
@@ -15,7 +20,7 @@
       "layout": "card",
       "heading": "Card layout",
       "description": "How an Educator Academy Module appears in the academy catalog",
-      "defaultShape": "card",
+      "defaultShape": "list",
       "componentTag": "ren-educator-academy-module-card",
       "examples": [
         {
@@ -96,21 +101,30 @@
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Start Module",
           "roles": "Teacher, Admin",
           "permission": "Write",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Search Academy",
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "S",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         }
       ]
     },
@@ -118,7 +132,7 @@
       "layout": "list",
       "heading": "List layout",
       "description": "How an Educator Academy Module appears in search results and filtered lists",
-      "defaultShape": "row",
+      "defaultShape": "list",
       "componentTag": "ren-educator-academy-module-row",
       "examples": [
         {
@@ -182,14 +196,20 @@
           "roles": "Teacher, Admin",
           "permission": "Write",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Resume Module",
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "S",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         }
       ]
     },
@@ -197,7 +217,7 @@
       "layout": "detail",
       "heading": "Detail layout",
       "description": "What users see when they open a full Educator Academy Module",
-      "defaultShape": "profile",
+      "defaultShape": "details",
       "componentTag": "ren-educator-academy-module-profile",
       "examples": [
         {
@@ -302,7 +322,10 @@
           "roles": "Teacher, Admin",
           "permission": "Write",
           "priority": "P",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Complete Module",
@@ -311,21 +334,30 @@
           "priority": "P",
           "crossObjectSlug": "onboarding-step",
           "crossObjectName": "Onboarding Step",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Resume Module",
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "S",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "View Certificate",
           "roles": "Teacher, Admin",
           "permission": "Read",
           "priority": "T",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         },
         {
           "name": "Share Module",
@@ -334,7 +366,10 @@
           "priority": "T",
           "crossObjectSlug": "teacher",
           "crossObjectName": "Teacher",
-          "roleKeys": ["teacher", "admin"]
+          "roleKeys": [
+            "teacher",
+            "admin"
+          ]
         }
       ]
     }
@@ -359,7 +394,12 @@
       "benefit": "I have demonstrated competency with the feature and can reference my certification.",
       "whenClause": "I finish all required activities in a module,",
       "thenClause": "my status updates to complete, I receive a badge/certification if one is associated, and any linked onboarding steps are automatically marked complete.",
-      "crossObjects": [{ "slug": "onboarding-step", "name": "Onboarding Step" }]
+      "crossObjects": [
+        {
+          "slug": "onboarding-step",
+          "name": "Onboarding Step"
+        }
+      ]
     }
   ],
   "businessRules": [
@@ -426,8 +466,18 @@
       }
     ],
     "transitions": [
-      { "from": "Not Started", "to": ["In Progress"] },
-      { "from": "In Progress", "to": ["Complete"] }
+      {
+        "from": "Not Started",
+        "to": [
+          "In Progress"
+        ]
+      },
+      {
+        "from": "In Progress",
+        "to": [
+          "Complete"
+        ]
+      }
     ]
   },
   "relationships": [
@@ -450,7 +500,10 @@
       "dependencies": "If a teacher account is deactivated, their completion records persist for reporting but they no longer appear in active enrollment counts."
     }
   ],
-  "relatedObjects": ["onboarding-step", "teacher"],
+  "relatedObjects": [
+    "onboarding-step",
+    "teacher"
+  ],
   "nestedObjects": [],
   "allAttributes": [
     {
@@ -552,14 +605,20 @@
       "roles": "Teacher, Admin",
       "permission": "Read",
       "priority": "P",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Start Module",
       "roles": "Teacher, Admin",
       "permission": "Write",
       "priority": "P",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Complete Module",
@@ -568,21 +627,30 @@
       "priority": "P",
       "crossObjectSlug": "onboarding-step",
       "crossObjectName": "Onboarding Step",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Resume Module",
       "roles": "Teacher, Admin",
       "permission": "Read",
       "priority": "S",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "View Certificate",
       "roles": "Teacher, Admin",
       "permission": "Read",
       "priority": "T",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Share Module",
@@ -591,14 +659,20 @@
       "priority": "T",
       "crossObjectSlug": "teacher",
       "crossObjectName": "Teacher",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     },
     {
       "name": "Search Academy",
       "roles": "Teacher, Admin",
       "permission": "Read",
       "priority": "S",
-      "roleKeys": ["teacher", "admin"]
+      "roleKeys": [
+        "teacher",
+        "admin"
+      ]
     }
   ],
   "sipValidation": {
@@ -638,33 +712,128 @@
       "notes": "Professional Development Module; used in admin-facing contexts"
     }
   ],
-  "shapeshifterMatrix": [
+  "objectViews": [
     {
+      "viewType": "list",
       "context": "Browse Academy",
       "value": "browse-academy",
-      "shape": "card",
       "description": "Academy modules shown as catalog cards with feature area, role, format, and duration. Educators browse available training and start or resume modules.",
-      "visibleAttributes": ["Module Title", "Feature Area", "Target Role", "Format", "Duration", "Status"],
-      "availableCTAs": ["Start Module", "Resume Module"],
-      "cardShape": "Catalog card"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Module Title",
+            "Feature Area",
+            "Target Role",
+            "Format",
+            "Duration",
+            "Status"
+          ],
+          "availableCTAs": [
+            "Start Module",
+            "Resume Module"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Module Title",
+            "Feature Area",
+            "Target Role",
+            "Format",
+            "Duration",
+            "Status"
+          ],
+          "availableCTAs": [
+            "Start Module",
+            "Resume Module"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Module Title",
+            "Feature Area",
+            "Target Role",
+            "Format",
+            "Duration",
+            "Status"
+          ],
+          "availableCTAs": [
+            "Start Module",
+            "Resume Module"
+          ]
+        }
+      }
     },
     {
+      "viewType": "detail",
       "context": "Module Detail",
       "value": "module-detail",
-      "shape": "profile",
       "description": "The complete module record — description, prerequisites, completion criteria, and certification. Educators work through content, track progress, and earn badges from this page.",
-      "visibleAttributes": ["Module Title", "Description", "Feature Area", "Target Role", "Format", "Duration", "Completion Criteria", "Status", "Badge/Certification", "Prerequisites", "Content URL", "Created Date", "Last Updated"],
-      "availableCTAs": ["Start Module", "Complete Module", "Resume Module", "View Certificate", "Share Module"],
-      "cardShape": "Full page"
+      "visibleAttributes": [
+        "Module Title",
+        "Description",
+        "Feature Area",
+        "Target Role",
+        "Format",
+        "Duration",
+        "Completion Criteria",
+        "Status",
+        "Badge/Certification",
+        "Prerequisites",
+        "Content URL",
+        "Created Date",
+        "Last Updated"
+      ],
+      "availableCTAs": [
+        "Start Module",
+        "Complete Module",
+        "Resume Module",
+        "View Certificate",
+        "Share Module"
+      ]
     },
     {
+      "viewType": "list",
       "context": "In Checklist Context",
       "value": "in-checklist-context",
-      "shape": "row",
       "description": "A module shown as a compact row within an onboarding checklist, linking professional development to the setup workflow.",
-      "visibleAttributes": ["Module Title", "Format", "Duration", "Status"],
-      "availableCTAs": ["Start Module", "Resume Module"],
-      "cardShape": "Compact row"
+      "shapes": {
+        "list": {
+          "visibleAttributes": [
+            "Module Title",
+            "Format",
+            "Duration",
+            "Status"
+          ],
+          "availableCTAs": [
+            "Start Module",
+            "Resume Module"
+          ]
+        },
+        "grid": {
+          "visibleAttributes": [
+            "Module Title",
+            "Format",
+            "Duration",
+            "Status"
+          ],
+          "availableCTAs": [
+            "Start Module",
+            "Resume Module"
+          ]
+        },
+        "table": {
+          "visibleAttributes": [
+            "Module Title",
+            "Format",
+            "Duration",
+            "Status"
+          ],
+          "availableCTAs": [
+            "Start Module",
+            "Resume Module"
+          ]
+        }
+      }
     }
   ]
 }

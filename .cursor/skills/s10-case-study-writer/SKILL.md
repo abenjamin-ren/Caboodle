@@ -39,7 +39,7 @@ Before starting, read everything available for the target project:
 10. **Object Cards** — `09-object-cards.md` — Visual card designs for distinct objects.
 11. **Nav Flow** — `10-nav-flow.md` — Navigation blueprint and page hierarchy.
 12. **CTA Placement** — `11-cta-placement.md` — Where CTAs appear on cards and detail pages.
-13. **Shapeshifter Matrix** — `12-shapeshifter-matrix.md` — How objects appear across different contexts.
+13. **Shapeshifter Matrix (object views)** — `12-shapeshifter-matrix.md` — Step 12 artifact documenting **object views** (`objectViews`): how objects appear across different contexts.
 14. **User Stories** — `user-stories.md` — Object-oriented user stories grounded in CTAs.
 15. **Cross-Object Artifacts** — `cross-object/nom.md` and `cross-object/cta-matrix.md` — System-wide compilations.
 
@@ -87,7 +87,7 @@ Every case study follows a **problem → process → solution** arc with these n
 - Object Cards: How do distinct objects look? How does the design fight Masked Objects?
 - Nav Flow: How do users navigate between objects? How are Isolated Objects avoided?
 - CTA Placement: Where do actions live? How are Broken Objects prevented?
-- Shapeshifter Matrix: How do objects appear consistently across contexts?
+- Object views (from step 12 / `objectViews`): How do objects appear consistently across contexts?
 - Engineering Handoff: How were designs translated to specs?
 
 ### 5. Key Insights & Takeaways
@@ -124,7 +124,7 @@ Add more images where they support the narrative:
 
 - Before/after comparisons (old design vs. OOUX-informed design)
 - Object Map showing all objects and their attributes
-- Shapeshifter Matrix showing object variants
+- Object views (`objectViews`) showing context variants
 - CTA Placement showing action positioning on cards and detail pages
 - MCSFD specification tables for key relationships
 - Screenshots of the final product or prototype, if available

@@ -3,7 +3,9 @@
 import { useState, useMemo, useTransition, useRef, useEffect } from 'react';
 import type {
   ObjectDefinition,
-  ShapeshifterEntry,
+  ObjectView,
+  ListView,
+  ValidShape,
   ObjectAttribute,
   ObjectCTA,
   LifecycleState,
@@ -14,8 +16,23 @@ import { getHighlightedStudents, getAllTeachers, getAllClasses } from '@/lib/moc
 
 interface ViewInspectorProps {
   obj: ObjectDefinition;
-  view: ShapeshifterEntry;
+  view: ObjectView;
   systemSlug: string;
+}
+
+function getViewAttrs(view: ObjectView, shape: ValidShape): string[] {
+  if (view.viewType === 'detail') return view.visibleAttributes;
+  return view.shapes[shape]?.visibleAttributes ?? view.shapes.list?.visibleAttributes ?? [];
+}
+
+function getViewCTAs(view: ObjectView, shape: ValidShape): string[] {
+  if (view.viewType === 'detail') return view.availableCTAs;
+  return view.shapes[shape]?.availableCTAs ?? view.shapes.list?.availableCTAs ?? [];
+}
+
+function getAvailableShapes(view: ObjectView): ValidShape[] {
+  if (view.viewType === 'detail') return [];
+  return (['list', 'grid', 'table'] as const).filter(s => view.shapes[s] != null);
 }
 
 type SelectedItem =
@@ -33,10 +50,11 @@ const PRIORITY_LABELS: Record<string, string> = {
 };
 
 export function ViewInspector({ obj, view, systemSlug }: ViewInspectorProps) {
+  const availableShapes = getAvailableShapes(view);
   const [selectedRole, setSelectedRole] = useState<string>('teacher');
   const [selectedItem, setSelectedItem] = useState<SelectedItem>(null);
   const [previewMode, setPreviewMode] = useState<'preview' | 'outline'>('preview');
-  const [displayMode, setDisplayMode] = useState<'list' | 'grid' | 'table'>('list');
+  const [displayMode, setDisplayMode] = useState<ValidShape>(availableShapes[0] ?? 'list');
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [ctaRoleOverrides, setCtaRoleOverrides] = useState<Record<string, string[]>>({});
   const [isPending, startTransition] = useTransition();
@@ -54,16 +72,16 @@ export function ViewInspector({ obj, view, systemSlug }: ViewInspectorProps) {
   }, [dropdownOpen]);
 
   const viewAttributes = useMemo(() => {
-    return view.visibleAttributes
+    return getViewAttrs(view, displayMode)
       .map(name => obj.allAttributes.find(a => a.name === name))
       .filter((a): a is ObjectAttribute => a != null);
-  }, [view.visibleAttributes, obj.allAttributes]);
+  }, [view, displayMode, obj.allAttributes]);
 
   const viewCTAs = useMemo(() => {
-    return view.availableCTAs
+    return getViewCTAs(view, displayMode)
       .map(name => obj.allCTAs.find(c => c.name === name))
       .filter((c): c is ObjectCTA => c != null);
-  }, [view.availableCTAs, obj.allCTAs]);
+  }, [view, displayMode, obj.allCTAs]);
 
   const lifecycleStates = obj.lifecycle.states;
 
@@ -87,7 +105,7 @@ export function ViewInspector({ obj, view, systemSlug }: ViewInspectorProps) {
 
   
 
-  const allViews = obj.shapeshifterMatrix ?? [];
+  const allViews = obj.objectViews ?? [];
 
   return (
     <div className="view-inspector">
@@ -107,7 +125,7 @@ export function ViewInspector({ obj, view, systemSlug }: ViewInspectorProps) {
               aria-haspopup="listbox"
             >
               {view.context}{' '}
-              <span className="view-breadcrumb-shape">({view.shape})</span>
+              <span className="view-breadcrumb-shape">({view.viewType})</span>
               <i className="fa-solid fa-angle-down view-breadcrumb-chevron" aria-hidden="true" />
             </button>
             {dropdownOpen && (
@@ -124,7 +142,7 @@ export function ViewInspector({ obj, view, systemSlug }: ViewInspectorProps) {
                     }}
                   >
                     {v.context}
-                    <span className="view-breadcrumb-menu-shape">({v.shape})</span>
+                    <span className="view-breadcrumb-menu-shape">({v.viewType})</span>
                   </button>
                 ))}
               </div>
@@ -294,35 +312,43 @@ export function ViewInspector({ obj, view, systemSlug }: ViewInspectorProps) {
               ))}
             </div>
 
-            <div className="toolbar-segment toolbar-segment-icon-lg">
-              <button
-                type="button"
-                className={displayMode === 'list' ? 'active' : ''}
-                onClick={() => setDisplayMode('list')}
-                aria-label="List"
-                title="List"
-              >
-                <i className="fa-solid fa-list" aria-hidden="true" />
-              </button>
-              <button
-                type="button"
-                className={displayMode === 'grid' ? 'active' : ''}
-                onClick={() => setDisplayMode('grid')}
-                aria-label="Grid"
-                title="Grid"
-              >
-                <i className="fa-solid fa-table-cells" aria-hidden="true" />
-              </button>
-              <button
-                type="button"
-                className={displayMode === 'table' ? 'active' : ''}
-                onClick={() => setDisplayMode('table')}
-                aria-label="Table"
-                title="Table"
-              >
-                <i className="fa-solid fa-table-list" aria-hidden="true" />
-              </button>
-            </div>
+            {availableShapes.length > 1 && (
+              <div className="toolbar-segment toolbar-segment-icon-lg">
+                {availableShapes.includes('list') && (
+                  <button
+                    type="button"
+                    className={displayMode === 'list' ? 'active' : ''}
+                    onClick={() => setDisplayMode('list')}
+                    aria-label="List"
+                    title="List"
+                  >
+                    <i className="fa-solid fa-list" aria-hidden="true" />
+                  </button>
+                )}
+                {availableShapes.includes('grid') && (
+                  <button
+                    type="button"
+                    className={displayMode === 'grid' ? 'active' : ''}
+                    onClick={() => setDisplayMode('grid')}
+                    aria-label="Grid"
+                    title="Grid"
+                  >
+                    <i className="fa-solid fa-table-cells" aria-hidden="true" />
+                  </button>
+                )}
+                {availableShapes.includes('table') && (
+                  <button
+                    type="button"
+                    className={displayMode === 'table' ? 'active' : ''}
+                    onClick={() => setDisplayMode('table')}
+                    aria-label="Table"
+                    title="Table"
+                  >
+                    <i className="fa-solid fa-table-list" aria-hidden="true" />
+                  </button>
+                )}
+              </div>
+            )}
           </div>
 
           <div className="preview-panel-content">
@@ -363,7 +389,7 @@ export function ViewInspector({ obj, view, systemSlug }: ViewInspectorProps) {
                 );
               })()
             ) : (
-              <OutlineContent view={view} obj={obj} />
+              <OutlineContent view={view} obj={obj} displayMode={displayMode} />
             )}
           </div>
         </div>
@@ -522,7 +548,7 @@ function PreviewContent({
   onSelectItem,
 }: {
   obj: ObjectDefinition;
-  view: ShapeshifterEntry;
+  view: ObjectView;
   viewAttributes: ObjectAttribute[];
   viewCTAs: ObjectCTA[];
   displayMode: string;
@@ -642,12 +668,16 @@ function PreviewContent({
 function OutlineContent({
   view,
   obj,
+  displayMode,
 }: {
-  view: ShapeshifterEntry;
+  view: ObjectView;
   obj: ObjectDefinition;
+  displayMode: ValidShape;
 }) {
   const slug = obj.identity.slug;
-  const attrVars = view.visibleAttributes.map(name => {
+  const attrNames = getViewAttrs(view, displayMode);
+  const ctaNames = getViewCTAs(view, displayMode);
+  const attrVars = attrNames.map(name => {
     const attr = obj.allAttributes.find(a => a.name === name);
     const refPrefix = attr?.referenceName ? `{${attr.referenceName.toLowerCase()}.` : `{${slug}.`;
     const fieldName = name.replace(/\s+/g, '').replace(/^./, c => c.toLowerCase());
@@ -655,7 +685,7 @@ function OutlineContent({
   });
 
   const primaryCTA = obj.allCTAs.find(
-    c => view.availableCTAs.includes(c.name) && c.priority === 'P'
+    c => ctaNames.includes(c.name) && c.priority === 'P'
   );
 
   return (
