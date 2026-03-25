@@ -6,6 +6,8 @@ import { RosterRing } from '@/components/roster/RosterRing';
 import { RosterScoreColumn } from '@/components/roster/RosterScoreColumn';
 import { RosterOverflowMenu } from '@/components/roster/RosterOverflowMenu';
 import type { RosterMenuItem } from '@/components/roster/RosterOverflowMenu';
+import { getHighlightedStudents } from '@/lib/mock';
+import type { MockStudent } from '@/lib/mock';
 
 export interface RosterStudent {
   id?: string;
@@ -31,12 +33,31 @@ const INACTIVE_STATUSES = new Set(['Transferred', 'Graduated', 'Inactive']);
 
 const MENU_CTA_NAMES = new Set(['Add to Student Group', 'Enroll in Class', 'Remove from Class']);
 
-const DEFAULT_STUDENTS: RosterStudent[] = [
-  { name: 'Hermione Granger', grade: '3rd Grade', readingLevel: '820L', readingStatus: 'At/Above', readingPercent: 87, mathLevel: '4.2', mathStatus: 'At/Above', mathPercent: 72, assignmentCount: 8, enrollmentStatus: 'Active' },
-  { name: 'Harry Potter', grade: '3rd Grade', readingLevel: '520L', readingStatus: 'At/Above', readingPercent: 65, mathLevel: '3.1', mathStatus: 'On Watch', mathPercent: 42, assignmentCount: 6, enrollmentStatus: 'Active' },
-  { name: 'Luna Lovegood', grade: '3rd Grade', readingLevel: '380L', readingStatus: 'Intervention', readingPercent: 38, mathLevel: '2.8', mathStatus: 'Urgent', mathPercent: 35, assignmentCount: 5, enrollmentStatus: 'Active' },
-  { name: 'Ron Weasley', grade: '3rd Grade', readingLevel: '—', readingStatus: 'At/Above', readingPercent: 50, mathLevel: '—', mathStatus: 'At/Above', mathPercent: 50, assignmentCount: 0, enrollmentStatus: 'Transferred' },
-];
+function formatGrade(grade: string): string {
+  const n = parseInt(grade, 10);
+  if (isNaN(n)) return grade;
+  const suffix = n === 1 ? 'st' : n === 2 ? 'nd' : n === 3 ? 'rd' : 'th';
+  return `${n}${suffix} Grade`;
+}
+
+function toRosterStudent(s: MockStudent): RosterStudent {
+  return {
+    id: s.id,
+    name: s.name,
+    href: s.href,
+    grade: formatGrade(s.grade),
+    readingLevel: s.readingLevel ? `${s.readingLevel}L` : '—',
+    readingStatus: s.readingStatus,
+    readingPercent: s.readingPercent,
+    mathLevel: s.mathLevel,
+    mathStatus: s.mathStatus,
+    mathPercent: s.mathPercent,
+    assignmentCount: s.assignmentCount,
+    enrollmentStatus: s.enrollmentStatus,
+  };
+}
+
+const DEFAULT_STUDENTS: RosterStudent[] = getHighlightedStudents().map(toRosterStudent);
 
 function needsAttention(band: string): boolean {
   return band !== 'At/Above';
@@ -69,7 +90,7 @@ export function StudentRosterPreview({
     if (externalStudents) return externalStudents;
     if (!lifecycleStates?.length) return DEFAULT_STUDENTS;
     return DEFAULT_STUDENTS.map((s, i) => {
-      if (i === 3) return { ...s, enrollmentStatus: lifecycleStates[2]?.name ?? 'Transferred' };
+      if (i === DEFAULT_STUDENTS.length - 1) return { ...s, enrollmentStatus: lifecycleStates[2]?.name ?? 'Transferred' };
       return { ...s, enrollmentStatus: lifecycleStates[0]?.name ?? 'Active' };
     });
   }, [externalStudents, lifecycleStates]);

@@ -6,9 +6,11 @@ import type {
   ShapeshifterEntry,
   ObjectAttribute,
   ObjectCTA,
+  LifecycleState,
 } from '../../../../../../../../data/schema';
 import { updateAttribute, updateCTA } from '@/app/actions';
 import { getPreviewRenderer } from '@/lib/preview-registry';
+import { getHighlightedStudents, getAllTeachers, getAllClasses } from '@/lib/mock';
 
 interface ViewInspectorProps {
   obj: ObjectDefinition;
@@ -428,7 +430,7 @@ function buildPreviewSlots(attrs: ObjectAttribute[]): PreviewSlots {
   return { avatarAttr, primaryAttr, secondaryAttrs };
 }
 
-interface MockStudent {
+interface PreviewRow {
   name: string;
   initials: string;
   color: string;
@@ -437,20 +439,72 @@ interface MockStudent {
   state: string;
 }
 
+const AVATAR_COLORS = ['#2B87FF', '#398B26', '#ae74f0', '#fd4353', '#FF8C00', '#20B2AA'];
+
+function buildPreviewRows(slug: string, states: LifecycleState[]): PreviewRow[] {
+  const active = states[0]?.name ?? 'Active';
+  const inactive = states[1]?.name ?? 'Inactive';
+  const terminal = states[2]?.name ?? 'Transferred';
+
+  switch (slug) {
+    case 'student': {
+      const list = getHighlightedStudents().slice(0, 4);
+      return list.map((s, i) => ({
+        name: s.name,
+        initials: s.initials,
+        color: AVATAR_COLORS[i % AVATAR_COLORS.length],
+        grade: `Grade ${s.grade}`,
+        school: s.school,
+        state: i === list.length - 1 ? terminal : active,
+      }));
+    }
+    case 'teacher': {
+      const list = getAllTeachers().slice(0, 4);
+      return list.map((t, i) => ({
+        name: t.name,
+        initials: t.initials,
+        color: AVATAR_COLORS[i % AVATAR_COLORS.length],
+        grade: t.gradeBand,
+        school: t.school,
+        state: i === list.length - 1 ? inactive : active,
+      }));
+    }
+    case 'class': {
+      const list = getAllClasses().slice(0, 4);
+      return list.map((c, i) => ({
+        name: c.name,
+        initials: c.subject.slice(0, 3).toUpperCase(),
+        color: AVATAR_COLORS[i % AVATAR_COLORS.length],
+        grade: `Grade ${c.grade}`,
+        school: c.school,
+        state: i === list.length - 1 ? terminal : active,
+      }));
+    }
+    default: {
+      return [
+        { name: 'Amara Johnson', initials: 'AJ', color: AVATAR_COLORS[0], grade: '3rd Grade', school: 'Lincoln Elementary School', state: active },
+        { name: 'Leo Vasquez', initials: 'LV', color: AVATAR_COLORS[1], grade: '3rd Grade', school: 'Lincoln Elementary School', state: active },
+        { name: 'Priya Patel', initials: 'PP', color: AVATAR_COLORS[2], grade: '4th Grade', school: 'Washington Middle School', state: active },
+        { name: 'Marcus Williams', initials: 'MW', color: AVATAR_COLORS[3], grade: '4th Grade', school: 'Lincoln Elementary School', state: terminal },
+      ];
+    }
+  }
+}
+
 const MOCK_VALUES: Record<string, string> = {
   'Grade Level': '3rd Grade',
   'Enrollment Status': 'Active',
-  'Reading Level': '820L',
-  'Math Level': '4.2',
+  'Reading Level': '520L',
+  'Math Level': '480',
   'Reading Proficiency': 'At/Above',
   'Math Proficiency': 'On Watch',
   'Number of Assignments': '7',
 };
 
-function mockValue(attr: ObjectAttribute, student: MockStudent): string {
+function mockValue(attr: ObjectAttribute, row: PreviewRow): string {
   if (MOCK_VALUES[attr.name]) return MOCK_VALUES[attr.name];
-  if (attr.isReference) return student.school;
-  if (attr.dataType === 'Enum') return student.state;
+  if (attr.isReference) return row.school;
+  if (attr.dataType === 'Enum') return row.state;
   if (attr.dataType === 'Number') return '82';
   if (attr.dataType === 'Date') return '2024-09-01';
   return '\u2014';
@@ -480,12 +534,7 @@ function PreviewContent({
   const states = obj.lifecycle.states;
   const { avatarAttr, primaryAttr, secondaryAttrs } = buildPreviewSlots(viewAttributes);
 
-  const mockStudents: MockStudent[] = [
-    { name: 'Hermione Granger', initials: 'HG', color: '#2B87FF', grade: '3rd Grade', school: 'Hogwarts', state: states[0]?.name ?? 'Active' },
-    { name: 'Harry Potter', initials: 'HP', color: '#398B26', grade: '3rd Grade', school: 'Hogwarts', state: states[1]?.name ?? 'Inactive' },
-    { name: 'Luna Lovegood', initials: 'LL', color: '#ae74f0', grade: '3rd Grade', school: 'Hogwarts', state: states[2]?.name ?? 'Transferred' },
-    { name: 'Ron Weasley', initials: 'RW', color: '#fd4353', grade: '3rd Grade', school: 'Hogwarts', state: states[3]?.name ?? 'Graduated' },
-  ];
+  const mockStudents = buildPreviewRows(obj.identity.slug, states);
 
   const isAttrSelected = (attr: ObjectAttribute) =>
     selectedItem?.type === 'attribute' && selectedItem.name === attr.name;
