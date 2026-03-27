@@ -1,7 +1,14 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
+const FA_ROOT = resolve(__dirname, '../../fontawesome-pro-plus-7.2.0-web');
+
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@fontawesome': FA_ROOT,
+    },
+  },
   build: {
     lib: {
       entry: {

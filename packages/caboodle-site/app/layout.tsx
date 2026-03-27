@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-        <script src="https://kit.fontawesome.com/3938384a1a.js" crossOrigin="anonymous" async></script>
+        <script src="/fontawesome/js/all.min.js" async></script>
       </head>
       <body className="page">
         <header className="page-header">

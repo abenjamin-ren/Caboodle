@@ -2,34 +2,57 @@
 
 import { useState, useMemo, useCallback, useRef, useEffect } from 'react';
 import { ObjectTable, type ObjectTableColumn } from '@/components/ui/ObjectTable';
+import { ProgressRing } from '@/components/ui/ProgressRing';
+import { DeleteConfirmOverlay } from '@/components/ui/DeleteConfirmOverlay';
 import type { PreviewInspectionProps } from '@/lib/preview-types';
 
-type AssignmentStatus = 'complete' | 'in-progress' | 'assigned' | 'overdue';
+type AssignmentStatus = 'completed' | 'in-progress' | 'assigned' | 'overdue';
+type AssignmentType = 'Early Reading Practice' | 'Knowledge Check' | 'Math Challenge' | 'Reading Activity' | 'Skills Practice';
 
 interface MockAssignment {
   id: string;
   name: string;
-  type: string;
-  sourceProduct: 'Freckle' | 'myON' | 'Lalilo' | 'Nearpod';
+  type: AssignmentType;
   assignedDate: string;
   status: AssignmentStatus;
-  studentsCompleted: number;
-  totalStudents: number;
-  assignedBy: string;
+  completionCount: string;
+  notStarted: number;
+  inProgress: number;
+  complete: number;
+  createdBy: string;
+}
+
+const ASSIGNMENT_TYPE_ICON: Record<AssignmentType, string> = {
+  'Early Reading Practice': 'fa-solid fa-book',
+  'Knowledge Check': 'fa-solid fa-lightbulb',
+  'Math Challenge': 'fa-solid fa-hashtag',
+  'Reading Activity': 'fa-solid fa-book-open',
+  'Skills Practice': 'fa-solid fa-pen',
+};
+
+function AssignmentIcon({ type, percent }: { type: AssignmentType; percent: number }) {
+  return (
+    <span className="assign-list-icon" aria-hidden="true">
+      <svg className="assign-list-ring" viewBox="0 0 40 40" aria-hidden="true">
+        <ProgressRing
+          percent={percent}
+          radius={18}
+          color="var(--color-status-active)"
+          cx={20}
+          cy={20}
+          className="assign-list-ring-arc"
+        />
+      </svg>
+      <i className={ASSIGNMENT_TYPE_ICON[type]} />
+    </span>
+  );
 }
 
 const STATUS_LABELS: Record<AssignmentStatus, string> = {
-  complete: 'Complete',
+  completed: 'Completed',
   'in-progress': 'In Progress',
   assigned: 'Assigned',
   overdue: 'Overdue',
-};
-
-const PRODUCT_COLORS: Record<MockAssignment['sourceProduct'], string> = {
-  Freckle: '#2B87FF',
-  myON: '#7C3AED',
-  Lalilo: '#059669',
-  Nearpod: '#F59E0B',
 };
 
 function formatDate(iso: string): string {
@@ -37,6 +60,13 @@ function formatDate(iso: string): string {
     month: 'short',
     day: 'numeric',
     year: 'numeric',
+  });
+}
+
+function formatDateShort(iso: string): string {
+  return new Date(iso + 'T00:00:00').toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
   });
 }
 
@@ -49,174 +79,87 @@ function AssignmentStatusBadge({ status }: { status: AssignmentStatus }) {
   );
 }
 
-function CompletionRatio({
-  studentsCompleted,
-  totalStudents,
-}: {
-  studentsCompleted: number;
-  totalStudents: number;
-}) {
-  return (
-    <span
-      className="assign-status-count"
-      aria-label={`${studentsCompleted} of ${totalStudents} assigned students completed`}
-    >
-      {studentsCompleted}/{totalStudents}
-    </span>
-  );
-}
-
-function ProductBadge({ product }: { product: MockAssignment['sourceProduct'] }) {
-  return (
-    <span
-      className="assign-product-badge"
-      style={{ '--product-color': PRODUCT_COLORS[product] } as React.CSSProperties}
-    >
-      {product}
-    </span>
-  );
-}
-
 const MOCK_ASSIGNMENTS: MockAssignment[] = [
   {
     id: '1',
     name: 'Algebra: Basic Quiz',
     type: 'Knowledge Check',
-    sourceProduct: 'Freckle',
     assignedDate: '2026-02-25',
-    status: 'complete',
-    studentsCompleted: 25,
-    totalStudents: 25,
-    assignedBy: 'Me (Jane Doe)',
+    status: 'completed',
+    completionCount: '25/25',
+    notStarted: 0,
+    inProgress: 0,
+    complete: 25,
+    createdBy: 'Me (Jane Doe)',
   },
   {
     id: '2',
     name: 'Fractions Practice',
     type: 'Skills Practice',
-    sourceProduct: 'Freckle',
     assignedDate: '2026-02-20',
     status: 'in-progress',
-    studentsCompleted: 11,
-    totalStudents: 16,
-    assignedBy: 'Me (Jane Doe)',
+    completionCount: '11/16',
+    notStarted: 2,
+    inProgress: 3,
+    complete: 11,
+    createdBy: 'Me (Jane Doe)',
   },
   {
     id: '3',
     name: 'Long Division Practice',
-    type: 'Skills Practice',
-    sourceProduct: 'Freckle',
+    type: 'Math Challenge',
     assignedDate: '2026-02-02',
     status: 'assigned',
-    studentsCompleted: 0,
-    totalStudents: 16,
-    assignedBy: 'Me (Jane Doe)',
+    completionCount: '0/16',
+    notStarted: 16,
+    inProgress: 0,
+    complete: 0,
+    createdBy: 'Me (Jane Doe)',
   },
   {
     id: '4',
     name: 'Multiplication Fluency',
     type: 'Skills Practice',
-    sourceProduct: 'Freckle',
     assignedDate: '2026-02-15',
     status: 'in-progress',
-    studentsCompleted: 9,
-    totalStudents: 25,
-    assignedBy: 'Fredrick Crane',
+    completionCount: '9/25',
+    notStarted: 8,
+    inProgress: 8,
+    complete: 9,
+    createdBy: 'Fredrick Crane',
   },
   {
     id: '5',
     name: "Charlotte's Web Ch. 4–6",
-    type: 'Reading',
-    sourceProduct: 'myON',
+    type: 'Reading Activity',
     assignedDate: '2026-03-10',
     status: 'overdue',
-    studentsCompleted: 8,
-    totalStudents: 16,
-    assignedBy: 'Me (Jane Doe)',
+    completionCount: '8/16',
+    notStarted: 3,
+    inProgress: 5,
+    complete: 8,
+    createdBy: 'Me (Jane Doe)',
   },
   {
     id: '6',
     name: 'Short Vowel Blending',
-    type: 'Activity',
-    sourceProduct: 'Lalilo',
+    type: 'Early Reading Practice',
     assignedDate: '2026-03-14',
     status: 'assigned',
-    studentsCompleted: 0,
-    totalStudents: 25,
-    assignedBy: 'Me (Jane Doe)',
+    completionCount: '0/25',
+    notStarted: 25,
+    inProgress: 0,
+    complete: 0,
+    createdBy: 'Me (Jane Doe)',
   },
 ];
 
-function DeleteConfirmOverlay({
-  assignmentName,
-  isExiting,
-  onConfirm,
-  onCancel,
-}: {
-  assignmentName: string;
-  isExiting: boolean;
-  onConfirm: () => void;
-  onCancel: () => void;
-}) {
-  const deleteRef = useRef<HTMLButtonElement>(null);
-  const [entered, setEntered] = useState(false);
-
-  // Delay one frame so the browser sees the starting transform before transitioning in
-  useEffect(() => {
-    const raf = requestAnimationFrame(() => {
-      setEntered(true);
-      deleteRef.current?.focus();
-
-      // #region agent log
-      const contentEl = deleteRef.current?.closest('.obj-confirm-content') as HTMLElement | null;
-      const xBtnEl = contentEl?.closest('td')?.querySelector('.obj-icon-btn') as HTMLElement | null;
-      const contentRect = contentEl?.getBoundingClientRect();
-      const xBtnRect = xBtnEl?.getBoundingClientRect();
-      const contentWidth = contentRect?.width ?? 0;
-      const contentRight = contentRect?.right ?? 0;
-      const xBtnCenterX = xBtnRect ? xBtnRect.left + xBtnRect.width / 2 : 0;
-      const offsetFromContentRight = xBtnCenterX - contentRight;
-      const neededOriginPct = contentWidth > 0 ? ((contentWidth + offsetFromContentRight) / contentWidth) * 100 : 0;
-      fetch('http://127.0.0.1:7496/ingest/c23544f3-6e9f-4254-a652-6ac74ff2d03c',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'647866'},body:JSON.stringify({sessionId:'647866',location:'ClassAssignmentsPreview.tsx:enter-raf',message:'Pivot measurement — content vs X icon',hypothesisId:'PIVOT',data:{contentWidth:Math.round(contentWidth),contentRight:Math.round(contentRight),xBtnCenterX:Math.round(xBtnCenterX),offsetFromContentRight:Math.round(offsetFromContentRight),neededOriginPct:Math.round(neededOriginPct),neededOriginPx:Math.round(contentWidth + offsetFromContentRight)},timestamp:Date.now()})}).catch(()=>{});
-      // #endregion
-    });
-    return () => cancelAnimationFrame(raf);
-  }, []);
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onCancel();
-    };
-    document.addEventListener('keydown', onKey);
-    return () => document.removeEventListener('keydown', onKey);
-  }, [onCancel]);
-
-  const state = isExiting ? 'exiting' : entered ? 'entered' : 'entering';
-
-  return (
-    <div
-      className="obj-confirm-overlay"
-      role="alertdialog"
-      aria-label={`Delete ${assignmentName}?`}
-    >
-      <div className="obj-confirm-content" data-state={state}>
-        <span className="obj-confirm-msg">This action can&apos;t be undone.</span>
-        <button
-          ref={deleteRef}
-          type="button"
-          className="obj-confirm-delete"
-          onClick={onConfirm}
-        >
-          Delete assignment
-        </button>
-      </div>
-    </div>
-  );
-}
-
 export function ClassAssignmentsPreview({
   selectedItem,
+  selectedRole,
   isActionAvailable,
   viewCTAs,
+  displayMode = 'table',
 }: Partial<PreviewInspectionProps>) {
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [exitingId, setExitingId] = useState<string | null>(null);
@@ -231,8 +174,8 @@ export function ClassAssignmentsPreview({
   const typeSelected = isAttr('Assignment Type');
   const assignedDateSelected = isAttr('Assigned Date');
   const statusSelected = isAttr('Status');
-  const progressSelected = isAttr('Completion Progress');
-  const assignedBySelected = isAttr('Created By');
+  const completionSelected = isAttr('Completion Count');
+  const createdBySelected = isAttr('Created By');
   const deleteSelected = isCTA('Delete');
 
   const canDelete = useMemo(() => {
@@ -266,7 +209,141 @@ export function ClassAssignmentsPreview({
     }, 280);
   }, [deletingId]);
 
-  const columns = useMemo((): ObjectTableColumn<MockAssignment>[] => [
+  const canDeleteRow = useCallback((r: MockAssignment) => {
+    if (!canDelete) return false;
+    const isAdmin = selectedRole === 'admin';
+    const allNotStarted = r.inProgress === 0 && r.complete === 0;
+    return isAdmin || allNotStarted;
+  }, [canDelete, selectedRole]);
+
+  const renderDeleteButton = useCallback((r: MockAssignment) => {
+    const isConfirming = r.id === deletingId || r.id === exitingId;
+
+    if (isConfirming) {
+      return (
+        <button
+          type="button"
+          className="obj-icon-btn"
+          aria-label="Cancel delete"
+          onClick={handleDeleteCancel}
+        >
+          <i className="fa-solid fa-xmark" aria-hidden="true" />
+        </button>
+      );
+    }
+
+    if (canDeleteRow(r)) {
+      return (
+        <button
+          type="button"
+          className={`obj-icon-btn${deleteSelected ? ' highlighted' : ''}`}
+          aria-label={`Delete ${r.name}`}
+          onClick={() => setDeletingId(r.id)}
+        >
+          <i className="fa-regular fa-trash-can" aria-hidden="true" />
+        </button>
+      );
+    }
+
+    return <div className="obj-icon-btn-placeholder" aria-hidden="true" />;
+  }, [deletingId, exitingId, deleteSelected, canDeleteRow, handleDeleteCancel]);
+
+  const renderRowOverlay = useCallback((r: MockAssignment) => {
+    const isConfirming = r.id === deletingId || r.id === exitingId;
+    if (!isConfirming) return null;
+    return (
+      <DeleteConfirmOverlay
+        itemName={r.name}
+        itemType="assignment"
+        isExiting={r.id === exitingId}
+        onConfirm={() => handleDeleteConfirm(r.id)}
+        onCancel={handleDeleteCancel}
+      />
+    );
+  }, [deletingId, exitingId, handleDeleteConfirm, handleDeleteCancel]);
+
+  /* ---------- List shape ---------- */
+
+  if (displayMode === 'list') {
+    return (
+      <div className="obj-list" role="list">
+        {visibleRows.map(r => {
+          const isConfirming = r.id === deletingId || r.id === exitingId;
+          const totalStudents = r.notStarted + r.inProgress + r.complete;
+
+          return (
+            <div
+              key={r.id}
+              className={`obj-list-row${isConfirming ? ' obj-table-row--confirming' : ''}`}
+              role="listitem"
+            >
+              {isConfirming && (
+                <DeleteConfirmOverlay
+                  itemName={r.name}
+                  itemType="assignment"
+                  isExiting={r.id === exitingId}
+                  onConfirm={() => handleDeleteConfirm(r.id)}
+                  onCancel={handleDeleteCancel}
+                />
+              )}
+
+              <div className="assign-list-identity">
+                <AssignmentIcon
+                  type={r.type}
+                  percent={totalStudents > 0 ? (r.complete / totalStudents) * 100 : 0}
+                />
+                <div className="obj-list-name-block">
+                  <div className="obj-list-name-line">
+                    <a
+                      href="#"
+                      className={`obj-list-name${nameSelected ? ' highlighted' : ''}`}
+                      aria-label={`View ${r.name}`}
+                    >
+                      {r.name}
+                    </a>
+                    <span className="obj-list-meta-dot" />
+                    <span className={`assign-list-student-count${completionSelected ? ' highlighted' : ''}`}>
+                      {totalStudents} Students
+                    </span>
+                  </div>
+                  <div className="obj-list-meta">
+                    <span className={typeSelected ? 'highlighted' : ''}>{r.type}</span>
+                    <span className="obj-list-meta-dot" />
+                    <span className={assignedDateSelected || createdBySelected ? 'highlighted' : ''}>
+                      {`Assigned by ${r.createdBy} on ${formatDateShort(r.assignedDate)}`}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className={`assign-list-stats${completionSelected ? ' highlighted' : ''}`}>
+                <div className="assign-list-stat">
+                  <span className="assign-list-stat-value">{r.notStarted}</span>
+                  <span className="assign-list-stat-label">Not started</span>
+                </div>
+                <div className="assign-list-stat">
+                  <span className="assign-list-stat-value">{r.inProgress}</span>
+                  <span className="assign-list-stat-label">In progress</span>
+                </div>
+                <div className="assign-list-stat assign-list-stat--complete">
+                  <span className="assign-list-stat-value">{r.complete}</span>
+                  <span className="assign-list-stat-label">Complete</span>
+                </div>
+              </div>
+
+              <div className="assign-list-actions">
+                {renderDeleteButton(r)}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+
+  /* ---------- Table shape (default) ---------- */
+
+  const columns: ObjectTableColumn<MockAssignment>[] = [
     {
       key: 'name',
       label: 'Name',
@@ -310,81 +387,32 @@ export function ClassAssignmentsPreview({
           <span className={statusSelected ? 'highlighted' : ''}>
             <AssignmentStatusBadge status={r.status} />
           </span>
-          <span className={progressSelected ? 'highlighted' : ''}>
-            <CompletionRatio studentsCompleted={r.studentsCompleted} totalStudents={r.totalStudents} />
+          <span className={completionSelected ? 'highlighted' : ''}>
+            <span className="assign-status-count">{r.completionCount}</span>
           </span>
         </span>
       ),
     },
     {
-      key: 'assignedBy',
-      label: 'Assigned by',
+      key: 'createdBy',
+      label: 'Created by',
       sortable: true,
-      getSortValue: r => r.assignedBy,
+      getSortValue: r => r.createdBy,
       render: r => (
-        <span className={assignedBySelected ? 'highlighted' : ''}>{r.assignedBy}</span>
+        <span className={createdBySelected ? 'highlighted' : ''}>{r.createdBy}</span>
       ),
     },
     {
       key: 'actions',
       label: '',
       width: '61px',
-      render: r => {
-        const isConfirming = r.id === deletingId || r.id === exitingId;
-        const isExiting = r.id === exitingId;
-        const canDeleteRow = canDelete && r.assignedBy === 'Me (Jane Doe)' && r.status === 'assigned';
-
-        // #region agent log
-        if (isConfirming && !isExiting) {
-          fetch('http://127.0.0.1:7496/ingest/c23544f3-6e9f-4254-a652-6ac74ff2d03c',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'647866'},body:JSON.stringify({sessionId:'647866',location:'ClassAssignmentsPreview.tsx:actions-render',message:'Confirming row rendered',hypothesisId:'D-E',data:{rowId:r.id,rowName:r.name,totalVisibleRows:visibleRows.length,rowIndexInVisible:visibleRows.findIndex(v=>v.id===r.id)},timestamp:Date.now()})}).catch(()=>{});
-        }
-        // #endregion
-
-        if (isConfirming) {
-          return (
-            <>
-              <DeleteConfirmOverlay
-                assignmentName={r.name}
-                isExiting={isExiting}
-                onConfirm={() => handleDeleteConfirm(r.id)}
-                onCancel={handleDeleteCancel}
-              />
-              <button
-                type="button"
-                className="obj-icon-btn"
-                aria-label="Cancel delete"
-                onClick={handleDeleteCancel}
-              >
-                <i className="fa-solid fa-xmark" aria-hidden="true" />
-              </button>
-            </>
-          );
-        }
-
-        return canDeleteRow ? (
-          <button
-            type="button"
-            className={`obj-icon-btn${deleteSelected ? ' highlighted' : ''}`}
-            aria-label={`Delete ${r.name}`}
-            onClick={() => setDeletingId(r.id)}
-          >
-            <i className="fa-regular fa-trash-can" aria-hidden="true" />
-          </button>
-        ) : null;
-      },
+      render: r => renderDeleteButton(r),
     },
-  ], [
-    nameSelected, typeSelected, assignedDateSelected,
-    statusSelected, progressSelected, assignedBySelected,
-    deleteSelected, canDelete, deletingId, exitingId, handleDeleteConfirm, handleDeleteCancel,
-  ]);
+  ];
 
-  const rowClassName = useCallback(
-    (row: MockAssignment) => (row.id === deletingId || row.id === exitingId)
-      ? 'obj-table-row--confirming'
-      : '',
-    [deletingId, exitingId],
-  );
+  const rowClassName = (row: MockAssignment) => (row.id === deletingId || row.id === exitingId)
+    ? 'obj-table-row--confirming'
+    : '';
 
   return (
     <ObjectTable
@@ -394,6 +422,7 @@ export function ClassAssignmentsPreview({
       getRowKey={r => r.id}
       defaultSortKey="name"
       rowClassName={rowClassName}
+      rowOverlay={renderRowOverlay}
     />
   );
 }

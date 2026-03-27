@@ -20,6 +20,7 @@ interface ObjectTableProps<T> {
   defaultSortKey?: string;
   defaultSortDir?: 'asc' | 'desc';
   rowClassName?: (row: T, index: number) => string;
+  rowOverlay?: (row: T, index: number) => React.ReactNode;
 }
 
 export function ObjectTable<T>({
@@ -30,6 +31,7 @@ export function ObjectTable<T>({
   defaultSortKey,
   defaultSortDir = 'asc',
   rowClassName,
+  rowOverlay,
 }: ObjectTableProps<T>) {
   const [sortKey, setSortKey] = useState<string | null>(defaultSortKey ?? null);
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>(defaultSortDir);
@@ -101,24 +103,32 @@ export function ObjectTable<T>({
           </tr>
         </thead>
         <tbody>
-          {sortedRows.map((row, i) => (
-            <tr
-              key={getRowKey(row, i)}
-              className={['obj-table-row', rowClassName?.(row, i) ?? ''].filter(Boolean).join(' ')}
-            >
-              {columns.map(col => (
-                <td
-                  key={col.key}
-                  className={[
-                    'obj-td',
-                    col.align === 'center' ? 'obj-td--center' : '',
-                  ].filter(Boolean).join(' ')}
-                >
-                  {col.render(row)}
-                </td>
-              ))}
-            </tr>
-          ))}
+          {sortedRows.map((row, i) => {
+            const overlay = rowOverlay?.(row, i);
+            return (
+              <tr
+                key={getRowKey(row, i)}
+                className={['obj-table-row', rowClassName?.(row, i) ?? ''].filter(Boolean).join(' ')}
+              >
+                {overlay && (
+                  <td className="obj-td-overlay" colSpan={columns.length}>
+                    {overlay}
+                  </td>
+                )}
+                {columns.map(col => (
+                  <td
+                    key={col.key}
+                    className={[
+                      'obj-td',
+                      col.align === 'center' ? 'obj-td--center' : '',
+                    ].filter(Boolean).join(' ')}
+                  >
+                    {col.render(row)}
+                  </td>
+                ))}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

@@ -57,6 +57,8 @@ export function ViewInspector({ obj, view, systemSlug }: ViewInspectorProps) {
   const [displayMode, setDisplayMode] = useState<ValidShape>(availableShapes[0] ?? 'list');
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [ctaRoleOverrides, setCtaRoleOverrides] = useState<Record<string, string[]>>({});
+  const [leftPanelOpen, setLeftPanelOpen] = useState(true);
+  const [rightPanelOpen, setRightPanelOpen] = useState(true);
   const [isPending, startTransition] = useTransition();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -111,6 +113,17 @@ export function ViewInspector({ obj, view, systemSlug }: ViewInspectorProps) {
     <div className="view-inspector">
       {/* Breadcrumb Bar */}
       <div className="view-breadcrumb-bar">
+        <button
+          type="button"
+          className={`view-panel-toggle${leftPanelOpen ? ' active' : ''}`}
+          onClick={() => setLeftPanelOpen(o => !o)}
+          aria-label={leftPanelOpen ? 'Close inventory panel' : 'Open inventory panel'}
+          aria-pressed={leftPanelOpen}
+          title={leftPanelOpen ? 'Close inventory panel' : 'Open inventory panel'}
+        >
+          <i className="fa-solid fa-table-columns" aria-hidden="true" />
+        </button>
+
         <div className="view-breadcrumb">
           <a href={`/objects/${systemSlug}/${obj.identity.slug}`}>
             {obj.identity.name} {obj.identity.qualifier}
@@ -149,11 +162,31 @@ export function ViewInspector({ obj, view, systemSlug }: ViewInspectorProps) {
             )}
           </div>
         </div>
+
+        <button
+          type="button"
+          className={`view-panel-toggle view-panel-toggle-right${rightPanelOpen ? ' active' : ''}`}
+          onClick={() => setRightPanelOpen(o => !o)}
+          aria-label={rightPanelOpen ? 'Close detail panel' : 'Open detail panel'}
+          aria-pressed={rightPanelOpen}
+          title={rightPanelOpen ? 'Close detail panel' : 'Open detail panel'}
+        >
+          <i className="fa-solid fa-table-columns" aria-hidden="true" />
+        </button>
       </div>
 
-      <div className="view-inspector-panels">
+      <div
+        className="view-inspector-panels"
+        style={{
+          gridTemplateColumns: [
+            leftPanelOpen && '300px',
+            '1fr',
+            rightPanelOpen && '300px',
+          ].filter(Boolean).join(' '),
+        }}
+      >
         {/* Left Panel — Inventory */}
-        <aside className="inventory-panel">
+        {leftPanelOpen && <aside className="inventory-panel">
           <div className="inventory-section">
             <div className="inventory-section-header">
               <span className="inventory-section-icon">
@@ -272,7 +305,7 @@ export function ViewInspector({ obj, view, systemSlug }: ViewInspectorProps) {
               ))}
             </div>
           </div>
-        </aside>
+        </aside>}
 
         {/* Center Panel — Preview */}
         <div className="preview-panel">
@@ -395,7 +428,7 @@ export function ViewInspector({ obj, view, systemSlug }: ViewInspectorProps) {
         </div>
 
         {/* Right Panel — Detail */}
-        <aside className="detail-panel">
+        {rightPanelOpen && <aside className="detail-panel">
           {selectedAttr && (
             <AttributeDetail
               key={selectedAttr.name}
@@ -425,7 +458,7 @@ export function ViewInspector({ obj, view, systemSlug }: ViewInspectorProps) {
               <p>Select an attribute or action to view its details.</p>
             </div>
           )}
-        </aside>
+        </aside>}
       </div>
     </div>
   );

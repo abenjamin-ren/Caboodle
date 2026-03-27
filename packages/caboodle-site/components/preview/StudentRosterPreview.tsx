@@ -269,7 +269,7 @@ export function StudentRosterPreview({
                         {readingPill}
                       </span>
                     )}
-                    {!active && <span className="roster-meta--italic">{s.enrollmentStatus}</span>}
+                    {!active && <span className="obj-list-meta--italic">{s.enrollmentStatus}</span>}
                   </td>
                   <td className="roster-td">
                     {active && viewScoresAvailable && (
@@ -342,7 +342,7 @@ export function StudentRosterPreview({
                   {active ? (
                     <div className="roster-card-meta">
                       <span className={gradeSelected ? 'highlighted' : ''}>{s.grade}</span>
-                      <span className="roster-meta-dot" />
+                      <span className="obj-list-meta-dot" />
                       <span>{s.assignmentCount} Assignments</span>
                     </div>
                   ) : (
@@ -383,32 +383,32 @@ export function StudentRosterPreview({
   }
 
   return (
-    <div className="roster-list" role="list">
+    <div className="obj-list" role="list">
       {students.map((s, i) => {
         const active = isStudentActive(s);
 
         return (
-          <div key={s.id ?? i} className={`roster-row${!active ? ' roster-row--inactive' : ''}`} role="listitem">
+          <div key={s.id ?? i} className={`obj-list-row roster-row${!active ? ' roster-row--inactive' : ''}`} role="listitem">
             <div className={`roster-identity${active ? '' : ' roster-identity--faded'}`}>
               <RosterRing
                 readingPercent={s.readingPercent}
                 mathPercent={s.mathPercent}
                 inactive={!active}
               />
-              <div className="roster-name-block">
+              <div className="obj-list-name-block">
                 {s.href && !embedded ? (
-                  <a href={s.href} className={`roster-name${nameSelected ? ' highlighted' : ''}`}>{s.name}</a>
+                  <a href={s.href} className={`obj-list-name${nameSelected ? ' highlighted' : ''}`}>{s.name}</a>
                 ) : (
-                  <span className={`roster-name${nameSelected ? ' highlighted' : ''}`}>{s.name}</span>
+                  <span className={`obj-list-name${nameSelected ? ' highlighted' : ''}`}>{s.name}</span>
                 )}
                 {active ? (
-                  <div className="roster-meta">
+                  <div className="obj-list-meta">
                     <span className={gradeSelected ? 'highlighted' : ''}>{s.grade}</span>
-                    <span className="roster-meta-dot" />
+                    <span className="obj-list-meta-dot" />
                     <span>{s.assignmentCount} Assignments</span>
                   </div>
                 ) : (
-                  <div className={`roster-meta roster-meta--italic${enrollmentSelected ? ' highlighted' : ''}`}>{s.enrollmentStatus}</div>
+                  <div className={`obj-list-meta obj-list-meta--italic${enrollmentSelected ? ' highlighted' : ''}`}>{s.enrollmentStatus}</div>
                 )}
               </div>
             </div>
